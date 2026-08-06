@@ -40,9 +40,7 @@ export function DeveloperListing({ developers }: { developers: any[] }) {
                           loading="lazy"
                           draggable="false"
                           src={d.logo}
-                          srcSet={`${d.logo.replace("/296x/", "/118x/")} 118w, ${d.logo.replace("/296x/", "/158x/")} 158w, ${d.logo} 296w`}
-                          sizes="100px 118px"
-                          alt={`developer-${d.name}-image - Provident Estate`}
+                          alt={`${d.name} - Provident Estate`}
                         />
                       )}
                     </div>
