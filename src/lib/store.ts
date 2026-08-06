@@ -13,10 +13,16 @@ export function loadRel(rel: string): any | null {
     return null;
   }
   try {
-    const j = JSON.parse(readFileSync(file, "utf8"));
+    const content = readFileSync(file, "utf8");
+    if (!content.trim()) {
+      cache.set(rel, null);
+      return null;
+    }
+    const j = JSON.parse(content);
     cache.set(rel, j);
     return j;
-  } catch {
+  } catch (e) {
+    console.error(`Failed to load ${rel}:`, e);
     cache.set(rel, null);
     return null;
   }
@@ -293,17 +299,21 @@ export function blogPosts(limit = 4): any[] {
   try {
     for (const e of readdirSync(dir)) {
       if (!e.endsWith(".json")) continue;
-      const j = loadRel(path.join("pages", "blog", e));
-      const b = j?.result?.data?.strapiBlog;
-      if (!b) continue;
-      posts.push({
-        slug: b.slug,
-        title: b.title,
-        date: b.date || "",
-        category: Array.isArray(b.category?.strapi_json_value) ? b.category.strapi_json_value.join(", ") : b.category || "",
-        image: b.tile_image?.url || b.banner_image?.url || null,
-        description: b.short_description || "",
-      });
+      try {
+        const j = loadRel(path.join("pages", "blog", e));
+        const b = j?.result?.data?.strapiBlog;
+        if (!b) continue;
+        posts.push({
+          slug: b.slug || "",
+          title: b.title || "",
+          date: b.date || "",
+          category: Array.isArray(b.category?.strapi_json_value) ? b.category.strapi_json_value.join(", ") : b.category || "",
+          image: b.tile_image?.url || b.banner_image?.url || null,
+          description: b.short_description || "",
+        });
+      } catch (e) {
+        console.error(`Failed to load blog post ${e}:`, e);
+      }
     }
   } catch {}
   posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
@@ -369,9 +379,9 @@ export function developersList(): any[] {
   const j = loadRel("developers.json");
   const list = j && Array.isArray(j) ? j : [];
   return list.map((d: any) => ({
-    slug: d.slug,
-    name: d.name,
-    logo: d.logo ? `https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.logo}` : "",
+    slug: d.slug || "",
+    name: d.name || "",
+    logo: d.logo ? `https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.logo}` : "https://d3h330vgpwpjr8.cloudfront.net/x/296x/placeholder.jpg",
     description: d.description || "",
   }));
 }

@@ -2,6 +2,8 @@
 import { PropertyCard, MoreBox } from "./property-card";
 import { Rich, ctaHref, stripHtml } from "./rich";
 import { FaqList } from "./faq";
+import { ServiceImage } from "./service-image";
+import { PartnerImage } from "./partner-image";
 import {
   communities,
   featuredIds,
@@ -666,20 +668,9 @@ function OurServices({ m }: { m: any }) {
               const href = s.cta ? ctaHref(s.cta) : "#";
               return (
                 <div className="service-item" key={i}>
-                    <a className="img-section img-zoom" href={href}>
-                      {s.image?.url && (
-                        <img
-                          loading="lazy"
-                          draggable="false"
-                          src={cft(s.image.url, 1128, 752)}
-                          alt={(s.cta?.cta_label || s.title || "Service") + " - Provident Estate"}
-                          onError={(e) => {
-                            const img = e.target as HTMLImageElement;
-                            img.src = "https://d3h330vgpwpjr8.cloudfront.net/x/1128x752/placeholder.jpg";
-                          }}
-                        />
-                      )}
-                    </a>
+                  <a className="img-section img-zoom" href={href}>
+                    <ServiceImage url={s.image?.url} alt={(s.cta?.cta_label || s.title || "Service") + " - Provident Estate"} />
+                  </a>
                   <div className="content-section false">
                     <a className="title" href={href}>
                       <span>{s.cta?.cta_label || s.title}</span>
@@ -746,16 +737,7 @@ function Partner({ m }: { m: any }) {
               <div className="partner-item" key={i}>
                 <div className="img-section img-zoom">
                   {p.image?.url && (
-                    <img
-                      loading="lazy"
-                      draggable="false"
-                      src={cft(p.image.url, 304, 160)}
-                      alt={p.name + " - Provident Estate"}
-                      onError={(e) => {
-                        const img = e.target as HTMLImageElement;
-                        img.src = "https://d3h330vgpwpjr8.cloudfront.net/x/304x160/placeholder.jpg";
-                      }}
-                    />
+                    <PartnerImage url={p.image.url} alt={p.name + " - Provident Estate"} />
                   )}
                 </div>
                 <div className="content-section">

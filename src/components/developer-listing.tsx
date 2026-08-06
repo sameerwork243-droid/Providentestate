@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { DeveloperImage } from "./developer-image";
 
 export function DeveloperListing({ developers }: { developers: any[] }) {
   const [query, setQuery] = useState("");
@@ -35,14 +36,7 @@ export function DeveloperListing({ developers }: { developers: any[] }) {
                 <a className="img-section-wrap img-zoom" href={link}>
                   <div className="img-section">
                     <div className="logo-section">
-                      {d.logo && (
-                        <img
-                          loading="lazy"
-                          draggable="false"
-                          src={d.logo}
-                          alt={`${d.name} - Provident Estate`}
-                        />
-                      )}
+                      <DeveloperImage url={d.logo} alt={`${d.name} - Provident Estate`} />
                     </div>
                   </div>
                 </a>
