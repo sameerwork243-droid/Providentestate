@@ -1,6 +1,6 @@
 import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getPageData, classify } from "@/lib/ref";
 import { developerHubData, developerHits, typeHubData } from "@/lib/store";
 import { SiteHeader } from "@/components/header";
@@ -10,6 +10,7 @@ import { ListingPage } from "@/components/listing";
 import { PropertyDetailPage } from "@/components/property-detail";
 import { ProjectPages } from "@/components/projects";
 import { ContentPages } from "@/components/content-pages";
+import { SitemapPage } from "@/components/sitemap";
 
 function walk(dir: string, base: string): string[] {
   const out: string[] = [];
@@ -41,10 +42,21 @@ function routesFromRaw() {
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
+const ALIASES: Record<string, string> = {
+  "/buy": "/buy/properties-for-sale",
+  "/let": "/let/properties-for-rent",
+};
+
+function allStaticRoutes() {
   const routes = new Set(routesFromRaw());
   for (const d of developerHits(200)) routes.add(`/new-projects/developed-by-${d.developer.toLowerCase().replace(/[^a-z0-9-]+/g, "-")}`);
   for (const t of ["apartment", "villa", "townhouse", "penthouse", "mansions", "duplex", "studio"]) routes.add(`/new-projects/type-${t}`);
+  return routes;
+}
+
+export function generateStaticParams() {
+  const routes = allStaticRoutes();
+  for (const a of Object.keys(ALIASES)) routes.add(a);
   return [...routes].map((r) => ({
     seg: r === "/" ? [] : r.split("/").filter(Boolean),
   }));
@@ -55,6 +67,19 @@ const TRANSPARENT_PREFIXES = ["/buy", "/let", "/new-projects"];
 export default async function Page({ params }: { params: Promise<{ seg?: string[] }> }) {
   const { seg = [] } = await params;
   const route = "/" + seg.join("/");
+
+  const alias = ALIASES[route];
+  if (alias) permanentRedirect(alias);
+
+  if (route === "/sitemap") {
+    return (
+      <div className="page-layout">
+        <SiteHeader transparent />
+        <SitemapPage routes={[...allStaticRoutes()]} />
+        <SiteFooter />
+      </div>
+    );
+  }
 
   const devMatch = route.match(/^\/new-projects\/developed-by-([a-z0-9-]+)\/?$/);
   const typeMatch = route.match(/^\/new-projects\/type-([a-z0-9-]+)\/?$/);

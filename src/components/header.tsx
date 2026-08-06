@@ -157,7 +157,7 @@ const MENUS: MenuDef[] = [
           { label: "Dubai Islands", href: "/area-guides/dubai-islands/" },
           { label: "Palm Jebel Ali", href: "/area-guides/palm-jebel-ali/" },
           { label: "DAMAC Islands", href: "/area-guides/damac-islands/" },
-          { label: "The Oasis", href: "/area-guides/the-oasis/" },
+          { label: "The Oasis", href: "/area-guides/the-oasis-by-emaar/" },
           { label: "All Areas in Dubai", href: "/area-guides/" },
         ],
       },
