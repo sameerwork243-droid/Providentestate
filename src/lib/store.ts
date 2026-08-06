@@ -204,6 +204,68 @@ export const communities: { label: string; slug: string }[] = (() => {
 
 export const areas: string[] = communities.map((c) => c.label);
 
+/** First-page area-guide slugs in the exact reference order (page 1 of /area-guides). */
+const AREA_GUIDE_PAGE1 = [
+  "downtown-dubai",
+  "palm-jumeirah",
+  "dubai-marina",
+  "business-bay",
+  "emaar-beachfront",
+  "bluewater-island-dubai",
+  "jumeirah-lake-towers",
+  "dubai-creek-harbour",
+  "sobha-hartland",
+  "dubai-hills-estate",
+  "jumeirah-beach-residence",
+  "jumeirah-village-circle",
+  "dubai-south",
+  "dubai-sports-city",
+  "difc",
+  "emaar-south",
+  "jumeirah-bay-island",
+  "damac-hills",
+  "sobha-siniya-island",
+  "al-marjan-island",
+  "palm-jebel-ali",
+  "dubai-islands",
+  "jumeirah-golf-estates",
+  "mina-al-arab",
+];
+
+/** All area guides as listing cards (page-1 areas first, rest alphabetical after). */
+export function areaGuidesData(): any[] {
+  const dir = path.join(RAW, "pages", "area-guides");
+  let files: string[];
+  try {
+    files = readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+  } catch {
+    files = [];
+  }
+  const rank = new Map(AREA_GUIDE_PAGE1.map((s, i) => [s, i]));
+  const out: any[] = [];
+  for (const f of files) {
+    const slug = f.replace(/\.json$/, "");
+    const j = loadRel(path.join("pages", "area-guides", f));
+    const a = j?.result?.data?.strapiAreaGuide;
+    if (!a?.title) continue;
+    const img = a.tile_image?.url || a.banner_image?.url;
+    out.push({
+      slug: a.slug || slug,
+      title: a.title,
+      image: cft(img, 340, 212),
+      image304: cft(img, 304, 300),
+      desc: a.description?.data?.description || "",
+      amenities: Array.isArray(a.amenities?.strapi_json_value) ? a.amenities.strapi_json_value : [],
+      page1: rank.has(slug) ? rank.get(slug) : -1,
+    });
+  }
+  out.sort(
+    (a, b) =>
+      (a.page1 === -1 ? 1e3 : a.page1) - (b.page1 === -1 ? 1e3 : b.page1) || a.title.localeCompare(b.title)
+  );
+  return out;
+}
+
 export const developers: string[] = [...new Set((homeJson.developers as string[]).filter((d) => d !== "icon"))];
 
 /** Featured slider ids from the extracted homepage. */

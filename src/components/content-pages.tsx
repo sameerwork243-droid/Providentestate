@@ -3,7 +3,8 @@ import { ModuleRenderer } from "./modules";
 import { FaqList } from "./faq";
 import { Slick } from "./slick";
 import { PropertyCard } from "./property-card";
-import { cfw, cft, blogPosts, projectsByArea, projectBySlug } from "@/lib/store";
+import { AreaGuidesListing } from "./area-guides-listing";
+import { cfw, cft, blogPosts, projectsByArea, projectBySlug, areaGuidesData } from "@/lib/store";
 
 const QUICK_LINKS = [
   { label: "Buy", href: "/buy/properties-for-sale/" },
@@ -110,6 +111,7 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
   const banner = page.banner || {};
   const layout = page.layout || "landing_page";
   const isForm = layout === "form_page";
+  const isAreasListing = page.page_class === "communities_listing_page";
   const bg = banner.banner_image?.url;
   const title = banner.title || page.page_name || "";
   const mods = Array.isArray(page.modules) ? page.modules : [];
@@ -117,64 +119,82 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
   const ctas = [...(banner.ctas || [])];
   const ctaText = banner.cta_text?.cta ? { ...banner.cta_text.cta, cta_label: banner.cta_text.cta.cta_label || "Learn More" } : null;
   const allCtas = [...ctas, ctaText].filter(Boolean);
+  const descHtml = banner.description?.data?.description;
 
   return (
     <div>
       {!isForm && <MobileBannerMenu />}
-      <div className="banner-wrap banner-landing-wrap">
-        <div className="bg-section">
-          {bg && (
-            <img
-              loading="eager"
-              src={cfw(bg, 1773)}
-              srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
-              sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
-              alt="banner-bg - Provident Estate"
-            />
-          )}
-          <div className="overlay"></div>
-        </div>
-        <div className="breadcrumbs-wrap white-color">
-          <div className="breadcrumbs-container container">
-            <nav className="breadcrumbs">
-              <ol className="breadcrumb">
-                {routeCrumbs(route, crumbLeaf).map((c, i) => (
-                  <li className={"breadcrumb-item" + (i === 0 ? " enable-link-home" : "") + (c.active ? " active" : "")} key={i}>
-                    <a aria-current={c.active ? "page" : undefined} className={"breadcrumb-link " + (c.active ? "disable-link" : "enable-link")} href={c.href}>
-                      {c.label}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <div>
-          <div className="banner-container container">
-            <div className="brand-bx">
+      {isAreasListing ? (
+        <>
+          <Breadcrumbs route={route} crumbs={routeCrumbs(route, "Communities")} />
+          <div className="banner-listing-wrap" style={{ paddingBottom: "186px" }}>
+            <div className="banner-listing-container container">
               <h1 className="title">{title}</h1>
-              {banner.heading && <h2 className="heading">{banner.heading}</h2>}
-              {banner.description?.data?.description && (
+              {descHtml && (
                 <div className="description">
-                  <Rich html={banner.description.data.description} />
-                </div>
-              )}
-              {allCtas.length > 0 && (
-                <div className="cta-section">
-                  {allCtas.map((c: any, i: number) => (
-                    <a key={i} className={"button " + (i === 0 ? "button-orange" : "button-white")} href={ctaHref(c, "/contact/")}>
-                      <span>{c.cta_label || "Learn More"}</span>
-                    </a>
-                  ))}
+                  <Rich html={descHtml} />
                 </div>
               )}
             </div>
           </div>
+          <AreaGuidesListing areas={areaGuidesData()} />
+        </>
+      ) : (
+        <div className="banner-wrap banner-landing-wrap">
+          <div className="bg-section">
+            {bg && (
+              <img
+                loading="eager"
+                src={cfw(bg, 1773)}
+                srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
+                sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
+                alt="banner-bg - Provident Estate"
+              />
+            )}
+            <div className="overlay"></div>
+          </div>
+          <div className="breadcrumbs-wrap white-color">
+            <div className="breadcrumbs-container container">
+              <nav className="breadcrumbs">
+                <ol className="breadcrumb">
+                  {routeCrumbs(route, crumbLeaf).map((c, i) => (
+                    <li className={"breadcrumb-item" + (i === 0 ? " enable-link-home" : "") + (c.active ? " active" : "")} key={i}>
+                      <a aria-current={c.active ? "page" : undefined} className={"breadcrumb-link " + (c.active ? "disable-link" : "enable-link")} href={c.href}>
+                        {c.label}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div>
+            <div className="banner-container container">
+              <div className="brand-bx">
+                <h1 className="title">{title}</h1>
+                {banner.heading && <h2 className="heading">{banner.heading}</h2>}
+                {descHtml && (
+                  <div className="description">
+                    <Rich html={descHtml} />
+                  </div>
+                )}
+                {allCtas.length > 0 && (
+                  <div className="cta-section">
+                    {allCtas.map((c: any, i: number) => (
+                      <a key={i} className={"button " + (i === 0 ? "button-orange" : "button-white")} href={ctaHref(c, "/contact/")}>
+                        <span>{c.cta_label || "Learn More"}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {mods.map((m: any, i: number) => (
-        <ModuleWrap m={m} key={i} />
-      ))}
+      )}
+      {mods.map((m: any, i: number) =>
+        m.strapi_component === "modules.listing-module" && m.module === "communities_listing" ? null : <ModuleWrap m={m} key={i} />
+      )}
     </div>
   );
 }

@@ -59,3 +59,14 @@
 .sitemap-group a:hover {
   color: #0c7cc4;
 }
+
+/* area-guides listing: custom react-select visuals matching reference */
+.community-listing-wrap .react-select{position:relative}
+.community-listing-wrap .react-select__control{cursor:pointer}
+.community-listing-wrap .react-select__indicator-separator{align-self:stretch;background-color:#e1e8ed;margin:8px 0;width:1px}
+.community-listing-wrap .react-select__dropdown-indicator{align-items:center;display:flex}
+.community-listing-wrap .arrow-down-icon{display:block}
+.community-listing-wrap .react-select__menu{background-color:#fff;border-radius:4px;box-shadow:0 0 0 1px rgba(0,0,0,.1),0 4px 11px rgba(0,0,0,.1);margin-top:4px;max-height:300px;overflow:auto;position:absolute;right:0;width:auto}
+.community-listing-wrap .react-select__menu-list{padding:0}
+.community-listing-wrap .react-select__option{color:#07234b;cursor:pointer;padding:12px 16px}
+.community-listing-wrap .react-select__option--is-focused,.community-listing-wrap .react-select__option:active{background-color:#07234b;color:#fff}
