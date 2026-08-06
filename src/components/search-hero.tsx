@@ -3,7 +3,33 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const BED_OPTS = ["0", "1", "2", "3", "4", "5", "6", "7", "8+"];
+const BED_MIN_OPTS: [string, string][] = [
+  ["", "No Min"],
+  ["0", "Studio"],
+  ["1", "1"],
+  ["2", "2"],
+  ["3", "3"],
+  ["4", "4"],
+  ["5", "5"],
+  ["6", "6"],
+  ["7", "7"],
+  ["8", "8"],
+  ["9", "9"],
+];
+
+const BED_MAX_OPTS: [string, string][] = [
+  ["", "No Max"],
+  ["0", "Studio"],
+  ["1", "1"],
+  ["2", "2"],
+  ["3", "3"],
+  ["4", "4"],
+  ["5", "5"],
+  ["6", "6"],
+  ["7", "7"],
+  ["8", "8"],
+  ["9", "9"],
+];
 
 const PRICE_OPTS: [string, string][] = [
   ["500000", "AED 500K"],
@@ -111,6 +137,129 @@ function FilterPanel({
   ) : null;
 }
 
+function BedSelect({
+  id,
+  value,
+  options,
+  onChange,
+}: {
+  id: "min-bedroom-select" | "max-bedroom-select";
+  value: string;
+  options: [string, string][];
+  onChange: (v: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const selected = options.find(([v]) => v === value);
+  const text = selected ? selected[1] : options[0][1];
+  return (
+    <div className={`react-select-wrap filter-select ${id}`}>
+      <div className="react-select" style={{ position: "relative" }}>
+        <button
+          type="button"
+          className={"react-select__control" + (open ? " react-select__control--menu-is-open" : "")}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={id === "min-bedroom-select" ? "Min Bedrooms" : "Max Bedrooms"}
+          onClick={() => setOpen((o) => !o)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            height: 21,
+            minHeight: 0,
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            padding: 0,
+            paddingLeft: 0,
+          }}
+        >
+          <div
+            className="react-select__value-container react-select__value-container--has-value"
+            style={{ flex: "1 1 0%", display: "grid", alignItems: "center", overflow: "hidden" }}
+          >
+            <div
+              className="react-select__single-value"
+              style={{
+                display: "flex",
+                color: "#35373C",
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+                fontSize: 14,
+                fontWeight: 400,
+                lineHeight: "19.6px",
+                letterSpacing: "normal",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "max-content",
+              }}
+            >
+              {text}
+            </div>
+          </div>
+          <span className="react-select__indicators" style={{ flex: "0 0 auto", display: "flex", alignItems: "center" }}>
+            <span
+              className="dropdown-indicator react-select__indicator react-select__dropdown-indicator"
+              aria-hidden="true"
+              style={{ display: "flex", alignItems: "center", marginLeft: 10 }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="arrow-down-icon">
+                <path d="M13 5.5L8 10.5L3 5.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </span>
+        </button>
+        {open && (
+          <div
+            className="react-select__menu"
+            role="listbox"
+            style={{
+              position: "absolute",
+              top: 21,
+              left: 0,
+              width: "100%",
+              minWidth: "100%",
+              zIndex: 10,
+              background: "#fff",
+              borderRadius: 4,
+              boxShadow: "0 0 0 1px rgba(0,0,0,.1), 0 4px 11px rgba(0,0,0,.1)",
+            }}
+          >
+            <div className="react-select__menu-list" style={{ maxHeight: 300, overflowY: "auto", padding: "4px 0" }}>
+              {options.map(([v, lab]) => (
+                <div
+                  key={v}
+                  role="option"
+                  aria-selected={value === v}
+                  className={"react-select__option" + (value === v ? " react-select__option--is-selected" : "")}
+                  onClick={() => {
+                    onChange(v);
+                    setOpen(false);
+                  }}
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 400,
+                    lineHeight: "25.6px",
+                    padding: "8px 12px",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                    color: value === v ? "#fff" : "#000",
+                    background: value === v ? "#07234B" : "#fff",
+                    zIndex: 1,
+                  }}
+                >
+                  {lab}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]; showTabs?: boolean; review?: string }) {
   const [tab, setTab] = useState(0);
   const [q, setQ] = useState("");
@@ -155,7 +304,7 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
     router.push(target + (params.toString() ? "?" + params.toString() : ""));
   };
 
-  const bedsLabel = minBed && maxBed ? `${minBed} - ${maxBed} Beds` : minBed ? `${minBed}+ Beds` : maxBed ? `Up to ${maxBed} Beds` : "Beds";
+  const bedsLabel = "Beds";
   const priceLabel = minPrice && maxPrice ? `${fmt(minPrice)} - ${fmt(maxPrice)}` : minPrice ? `${fmt(minPrice)}+` : maxPrice ? `Up to ${fmt(maxPrice)}` : "Price Range";
 
   return (
@@ -234,14 +383,46 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
                   <path d="M13 5.5L8 10.5L3 5.5" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <FilterPanel
-                open={bedsOpen}
-                options={BED_OPTS.map((b) => [b, b])}
-                cols={[
-                  { label: "Min Beds", value: minBed, onChange: setMinBed, width: 140 },
-                  { label: "Max Beds", value: maxBed, onChange: setMaxBed, width: 140 },
-                ]}
-              />
+              {bedsOpen && (
+                <div className="dropdown-menu filter-dropdown-menu show">
+                  <div className="custom-dropdown-menu">
+                    <div className="menu-item-wrap">
+                      <p
+                        className="label"
+                        style={{
+                          color: "#35373C",
+                          fontSize: 12,
+                          fontWeight: 400,
+                          letterSpacing: 0.12,
+                          lineHeight: "19.2px",
+                          whiteSpace: "nowrap",
+                          margin: 0,
+                        }}
+                      >
+                        Min Bedrooms
+                      </p>
+                      <BedSelect id="min-bedroom-select" value={minBed} options={BED_MIN_OPTS} onChange={setMinBed} />
+                    </div>
+                    <div className="menu-item-wrap">
+                      <p
+                        className="label"
+                        style={{
+                          color: "#35373C",
+                          fontSize: 12,
+                          fontWeight: 400,
+                          letterSpacing: 0.12,
+                          lineHeight: "19.2px",
+                          whiteSpace: "nowrap",
+                          margin: 0,
+                        }}
+                      >
+                        Max Bedrooms
+                      </p>
+                      <BedSelect id="max-bedroom-select" value={maxBed} options={BED_MAX_OPTS} onChange={setMaxBed} />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="vertical-divider ishide-mod"></div>
             <div className="filter-dropdown price-filter-dropdown ishide-mod dropdown">
