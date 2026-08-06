@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Apostrophes in JSX text render correctly; rule is stylistic only.
+      "react/no-unescaped-entities": "off",
+      // Inline data-URI SVGs — zero network cost, no LCP impact.
+      "@next/next/no-img-element": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

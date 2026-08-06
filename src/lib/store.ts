@@ -1,0 +1,399 @@
+import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
+import homeJson from "@/data/home.json";
+
+const RAW = path.join(process.cwd(), "data", "raw");
+const cache = new Map<string, any>();
+
+export function loadRel(rel: string): any | null {
+  if (cache.has(rel)) return cache.get(rel);
+  const file = path.join(RAW, rel);
+  if (!existsSync(file)) {
+    cache.set(rel, null);
+    return null;
+  }
+  try {
+    const j = JSON.parse(readFileSync(file, "utf8"));
+    cache.set(rel, j);
+    return j;
+  } catch {
+    cache.set(rel, null);
+    return null;
+  }
+}
+
+export function existsRel(rel: string): boolean {
+  return existsSync(path.join(RAW, rel));
+}
+
+const CF = "https://d3h330vgpwpjr8.cloudfront.net";
+
+function cfPath(rest: string, size: string): string {
+  const file = rest.replace(/\.(svg|png|jpe?g|avif)$/i, ".webp");
+  const i = file.lastIndexOf("/");
+  if (i >= 0) return `${CF}/x/${file.slice(0, i)}/${size}/${file.slice(i + 1)}`;
+  return `${CF}/x/${size}/${file}`;
+}
+
+/** ggfx S3 -> cloudfront transform URL, mirroring the reference pattern.
+ * Flat files: `x/{w}x{h}/{file}`; nested property paths: `x/{dir}/{w}x{h}/{file}`. */
+export function cft(url: string | null | undefined, w = 340, h = 252): string {
+  if (!url) return "";
+  if (url.includes(CF)) return url;
+  const m = url.match(/\/i\/(.+)$/);
+  if (!m) return url;
+  return cfPath(m[1], `${w}x${h}`);
+}
+
+/** Width-only cloudfront transform, mirroring the reference `x/{w}x/{rest}` pattern. */
+export function cfw(url: string | null | undefined, w = 744): string {
+  if (!url) return "";
+  if (url.includes(CF)) return url;
+  const m = url.match(/\/i\/(.+)$/);
+  if (!m) return url;
+  return cfPath(m[1], `${w}x`);
+}
+
+/** Listing page-data for a route (e.g. "/buy/properties-for-sale/in-dubai-marina"). */
+export function getListing(route: string): any | null {
+  const rel = route.replace(/^\//, "").replace(/\/$/, "");
+  const j = loadRel(path.join("listings", rel) + ".json") ?? loadRel(path.join("listings", rel + ".json"));
+  if (!j?.result?.serverData?.data) return null;
+  const d = j.result.serverData.data;
+  return { hits: d.hits || [], nbHits: d.nbHits ?? 0, nbPages: d.nbPages ?? 1, page: d.page ?? 0, hitsPerPage: d.hitsPerPage || 20, content: d.content || null, projects: d.projects || null };
+}
+
+/** Property detail (inner data) for a route like "/buy/slugid". */
+export function getProperty(route: string): any | null {
+  const rel = route.replace(/^\//, "").replace(/\/$/, "");
+  const j = loadRel(path.join("properties", rel) + ".json") ?? loadRel(path.join("properties", rel + ".json"));
+  const inner = j?.result?.serverData?.data;
+  return inner?.status === true && inner?.data?.id ? inner.data : null;
+}
+
+/** Convert a property-detail object to a listing-hit shape (cloudfront image keys etc.). */
+export function toHit(p: any): any {
+  const images = (p.images || []).map((im: any) => {
+    const src = im?.url || im?.srcUrl || null;
+    return { "340x252": cft(src, 340, 252), "464x312": cft(src, 464, 312), "696x520": cft(src, 696, 520) };
+  });
+  const first = p.thumbnail?.url || p.images?.[0]?.url || null;
+  return {
+    ...p,
+    images,
+    imageCount: images.length,
+    display_address: p.display_address || p.address || "",
+    crm_negotiator_id: p.crm_negotiator_id || null,
+    building: p.building ? (Array.isArray(p.building) ? p.building : [p.building]) : [],
+    description: p.introtext || p.description || "",
+    floorarea_min: p.floorarea_min ?? p.floorarea_max,
+    floorarea_max: p.floorarea_max,
+  };
+}
+
+/** Parse "/buy/...slug12345" -> { id, file } for the property detail corpus. */
+export function propRouteParts(link: string): { id: string; file: string; kind: "buy" | "let" } {
+  const clean = link.replace(/^\//, "").replace(/\/$/, "");
+  const m = clean.match(/^(.*?)(\d+)$/);
+  const id = m ? m[2] : "";
+  const slug = m ? m[1] : clean;
+  const kind = clean.startsWith("let") ? "let" : "buy";
+  const slugBase = slug.startsWith(kind + "/") ? slug.slice(kind.length + 1) : slug;
+  return { id, file: `${kind}/${slugBase}${id}.json`, kind };
+}
+
+/** Homepage slider / card lookups keyed by full property link. */
+export function byLink(link: string): any | null {
+  const { file } = propRouteParts(link);
+  const j = loadRel(path.join("properties", file));
+  const inner = j?.result?.serverData?.data;
+  return inner?.status === true && inner?.data?.id ? toHit(inner.data) : null;
+}
+
+let corpusCache: Record<string, any[]> = {};
+/** Full converted corpus for a kind (buy|let) — loaded lazily once. */
+export function corpus(kind: "buy" | "let"): any[] {
+  if (corpusCache[kind]) return corpusCache[kind];
+  const dir = path.join(RAW, "properties", kind);
+  const out: any[] = [];
+  try {
+    for (const e of readdirSync(dir)) {
+      const full = path.join(dir, e);
+      if (!statSync(full).isFile() || !e.endsWith(".json")) continue;
+      const j = loadRel(path.join("properties", kind, e));
+      const inner = j?.result?.serverData?.data;
+      if (inner?.status === true && inner?.data?.id) out.push(toHit(inner.data));
+    }
+  } catch {}
+  corpusCache[kind] = out;
+  return out;
+}
+
+/** Route constraints from a listing route: kind, type, area, price, bedrooms, completion, amenities. */
+export function routeFilters(route: string) {
+  const segs = route.split("/").filter(Boolean);
+  const f: { rent: boolean; type: string | null; area: string | null; priceMin: number | null; priceMax: number | null; bedsMin: number | null; bedsMax: number | null; completion: string | null; furnished: boolean; amenities: string[] } = {
+    rent: segs[0] === "let",
+    type: null,
+    area: null,
+    priceMin: null,
+    priceMax: null,
+    bedsMin: null,
+    bedsMax: null,
+    completion: null,
+    furnished: false,
+    amenities: [],
+  };
+  for (const s of segs) {
+    if (s.startsWith("in-")) f.area = s.slice(3);
+    else if (/^above-\d+$/.test(s)) f.priceMin = parseInt(s.slice(6), 10);
+    else if (/^under-\d+$/.test(s)) f.priceMax = parseInt(s.slice(6), 10);
+    else if (/^with-(\d+)-to-(\d+)-bedrooms$/.test(s)) {
+      const m = s.match(/^with-(\d+)-to-(\d+)-bedrooms$/);
+      if (m) { f.bedsMin = +m[1]; f.bedsMax = +m[2]; }
+    } else if (s === "furnished") f.furnished = true;
+    else if (s.startsWith("completion-")) f.completion = s.slice(11);
+    else if (s.startsWith("with-amenities-")) f.amenities.push(s.slice(15));
+    else if (/-for-sale$/.test(s)) f.type = s.replace(/-for-sale$/, "");
+    else if (/-for-rent$/.test(s)) f.type = s.replace(/-for-rent$/, "");
+  }
+  return f;
+}
+
+export function matchHit(h: any, f: ReturnType<typeof routeFilters>): boolean {
+  if (f.type && h.department?.toLowerCase() !== f.type && !(h.building_type || "").toLowerCase().includes(f.type)) {
+    const t = (f.type || "").toLowerCase();
+    if (!(t === "commercial-properties" || t === "whole-building" || t === "plots" || t === "short-term")) return false;
+  }
+  if (f.area) {
+    const hay = [h.address_full?.area, h.address_full?.address3, h.address_full?.address4, h.display_address].filter(Boolean).join(" ").toLowerCase();
+    if (!hay.includes(f.area.replace(/-/g, " "))) return false;
+  }
+  if (f.priceMin != null && (h.price ?? 0) < f.priceMin) return false;
+  if (f.priceMax != null && (h.price ?? 0) > f.priceMax) return false;
+  if (f.bedsMin != null && (h.bedroom ?? 0) < f.bedsMin) return false;
+  if (f.bedsMax != null && (h.bedroom ?? 0) > f.bedsMax) return false;
+  return true;
+}
+
+/** Synthesize a page of hits for routes we did not scrape (page > 1). */
+export function synthHits(route: string, page: number, perPage = 20): any[] {
+  const f = routeFilters(route);
+  const src = corpus(f.rent ? "let" : "buy");
+  const filtered = src.filter((h) => matchHit(h, f)).sort((a, b) => (b.id ?? 0) - (a.id ?? 0));
+  const start = (page - 1) * perPage;
+  return filtered.slice(start, start + perPage);
+}
+
+export function areaLabel(slug: string): string {
+  return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Unique community list from the extracted homepage (label + slug). */
+export const communities: { label: string; slug: string }[] = (() => {
+  const seen = new Set<string>();
+  const out: { label: string; slug: string }[] = [];
+  for (const c of homeJson.communities as any[]) {
+    const m = c.href.match(/in-([^/]+)\/$/);
+    if (!m || seen.has(m[1])) continue;
+    seen.add(m[1]);
+    out.push({ label: c.label, slug: m[1] });
+  }
+  return out;
+})();
+
+export const areas: string[] = communities.map((c) => c.label);
+
+export const developers: string[] = [...new Set((homeJson.developers as string[]).filter((d) => d !== "icon"))];
+
+/** Featured slider ids from the extracted homepage. */
+export const featuredIds: string[] = (homeJson.featuredSliders[0]?.links || []).filter((l: string) => !l.endsWith("/properties-for-sale"));
+export const signatureIds: string[] = (homeJson.featuredSliders[1]?.links || []).filter((l: string) => !l.endsWith("/properties-for-sale"));
+
+/** Homepage developer slider: exact order, hub slugs, display names and CDN logo files from the reference. */
+export const devLogos: { slug: string; name: string; file: string }[] = [
+  { slug: "damac-properties", name: "Damac Properties", file: "Damac_c63829f7d0.webp" },
+  { slug: "emaar-properties", name: "Emaar Properties", file: "Emaar_f229e25788.webp" },
+  { slug: "meraas", name: "Meraas", file: "Meraas_logo_58aa6236ab.webp" },
+  { slug: "sobha-realty", name: "Sobha Realty", file: "logo_01_4fd8dc607d.webp" },
+  { slug: "nakheel", name: "Nakheel", file: "logo_02_1_666ef04015.webp" },
+  { slug: "binghatti", name: "Binghatti", file: "binghatti_7c9b5b6084.webp" },
+  { slug: "select-group", name: "Select Group", file: "Select_Group_be8d857695.webp" },
+  { slug: "city-view-developments", name: "City View Developments", file: "city_view_logo_cd13ea3726.webp" },
+  { slug: "ellington-properties", name: "Ellington Properties", file: "Ellington_58133c54d4.webp" },
+  { slug: "majid-al-futtaim", name: "Majid Al Futtaim", file: "Majid_Al_Futtaim_b3d70262eb.webp" },
+];
+
+/** Latest blog posts (title, slug, date, image, category) from the saved blog corpus. */
+export function blogPosts(limit = 4): any[] {
+  const dir = path.join(RAW, "pages", "blog");
+  const posts: any[] = [];
+  try {
+    for (const e of readdirSync(dir)) {
+      if (!e.endsWith(".json")) continue;
+      const j = loadRel(path.join("pages", "blog", e));
+      const b = j?.result?.data?.strapiBlog;
+      if (!b) continue;
+      posts.push({
+        slug: b.slug,
+        title: b.title,
+        date: b.date || "",
+        category: Array.isArray(b.category?.strapi_json_value) ? b.category.strapi_json_value.join(", ") : b.category || "",
+        image: b.tile_image?.url || b.banner_image?.url || null,
+        description: b.short_description || "",
+      });
+    }
+  } catch {}
+  posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  return posts.slice(0, limit);
+}
+
+export function rentals(): any[] {
+  const l = getListing("/let/properties-for-rent");
+  return l?.hits || [];
+}
+
+export function salesHits(): any[] {
+  const l = getListing("/buy/properties-for-sale");
+  return l?.hits || [];
+}
+
+/** Team member summaries (name, slug, designation, image) from the saved team corpus. */
+export function teamMembers(limit = 100): any[] {
+  const dir = path.join(RAW, "pages", "team");
+  const out: any[] = [];
+  try {
+    for (const e of readdirSync(dir)) {
+      if (!e.endsWith(".json")) continue;
+      const j = loadRel(path.join("pages", "team", e));
+      const t = j?.result?.data?.strapiTeam;
+      if (!t) continue;
+      out.push({
+        slug: t.slug,
+        name: t.name,
+        designation: t.designation,
+        image: t.extra?.profile_image || t.image?.url || null,
+        phone: t.phone || t.office_phone || "",
+        email: t.email || "",
+      });
+    }
+  } catch {}
+  return out.slice(0, limit);
+}
+
+/** Developer names present in the project corpus (for the developers listing page). */
+export function developerHits(limit = 40): any[] {
+  const dir = path.join(RAW, "projects");
+  const seen = new Map<string, number>();
+  try {
+    for (const e of readdirSync(dir)) {
+      if (!statSync(path.join(dir, e)).isDirectory()) continue;
+      for (const f of readdirSync(path.join(dir, e))) {
+        if (!f.endsWith(".json")) continue;
+        const j = loadRel(path.join("projects", e, f));
+        const d = j?.result?.serverData?.data;
+        for (const h of d?.hits || []) {
+          if (h.developer) seen.set(h.developer, (seen.get(h.developer) || 0) + 1);
+        }
+        if (seen.size >= limit) return [...seen.entries()].map(([developer, count]) => ({ developer, count }));
+      }
+    }
+  } catch {}
+  return [...seen.entries()].map(([developer, count]) => ({ developer, count })).slice(0, limit);
+}
+
+/** A few project hits (off-plan slider). */
+export function projectHits(limit = 6): any[] {
+  const dir = path.join(RAW, "projects");
+  const out: any[] = [];
+  try {
+    for (const e of readdirSync(dir)) {
+      if (!statSync(path.join(dir, e)).isDirectory()) continue;
+      for (const f of readdirSync(path.join(dir, e))) {
+        if (!f.endsWith(".json")) continue;
+        const j = loadRel(path.join("projects", e, f));
+        const d = j?.result?.serverData?.data;
+        if (d?.hits?.length) {
+          out.push(...d.hits.filter((h: any) => h.publish !== false));
+          if (out.length >= limit) return out.slice(0, limit);
+        }
+      }
+    }
+  } catch {}
+  return out.slice(0, limit);
+}
+
+/** Project hit by slug (detail files live flat in `projects/new-projects/`). */
+export function projectBySlug(slug: string): any | null {
+  const j = loadRel(path.join("projects", "new-projects", slug + ".json"));
+  const d = j?.result?.serverData?.data;
+  return d?.hits?.[0] || null;
+}
+
+let projCorpusCache: any[] | null = null;
+/** Lazy full project-hit corpus (1399 detail files, parsed once). */
+export function projectCorpus(): any[] {
+  if (projCorpusCache) return projCorpusCache;
+  const out: any[] = [];
+  try {
+    for (const f of readdirSync(path.join(RAW, "projects", "new-projects"))) {
+      if (!f.endsWith(".json")) continue;
+      const j = loadRel(path.join("projects", "new-projects", f));
+      const d = j?.result?.serverData?.data;
+      if (d?.hits?.length) out.push(...d.hits.filter((h: any) => h.publish !== false));
+    }
+  } catch {}
+  projCorpusCache = out;
+  return out;
+}
+
+/** Project hits whose community / address matches an area (label or slug). */
+export function projectsByArea(area: string): any[] {
+  const key = area.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  return projectCorpus().filter((h) => {
+    const hay = [h.community, h.display_address, ...(h.search_areas || [])].filter(Boolean).join(" ").toLowerCase();
+    return hay.includes(key) || hay.includes(area.toLowerCase());
+  });
+}
+
+/** Project hits for a developer slug (e.g. "deniz-properties"). */
+export function projectsByDeveloper(dev: string): any[] {
+  const key = dev.toLowerCase().replace(/[^a-z0-9-]+/g, "-");
+  return projectCorpus().filter((h) => (h.developer || "").toLowerCase().replace(/[^a-z0-9-]+/g, "-") === key);
+}
+
+/** Synthetic hub envelope (same shape as a scraped project-hub file) for developer-filtered routes. */
+export function developerHubData(dev: string): any {
+  const hits = projectsByDeveloper(dev);
+  return {
+    hits,
+    nbHits: hits.length,
+    page: 0,
+    nbPages: 1,
+    hitsPerPage: hits.length || 1,
+    content: { title: `Projects by ${dev.replace(/-/g, " ")}` },
+  };
+}
+
+/** Project hits whose building types include the given type slug (e.g. "apartment"). */
+export function projectsByType(t: string): any[] {
+  const key = t.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  return projectCorpus().filter((h) =>
+    (Array.isArray(h.building_type) ? h.building_type : h.building_type ? [h.building_type] : []).some(
+      (b: any) => String(b || "").toLowerCase().replace(/[^a-z0-9]+/g, "") === key
+    )
+  );
+}
+
+/** Synthetic hub envelope for type-filtered routes (`/new-projects/type-apartment/`). */
+export function typeHubData(t: string): any {
+  const hits = projectsByType(t);
+  return {
+    hits,
+    nbHits: hits.length,
+    page: 0,
+    nbPages: 1,
+    hitsPerPage: hits.length || 1,
+    content: { title: `Off-Plan ${t[0]?.toUpperCase() || ""}${t.slice(1).replace(/-/g, " ")} Projects in Dubai` },
+  };
+}
