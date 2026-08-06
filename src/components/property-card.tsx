@@ -9,6 +9,7 @@ const moreBoxIcon = readFileSync(path.join(process.cwd(), "src", "data", "more-b
 export function PropertyCard({ hit, list = false, signature = false }: { hit: any; list?: boolean; signature?: boolean }) {
   const link = propLink(hit);
   const imgs = hit.images || [];
+  const desc = longDesc(hit);
   return (
     <div className="property-card-wrapper">
       <div
@@ -17,7 +18,7 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
         }
         id={`property-card-${hit.id}-${hit.crm_id}`}
       >
-        <div className="img-section">
+        <div className="img-section listview-img-section">
           <CardGallery imgs={imgs} link={link} alt={hit.building?.[0] || "Property"} count={hit.imageCount || imgs.length} />
           {signature && <p className="img-tag hidee" dangerouslySetInnerHTML={{ __html: signatureBadge }}></p>}
         </div>
@@ -78,7 +79,7 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
             )}
           </div>
           <p className="long-description">
-            <span></span>
+            <span>{desc}</span>
             <a className="read-more-text" href={link}>
               more
             </a>
@@ -88,7 +89,7 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
               <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
                 <path d="M14.5 5V12C14.5 12.8284 13.8284 13.5 13 13.5H3C2.17157 13.5 1.5 12.8284 1.5 12V5M14.5 5C14.5 4.17157 13.8284 3.5 13 3.5H3C2.17157 3.5 1.5 4.17157 1.5 5M14.5 5V5.16181C14.5 5.6827 14.2298 6.1663 13.7861 6.43929L8.78615 9.51622C8.30404 9.8129 7.69596 9.8129 7.21385 9.51622L2.21385 6.43929C1.77023 6.1663 1.5 5.6827 1.5 5.16181V5" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round"></path>
               </svg>
-              <span>Email</span>
+              <span>Book a Viewing</span>
             </a>
             <a href={`tel:${hit.crm_negotiator_id?.phone || "+971 50 440 2783"}`} className="property-cta">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
@@ -107,6 +108,11 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
       </div>
     </div>
   );
+}
+
+function longDesc(hit: any): string {
+  const d = (hit.long_description || "").replace(/\s+/g, " ").trim();
+  return d.length > 100 ? d.slice(0, 100).trimEnd() + "..." : d;
 }
 
 export function MoreBox({ title, subtitle, href, btn }: { title: string; subtitle: string; href: string; btn: string }) {

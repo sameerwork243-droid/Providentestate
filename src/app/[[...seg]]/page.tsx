@@ -51,7 +51,20 @@ function allStaticRoutes() {
   const routes = new Set(routesFromRaw());
   for (const d of developerHits(200)) routes.add(`/new-projects/developed-by-${d.developer.toLowerCase().replace(/[^a-z0-9-]+/g, "-")}`);
   for (const t of ["apartment", "villa", "townhouse", "penthouse", "mansions", "duplex", "studio"]) routes.add(`/new-projects/type-${t}`);
+  for (const r of paginatedRoutes()) routes.add(r);
   return routes;
+}
+
+function paginatedRoutes() {
+  const out: string[] = [];
+  for (const r of routesFromRaw()) {
+    if (!r.startsWith("/buy") && !r.startsWith("/let")) continue;
+    const pd = getPageData(r);
+    const nb: number | undefined = pd?.result?.serverData?.data?.nbHits;
+    const pages = Math.ceil((nb ?? 0) / 20);
+    if (pages > 1) for (let p = 2; p <= pages; p++) out.push(`${r}/page/${p}`);
+  }
+  return out;
 }
 
 export function generateStaticParams() {
@@ -62,11 +75,13 @@ export function generateStaticParams() {
   }));
 }
 
-const TRANSPARENT_PREFIXES = ["/buy", "/let", "/new-projects"];
-
 export default async function Page({ params }: { params: Promise<{ seg?: string[] }> }) {
   const { seg = [] } = await params;
   const route = "/" + seg.join("/");
+
+  const pageMatch = route.match(/^(.*?)\/page\/(\d+)\/?$/);
+  const routeBase = pageMatch ? pageMatch[1] : route;
+  const pageNum = pageMatch ? parseInt(pageMatch[2], 10) : 1;
 
   const alias = ALIASES[route];
   if (alias) permanentRedirect(alias);
@@ -89,19 +104,19 @@ export default async function Page({ params }: { params: Promise<{ seg?: string[
     if (!hub.hits.length) notFound();
     return (
       <div className="page-layout">
-        <SiteHeader transparent />
+        <SiteHeader transparent={false} />
         <ProjectPages hub data={hub} route={route} />
         <SiteFooter />
       </div>
     );
   }
 
-  const pd = getPageData(route);
+  const pd = getPageData(routeBase);
   if (!pd) notFound();
-  const model = classify(pd, route);
+  const model = classify(pd, routeBase);
   if (!model) notFound();
 
-  const transparent = route === "/" || TRANSPARENT_PREFIXES.some((p) => route.startsWith(p));
+  const transparent = route === "/" || (route.startsWith("/new-projects/") && route !== "/new-projects/");
 
   let main: React.ReactNode;
   if (route === "/") {
@@ -109,7 +124,7 @@ export default async function Page({ params }: { params: Promise<{ seg?: string[
   } else
     switch (model.kind) {
     case "listing":
-      main = <ListingPage data={model.data} route={route} />;
+      main = <ListingPage data={model.data} route={route} page={pageNum} />;
       break;
     case "property":
       main = <PropertyDetailPage data={model.data} route={route} />;

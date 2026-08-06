@@ -161,7 +161,7 @@ export function routeFilters(route: string) {
 }
 
 export function matchHit(h: any, f: ReturnType<typeof routeFilters>): boolean {
-  if (f.type && h.department?.toLowerCase() !== f.type && !(h.building_type || "").toLowerCase().includes(f.type)) {
+  if (f.type && f.type !== "properties" && h.department?.toLowerCase() !== f.type && !(h.building_type || "").toLowerCase().includes(f.type)) {
     const t = (f.type || "").toLowerCase();
     if (!(t === "commercial-properties" || t === "whole-building" || t === "plots" || t === "short-term")) return false;
   }
