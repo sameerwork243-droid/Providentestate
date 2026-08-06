@@ -31,111 +31,27 @@ const BED_MAX_OPTS: [string, string][] = [
   ["9", "9"],
 ];
 
-const PRICE_OPTS: [string, string][] = [
-  ["500000", "AED 500K"],
-  ["1000000", "AED 1M"],
-  ["2000000", "AED 2M"],
-  ["3000000", "AED 3M"],
-  ["5000000", "AED 5M"],
-  ["10000000", "AED 10M"],
-  ["20000000", "AED 20M"],
-  ["50000000", "AED 50M"],
+const PRICE_VALUES = [
+  300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000,
+  1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 2000000, 2100000, 2200000,
+  2300000, 2400000, 2500000, 2600000, 2700000, 2800000, 2900000, 3000000, 3250000, 3500000,
+  3750000, 4000000, 4250000, 4500000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000,
+  20000000, 25000000, 50000000,
 ];
 
-const fmt = (v: string) => PRICE_OPTS.find(([val]) => val === v)?.[1] ?? v;
+const AED_TO_USD = 0.27229402;
 
-function Select({
-  label,
-  value,
-  options,
-  onChange,
-  width,
-}: {
-  label: string;
-  value: string;
-  options: [string, string][];
-  onChange: (v: string) => void;
-  width: number;
-}) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="filter-select" style={{ minWidth: width, position: "relative" }}>
-      <div className="react-select">
-        <button
-          type="button"
-          className="react-select__control"
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <div className="react-select__value-container">
-            <span className="react-select__single-value">{value === "" ? label : value}</span>
-          </div>
-          <span className="dropdown-indicator">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M13 5.5L8 10.5L3 5.5" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </button>
-        {open && (
-          <div
-            className="react-select__menu"
-            style={{
-              position: "absolute",
-              top: "calc(100% + 4px)",
-              left: 0,
-              background: "#fff",
-              border: "1px solid #e1e8ed",
-              borderRadius: 8,
-              boxShadow: "0 10px 30px rgba(0,0,0,.12)",
-              maxHeight: 220,
-              overflow: "auto",
-              zIndex: 11,
-            }}
-          >
-            <div className="react-select__menu-list">
-              {options.map(([val, lab]) => (
-                <button
-                  key={val}
-                  type="button"
-                  className={"react-select__option" + (value === val ? " selected" : "")}
-                  onClick={() => {
-                    onChange(val);
-                    setOpen(false);
-                  }}
-                >
-                  {lab}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+const usdLabel = (v: string) => (v === "" ? "" : "USD " + Math.floor(Number(v) * AED_TO_USD).toLocaleString("en-US"));
 
-function FilterPanel({
-  open,
-  cols,
-  options,
-}: {
-  open: boolean;
-  cols: { label: string; value: string; onChange: (v: string) => void; width: number }[];
-  options: [string, string][];
-}) {
-  return open ? (
-    <div className="dropdown-menu filter-dropdown-menu show">
-      <div className="custom-dropdown-menu">
-        {cols.map((c, i) => (
-          <div key={i} className="menu-item-wrap">
-            <p className="label">{c.label}</p>
-            <Select label={c.label} value={c.value} options={options} onChange={c.onChange} width={c.width} />
-          </div>
-        ))}
-      </div>
-    </div>
-  ) : null;
-}
+const PRICE_MIN_OPTS: [string, string][] = [
+  ["", "No Min"],
+  ...PRICE_VALUES.map((v) => [String(v), usdLabel(String(v))] as [string, string]),
+];
+
+const PRICE_MAX_OPTS: [string, string][] = [
+  ["", "No Max"],
+  ...PRICE_VALUES.map((v) => [String(v), usdLabel(String(v))] as [string, string]),
+];
 
 function BedSelect({
   id,
@@ -160,6 +76,129 @@ function BedSelect({
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-label={id === "min-bedroom-select" ? "Min Bedrooms" : "Max Bedrooms"}
+          onClick={() => setOpen((o) => !o)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            height: 21,
+            minHeight: 0,
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            padding: 0,
+            paddingLeft: 0,
+          }}
+        >
+          <div
+            className="react-select__value-container react-select__value-container--has-value"
+            style={{ flex: "1 1 0%", display: "grid", alignItems: "center", overflow: "hidden" }}
+          >
+            <div
+              className="react-select__single-value"
+              style={{
+                display: "flex",
+                color: "#35373C",
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+                fontSize: 14,
+                fontWeight: 400,
+                lineHeight: "19.6px",
+                letterSpacing: "normal",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "max-content",
+              }}
+            >
+              {text}
+            </div>
+          </div>
+          <span className="react-select__indicators" style={{ flex: "0 0 auto", display: "flex", alignItems: "center" }}>
+            <span
+              className="dropdown-indicator react-select__indicator react-select__dropdown-indicator"
+              aria-hidden="true"
+              style={{ display: "flex", alignItems: "center", marginLeft: 10 }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="arrow-down-icon">
+                <path d="M13 5.5L8 10.5L3 5.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </span>
+        </button>
+        {open && (
+          <div
+            className="react-select__menu"
+            role="listbox"
+            style={{
+              position: "absolute",
+              top: 21,
+              left: 0,
+              width: "100%",
+              minWidth: "100%",
+              zIndex: 10,
+              background: "#fff",
+              borderRadius: 4,
+              boxShadow: "0 0 0 1px rgba(0,0,0,.1), 0 4px 11px rgba(0,0,0,.1)",
+            }}
+          >
+            <div className="react-select__menu-list" style={{ maxHeight: 300, overflowY: "auto", padding: "4px 0" }}>
+              {options.map(([v, lab]) => (
+                <div
+                  key={v}
+                  role="option"
+                  aria-selected={value === v}
+                  className={"react-select__option" + (value === v ? " react-select__option--is-selected" : "")}
+                  onClick={() => {
+                    onChange(v);
+                    setOpen(false);
+                  }}
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 400,
+                    lineHeight: "25.6px",
+                    padding: "8px 12px",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                    color: value === v ? "#fff" : "#000",
+                    background: value === v ? "#07234B" : "#fff",
+                    zIndex: 1,
+                  }}
+                >
+                  {lab}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function PriceSelect({
+  id,
+  value,
+  options,
+  onChange,
+}: {
+  id: "min-price-select" | "max-price-select";
+  value: string;
+  options: [string, string][];
+  onChange: (v: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const selected = options.find(([v]) => v === value);
+  const text = selected ? selected[1] : options[0][1];
+  return (
+    <div className={`react-select-wrap filter-select ${id}`}>
+      <div className="react-select" style={{ position: "relative" }}>
+        <button
+          type="button"
+          className={"react-select__control" + (open ? " react-select__control--menu-is-open" : "")}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={id === "min-price-select" ? "Min Price" : "Max Price"}
           onClick={() => setOpen((o) => !o)}
           style={{
             display: "flex",
@@ -305,7 +344,7 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
   };
 
   const bedsLabel = "Beds";
-  const priceLabel = minPrice && maxPrice ? `${fmt(minPrice)} - ${fmt(maxPrice)}` : minPrice ? `${fmt(minPrice)}+` : maxPrice ? `Up to ${fmt(maxPrice)}` : "Price Range";
+  const priceLabel = "Price Range";
 
   return (
     <div className="modal-filter-item buy-rent-tab" ref={rootRef}>
@@ -442,14 +481,46 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
                   <path d="M13 5.5L8 10.5L3 5.5" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <FilterPanel
-                open={priceOpen}
-                options={PRICE_OPTS}
-                cols={[
-                  { label: "Min Price", value: minPrice, onChange: setMinPrice, width: 220 },
-                  { label: "Max Price", value: maxPrice, onChange: setMaxPrice, width: 220 },
-                ]}
-              />
+              {priceOpen && (
+                <div className="dropdown-menu filter-dropdown-menu show">
+                  <div className="custom-dropdown-menu">
+                    <div className="menu-item-wrap">
+                      <p
+                        className="label"
+                        style={{
+                          color: "#35373C",
+                          fontSize: 12,
+                          fontWeight: 400,
+                          letterSpacing: 0.12,
+                          lineHeight: "19.2px",
+                          whiteSpace: "nowrap",
+                          margin: 0,
+                        }}
+                      >
+                        Min Price
+                      </p>
+                      <PriceSelect id="min-price-select" value={minPrice} options={PRICE_MIN_OPTS} onChange={setMinPrice} />
+                    </div>
+                    <div className="menu-item-wrap">
+                      <p
+                        className="label"
+                        style={{
+                          color: "#35373C",
+                          fontSize: 12,
+                          fontWeight: 400,
+                          letterSpacing: 0.12,
+                          lineHeight: "19.2px",
+                          whiteSpace: "nowrap",
+                          margin: 0,
+                        }}
+                      >
+                        Max Price
+                      </p>
+                      <PriceSelect id="max-price-select" value={maxPrice} options={PRICE_MAX_OPTS} onChange={setMaxPrice} />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
