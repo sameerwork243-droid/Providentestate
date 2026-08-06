@@ -364,6 +364,18 @@ export function developerHits(limit = 40): any[] {
   return [...seen.entries()].map(([developer, count]) => ({ developer, count })).slice(0, limit);
 }
 
+/** Developer corpus (slug, name, logo, description) from the saved developers list. */
+export function developersList(): any[] {
+  const j = loadRel("developers.json");
+  const list = j && Array.isArray(j) ? j : [];
+  return list.map((d: any) => ({
+    slug: d.slug,
+    name: d.name,
+    logo: d.logo ? `https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.logo}` : "",
+    description: d.description || "",
+  }));
+}
+
 /** A few project hits (off-plan slider). */
 export function projectHits(limit = 6): any[] {
   const dir = path.join(RAW, "projects");

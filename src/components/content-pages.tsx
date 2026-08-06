@@ -4,7 +4,9 @@ import { FaqList } from "./faq";
 import { Slick } from "./slick";
 import { PropertyCard } from "./property-card";
 import { AreaGuidesListing } from "./area-guides-listing";
-import { cfw, cft, blogPosts, projectsByArea, projectBySlug, areaGuidesData } from "@/lib/store";
+import { BlogListing } from "./blog-listing";
+import { DeveloperListing } from "./developer-listing";
+import { cfw, cft, blogPosts, projectsByArea, projectBySlug, areaGuidesData, developersList } from "@/lib/store";
 
 const QUICK_LINKS = [
   { label: "Buy", href: "/buy/properties-for-sale/" },
@@ -28,15 +30,16 @@ const PARENT_LABELS: Record<string, string> = {
   about: "About",
   "off-plan": "Off-Plan",
   "new-projects": "Off-Plan Projects",
+  developers: "Developers",
   "list-your-property": "List Your Property",
 };
 
-function MobileBannerMenu({ black = false }: { black?: boolean }) {
+function MobileBannerMenu({ black = false, current }: { black?: boolean; current?: string }) {
   return (
-    <div className={"mobile-banner-menu" + (black ? " black" : "")}>
+    <div className={"mobile-banner-menu" + (black ? " black" : " undefined")}>
       <div className="scroll-i d-flex d-md-none">
         {QUICK_LINKS.map((l) => (
-          <a key={l.href} className="main-menu" href={l.href}>
+          <a key={l.href} aria-current={current === l.href ? "page" : undefined} className="main-menu" href={l.href}>
             <span>{l.label}</span>
           </a>
         ))}
@@ -121,6 +124,9 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
   const allCtas = [...ctas, ctaText].filter(Boolean);
   const descHtml = banner.description?.data?.description;
 
+  if (page.page_class === "developers_listing_page") return <DevelopersListingPage page={page} route={route} />;
+  if (page.page_class === "news_landing_page") return <NewsListingPage page={page} route={route} />;
+
   return (
     <div>
       {!isForm && <MobileBannerMenu />}
@@ -195,6 +201,61 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
       {mods.map((m: any, i: number) =>
         m.strapi_component === "modules.listing-module" && m.module === "communities_listing" ? null : <ModuleWrap m={m} key={i} />
       )}
+    </div>
+  );
+}
+
+function DevelopersListingPage({ page, route }: { page: any; route: string }) {
+  const banner = page.banner || {};
+  const title = banner.title || page.page_name || "Developers";
+  const descHtml = banner.description?.data?.description;
+  const mods = Array.isArray(page.modules) ? page.modules : [];
+  const body = mods.filter(
+    (m: any) =>
+      !(m.strapi_component === "modules.listing-module" && m.module === "developer_listing") &&
+      !(m.strapi_component === "modules.global-module" && m.choose_module === "contact_module")
+  );
+
+  return (
+    <div className="listing-page-wrap">
+      <div className="listing-page-top">
+        <div className="bg-section-gradient"></div>
+        <MobileBannerMenu black current="/developers/" />
+        <Breadcrumbs route={route} crumbs={routeCrumbs(route, "Developers")} />
+        <div className="banner-listing-wrap">
+          <div className="banner-listing-container container">
+            <h1 className="title">{title}</h1>
+            <div className="description">{descHtml && <Rich html={descHtml} />}</div>
+          </div>
+        </div>
+      </div>
+      <DeveloperListing developers={developersList()} />
+      {body.map((m: any, i: number) => (
+        <ModuleWrap m={m} key={i} />
+      ))}
+    </div>
+  );
+}
+
+function NewsListingPage({ page, route }: { page: any; route: string }) {
+  const banner = page.banner || {};
+  const title = banner.title || page.page_name || "News, Media Gallery & Insights";
+  const descHtml = banner.description?.data?.description;
+
+  return (
+    <div className="listing-page-wrap">
+      <div className="listing-page-top">
+        <div className="bg-section-gradient"></div>
+        <MobileBannerMenu black current="/blog/" />
+        <Breadcrumbs route={route} crumbs={routeCrumbs(route, "News & Insight")} />
+        <div className="banner-listing-wrap">
+          <div className="banner-listing-container container">
+            <h1 className="title">{title}</h1>
+            <div className="description">{descHtml && <Rich html={descHtml} />}</div>
+          </div>
+        </div>
+      </div>
+      <BlogListing posts={blogPosts(10000)} />
     </div>
   );
 }

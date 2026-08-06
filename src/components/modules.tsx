@@ -234,9 +234,9 @@ function ContentAndLinks({ m }: { m: any }) {
 export function AdsBanner({ m }: { m: any }) {
   const b = m.marketing_banner || {};
   return (
-    <div className="banner-wrap section-m ads-banner-wrap">
+    <div className={"ads-banner-wrap section-m" + (m.small ? " ads-banner-wrap-small" : " ads-banner-wrap-card")}>
       <div className="">
-        <div className={"ads-banner-container " + (m.small ? "null" : "") + " container"}>
+        <div className={"ads-banner-container " + (m.small ? "null " : "") + "container"}>
           <div className="gradient-overlay">
             <div className="banner-section">
               <div className="bg-img">
@@ -251,8 +251,8 @@ export function AdsBanner({ m }: { m: any }) {
                   </div>
                 </div>
                 {b.cta && (
-                  <div className="cta-section">
-                    <a className="button button-orange" href={ctaHref(b.cta)}>
+                  <div className="cta-section cta-flex">
+                    <a className="button button-orange btn2" href={ctaHref(b.cta)}>
                       <span> {b.cta?.cta_label || "Find out more"}</span>
                     </a>
                   </div>
@@ -268,15 +268,16 @@ export function AdsBanner({ m }: { m: any }) {
 
 export function TileBlock({ m }: { m: any }) {
   const style = (m.style || "").replace(/ads_banner/g, "").trim();
-  const ebook = style.includes("ebook") || m.img_align === "right";
+  const alignRight = m.img_align === "right";
+  const white = alignRight || m.bg_color === "white";
   const light = style.includes("light") || m.bg_color === "light" || m.img_align === "left";
   const magic = typeof m.cta?.custom_link === "string" && m.cta.custom_link.startsWith("$");
   const tileImg = m.image?.url
     ? (() => {
-        const W = ebook ? 640 : 696;
-        const H = ebook ? 500 : 400;
-        const sw = ebook ? 340 : 336;
-        const sh = ebook ? 0 : 240;
+        const W = alignRight ? 640 : 696;
+        const H = alignRight ? 500 : 400;
+        const sw = alignRight ? 340 : 336;
+        const sh = alignRight ? 0 : 240;
         const base = cft(m.image.url, W, H);
         const small = sh ? cft(m.image.url, sw, sh) : cfw(m.image.url, sw);
         return (
@@ -292,8 +293,8 @@ export function TileBlock({ m }: { m: any }) {
       })()
     : null;
   return (
-    <div className={"tile-block-wrapper provident-sda" + (ebook ? "" : " section-p") + (style ? " " + style : "") + (light ? " light" : "") + (ebook ? " e-book ebook" : "")}>
-      <div className={"tile-block-container " + (ebook ? "align-img-right contain-image " : "") + "container"}>
+    <div className={"tile-block-wrapper " + (style ? style + " " : "") + "section-m" + (white ? " white" : "") + (light ? " light" : "")}>
+      <div className={"tile-block-container " + (alignRight ? "align-img-right contain-image " : "") + "container"}>
         <div className="img-section">
           <div>
             {tileImg}
@@ -321,6 +322,9 @@ export function TileBlock({ m }: { m: any }) {
               ) : (
                 <a href={ctaHref(m.cta)} className="button  button-orange">
                   <span>{m.cta.cta_label || "Find out more"}</span>
+                  <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-right-icon">
+                    <path d="M9.5 3L14.5 8M14.5 8L9.5 13M14.5 8H2.5" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </a>
               ))}
           </div>
@@ -650,28 +654,32 @@ function FAQ({ m }: { m: any }) {
 
 function OurServices({ m }: { m: any }) {
   return (
-    <div className="our-services-wrap section-p">
+    <div className="our-services-wrap section-m grid">
       <div className="our-services-container container">
-        {(m.title || m.heading) && <h2 className="title">{m.title || m.heading}</h2>}
-        <div className="services-grid">
-          {(m.services || []).map((s: any, i: number) => (
-            <div className="service-card" key={i}>
-              {s.image?.url && (
-                <a className="img-section" href={s.cta ? ctaHref(s.cta) : "#"}>
-                  <img loading="lazy" src={cft(s.image.url, 1128, 752)} alt={(s.cta?.cta_label || s.title || "Service") + " - Provident Estate"} />
-                </a>
-              )}
-              <div className="content">
-                <p className="title">{s.title}</p>
-                {s.description && <p className="description">{s.description}</p>}
-                {s.cta && (
-                  <a className="button button-orange" href={ctaHref(s.cta)}>
-                    <span>{s.cta.cta_label}</span>
+        <div className="design_title">
+          <Rich html={m.design_title?.data?.design_title} />
+        </div>
+        <h2 className="title">{m.title || m.heading || ""}</h2>
+        <div className="services-section">
+          <Slick perView={4} className="services-slider" breakpoints={[[640, 2], [1024, 3], [1400, 4]]}>
+            {(m.services || []).map((s: any, i: number) => {
+              const href = s.cta ? ctaHref(s.cta) : "#";
+              return (
+                <div className="service-item" key={i}>
+                  <a className="img-section img-zoom" href={href}>
+                    {s.image?.url && (
+                      <img loading="lazy" draggable="false" src={cft(s.image.url, 1128, 752)} alt={(s.cta?.cta_label || s.title || "Service") + " - Provident Estate"} />
+                    )}
                   </a>
-                )}
-              </div>
-            </div>
-          ))}
+                  <div className="content-section false">
+                    <a className="title" href={href}>
+                      <span>{s.cta?.cta_label || s.title}</span>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </Slick>
         </div>
       </div>
     </div>
@@ -717,22 +725,28 @@ function OfficeLocation({ m }: { m: any }) {
 
 function Partner({ m }: { m: any }) {
   return (
-    <div className="partner-wrap section-p">
-      <div className="partner-container container">
+    <div className="our-partner-wrap section-m">
+      <div className="our-partner-container container">
         <h2 className="title">{m.title}</h2>
         <div className="description">
           <Rich html={m.content?.data?.content} />
         </div>
-        <div className="partner-grid">
-          {(m.itemlist || []).map((p: any, i: number) => (
-            <div className="partner-item" key={i}>
-              {p.image?.url && <img loading="lazy" src={p.image.url} alt={p.name} />}
-              <p className="name">{p.name}</p>
-              <p className="description">
-                <Rich html={p.description?.data?.description} />
-              </p>
-            </div>
-          ))}
+        <div className="partner-section">
+          <Slick perView={5} className="partner-slider" breakpoints={[[640, 2], [1024, 3], [1400, 5]]}>
+            {(m.itemlist || []).map((p: any, i: number) => (
+              <div className="partner-item" key={i}>
+                <div className="img-section img-zoom">
+                  {p.image?.url && <img loading="lazy" draggable="false" src={cft(p.image.url, 304, 160)} alt={p.name + " - Provident Estate"} />}
+                </div>
+                <div className="content-section">
+                  <p className="title">{p.name}</p>
+                  <div className="description">
+                    <Rich html={p.description?.data?.description} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slick>
         </div>
       </div>
     </div>
@@ -741,34 +755,98 @@ function Partner({ m }: { m: any }) {
 
 function FormModule({ m }: { m: any }) {
   return (
-    <div className="form-module-wrap section-p">
-      <div className="form-module-container container">
-        <div className="row">
-          <div className="col-xl-5 col-lg-12">
-            <div className="content-section">
-              <h2 className="title">{m.title}</h2>
-              <div className="description">
-                <Rich html={m.content?.data?.content} />
+    <div className="contact-form-wrapper  section-p" id="General_Enquiry">
+      <div className="contact-form-container  container">
+        <div className="content-section">
+          <h3 className="title">{m.title}</h3>
+          <div className="description">
+            <Rich html={m.content?.data?.content} />
+          </div>
+          <div className="cta-section">
+            <div className="cta-item">
+              <div className="cta-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="whatsapp-icon">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M9.9971 0C4.48428 0 0 4.48553 0 9.99991C0 12.1868 0.705268 14.215 1.90417 15.8612L0.658162 19.5766L4.50185 18.3481C6.08275 19.3946 7.96934 20 10.0029 20C15.5157 20 20 15.5143 20 10.0001C20 4.48571 15.5157 0.000165304 10.0029 0.000165304L9.9971 0ZM7.20535 5.07951C7.01145 4.61511 6.86449 4.59753 6.57074 4.58558C6.47072 4.57978 6.35925 4.57397 6.23568 4.57397C5.85352 4.57397 5.45394 4.68564 5.21294 4.93252C4.91918 5.23233 4.19034 5.93182 4.19034 7.36633C4.19034 8.80084 5.23649 10.1882 5.37748 10.3823C5.52444 10.5761 7.41699 13.5626 10.3555 14.7798C12.6535 15.7321 13.3354 15.6439 13.8584 15.5322C14.6224 15.3676 15.5804 14.803 15.8214 14.1213C16.0624 13.4392 16.0624 12.8572 15.9918 12.7337C15.9213 12.6103 15.7272 12.5399 15.4335 12.3928C15.1397 12.2458 13.7114 11.5403 13.441 11.4462C13.1765 11.3463 12.9239 11.3817 12.7242 11.6639C12.442 12.0578 12.1658 12.4576 11.9424 12.6985C11.7661 12.8867 11.478 12.9102 11.2371 12.8102C10.9139 12.6751 10.0089 12.3574 8.89208 11.3639C8.02807 10.5939 7.4404 9.63573 7.27005 9.3477C7.09954 9.05386 7.25245 8.88313 7.38747 8.72452C7.5344 8.54218 7.67543 8.41293 7.82239 8.24236C7.96935 8.07197 8.05163 7.9837 8.14568 7.78378C8.24569 7.58982 8.17502 7.38989 8.10453 7.24289C8.03403 7.09589 7.44636 5.66138 7.20535 5.07951Z" fill="#67C15E" />
+                </svg>
+              </div>
+              <div className="cta-content">
+                <p className="cta-label">WhatsApp</p>
+                <a
+                  className="cta-value"
+                  href="https://wa.provident.ae/inquire?phone=971505423503&text=Hello%20Provident%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Click to WhatsApp
+                </a>
+              </div>
+            </div>
+            <div className="divider"></div>
+            <div className="cta-item">
+              <div className="cta-icon">
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
+                  <path d="M1.5 5C1.5 10.5228 5.97715 15 11.5 15H13C13.8284 15 14.5 14.3284 14.5 13.5V12.5856C14.5 12.2414 14.2658 11.9414 13.9319 11.858L10.9831 11.1208C10.6904 11.0476 10.3823 11.157 10.2012 11.3984L9.5544 12.2608C9.36668 12.5111 9.04201 12.6218 8.74823 12.5142C6.5436 11.7066 4.79344 9.95641 3.98584 7.75177C3.87823 7.45799 3.98891 7.13332 4.2392 6.9456L5.10161 6.29879C5.34302 6.11773 5.45241 5.80964 5.37922 5.51689L4.64202 2.5681C4.55856 2.23422 4.25857 2 3.91442 2H3C2.17157 2 1.5 2.67157 1.5 3.5V5Z" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="cta-content phone-content">
+                <p className="cta-label">Phone</p>
+                <a className="cta-value" href="tel:+971 50 539 0249">
+                  +971 50 539 0249
+                </a>
+              </div>
+            </div>
+            <div className="divider"></div>
+            <div className="cta-item">
+              <div className="cta-icon">
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
+                  <path d="M14.5 5V12C14.5 12.8284 13.8284 13.5 13 13.5H3C2.17157 13.5 1.5 12.8284 1.5 12V5M14.5 5C14.5 4.17157 13.8284 3.5 13 3.5H3C2.17157 3.5 1.5 4.17157 1.5 5M14.5 5V5.16181C14.5 5.6827 14.2298 6.1663 13.7861 6.43929L8.78615 9.51622C8.30404 9.8129 7.69596 9.8129 7.21385 9.51622L2.21385 6.43929C1.77023 6.1663 1.5 5.6827 1.5 5.16181V5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="cta-content">
+                <p className="cta-label">Email</p>
+                <a className="cta-value" href="mailto:info@providentestate.com" target="_blank" rel="noreferrer">
+                  info@providentestate.com
+                </a>
               </div>
             </div>
           </div>
-          <div className="col-xl-7 col-lg-12">
-            <div className="form-section">
-              <form action="#" method="post">
-                <div className="input-section">
-                  <input type="text" name="name" placeholder="Full Name" />
-                  <input type="tel" name="phone" placeholder="Phone Number" />
-                  <input type="email" name="email" placeholder="Email Address" />
-                  <textarea name="message" placeholder="Message" rows={4}></textarea>
+        </div>
+        <div className="form-section">
+          <form action="#" method="post" className="custom-form">
+            <div className="form-grid">
+              <div className="form-section">
+                <div className="input-box input-box-name">
+                  <label className="input-label" htmlFor="name">
+                    Full Name
+                  </label>
+                  <input className="input-field" type="text" name="name" id="name" placeholder="Full Name" />
                 </div>
-                <div className="cta-section">
-                  <button className="button button-orange" type="submit">
-                    <span>Submit</span>
-                  </button>
+                <div className="input-box input-box-telephone">
+                  <label className="input-label" htmlFor="phone">
+                    Phone Number
+                  </label>
+                  <input className="input-field" type="tel" name="phone" id="phone" placeholder="Phone Number" />
                 </div>
-              </form>
+                <div className="input-box input-box-email">
+                  <label className="input-label" htmlFor="email">
+                    Email Address
+                  </label>
+                  <input className="input-field" type="email" name="email" id="email" placeholder="Email Address" />
+                </div>
+                <div className="input-box input-box-message">
+                  <label className="input-label" htmlFor="message">
+                    Message
+                  </label>
+                  <textarea className="input-field input-textarea" name="message" id="message" placeholder="Message"></textarea>
+                </div>
+              </div>
             </div>
-          </div>
+            <div className="form-bottom">
+              <button className="reg-btn button button-orange" type="submit">
+                <span>Submit</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -922,7 +1000,7 @@ function DeveloperListing() {
         <div className="row">
           {devs.map((d: any, i: number) => (
             <div className="col-xl-3 col-md-4 col-sm-6" key={i}>
-              <a className="developer-card" href={`/new-projects/developed-by-${(d.developer || "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}-properties/`}>
+              <a className="developer-card" href={`/new-projects/developed-by-${(d.developer || "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`}>
                 <p className="name">{d.developer}</p>
                 <p className="count">Projects</p>
               </a>

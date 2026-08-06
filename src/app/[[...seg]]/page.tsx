@@ -148,7 +148,9 @@ export default async function Page({ params }: { params: Promise<{ seg?: string[
         ? "search-results-page page-layout search-results-layout"
         : model.kind === "property"
           ? "property-detail-page page-layout property-detail-layout"
-          : "page-layout";
+          : model.kind === "page" && (model.data as any)?.page_class
+            ? `${(model.data as any).page_class} page-layout ${(model.data as any).layout || "landing_page"}-layout`
+            : "page-layout";
 
   return (
     <div className={cls}>
