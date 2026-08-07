@@ -1,0 +1,30 @@
+import Link from "next/link";
+import { BLUE_LOGO } from "@/components/logo-data";
+import backgroundImage from "@/sign_up_bg_0e123241d1.jpg";
+import { PortalFooter } from "@/components/portal/portal-shell";
+
+const LOGO_PREFIX = "data:image/svg+xml;base64,";
+
+export function PortalAuthLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="portal-root">
+      <header className="portal-appbar">
+        <Link className="portal-brand" href="/" aria-label="Provident Estate">
+          <img draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
+        </Link>
+        <div className="portal-title">My Account</div>
+        <Link className="portal-back" href="/">
+          Back to Website
+        </Link>
+      </header>
+      <div className="portal-appbar-spacer" />
+      <div className="portal-auth-bg" style={{ backgroundImage: `url(${backgroundImage.src})` }} />
+      <div className="portal-auth">
+        <div className="portal-auth-inner">
+          <div className="portal-auth-card">{children}</div>
+        </div>
+      </div>
+      <PortalFooter />
+    </div>
+  );
+}

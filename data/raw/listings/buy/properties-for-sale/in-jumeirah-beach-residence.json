@@ -1,1 +1,1409 @@
-{"componentChunkName":"component---src-pages-buy-js","path":"buy/properties-for-sale/in-jumeirah-beach-residence","result":{"serverData":{"data":{"status":true,"hits":[{"id":30102,"crm_id":"PS-30062611","search_type":"sales","department":"residential","building":["Apartment"],"slug":"3-bedroom-apartment-for-sale-in-la-vie-jumeirah-beach-residence-dubai","bedroom":3,"bathroom":4,"address_full":{"area":"La Vie","address1":"","address2":"La Vie","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"La Vie, Jumeirah Beach Residence, Dubai","floorarea_min":"1963.00","floorarea_max":"1963.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":13300000,"description":"Exclusive | Corner Unit | Dubai Ain and Sea View","long_description":"Live the Dream at La Vie, Jumeirah Beach Residence (JBR).<br> <br> Step into your ideal blend of luxury and beachfront serenity at La Vie. This stunning 3-bedroom + maid’s room residence is your gateway to an unparalleled lifestyle.<br> <br> Property","link_to_employee":{"id":"11060","url":"https://storage.googleapis.com/prov-email-signatures/George-Roumie-PFB.png","name":"George Roumie","email":"george.r@providentestate.com","phone":"+971 50 218 7842","brn_number":"77149"},"crm_negotiator_id":[{"id":"11060","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-30062611/crm_negotiator_id/prov-email-signatures/George-Roumie-PFB.png","name":"George Roumie","email":"george.r@providentestate.com","phone":"+971 50 218 7842","srcUrl":"https://storage.googleapis.com/prov-email-signatures/George-Roumie-PFB.png","brn_number":"77149","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/9f3/9f361e8198bf3e756d2ec0380adaa2ca/340x252/1.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/9f3/9f361e8198bf3e756d2ec0380adaa2ca/464x312/1.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/9f3/9f361e8198bf3e756d2ec0380adaa2ca/696x520/1.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/8cb/8cbfff54630384799b4200a7057c716d/340x252/2.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/8cb/8cbfff54630384799b4200a7057c716d/464x312/2.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/8cb/8cbfff54630384799b4200a7057c716d/696x520/2.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/998/998ae66f04f39db280c429d910bcce0f/340x252/3.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/998/998ae66f04f39db280c429d910bcce0f/464x312/3.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/998/998ae66f04f39db280c429d910bcce0f/696x520/3.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/23a/23a05f671b9466e35d2f3e561595d663/340x252/4.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/23a/23a05f671b9466e35d2f3e561595d663/464x312/4.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/23a/23a05f671b9466e35d2f3e561595d663/696x520/4.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/d79/d79e8e2665091e0885dcc8e1b2cf9a21/340x252/WhatsApp-Image-2026_07_13-at-13.18.06.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/d79/d79e8e2665091e0885dcc8e1b2cf9a21/464x312/WhatsApp-Image-2026_07_13-at-13.18.06.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/b56/b56b29625d92a1e03c8c69af690083a8/340x252/WhatsApp-Image-2026_07_13-at-13.18.07-_1_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/b56/b56b29625d92a1e03c8c69af690083a8/464x312/WhatsApp-Image-2026_07_13-at-13.18.07-_1_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/ee8/ee8759b7a4246fe99a9b0d0bf2987bf5/340x252/WhatsApp-Image-2026_07_13-at-13.18.07-_2_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/ee8/ee8759b7a4246fe99a9b0d0bf2987bf5/464x312/WhatsApp-Image-2026_07_13-at-13.18.07-_2_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/688/68806ea2d3800eb2fcf59aabaea797d9/340x252/WhatsApp-Image-2026_07_13-at-13.18.07-_4_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/688/68806ea2d3800eb2fcf59aabaea797d9/464x312/WhatsApp-Image-2026_07_13-at-13.18.07-_4_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/506/506e18b753fc67e5418fc15a98898425/340x252/WhatsApp-Image-2026_07_13-at-13.18.08-_3_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/506/506e18b753fc67e5418fc15a98898425/464x312/WhatsApp-Image-2026_07_13-at-13.18.08-_3_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/f68/f686040da425ae62751aa8ed2897d378/340x252/WhatsApp-Image-2026_07_13-at-13.18.08-_4_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-30062611/images/iblock/f68/f686040da425ae62751aa8ed2897d378/464x312/WhatsApp-Image-2026_07_13-at-13.18.08-_4_.webp"}],"imageCount":20,"bitrix_id":"1469796"},{"id":31297,"crm_id":"PS-04082651","search_type":"sales","department":"residential","building":["Apartment"],"slug":"1-bedroom-apartment-for-sale-in-jumeirah-gate-tower-1-the-address-jumeirah-resort-spa-jumeirah-beach-residence-dubai","bedroom":1,"bathroom":2,"address_full":{"area":"The Address Jumeirah Resort and Spa","address1":"Jumeirah Gate Tower 1","address2":"The Address Jumeirah Resort and Spa","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Jumeirah Gate Tower 1, The Address Jumeirah Resort and Spa, Jumeirah Beach Residence, Dubai","floorarea_min":"857.00","floorarea_max":"857.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":3100000,"description":"Marina views| Biggest layout| Lowest price","long_description":"Provident Estate is proud to present this exceptional 1-bedroom apartment in the prestigious Jumeirah Gate Tower 1 – Address Jumeirah Resort &amp; Spa, one of Dubai's most iconic beachfront destinations. Featuring a spacious layout, premium furnishin","link_to_employee":{"id":"7968","url":"https://storage.googleapis.com/prov-email-signatures/Sherif-Matar-PFB.png","name":"Sherif Matar","email":"sherif@providentestate.com","phone":"+971504676408","brn_number":"55766"},"crm_negotiator_id":[{"id":"7968","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-23062613/crm_negotiator_id/prov-email-signatures/Sherif-Matar-PFB.png","name":"Sherif Matar","email":"sherif@providentestate.com","phone":"+971504676408","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Sherif-Matar-PFB.png","brn_number":"55766","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/b34/b3458577f5fa95d68e021a7b22976a5a/340x252/WhatsApp-Image-2026_07_17-at-12.16.23-_1_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/b34/b3458577f5fa95d68e021a7b22976a5a/464x312/WhatsApp-Image-2026_07_17-at-12.16.23-_1_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/b34/b3458577f5fa95d68e021a7b22976a5a/696x520/WhatsApp-Image-2026_07_17-at-12.16.23-_1_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/27e/27e3d94113aae1a13e149f6ca674b93a/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_4_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/27e/27e3d94113aae1a13e149f6ca674b93a/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_4_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/27e/27e3d94113aae1a13e149f6ca674b93a/696x520/WhatsApp-Image-2026_07_17-at-12.16.24-_4_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/51f/51f1d2f7c82448d8fc2d081657e89e4a/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_8_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/51f/51f1d2f7c82448d8fc2d081657e89e4a/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_8_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/51f/51f1d2f7c82448d8fc2d081657e89e4a/696x520/WhatsApp-Image-2026_07_17-at-12.16.24-_8_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/cc6/cc699527914798aeb227d212d7ad797a/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_13_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/cc6/cc699527914798aeb227d212d7ad797a/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_13_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/cc6/cc699527914798aeb227d212d7ad797a/696x520/WhatsApp-Image-2026_07_17-at-12.16.24-_13_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/40d/40d60339c55074cd6a543b69a19bdd10/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_15_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/40d/40d60339c55074cd6a543b69a19bdd10/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_15_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/a8c/a8c4f4ab664ddc472c3562ac2b4a318e/340x252/WhatsApp-Image-2026_07_17-at-12.16.23.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072621/images/iblock/a8c/a8c4f4ab664ddc472c3562ac2b4a318e/464x312/WhatsApp-Image-2026_07_17-at-12.16.23.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/0f1/0f1b99620b0e7f023431f62451194efe/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_7_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/0f1/0f1b99620b0e7f023431f62451194efe/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_7_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/ca1/ca185b471404188feea33a8f709f44e7/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_9_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/ca1/ca185b471404188feea33a8f709f44e7/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_9_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/72f/72f5f995faa8b61e0d15cca74ee6e697/340x252/WhatsApp-Image-2026_07_17-at-12.16.24.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/72f/72f5f995faa8b61e0d15cca74ee6e697/464x312/WhatsApp-Image-2026_07_17-at-12.16.24.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/f20/f2094cbfdd05c27a8ed4ff28b85247d9/340x252/WhatsApp-Image-2026_07_17-at-12.16.24-_3_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-04082651/images/iblock/f20/f2094cbfdd05c27a8ed4ff28b85247d9/464x312/WhatsApp-Image-2026_07_17-at-12.16.24-_3_.webp"}],"imageCount":19,"bitrix_id":"1492615"},{"id":31219,"crm_id":"PS-03082624","search_type":"sales","department":"residential","building":["Apartment"],"slug":"2-bedroom-apartment-for-sale-in-sadaf-7-sadaf-jumeirah-beach-residence-dubai","bedroom":2,"bathroom":2,"address_full":{"area":"Sadaf","address1":"Sadaf 7","address2":"Sadaf","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Sadaf 7, Sadaf, Jumeirah Beach Residence, Dubai","floorarea_min":"1447.00","floorarea_max":"1447.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":2300000,"description":"High Floor | Unfurnished | Investment deal ","long_description":"Provident Real Estate is pleased to present this beautiful 2 Bedroom apartment in Sadaf 7, Jumeirah Beach Residence.<br> <br> Unit details:<br> <br> - 2 bedrooms<br> - 2 bathrooms<br> - 1 parking<br> - 1,447.96 sq ft<br> - Balcony<br> - Marina View<b","link_to_employee":{"id":"11671","url":"https://storage.googleapis.com/prov-email-signatures/Oday-Alghussien-PFB.png","name":"Oday Alghussein","email":"oday.a@providentestate.com","phone":"+971 50 493 8049","brn_number":"84570"},"crm_negotiator_id":[{"id":"11671","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-13022616/crm_negotiator_id/prov-email-signatures/Oday-Alghussien-PFB.png","name":"Oday Alghussein","email":"oday.a@providentestate.com","phone":"+971 50 493 8049","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Oday-Alghussien-PFB.png","brn_number":"84570","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/97d/97dc8a76b6184096d8e952fb6222dc69/340x252/1000031115.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/97d/97dc8a76b6184096d8e952fb6222dc69/464x312/1000031115.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/97d/97dc8a76b6184096d8e952fb6222dc69/696x520/1000031115.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/91a/91a7dcd946e96fc183dad1f707a7c091/340x252/1000031119.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/91a/91a7dcd946e96fc183dad1f707a7c091/464x312/1000031119.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/91a/91a7dcd946e96fc183dad1f707a7c091/696x520/1000031119.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/231/231061add44bdb2583bff000a23c906b/340x252/1000031121.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/231/231061add44bdb2583bff000a23c906b/464x312/1000031121.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/231/231061add44bdb2583bff000a23c906b/696x520/1000031121.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/a98/a9848d8eb2f0729e6d0a61f76d0abc4c/340x252/1000031123.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/a98/a9848d8eb2f0729e6d0a61f76d0abc4c/464x312/1000031123.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/a98/a9848d8eb2f0729e6d0a61f76d0abc4c/696x520/1000031123.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/33d/33ddb1eb0c5f893edb7c2efae8448788/340x252/1000031127.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/33d/33ddb1eb0c5f893edb7c2efae8448788/464x312/1000031127.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/6eb/6eb347c89e31f6bc6e60c21a61d02d06/340x252/1000031114.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/6eb/6eb347c89e31f6bc6e60c21a61d02d06/464x312/1000031114.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/778/7788f45a498480fda84ac91f0912d007/340x252/1000031124.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/778/7788f45a498480fda84ac91f0912d007/464x312/1000031124.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/f6c/f6ca7dfa13da735a359078acfd2600d7/340x252/1000031126.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/f6c/f6ca7dfa13da735a359078acfd2600d7/464x312/1000031126.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/c6c/c6cc425d58e1035b120f5686a08fba97/340x252/1000031132.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/c6c/c6cc425d58e1035b120f5686a08fba97/464x312/1000031132.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/e19/e19530f6634a59cbab2e904a8d070246/340x252/1000031133.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10022615/images/iblock/e19/e19530f6634a59cbab2e904a8d070246/464x312/1000031133.webp"}],"imageCount":12,"bitrix_id":"1491838"},{"id":31110,"crm_id":"PS-30072634","search_type":"sales","department":"residential","building":["Apartment"],"slug":"3-bedroom-apartment-for-sale-in-jumeirah-gate-tower-1-the-address-jumeirah-resort-spa-jumeirah-beach-residence-dubai","bedroom":3,"bathroom":5,"address_full":{"area":"The Address Jumeirah Resort and Spa","address1":"Jumeirah Gate Tower 1","address2":"The Address Jumeirah Resort and Spa","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Jumeirah Gate Tower 1, The Address Jumeirah Resort and Spa, Jumeirah Beach Residence, Dubai","floorarea_min":"1939.00","floorarea_max":"1939.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":8600000,"description":"Full Sea View | Vacant | Furnished","long_description":"Provident Real Estate is pleased to offer you this spacious apartment in The Address Jumeirah Resort and Spa.<br> <br> Features:<br> ⦁ Ensuite in all 3 bedrooms<br> ⦁ Full sea view from all the rooms<br> ⦁ Maid's room<br> ⦁ Fully Furnished<br> ⦁ Floo","link_to_employee":{"id":"10737","url":"https://storage.googleapis.com/prov-email-signatures/Anastassia%20Vlasova-pfb.png","name":"Anastasiia Vlasova","email":"anastasiia.v@providentestate.com","phone":"+971504401390","brn_number":"68446"},"crm_negotiator_id":[{"id":"10737","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PR-1302266/crm_negotiator_id/prov-email-signatures/Anastassia%2520Vlasova-pfb.png","name":"Anastasiia Vlasova","email":"anastasiia.v@providentestate.com","phone":"+971504401390","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Anastassia%20Vlasova-pfb.png","brn_number":"68446","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/35c/35c1e7cb8fd9f1280dcd7c018a2cb1b6/340x252/1.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/35c/35c1e7cb8fd9f1280dcd7c018a2cb1b6/464x312/1.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/35c/35c1e7cb8fd9f1280dcd7c018a2cb1b6/696x520/1.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/feb/feb9bf2bb8ae055b6fd177181fab81d8/340x252/12.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/feb/feb9bf2bb8ae055b6fd177181fab81d8/464x312/12.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/feb/feb9bf2bb8ae055b6fd177181fab81d8/696x520/12.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/4e9/4e9e72aa48b08c256b152682968b08c8/340x252/10.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/4e9/4e9e72aa48b08c256b152682968b08c8/464x312/10.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/4e9/4e9e72aa48b08c256b152682968b08c8/696x520/10.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/065/06539e2fc63bc0e115f83c32927bc08c/340x252/11.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/065/06539e2fc63bc0e115f83c32927bc08c/464x312/11.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/065/06539e2fc63bc0e115f83c32927bc08c/696x520/11.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/f41/f41e4da63b96ee6022c47f2b627ddaea/340x252/13.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/f41/f41e4da63b96ee6022c47f2b627ddaea/464x312/13.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/588/5887070c306481f6b7f33002e5f24e5a/340x252/14.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/588/5887070c306481f6b7f33002e5f24e5a/464x312/14.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/acf/acf4610dc2af075a2d38f6f9fb0efcf2/340x252/15.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/acf/acf4610dc2af075a2d38f6f9fb0efcf2/464x312/15.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/3ac/3ac34dcf125315a36ab186c98e2a6748/340x252/16.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/3ac/3ac34dcf125315a36ab186c98e2a6748/464x312/16.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/e28/e28b1adb240b117b3989e20f40555a42/340x252/17.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/e28/e28b1adb240b117b3989e20f40555a42/464x312/17.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/763/7639faebe710d9d28cdf333fd220bb53/340x252/18.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-18032630/images/iblock/763/7639faebe710d9d28cdf333fd220bb53/464x312/18.webp"}],"imageCount":30,"bitrix_id":"1490165"},{"id":30956,"crm_id":"PS-2707266","search_type":"sales","department":"residential","building":["Apartment"],"slug":"1-bedroom-apartment-for-sale-in-jumeirah-gate-tower-1-the-address-jumeirah-resort-spa-jumeirah-beach-residence-dubai","bedroom":1,"bathroom":2,"address_full":{"area":"The Address Jumeirah Resort and Spa","address1":"Jumeirah Gate Tower 1","address2":"The Address Jumeirah Resort and Spa","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Jumeirah Gate Tower 1, The Address Jumeirah Resort and Spa, Jumeirah Beach Residence, Dubai","floorarea_min":"742.00","floorarea_max":"742.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":3200000,"description":"Top Tower in Dubai | High Floor | Private Beach","long_description":"Experience coastal living in this spacious 1-bedroom apartment located in a premium residential tower in Jumeirah Beach Residence (JBR). With size of 742.39 sqft, this unit offers an open and airy layout with 360 views rarely found in one-bedroom apa","link_to_employee":{"id":"11712","url":"https://storage.googleapis.com/prov-email-signatures/Grzegorz-Kostka-PFB.png","name":"Grzegorz Kostka","email":"grzegorz@providentestate.com","phone":"+971 50 236 2749","brn_number":"69689"},"crm_negotiator_id":[{"id":"11712","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-20012640/crm_negotiator_id/prov-email-signatures/Grzegorz-Kostka-PFB.png","name":"Grzegorz Kostka","email":"grzegorz@providentestate.com","phone":"+971 50 236 2749","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Grzegorz-Kostka-PFB.png","brn_number":"69689","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/a0f/8iztnbbkwke0mxkm9ci10dt035t195lp/340x252/download-_17_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/a0f/8iztnbbkwke0mxkm9ci10dt035t195lp/464x312/download-_17_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/a0f/8iztnbbkwke0mxkm9ci10dt035t195lp/696x520/download-_17_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/926/v1cf26f2e9y3ns148kj2mi8kovye4s6g/340x252/download-_12_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/926/v1cf26f2e9y3ns148kj2mi8kovye4s6g/464x312/download-_12_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/926/v1cf26f2e9y3ns148kj2mi8kovye4s6g/696x520/download-_12_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/5ee/i0tfdt1a5zv4pscisx1r63z7b03fz6ic/340x252/download-_9_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/5ee/i0tfdt1a5zv4pscisx1r63z7b03fz6ic/464x312/download-_9_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/5ee/i0tfdt1a5zv4pscisx1r63z7b03fz6ic/696x520/download-_9_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/d53/t624dcmdcfw9zfu5gsik7a3rulp2wi3d/340x252/download-_2_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/d53/t624dcmdcfw9zfu5gsik7a3rulp2wi3d/464x312/download-_2_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/d53/t624dcmdcfw9zfu5gsik7a3rulp2wi3d/696x520/download-_2_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/4fc/ft42q8st4zo1jasicr86i2996uq91xkf/340x252/download-_13_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/4fc/ft42q8st4zo1jasicr86i2996uq91xkf/464x312/download-_13_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/c2f/puaz19qtj541y5hesu4icnoi5zec5bj6/340x252/download-_1_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/c2f/puaz19qtj541y5hesu4icnoi5zec5bj6/464x312/download-_1_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/797/2w3nvjn5yfgkpiyqx6utvevto3ftvtfm/340x252/download-_10_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/797/2w3nvjn5yfgkpiyqx6utvevto3ftvtfm/464x312/download-_10_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/b68/03d64brme7orpfgcyxl5igjgy2f3d33o/340x252/download-_14_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/b68/03d64brme7orpfgcyxl5igjgy2f3d33o/464x312/download-_14_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/207/yg8l5soso6dq5bdc325f02eqs15v1220/340x252/download-_15_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/207/yg8l5soso6dq5bdc325f02eqs15v1220/464x312/download-_15_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/229/k6d1lt62bly6b7nv0hp7u8b9ixdnrd7o/340x252/download-_16_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-09102534/images/iblock/229/k6d1lt62bly6b7nv0hp7u8b9ixdnrd7o/464x312/download-_16_.webp"}],"imageCount":18,"bitrix_id":"1487431"},{"id":30626,"crm_id":"PS-17072616","search_type":"sales","department":"residential","building":["Apartment"],"slug":"2-bedroom-apartment-for-sale-in-la-vie-jumeirah-beach-residence-dubai","bedroom":2,"bathroom":3,"address_full":{"area":"La Vie","address1":"","address2":"La Vie","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"La Vie, Jumeirah Beach Residence, Dubai","floorarea_min":"1411.00","floorarea_max":"1411.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":6199999,"description":"Low Floor | Upgraded | Lowest on the Market ","long_description":"Provident Estates is proud to present this exceptional beachfront residence in La Vie, one of the most prestigious developments in Jumeirah Beach Residence (JBR). Offering a seamless blend of luxury, comfort, and coastal living, this beautifully appo","link_to_employee":{"id":"7968","url":"https://storage.googleapis.com/prov-email-signatures/Sherif-Matar-PFB.png","name":"Sherif Matar","email":"sherif@providentestate.com","phone":"+971504676408","brn_number":"55766"},"crm_negotiator_id":[{"id":"7968","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-23062613/crm_negotiator_id/prov-email-signatures/Sherif-Matar-PFB.png","name":"Sherif Matar","email":"sherif@providentestate.com","phone":"+971504676408","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Sherif-Matar-PFB.png","brn_number":"55766","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/f53/f53e496bdc7411fa47a3e73ac3a145a2/340x252/DSC00001.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/f53/f53e496bdc7411fa47a3e73ac3a145a2/464x312/DSC00001.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/f53/f53e496bdc7411fa47a3e73ac3a145a2/696x520/DSC00001.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/7fb/7fbbae8cdfda37c6e865499598b8fc1b/340x252/DSC09951_HDR.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/7fb/7fbbae8cdfda37c6e865499598b8fc1b/464x312/DSC09951_HDR.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/7fb/7fbbae8cdfda37c6e865499598b8fc1b/696x520/DSC09951_HDR.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/43f/43f83f72a93234f0d7d17fe2c875b658/340x252/DSC09952_HDR.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/43f/43f83f72a93234f0d7d17fe2c875b658/464x312/DSC09952_HDR.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/43f/43f83f72a93234f0d7d17fe2c875b658/696x520/DSC09952_HDR.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/d6b/d6b32431395277a0659835e3849d6e67/340x252/DSC09957_HDR.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/d6b/d6b32431395277a0659835e3849d6e67/464x312/DSC09957_HDR.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/d6b/d6b32431395277a0659835e3849d6e67/696x520/DSC09957_HDR.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/dc8/dc8f55b87f2b2911b3450b92eae05869/340x252/DSC00007.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/dc8/dc8f55b87f2b2911b3450b92eae05869/464x312/DSC00007.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/c86/c861c65aaaf0dd63e4c516eca27bf7f8/340x252/DSC00008.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/c86/c861c65aaaf0dd63e4c516eca27bf7f8/464x312/DSC00008.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/0b3/0b39ffaeddbf2534883ad0c9d3201bd7/340x252/DSC00009.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/0b3/0b39ffaeddbf2534883ad0c9d3201bd7/464x312/DSC00009.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/36f/36fb8cc8dd29a6f84d2bd659eb4feb0d/340x252/DSC09963.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/36f/36fb8cc8dd29a6f84d2bd659eb4feb0d/464x312/DSC09963.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/a84/a8495f5072b50e21abfbce97f89b4b2a/340x252/DSC09966.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/a84/a8495f5072b50e21abfbce97f89b4b2a/464x312/DSC09966.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/bd3/bd3cd6c2901596d22f796bce4c514e6c/340x252/DSC09967_HDR.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-17072616/images/iblock/bd3/bd3cd6c2901596d22f796bce4c514e6c/464x312/DSC09967_HDR.webp"}],"imageCount":16,"bitrix_id":"1481009"},{"id":30525,"crm_id":"PS-14072612","search_type":"sales","department":"residential","building":["Apartment"],"slug":"2-bedroom-apartment-for-sale-in-shams-2-shams-jumeirah-beach-residence-dubai","bedroom":2,"bathroom":2,"address_full":{"area":"Shams","address1":"Shams 2","address2":"Shams","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Shams 2, Shams, Jumeirah Beach Residence, Dubai","floorarea_min":"1323.00","floorarea_max":"1323.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":3000000,"description":"Luxury Upgraded 2BR | Sea/Marina View | Furnished","long_description":"Provident Real Estate proudly presents this luxuriously upgraded and fully furnished 2-bedroom apartment in Shams 2, Jumeirah Beach Residence (JBR) - one of Dubai’s most desirable beachfront destinations.<br> <br> Featuring 1,323.42 sq. ft., this ele","link_to_employee":{"id":"11823","url":"https://storage.googleapis.com/prov-email-signatures/Anna-Dudarenko-PFB.png","name":"Anna Dudarenko","email":"anna.d@providentestate.com","phone":"+971 50 440 1645","brn_number":"84965"},"crm_negotiator_id":[{"id":"11823","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-03022632/crm_negotiator_id/prov-email-signatures/Anna-Dudarenko-PFB.png","name":"Anna Dudarenko","email":"anna.d@providentestate.com","phone":"+971 50 440 1645","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Anna-Dudarenko-PFB.png","brn_number":"84965","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/3ce/1erp4w04mfd81r8gb7cgaj6oyutcmw0u/340x252/download-_1_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/3ce/1erp4w04mfd81r8gb7cgaj6oyutcmw0u/464x312/download-_1_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/3ce/1erp4w04mfd81r8gb7cgaj6oyutcmw0u/696x520/download-_1_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c2a/9jezz26c2nww34ck0kf2dkjxskor171p/340x252/download-_2_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c2a/9jezz26c2nww34ck0kf2dkjxskor171p/464x312/download-_2_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c2a/9jezz26c2nww34ck0kf2dkjxskor171p/696x520/download-_2_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c40/br5zk7dlsi8nq4vxo5l6h58y2d1o1h1m/340x252/download-_3_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c40/br5zk7dlsi8nq4vxo5l6h58y2d1o1h1m/464x312/download-_3_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/c40/br5zk7dlsi8nq4vxo5l6h58y2d1o1h1m/696x520/download-_3_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/9e4/dck83137xj0m4jh6ctxd90z8i9t3vvpy/340x252/download-_4_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/9e4/dck83137xj0m4jh6ctxd90z8i9t3vvpy/464x312/download-_4_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/9e4/dck83137xj0m4jh6ctxd90z8i9t3vvpy/696x520/download-_4_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/2dc/0ll575bsoq8iq4yh19os0o5n73xe2uxe/340x252/download-_6_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/2dc/0ll575bsoq8iq4yh19os0o5n73xe2uxe/464x312/download-_6_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/f24/7gmhyj5vvfkabhhk42d3l1ogpvzvf2lg/340x252/download-_10_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/f24/7gmhyj5vvfkabhhk42d3l1ogpvzvf2lg/464x312/download-_10_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/6b9/l8w5103a85186g6ru3smsxbi26db1389/340x252/download-_11_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/6b9/l8w5103a85186g6ru3smsxbi26db1389/464x312/download-_11_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/524/f276681a15tifd2nn0cr3oumb34moo2n/340x252/download-_12_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/524/f276681a15tifd2nn0cr3oumb34moo2n/464x312/download-_12_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/382/9oxpi9ip85t7t9dh1pobxpj4iw5sunw7/340x252/download-_13_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/382/9oxpi9ip85t7t9dh1pobxpj4iw5sunw7/464x312/download-_13_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/e53/s1hujaxbmocq0tjulp9filu7scscemr6/340x252/download-_14_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-05112520/images/iblock/e53/s1hujaxbmocq0tjulp9filu7scscemr6/464x312/download-_14_.webp"}],"imageCount":23,"bitrix_id":"1478515"},{"id":29895,"crm_id":"PES-2506261","search_type":"sales","department":"residential","building":["Apartment"],"slug":"3-bedroom-apartment-for-sale-in-jumeirah-beach-residence-dubai","bedroom":3,"bathroom":4,"address_full":{"area":"","address1":"","address2":"","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Jumeirah Beach Residence, Dubai","floorarea_min":"2598.00","floorarea_max":"2598.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":10000000,"description":"Sophisticated Living | Recently Renovated | Vacant & Ready for You","long_description":"Luxurious 3-Bedroom Apartment in 1 JBR with Spectacular Views<br> <br> Step into refined living with this beautifully renovated 3-bedroom apartment in the iconic 1 JBR. Offering a spacious and stylish layout, this fully furnished home combines modern","link_to_employee":{"id":"11105","url":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","brn_number":"47730"},"crm_negotiator_id":[{"id":"11105","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PES-3001261/crm_negotiator_id/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","brn_number":"47730","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/51f/2ergxj0dcp8px85n3dkuyvze44xt7ltb/340x252/a_576.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/51f/2ergxj0dcp8px85n3dkuyvze44xt7ltb/464x312/a_576.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/51f/2ergxj0dcp8px85n3dkuyvze44xt7ltb/696x520/a_576.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/b93/un0jsnje0egey7ln1qdfjgd06z49944u/340x252/a_543.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/b93/un0jsnje0egey7ln1qdfjgd06z49944u/464x312/a_543.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/b93/un0jsnje0egey7ln1qdfjgd06z49944u/696x520/a_543.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/57d/sx22nhla0jn5pl0nwj0iym113yzci5rm/340x252/a_536.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/57d/sx22nhla0jn5pl0nwj0iym113yzci5rm/464x312/a_536.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/57d/sx22nhla0jn5pl0nwj0iym113yzci5rm/696x520/a_536.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/0a0/kz49kb12y88o0hmwptedd2emvvhuu26e/340x252/a_577.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/0a0/kz49kb12y88o0hmwptedd2emvvhuu26e/464x312/a_577.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/0a0/kz49kb12y88o0hmwptedd2emvvhuu26e/696x520/a_577.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/da6/tjzoxj1yswuha6njdzc5trox3kaog3p3/340x252/a_565.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/da6/tjzoxj1yswuha6njdzc5trox3kaog3p3/464x312/a_565.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/85f/udjrbiw9d7yj3dyx21ezpudp6hvn26qs/340x252/a_530.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/85f/udjrbiw9d7yj3dyx21ezpudp6hvn26qs/464x312/a_530.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/371/4jabj0kum26udkiymg4p42lznip90b9a/340x252/a_531.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/371/4jabj0kum26udkiymg4p42lznip90b9a/464x312/a_531.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/85a/huvm82zu51qqctm6x8ufj1m1lsy0j99u/340x252/a_532.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/85a/huvm82zu51qqctm6x8ufj1m1lsy0j99u/464x312/a_532.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/60c/ucval654yhrcq796rzl9uymnfu5xeke7/340x252/a_533.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/60c/ucval654yhrcq796rzl9uymnfu5xeke7/464x312/a_533.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/d00/c3wwvtqny0zjlwzxx01bo5020sy3eso0/340x252/a_534.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2506261/images/iblock/d00/c3wwvtqny0zjlwzxx01bo5020sy3eso0/464x312/a_534.webp"}],"imageCount":30,"bitrix_id":"1467124"},{"id":29894,"crm_id":"PES-2506262","search_type":"sales","department":"residential","building":["Apartment"],"slug":"2-bedroom-apartment-for-sale-in-1-jbr-jumeirah-beach-residence-dubai","bedroom":2,"bathroom":3,"address_full":{"area":"1 JBR","address1":"","address2":"1 JBR","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"1 JBR, Jumeirah Beach Residence, Dubai","floorarea_min":"2170.00","floorarea_max":"2170.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":8650000,"description":"Prime Corner Unit | Private Beach Access | Great Deal","long_description":"2-Bedroom Corner Unit at One JBR | Stunning Panoramic Sea Views &amp; Private Beach Access<br> <br> Private Beach | Rare Corner Unit | Best Deal | Welcoming Offers<br> <br> We are delighted to offer this rare 2-bedroom corner unit with a maid’s room ","link_to_employee":{"id":"11105","url":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","brn_number":"47730"},"crm_negotiator_id":[{"id":"11105","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PES-3001261/crm_negotiator_id/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","brn_number":"47730","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/8d2/pn624bbsj2y3s01fvzudy59sdvkubccx/340x252/1C4A0281.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/8d2/pn624bbsj2y3s01fvzudy59sdvkubccx/464x312/1C4A0281.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/8d2/pn624bbsj2y3s01fvzudy59sdvkubccx/696x520/1C4A0281.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/efd/y9umv85ejghxcmjsv27t6vm7dnmifcev/340x252/1C4A0249.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/efd/y9umv85ejghxcmjsv27t6vm7dnmifcev/464x312/1C4A0249.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/efd/y9umv85ejghxcmjsv27t6vm7dnmifcev/696x520/1C4A0249.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/a86/28uhgw6lno6gd2zk7ygw0qq17qm53b18/340x252/1C4A0271.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/a86/28uhgw6lno6gd2zk7ygw0qq17qm53b18/464x312/1C4A0271.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/a86/28uhgw6lno6gd2zk7ygw0qq17qm53b18/696x520/1C4A0271.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/0b6/rrjqt3evb9qk6waknay1qer07dxv84pb/340x252/1C4A0255.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/0b6/rrjqt3evb9qk6waknay1qer07dxv84pb/464x312/1C4A0255.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/0b6/rrjqt3evb9qk6waknay1qer07dxv84pb/696x520/1C4A0255.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/18a/9xbwv4rwvpdmnou4jcx7csgz13403h8s/340x252/1C4A0283.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/18a/9xbwv4rwvpdmnou4jcx7csgz13403h8s/464x312/1C4A0283.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/7c6/n8ts73mojmd52j2ol2e9yn6qcw969oh6/340x252/1C4A0250.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/7c6/n8ts73mojmd52j2ol2e9yn6qcw969oh6/464x312/1C4A0250.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/67f/0ultgrpl3zg957ueydum82csjauy3ojk/340x252/1C4A0251.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/67f/0ultgrpl3zg957ueydum82csjauy3ojk/464x312/1C4A0251.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/5b7/o45b289lkbpdt7ys3be1tvenxq71eqkb/340x252/1C4A0253.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/5b7/o45b289lkbpdt7ys3be1tvenxq71eqkb/464x312/1C4A0253.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/402/yyq3fpc4uwyiiu0k93g2si3pathv2xvu/340x252/1C4A0259.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/402/yyq3fpc4uwyiiu0k93g2si3pathv2xvu/464x312/1C4A0259.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/4a9/fyfftqdy43wr7iyk3g09fkbs6m0uo66o/340x252/1C4A0260.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PES-2310251/images/iblock/4a9/fyfftqdy43wr7iyk3g09fkbs6m0uo66o/464x312/1C4A0260.webp"}],"imageCount":23,"bitrix_id":"1467153"},{"id":29776,"crm_id":"PS-22062614","search_type":"sales","department":"residential","building":["Apartment"],"slug":"2-bedroom-apartment-for-sale-in-shams-1-shams-jumeirah-beach-residence-dubai","bedroom":2,"bathroom":3,"address_full":{"area":"Shams","address1":"Shams 1","address2":"Shams","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Shams 1, Shams, Jumeirah Beach Residence, Dubai","floorarea_min":"1375.00","floorarea_max":"1375.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":2300000,"description":"Upgraded | Stunning Marina View | Vacant","long_description":"Apartment for sale in Shams 1, Shams<br> <br> Provident Real Estate proudly presents this 2 bedroom apartment with breath-taking Marina views in Shams 1, in the heart of JBR.<br> .<br> The apartment boasts a bright and spacious living area, two gener","link_to_employee":{"id":"10737","url":"https://storage.googleapis.com/prov-email-signatures/Anastassia%20Vlasova-pfb.png","name":"Anastasiia Vlasova","email":"anastasiia.v@providentestate.com","phone":"+971504401390","brn_number":"68446"},"crm_negotiator_id":[{"id":"10737","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PR-1302266/crm_negotiator_id/prov-email-signatures/Anastassia%2520Vlasova-pfb.png","name":"Anastasiia Vlasova","email":"anastasiia.v@providentestate.com","phone":"+971504401390","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Anastassia%20Vlasova-pfb.png","brn_number":"68446","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/d1d/drmo7k4qsq5t49zs36xdg5yv8gbcn05d/340x252/A_9.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/d1d/drmo7k4qsq5t49zs36xdg5yv8gbcn05d/464x312/A_9.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/d1d/drmo7k4qsq5t49zs36xdg5yv8gbcn05d/696x520/A_9.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/c21/al0k010x2r691kf811770j407ci4megv/340x252/A_22.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/c21/al0k010x2r691kf811770j407ci4megv/464x312/A_22.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/c21/al0k010x2r691kf811770j407ci4megv/696x520/A_22.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/977/3th0ss8mt8a3v6j4h51a96b7wbpxho4u/340x252/A_3.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/977/3th0ss8mt8a3v6j4h51a96b7wbpxho4u/464x312/A_3.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/977/3th0ss8mt8a3v6j4h51a96b7wbpxho4u/696x520/A_3.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/9e9/lowhlkitzyfe51htdceep9x4hy9bkzef/340x252/A_23.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/9e9/lowhlkitzyfe51htdceep9x4hy9bkzef/464x312/A_23.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/9e9/lowhlkitzyfe51htdceep9x4hy9bkzef/696x520/A_23.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/cf4/2pdv4jqa4xflo062l6erb71tef7hwsa8/340x252/A_18.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/cf4/2pdv4jqa4xflo062l6erb71tef7hwsa8/464x312/A_18.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/126/1466fv8dnd6919xs3en3q2nb8m7jhmf2/340x252/A_15.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/126/1466fv8dnd6919xs3en3q2nb8m7jhmf2/464x312/A_15.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/954/b5vrrm767mw8hj7uxqp35xeonp05unnd/340x252/A_16.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/954/b5vrrm767mw8hj7uxqp35xeonp05unnd/464x312/A_16.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/ff1/09gm76peylu7fr9oyn12fl0innj9l1ep/340x252/A_17.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/ff1/09gm76peylu7fr9oyn12fl0innj9l1ep/464x312/A_17.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/ab4/bt0n1vuinjjy7g2b11ew455s0domdk73/340x252/A_19.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/ab4/bt0n1vuinjjy7g2b11ew455s0domdk73/464x312/A_19.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/be0/atq947mrkkj75aapijkrcbf1602ix60x/340x252/A_4.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PR-07102511/images/iblock/be0/atq947mrkkj75aapijkrcbf1602ix60x/464x312/A_4.webp"}],"imageCount":13,"bitrix_id":"1465150"},{"id":26176,"crm_id":"PS-26022625","search_type":"sales","department":"residential","building":["Apartment"],"slug":"4-bedroom-apartment-for-sale-in-1-jbr-jumeirah-beach-residence-dubai","bedroom":4,"bathroom":5,"address_full":{"area":"1 JBR","address1":"","address2":"1 JBR","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"1 JBR, Jumeirah Beach Residence, Dubai","floorarea_min":"3753.00","floorarea_max":"3753.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":22750000,"description":"Renovated | Luxurious Furniture | Vacant Soon","long_description":"1/JBR – A Pinnacle of Architectural Luxury<br> <br> An iconic addition to the Dubai skyline, 1/JBR stands as a symbol of unparalleled luxury, marking the entrance to the prestigious Jumeirah Beach Residence (JBR). This stunning 43-story tower offers ","link_to_employee":{"id":"11105","url":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","brn_number":"47730"},"crm_negotiator_id":[{"id":"11105","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PES-3001261/crm_negotiator_id/prov-email-signatures/Ahmed-Elshahd-pfb.png","name":"Ahmed Elshahd","email":"a.elshahed@providentestate.com","phone":"+971 56 603 0346","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Ahmed-Elshahd-pfb.png","brn_number":"47730","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/7e2/80lcl16dtf8196yk1csv5o8sum1zj8we/340x252/WhatsApp-Image-2025_03_04-at-15.59.16-_7_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/7e2/80lcl16dtf8196yk1csv5o8sum1zj8we/464x312/WhatsApp-Image-2025_03_04-at-15.59.16-_7_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/7e2/80lcl16dtf8196yk1csv5o8sum1zj8we/696x520/WhatsApp-Image-2025_03_04-at-15.59.16-_7_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/b1f/9zn8c1pzpfn50lkihpeo9zq57hhzmtvd/340x252/WhatsApp-Image-2025_03_04-at-15.59.16-_5_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/b1f/9zn8c1pzpfn50lkihpeo9zq57hhzmtvd/464x312/WhatsApp-Image-2025_03_04-at-15.59.16-_5_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/b1f/9zn8c1pzpfn50lkihpeo9zq57hhzmtvd/696x520/WhatsApp-Image-2025_03_04-at-15.59.16-_5_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/1f7/6qs0071r307f96wpytcd6jqq8s8ioa60/340x252/WhatsApp-Image-2025_03_04-at-15.59.15-_10_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/1f7/6qs0071r307f96wpytcd6jqq8s8ioa60/464x312/WhatsApp-Image-2025_03_04-at-15.59.15-_10_.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/1f7/6qs0071r307f96wpytcd6jqq8s8ioa60/696x520/WhatsApp-Image-2025_03_04-at-15.59.15-_10_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/f24/755c3u68nzbiby2kmfmc4mfbzhl9r2oo/340x252/WhatsApp-Image-2025_03_04-at-15.59.16.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/f24/755c3u68nzbiby2kmfmc4mfbzhl9r2oo/464x312/WhatsApp-Image-2025_03_04-at-15.59.16.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/f24/755c3u68nzbiby2kmfmc4mfbzhl9r2oo/696x520/WhatsApp-Image-2025_03_04-at-15.59.16.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/728/qouopwwqw1pykkhdzgj9wdvhinp1sruo/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_5_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/728/qouopwwqw1pykkhdzgj9wdvhinp1sruo/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_5_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/70e/8rnw93t9s3wwon465uuk1du9r9wgod4w/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_1_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/70e/8rnw93t9s3wwon465uuk1du9r9wgod4w/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_1_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/598/xvq0jovsvfou2jf0gcxjbvs0bgfm9lyk/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_2_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/598/xvq0jovsvfou2jf0gcxjbvs0bgfm9lyk/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_2_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/214/wldrkq9oss2id4qxm53gdx48d0kc9b7f/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_3_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/214/wldrkq9oss2id4qxm53gdx48d0kc9b7f/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_3_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/6d1/ii9usw91z88ruhjcg8et130fl67cukhl/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_4_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/6d1/ii9usw91z88ruhjcg8et130fl67cukhl/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_4_.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/9aa/ecp4f2tjy78twx35dfavedg6sfc1mmyj/340x252/WhatsApp-Image-2025_03_04-at-15.59.14-_6_.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-10112528/images/iblock/9aa/ecp4f2tjy78twx35dfavedg6sfc1mmyj/464x312/WhatsApp-Image-2025_03_04-at-15.59.14-_6_.webp"}],"imageCount":31,"bitrix_id":"1390174"},{"id":24968,"crm_id":"PS-13012650","search_type":"sales","department":"residential","building":["Apartment"],"slug":"1-bedroom-apartment-for-sale-in-shams-1-shams-jumeirah-beach-residence-dubai","bedroom":1,"bathroom":1,"address_full":{"area":"Shams","address1":"Shams 1","address2":"Shams","address3":"Jumeirah Beach Residence","address4":"Dubai","postcode":""},"display_address":"Shams 1, Shams, Jumeirah Beach Residence, Dubai","floorarea_min":"1522.00","floorarea_max":"1522.00","latitude":25.0778021,"longitude":55.1351809,"price_qualifier":null,"price":2950000,"description":"Prime Location | JBR Location | Stunning Views","long_description":"Experience premium beachfront living in one of JBR’s most sought-after communities. This well-maintained residence offers a bright layout, quality finishes, and a comfortable living environment ideal for end users and investors alike. Located in Sham","link_to_employee":{"id":"98","url":"https://storage.googleapis.com/prov-email-signatures/Arturs Tihanurs-43.PFB.png","name":"Arturs Tihanuks","email":"arturs@providentestate.com","phone":"+971504386746","brn_number":"63944"},"crm_negotiator_id":[{"id":"98","url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/property/PS-30012631/crm_negotiator_id/prov-email-signatures/Arturs%20Tihanurs-43.PFB.png","name":"Arturs Tihanuks","email":"arturs@providentestate.com","phone":"+971504386746","srcUrl":"https://storage.googleapis.com/prov-email-signatures/Arturs Tihanurs-43.PFB.png","brn_number":"63944","__ggfxIndex":0}],"developer":"","images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/70c/70c82f5da7ca71adf5c52ba3c271643f/340x252/1.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/70c/70c82f5da7ca71adf5c52ba3c271643f/464x312/1.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/70c/70c82f5da7ca71adf5c52ba3c271643f/696x520/1.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/d35/d3566ee31bec947b4696b21eeecc2633/340x252/2.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/d35/d3566ee31bec947b4696b21eeecc2633/464x312/2.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/d35/d3566ee31bec947b4696b21eeecc2633/696x520/2.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/0c1/0c1ca390953e3767146df35ef9517789/340x252/3.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/0c1/0c1ca390953e3767146df35ef9517789/464x312/3.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/0c1/0c1ca390953e3767146df35ef9517789/696x520/3.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/afa/afa2ebdcd7f57833a3456a2f61818476/340x252/4.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/afa/afa2ebdcd7f57833a3456a2f61818476/464x312/4.webp","696x520":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/afa/afa2ebdcd7f57833a3456a2f61818476/696x520/4.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/a43/a4382d926fe1b80adf6229fea0ed4e26/340x252/5.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/a43/a4382d926fe1b80adf6229fea0ed4e26/464x312/5.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/366/366bbfdd1a9fbf6308e3f66597e0e67a/340x252/6.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/366/366bbfdd1a9fbf6308e3f66597e0e67a/464x312/6.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/1c0/1c0f209e12cb426b6938d05b1b6d4b19/340x252/7.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/1c0/1c0f209e12cb426b6938d05b1b6d4b19/464x312/7.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/296/296a275363b5adfef890acf4c9c29299/340x252/8.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/296/296a275363b5adfef890acf4c9c29299/464x312/8.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/4b4/4b44a9fcaa67399d18e75e276490d816/340x252/9.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/4b4/4b44a9fcaa67399d18e75e276490d816/464x312/9.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/f47/f47639007e3adac01bad4c1f63090285/340x252/10.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/property/PS-13012650/images/iblock/f47/f47639007e3adac01bad4c1f63090285/464x312/10.webp"}],"imageCount":14,"bitrix_id":"1339810"}],"nbHits":12,"page":1,"nbPages":1,"hitsPerPage":20,"projects":[{"id":3509,"building_type":["apartment"],"developer":"Emaar Properties","status":"pending","title":"Valia","slug":"valia-emaar-properties-dubai-creek-harbour","display_address":"Dubai Creek Harbour","display_bedrooms":"1,2,3,4","min_bedrooms":1,"max_bedrooms":4,"about":"<p>Valia at <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-creek-harbour/\">Dubai Creek Harbour</a> is a residential complex developed by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://prov","price":"2,140,000","display_price":"2.14M","virtual_tour_url":null,"agent_category":"B","media_images":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_9_03a5e2ace9.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_0e49a0f373.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_7_2bd3d6cc3b.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_5e2f8ab40b.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_5fb703c369.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_5a2b45fa8c.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_be46f3d197.jpg"}],"tile_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feaure_image_3f2db87ea7.jpg"},"banner_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_6799f762ee.jpg"},"banner_image_mobile":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_ee9a89ada0.jpg"},"ggfx_results":[{"id":258,"src_cftle":"i/General_Brochure_90d7160d65.png","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/General_Brochure_90d7160d65.webp","format":"webp","transform":"340x","created_at":"2025-08-26 15:11:19.440","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/General_Brochure_90d7160d65.webp","format":"webp","transform":"1504x","created_at":"2025-08-26 15:11:19.440","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/General_Brochure_90d7160d65.png","format":"png","transform":"1504x","created_at":"2024-06-19 09:14:46.636","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/General_Brochure_90d7160d65.png","format":"png","transform":"340x","created_at":"2024-06-19 10:25:01.489","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1968x/General_Brochure_90d7160d65.webp","format":"webp","transform":"1968x","created_at":"2025-08-26 15:11:19.440","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/696x/General_Brochure_90d7160d65.webp","format":"webp","transform":"696x","created_at":"2025-08-26 22:38:44.243","updated_at":"2025-08-27 02:18:19.016"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/336x/General_Brochure_90d7160d65.webp","format":"webp","transform":"336x","created_at":"2025-08-27 02:18:19.016","updated_at":"2025-08-27 02:18:19.016"}],"created_at":"2024-06-14T09:27:23.766Z","updated_at":"2025-08-27T01:18:19.016Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":6122981,"src_cftle":"i/Feaure_image_3f2db87ea7.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feaure_image_3f2db87ea7.webp","alias":"images","format":"webp","transform":"340x252","created_at":"2026-07-31 12:47:54.403","updated_at":"2026-07-31 12:47:54.403"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feaure_image_3f2db87ea7.webp","alias":"images","format":"webp","transform":"464x312","created_at":"2026-07-31 12:47:54.403","updated_at":"2026-07-31 12:47:54.403"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feaure_image_3f2db87ea7.jpg","format":"jpg","transform":"464x312","created_at":"2026-08-03 08:02:06.230","updated_at":"2026-08-03 08:02:06.230"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feaure_image_3f2db87ea7.jpg","format":"jpg","transform":"340x252","created_at":"2026-08-03 10:55:31.453","updated_at":"2026-08-03 10:55:31.453"}],"created_at":"2026-07-31T11:47:54.403Z","updated_at":"2026-08-03T09:55:31.453Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feaure_image_3f2db87ea7.jpg"},{"id":6122982,"src_cftle":"i/Mobile_ee9a89ada0.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Mobile_ee9a89ada0.webp","format":"webp","transform":"376x512","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Mobile_ee9a89ada0.webp","format":"webp","transform":"744x","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"}],"created_at":"2026-07-31T11:47:54.404Z","updated_at":"2026-07-31T11:47:54.404Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_ee9a89ada0.jpg"},{"id":6122983,"src_cftle":"i/Banner_6799f762ee.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/Banner_6799f762ee.webp","format":"webp","transform":"376x","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Banner_6799f762ee.webp","format":"webp","transform":"376x512","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Banner_6799f762ee.webp","format":"webp","transform":"744x","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/Banner_6799f762ee.webp","format":"webp","transform":"1650x","created_at":"2026-07-31 12:47:54.404","updated_at":"2026-07-31 12:47:54.404"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Banner_6799f762ee.webp","format":"webp","transform":"600x","created_at":"2026-07-31 12:52:07.600","updated_at":"2026-07-31 12:52:07.600"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Banner_6799f762ee.webp","format":"webp","transform":"1300x500","created_at":"2026-07-31 12:54:16.118","updated_at":"2026-07-31 12:54:16.118"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Banner_6799f762ee.jpg","format":"jpg","transform":"1300x500","created_at":"2026-07-31 13:06:11.536","updated_at":"2026-07-31 13:06:11.536"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Banner_6799f762ee.jpg","format":"jpg","transform":"600x","created_at":"2026-07-31 13:29:38.777","updated_at":"2026-07-31 13:29:38.777"}],"created_at":"2026-07-31T11:47:54.404Z","updated_at":"2026-07-31T12:29:38.777Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_6799f762ee.jpg"},{"id":6122985,"src_cftle":"i/Gallery_5_5fb703c369.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_5fb703c369.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_5fb703c369.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_5fb703c369.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:41.824","updated_at":"2026-07-31 13:00:41.824"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_5_5fb703c369.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.265","updated_at":"2026-07-31 13:04:21.265"}],"created_at":"2026-07-31T11:53:30.449Z","updated_at":"2026-07-31T12:04:21.265Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_5fb703c369.jpg"},{"id":6122986,"src_cftle":"i/Gallery_6_5e2f8ab40b.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_6_5e2f8ab40b.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_6_5e2f8ab40b.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_5e2f8ab40b.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:42.123","updated_at":"2026-07-31 13:00:42.123"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_6_5e2f8ab40b.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.204","updated_at":"2026-07-31 13:04:21.204"}],"created_at":"2026-07-31T11:53:30.448Z","updated_at":"2026-07-31T12:04:21.204Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_5e2f8ab40b.jpg"},{"id":6122987,"src_cftle":"i/Gallery_7_2bd3d6cc3b.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_7_2bd3d6cc3b.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_7_2bd3d6cc3b.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_7_2bd3d6cc3b.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:41.715","updated_at":"2026-07-31 13:00:41.715"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_7_2bd3d6cc3b.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.273","updated_at":"2026-07-31 13:04:21.273"}],"created_at":"2026-07-31T11:53:30.448Z","updated_at":"2026-07-31T12:04:21.273Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_7_2bd3d6cc3b.jpg"},{"id":6122988,"src_cftle":"i/Gallery_0e49a0f373.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_0e49a0f373.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_0e49a0f373.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_0e49a0f373.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:41.830","updated_at":"2026-07-31 13:00:41.830"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_0e49a0f373.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.270","updated_at":"2026-07-31 13:04:21.270"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_0e49a0f373.jpg","format":"jpg","transform":"464x312","created_at":"2026-08-03 08:02:06.244","updated_at":"2026-08-03 08:02:06.244"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_0e49a0f373.jpg","format":"jpg","transform":"340x252","created_at":"2026-08-03 10:55:31.472","updated_at":"2026-08-03 10:55:31.472"}],"created_at":"2026-07-31T11:53:30.448Z","updated_at":"2026-08-03T09:55:31.472Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_0e49a0f373.jpg"},{"id":6122989,"src_cftle":"i/Gallery_3_5a2b45fa8c.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_5a2b45fa8c.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_5a2b45fa8c.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_5a2b45fa8c.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:00:41.496","updated_at":"2026-07-31 13:00:41.496"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_5a2b45fa8c.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:42.128","updated_at":"2026-07-31 13:00:42.128"}],"created_at":"2026-07-31T11:53:30.449Z","updated_at":"2026-07-31T12:00:42.128Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_5a2b45fa8c.jpg"},{"id":6122990,"src_cftle":"i/Gallery_4_be46f3d197.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_4_be46f3d197.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_4_be46f3d197.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.449","updated_at":"2026-07-31 12:53:30.449"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_be46f3d197.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 14:30:37.277","updated_at":"2026-07-31 14:30:37.277"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_be46f3d197.webp","format":"webp","transform":"340x","created_at":"2026-07-31 14:30:38.796","updated_at":"2026-07-31 14:30:38.796"}],"created_at":"2026-07-31T11:53:30.449Z","updated_at":"2026-07-31T13:30:38.796Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_be46f3d197.jpg"},{"id":6122991,"src_cftle":"i/Gallery_9_03a5e2ace9.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_9_03a5e2ace9.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_9_03a5e2ace9.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-07-31 12:53:30.448","updated_at":"2026-07-31 12:53:30.448"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_9_03a5e2ace9.webp","format":"webp","transform":"1504x","created_at":"2026-07-31 13:00:41.604","updated_at":"2026-07-31 13:00:41.604"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_9_03a5e2ace9.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.279","updated_at":"2026-07-31 13:04:21.279"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_9_03a5e2ace9.jpg","format":"jpg","transform":"464x312","created_at":"2026-08-03 08:02:06.211","updated_at":"2026-08-03 08:02:06.211"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_9_03a5e2ace9.jpg","format":"jpg","transform":"340x252","created_at":"2026-08-03 10:55:31.466","updated_at":"2026-08-03 10:55:31.466"}],"created_at":"2026-07-31T11:53:30.448Z","updated_at":"2026-08-03T09:55:31.466Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_9_03a5e2ace9.jpg"},{"id":6123010,"src_cftle":"i/Map_1_641e2cd210.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Map_1_641e2cd210.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:00:41.508","updated_at":"2026-07-31 13:00:41.508"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Map_1_641e2cd210.webp","format":"webp","transform":"1392x","created_at":"2026-07-31 13:00:42.290","updated_at":"2026-07-31 13:00:42.290"}],"created_at":"2026-07-31T12:00:41.508Z","updated_at":"2026-07-31T12:00:42.290Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Map_1_641e2cd210.jpg"},{"id":6123014,"src_cftle":"i/Unique_selling_point_08291946e3.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Unique_selling_point_08291946e3.webp","format":"webp","transform":"1392x","created_at":"2026-07-31 13:00:42.278","updated_at":"2026-07-31 13:00:42.278"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Unique_selling_point_08291946e3.webp","format":"webp","transform":"340x","created_at":"2026-07-31 13:04:21.271","updated_at":"2026-07-31 13:04:21.271"}],"created_at":"2026-07-31T12:00:41.770Z","updated_at":"2026-07-31T12:04:21.271Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Unique_selling_point_08291946e3.jpg"}],"bitrix":{"id":1532,"pf_id":null,"source":null,"project_id":null,"tower_name":"Valia","campaign_name":"Valia","property_type":"Apartment","developer_name":"Emaar Properties","project_location":"Dubai Creek Harbour"},"completion_year":"2030","agent_segmentation":"Standard","images1":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_9_03a5e2ace9.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_9_03a5e2ace9.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_0e49a0f373.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_0e49a0f373.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_7_2bd3d6cc3b.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_7_2bd3d6cc3b.webp"}],"images2":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feaure_image_3f2db87ea7.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feaure_image_3f2db87ea7.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_9_03a5e2ace9.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_9_03a5e2ace9.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_0e49a0f373.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_0e49a0f373.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_7_2bd3d6cc3b.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_7_2bd3d6cc3b.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_6_5e2f8ab40b.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_6_5e2f8ab40b.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_5fb703c369.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_5fb703c369.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_5a2b45fa8c.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_5a2b45fa8c.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_4_be46f3d197.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_4_be46f3d197.webp"}],"images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feaure_image_3f2db87ea7.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feaure_image_3f2db87ea7.webp"}],"imageCount":1},{"id":3459,"building_type":["apartment","studio","offices"],"developer":"Imtiaz Developments","status":null,"title":"Raw District 2","slug":"raw-district-2-imtiaz-developments-sheikh-zayed-road","display_address":"Sheikh Zayed Road","display_bedrooms":null,"min_bedrooms":1,"max_bedrooms":3,"about":"<p>RAW District 2 by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/developed-by-imtiaz-developments/\">Imtiaz Developments</a> is a modern mixed-use project in Downtown Jebel Ali, positioned along <a targe","price":"666,000","display_price":"666K","virtual_tour_url":null,"agent_category":"B","media_images":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_a84fbbd46f.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_bea6dc211e.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_2_78b1e3f9af.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_0fa2cd14d1.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_1_6f9c2b7260.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_4ae2ed20f7.jpg"}],"tile_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feature_874855a212.jpg"},"banner_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_108d3d702d.jpg"},"banner_image_mobile":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_8ee998ec20.jpg"},"ads_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Sponsored_30f7e69118.jpg"},"ads_mobile_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_3edab8bc93.jpg"},"ggfx_results":[{"id":6064120,"src_cftle":"i/Gallery_1_6f9c2b7260.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_1_6f9c2b7260.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_1_6f9c2b7260.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_1_6f9c2b7260.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 11:41:02.755","updated_at":"2026-06-22 11:41:02.755"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_1_6f9c2b7260.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:32.755","updated_at":"2026-06-22 13:29:32.755"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_1_6f9c2b7260.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 13:15:07.361","updated_at":"2026-07-07 13:15:07.361"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_1_6f9c2b7260.jpg","format":"jpg","transform":"340x","created_at":"2026-07-07 15:59:52.102","updated_at":"2026-07-07 15:59:52.102"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T14:59:52.102Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_1_6f9c2b7260.jpg"},{"id":6064121,"src_cftle":"i/Gallery_6_4ae2ed20f7.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_6_4ae2ed20f7.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_6_4ae2ed20f7.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_4ae2ed20f7.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 11:41:02.727","updated_at":"2026-06-22 11:41:02.727"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_6_4ae2ed20f7.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:31.814","updated_at":"2026-06-22 13:29:31.814"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_4ae2ed20f7.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 13:15:07.329","updated_at":"2026-07-07 13:15:07.329"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T12:15:07.329Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_4ae2ed20f7.jpg"},{"id":6064122,"src_cftle":"i/Gallery_3_bea6dc211e.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_bea6dc211e.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_bea6dc211e.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_bea6dc211e.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 11:41:02.971","updated_at":"2026-06-22 11:41:02.971"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_bea6dc211e.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:22.870","updated_at":"2026-06-22 13:29:22.870"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_bea6dc211e.jpg","format":"jpg","transform":"464x312","created_at":"2026-06-22 16:55:50.630","updated_at":"2026-06-22 16:55:50.630"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_bea6dc211e.jpg","format":"jpg","transform":"340x252","created_at":"2026-06-23 07:28:02.934","updated_at":"2026-06-23 07:28:02.934"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_bea6dc211e.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 13:15:07.378","updated_at":"2026-07-07 13:15:07.378"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_bea6dc211e.jpg","format":"jpg","transform":"340x","created_at":"2026-07-07 15:59:52.100","updated_at":"2026-07-07 15:59:52.100"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T14:59:52.100Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_bea6dc211e.jpg"},{"id":6064124,"src_cftle":"i/Gallery_2_78b1e3f9af.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_2_78b1e3f9af.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_2_78b1e3f9af.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_2_78b1e3f9af.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 11:41:02.940","updated_at":"2026-06-22 11:41:02.940"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_2_78b1e3f9af.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:34.588","updated_at":"2026-06-22 13:29:34.588"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_2_78b1e3f9af.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 13:15:07.234","updated_at":"2026-07-07 13:15:07.234"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_2_78b1e3f9af.jpg","format":"jpg","transform":"340x","created_at":"2026-07-07 15:59:52.058","updated_at":"2026-07-07 15:59:52.058"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T14:59:52.058Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_2_78b1e3f9af.jpg"},{"id":6064125,"src_cftle":"i/Gallery_4_0fa2cd14d1.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_4_0fa2cd14d1.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_4_0fa2cd14d1.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_0fa2cd14d1.webp","format":"webp","transform":"340x","created_at":"2026-06-22 11:41:02.525","updated_at":"2026-06-22 11:41:02.525"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_0fa2cd14d1.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 13:29:23.636","updated_at":"2026-06-22 13:29:23.636"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_0fa2cd14d1.jpg","format":"jpg","transform":"340x","created_at":"2026-07-07 13:15:07.218","updated_at":"2026-07-07 13:15:07.218"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_0fa2cd14d1.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 15:59:52.108","updated_at":"2026-07-07 15:59:52.108"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T14:59:52.108Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_0fa2cd14d1.jpg"},{"id":6064126,"src_cftle":"i/Gallery_5_a84fbbd46f.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_a84fbbd46f.webp","alias":"images1","format":"webp","transform":"340x252","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_a84fbbd46f.webp","alias":"images1","format":"webp","transform":"464x312","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_a84fbbd46f.webp","format":"webp","transform":"1504x","created_at":"2026-06-22 11:41:02.492","updated_at":"2026-06-22 11:41:02.492"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_5_a84fbbd46f.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:22.431","updated_at":"2026-06-22 13:29:22.431"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_a84fbbd46f.jpg","format":"jpg","transform":"464x312","created_at":"2026-06-22 16:55:50.657","updated_at":"2026-06-22 16:55:50.657"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_a84fbbd46f.jpg","format":"jpg","transform":"340x252","created_at":"2026-06-23 07:28:02.894","updated_at":"2026-06-23 07:28:02.894"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_a84fbbd46f.jpg","format":"jpg","transform":"1504x","created_at":"2026-07-07 13:15:07.290","updated_at":"2026-07-07 13:15:07.290"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-07-07T12:15:07.290Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_a84fbbd46f.jpg"},{"id":6064128,"src_cftle":"i/Banner_108d3d702d.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/Banner_108d3d702d.webp","format":"webp","transform":"376x","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Banner_108d3d702d.webp","format":"webp","transform":"376x512","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Banner_108d3d702d.webp","format":"webp","transform":"744x","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/Banner_108d3d702d.webp","format":"webp","transform":"1650x","created_at":"2026-06-22 11:32:54.645","updated_at":"2026-06-22 11:32:54.645"}],"created_at":"2026-06-22T10:32:54.645Z","updated_at":"2026-06-22T10:32:54.645Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_108d3d702d.jpg"},{"id":6064135,"src_cftle":"i/Map_Location_2_c3ab668679.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x600/Map_Location_2_c3ab668679.webp","format":"webp","transform":"1392x600","created_at":"2026-06-22 11:41:02.988","updated_at":"2026-06-22 11:41:02.988"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x250/Map_Location_2_c3ab668679.webp","format":"webp","transform":"340x250","created_at":"2026-06-22 13:29:32.369","updated_at":"2026-06-22 13:29:32.369"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x600/Map_Location_2_c3ab668679.jpg","format":"jpg","transform":"1392x600","created_at":"2026-07-07 13:15:07.109","updated_at":"2026-07-07 13:15:07.109"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x250/Map_Location_2_c3ab668679.jpg","format":"jpg","transform":"340x250","created_at":"2026-07-07 15:59:52.104","updated_at":"2026-07-07 15:59:52.104"}],"created_at":"2026-06-22T10:41:03.000Z","updated_at":"2026-07-07T14:59:52.104Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Map_Location_2_c3ab668679.jpg"},{"id":6064136,"src_cftle":"i/Selling_Point_211599fed3.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Selling_Point_211599fed3.webp","format":"webp","transform":"1392x","created_at":"2026-06-22 11:41:02.910","updated_at":"2026-06-22 11:41:02.910"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Selling_Point_211599fed3.webp","format":"webp","transform":"340x","created_at":"2026-06-22 13:29:32.188","updated_at":"2026-06-22 13:29:32.188"}],"created_at":"2026-06-22T10:41:02.975Z","updated_at":"2026-06-22T12:29:32.188Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Selling_Point_211599fed3.jpg"},{"id":6071216,"src_cftle":"i/Feature_874855a212.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feature_874855a212.webp","alias":"images","format":"webp","transform":"340x252","created_at":"2026-06-26 10:19:12.520","updated_at":"2026-06-26 10:19:12.520"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feature_874855a212.webp","alias":"images","format":"webp","transform":"464x312","created_at":"2026-06-26 10:19:12.520","updated_at":"2026-06-26 10:19:12.520"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feature_874855a212.jpg","format":"jpg","transform":"340x252","created_at":"2026-06-26 16:40:58.464","updated_at":"2026-06-26 16:40:58.464"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feature_874855a212.jpg","format":"jpg","transform":"464x312","created_at":"2026-06-26 23:44:11.437","updated_at":"2026-06-26 23:44:11.437"}],"created_at":"2026-06-26T09:19:12.520Z","updated_at":"2026-06-26T22:44:11.437Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feature_874855a212.jpg"},{"id":6071217,"src_cftle":"i/Mobile_8ee998ec20.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Mobile_8ee998ec20.webp","format":"webp","transform":"376x512","created_at":"2026-06-26 10:19:12.521","updated_at":"2026-06-26 10:19:12.521"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Mobile_8ee998ec20.webp","format":"webp","transform":"744x","created_at":"2026-06-26 10:19:12.521","updated_at":"2026-06-26 10:19:12.521"}],"created_at":"2026-06-26T09:19:12.521Z","updated_at":"2026-06-26T09:19:12.521Z","created_by_id":null,"updated_by_id":null,"src_url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_8ee998ec20.jpg"},{"id":6107415,"src_cftle":"i/Mobile_3edab8bc93.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/420x/Mobile_3edab8bc93.webp","format":"webp","transform":"420x","created_at":"2026-07-14 13:16:55.631","updated_at":"2026-07-14 13:16:55.631"}],"created_at":"2026-07-14T12:16:55.631Z","updated_at":"2026-07-14T12:16:55.631Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Mobile_3edab8bc93.jpg"},{"id":6112182,"src_cftle":"i/Sponsored_30f7e69118.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Sponsored_30f7e69118.webp","format":"webp","transform":"1300x500","created_at":"2026-07-20 06:37:45.167","updated_at":"2026-07-20 06:37:45.167"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Sponsored_30f7e69118.webp","format":"webp","transform":"600x","created_at":"2026-07-27 11:46:38.712","updated_at":"2026-07-27 11:46:38.712"}],"created_at":"2026-07-20T05:37:45.169Z","updated_at":"2026-07-27T10:46:38.712Z","created_by_id":null,"updated_by_id":null,"src_url":"i/Sponsored_30f7e69118.jpg"}],"bitrix":{"id":1514,"pf_id":null,"source":null,"project_id":null,"tower_name":null,"campaign_name":"Raw District","property_type":"Apartment","developer_name":"Imtiaz Developments","project_location":" Sheikh Zayed Road"},"completion_year":"TBA","agent_segmentation":"Standard","images1":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_a84fbbd46f.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_a84fbbd46f.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_bea6dc211e.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_bea6dc211e.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_2_78b1e3f9af.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_2_78b1e3f9af.webp"}],"images2":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feature_874855a212.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feature_874855a212.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_a84fbbd46f.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_a84fbbd46f.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_bea6dc211e.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_bea6dc211e.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_2_78b1e3f9af.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_2_78b1e3f9af.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_4_0fa2cd14d1.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_4_0fa2cd14d1.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_1_6f9c2b7260.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_1_6f9c2b7260.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_6_4ae2ed20f7.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_6_4ae2ed20f7.webp"}],"images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feature_874855a212.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feature_874855a212.webp"}],"imageCount":1}],"content":[{"id":33,"title":"Properties for Sale in Jumeirah Beach Residence (JBR)","area":"jumeirah-beach-residence","building_type":null,"description":"<p>Jumeirah Beach Residence (JBR) is one of Dubai’s most coveted residential areas, renowned for its luxury waterfront lifestyle. With stunning views of the Arabian Gulf, this dynamic neighborhood offers residents a blend of upscale living, leisure, and convenience. In <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-marina/\">Dubai Marina</a>, JBR provides direct access to a vibrant beach, shopping districts, and top-notch entertainment. Its central location makes it highly desirable for investors and individuals seeking a balanced lifestyle.</p><p>The area is home to some of Dubai's most iconic towers, and the properties for sale in <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-beach-residence/\">Jumeirah Beach Residence (JBR)</a> range from lavish apartments to high-end penthouses. The community is famous for its luxurious beachfront living and world-class amenities, including swimming pools, gyms, spas, and various dining options. Accessibility is another key feature of JBR, as it is well-connected through significant transport networks, such as the Dubai Tram and Metro, ensuring that residents can easily access the rest of the city.</p><p>Whether you're looking to buy your dream home or seeking a lucrative investment opportunity, properties for sale in Jumeirah Beach Residence (JBR) offer unmatched potential.</p><h2>Why Should You Buy Properties for Sale in Jumeirah Beach Residence (JBR)?</h2><p>Investing in properties for sale in Jumeirah Beach Residence (JBR) is an opportunity to live in one of Dubai’s most prestigious communities. The area offers a combination of stunning beachfront living, luxury amenities, and excellent connectivity.&nbsp;</p><p>JBR is known for its high demand, making it a lucrative area for investors. The proximity to key business districts, the Marina, and popular landmarks adds to its appeal. With a wide range of apartment sizes and configurations, there's something to suit every lifestyle and budget. It’s also a prime location for short-term rentals, providing potential high returns on investment.</p><h2>Popular Areas to Buy Properties for Sale in Jumeirah Beach Residence (JBR)</h2><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/five-jbr/\">Five JBR</a></h3><p>Starting from AED 2,700,000, Five JBR offers luxurious studios, 3 &amp; 4 BR serviced residences, and 5 BR penthouses. It is located on the beach and provides breathtaking views of the sea and Dubai’s skyline. The development features a range of world-class amenities, including a private beach, infinity pool, spa, and gym. It is located on the beach and has amenities. Residents enjoy fine dining, concierge services, and access to premium retail outlets. It’s perfect for those seeking high-end living with the convenience of being close to key attractions.</p><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/la-vie-apartments-by-dp-at-jbr/\">La Vie Apartments by DP at JBR</a></h3><p>La Vie Apartments by DP offers premium beachfront apartments for sale in Jumeirah Beach Residence, starting at AED 1,400,000. With spacious one to four-bedroom units, these residences are ideal for families and individuals who appreciate luxury living. The project includes state-of-the-art amenities such as a fully equipped gym, a private beach, and landscaped gardens.&nbsp;<br>The location offers excellent connectivity to Dubai's central areas, including the Marina, Downtown, and Business Bay. La Vie is designed to meet the needs of modern, sophisticated residents who enjoy luxury living at its finest.</p><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/sparkle-towers-tebyan-jumeirah-beach-residence-jbr/\">Sparkle Towers Tebyani JBR</a></h3><p>Sparkle Towers Tebyani presents a selection of upscale apartments for sale in Jumeirah Beach Residence, with prices starting from AED 3,050,000. Offering one to three-bedroom apartments, this development combines modern design with luxurious amenities. Residents can enjoy a private pool, fitness center, children’s play area, and concierge services.&nbsp;<br>The location is perfect for those who seek a blend of quiet residential living with easy access to the hustle and bustle of Dubai Marina and the iconic JBR Walk.</p><h2>Investment Potential in Jumeirah Beach Residence</h2><h3>High Rental Yields</h3><p>Jumeirah Beach Residence (JBR) is one of Dubai’s most sought-after residential areas, with a record of consistently high rental yields. The area benefits from strong demand due to its proximity to the beach, luxury amenities, and easy access to major business hubs like Dubai Marina, <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/palm-jumeirah/\">Palm Jumeirah</a>, and the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-internet-city/\">Dubai Internet City</a>. This high demand for rental properties ensures that owners can achieve attractive returns on their investment, making it a favorable choice for those seeking reliable income from real estate.</p><h3>Prime Location &nbsp;</h3><p>JBR is strategically located along the Dubai coastline, offering residents and investors direct access to pristine beaches, world-class hotels, and upscale retail options. The area is close to key business districts, transportation links (including the Dubai Metro), and popular entertainment venues such as The Walk at JBR, Dubai Marina Mall, and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/bluewater-island-dubai/\">Bluewaters Island</a>. The combination of leisure and convenience makes JBR an attractive destination for both long-term residents and short-term visitors, ensuring that demand for residential units remains consistently strong over the long term.</p><h3>Luxury Living</h3><p>JBR offers a luxurious living experience with upscale residential buildings, waterfront views, and high-end amenities such as swimming pools, gyms, and 24/7 concierge services. Its premium nature attracts affluent individuals, including high-net-worth individuals (HNWIs) and expatriates, seeking comfort, security, and exclusivity.&nbsp;<br>These residents are willing to pay a premium for the convenience and quality of life the area offers, which drives up rental and resale values. This makes JBR an ideal location for investors looking to tap into Dubai’s luxury real estate market.</p><h3>Stable Market</h3><p>Despite fluctuations in the real estate market, JBR has demonstrated stability and resilience. The area's enduring popularity and status as a well-established residential and tourist destination has helped it maintain strong demand even during economic downturns.&nbsp;<br>The Dubai property market, as a whole, is known for its cyclical nature, but JBR has proven to be less volatile compared to other districts. Its consistent performance makes it a safer investment choice, particularly for long-term capital appreciation.</p><h3>Demand for Short-Term Rentals&nbsp;</h3><p>With Dubai being one of the world’s most popular tourist destinations, the demand for short-term rental properties in areas like JBR has increased. Many tourists are drawn to JBR’s beachfront lifestyle, proximity to tourist attractions, and various dining and entertainment options.&nbsp;<br>This growing interest has created a lucrative market for investors interested in short-term rental opportunities through multiple platforms. Short-term rentals offer high earning potential, especially during peak seasons like holidays and major events (e.g., the Dubai Shopping Festival, Expo 2020, etc.), making JBR a prime location for short-term rental investments.</p><h2>Types of Properties for Sale in Jumeirah Beach Residence (JBR)</h2><p>Properties for sale in Jumeirah Beach Residence (JBR) include various options, from one-bedroom apartments to expansive five-bedroom penthouses. These properties cater to a range of buyers, from individuals looking for a luxurious home by the beach to investors seeking high returns. The architectural styles are modern and sophisticated, reflecting the upscale nature of the area. Many properties also have private balconies offering panoramic views of the sea, Palm Jumeirah, or Dubai Marina.</p><h2>Advantages of Buying Properties for Sale in Jumeirah Beach Residence (JBR)</h2><ul><li><strong>Beachfront Living: </strong>JBR offers direct access to a pristine beach, a rare feature in Dubai.</li><li><strong>High Demand: </strong>This area's properties attract buyers and renters, ensuring strong market demand.</li><li><strong>Luxury Amenities:</strong> JBR's swimming pools, gyms, fine dining, and vibrant community make it a perfect choice.</li><li><strong>Connectivity: </strong>Excellent transport links, including Dubai Metro and Tram, make getting around the city easy.</li><li><strong>Proximity to Key Areas:</strong> Close to Dubai Marina, Palm Jumeirah, and central business districts like Business Bay and Downtown.</li></ul><h2>How to Find the Best Properties for Sale in Jumeirah Beach Residence (JBR)?</h2><p>Finding the best properties for sale in Jumeirah Beach Residence (JBR) requires working with a professional real estate agent or company familiar with the area. Begin by browsing listings on trusted property websites. Narrow your options based on your budget, preferences, and desired amenities. It’s also important to compare prices in similar developments and locations to ensure you get the best value for your investment. Additionally, visiting properties in person is essential to get a feel for the community and the amenities.</p><h2>Properties for Sale in Nearby Areas of Jumeirah Beach Residence (JBR)</h2><ul><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-marina/\">Properties for Sale in Dubai Marina</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-palm-jumeirah/\">Properties for Sale in Palm Jumeirah</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-internet-city/\">Properties for Sale in Dubai Internet City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-business-bay/\">Properties for Sale in Business Bay</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-downtown-dubai/\">Properties for Sale in Downtown Dubai</a></li></ul><h2>FAQ’s</h2><h3>What is the starting price for properties for sale in Jumeirah Beach Residence (JBR)?</h3><p>Prices for properties in JBR start from AED 1,750,000, depending on the type and size of the property.</p><h3>What amenities can I expect in properties for sale in Jumeirah Beach Residence?</h3><p>Properties in JBR offer a range of luxury amenities, such as private beaches, gyms, pools, fine dining, retail outlets, and 24/7 concierge services.</p><h3>Are properties for sale in Jumeirah Beach Residence a good investment?</h3><p>Yes, JBR offers high rental yields, stable property values, and strong demand, making it an attractive investment option.</p><h3>What types of properties are available in Jumeirah Beach Residence (JBR)?</h3><p>JBR offers a range of properties, including one to five-bedroom apartments and penthouses with stunning views of the sea and city.</p><h3>How is the connectivity in Jumeirah Beach Residence?</h3><p>JBR offers excellent connectivity, with access to the Dubai Metro, Tram, and major highways, making commuting easy for residents.</p><h3>Is Jumeirah Beach Residence (JBR) family-friendly?</h3><p>Yes, JBR is a family-friendly community with parks, children’s play areas, schools, and proximity to entertainment and leisure options.</p><h3>Can I rent out my property in Jumeirah Beach Residence?</h3><p>Yes, due to high demand from tourists and expatriates, JBR is an excellent location for short-term and long-term rentals.</p><h3>How close is JBR to Dubai's business districts?</h3><p>JBR is centrally located, offering easy access to business hubs such as Dubai Marina, Downtown Dubai, Business Bay, and Palm Jumeirah.</p>"}]},"template":"search"},"pageContext":{}},"staticQueryHashes":["1546599633","1722115342","2073252141","2508511111","268405316","2729460511","285207698","2990965877","338142919","3432741055","3472835299","348503923","3592264445","3636316658","3783427077","389056714","3996374893","4119191191","702895677","867548045"],"matchPath":"/buy/*"}
+{
+  "componentChunkName": "component---src-pages-buy-js",
+  "path": "buy/properties-for-sale/in-jumeirah-beach-residence",
+  "result": {
+    "serverData": {
+      "data": {
+        "status": true,
+        "hits": [],
+        "nbHits": 0,
+        "page": 1,
+        "nbPages": 1,
+        "hitsPerPage": 20,
+        "projects": [
+          {
+            "id": 3509,
+            "building_type": [
+              "apartment"
+            ],
+            "developer": "Emaar Properties",
+            "status": "pending",
+            "title": "Valia",
+            "slug": "valia-emaar-properties-dubai-creek-harbour",
+            "display_address": "Dubai Creek Harbour",
+            "display_bedrooms": "1,2,3,4",
+            "min_bedrooms": 1,
+            "max_bedrooms": 4,
+            "about": "<p>Valia at <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-creek-harbour/\">Dubai Creek Harbour</a> is a residential complex developed by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://prov",
+            "price": "2,140,000",
+            "display_price": "2.14M",
+            "virtual_tour_url": null,
+            "agent_category": "B",
+            "media_images": [
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_9_03a5e2ace9.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_0e49a0f373.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_7_2bd3d6cc3b.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_5e2f8ab40b.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_5fb703c369.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_5a2b45fa8c.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_be46f3d197.jpg"
+              }
+            ],
+            "tile_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feaure_image_3f2db87ea7.jpg"
+            },
+            "banner_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_6799f762ee.jpg"
+            },
+            "banner_image_mobile": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_ee9a89ada0.jpg"
+            },
+            "ggfx_results": [
+              {
+                "id": 258,
+                "src_cftle": "i/General_Brochure_90d7160d65.png",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/General_Brochure_90d7160d65.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2025-08-26 15:11:19.440",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/General_Brochure_90d7160d65.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2025-08-26 15:11:19.440",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/General_Brochure_90d7160d65.png",
+                    "format": "png",
+                    "transform": "1504x",
+                    "created_at": "2024-06-19 09:14:46.636",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/General_Brochure_90d7160d65.png",
+                    "format": "png",
+                    "transform": "340x",
+                    "created_at": "2024-06-19 10:25:01.489",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1968x/General_Brochure_90d7160d65.webp",
+                    "format": "webp",
+                    "transform": "1968x",
+                    "created_at": "2025-08-26 15:11:19.440",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/696x/General_Brochure_90d7160d65.webp",
+                    "format": "webp",
+                    "transform": "696x",
+                    "created_at": "2025-08-26 22:38:44.243",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/336x/General_Brochure_90d7160d65.webp",
+                    "format": "webp",
+                    "transform": "336x",
+                    "created_at": "2025-08-27 02:18:19.016",
+                    "updated_at": "2025-08-27 02:18:19.016"
+                  }
+                ],
+                "created_at": "2024-06-14T09:27:23.766Z",
+                "updated_at": "2025-08-27T01:18:19.016Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 6122981,
+                "src_cftle": "i/Feaure_image_3f2db87ea7.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feaure_image_3f2db87ea7.webp",
+                    "alias": "images",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:47:54.403",
+                    "updated_at": "2026-07-31 12:47:54.403"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feaure_image_3f2db87ea7.webp",
+                    "alias": "images",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:47:54.403",
+                    "updated_at": "2026-07-31 12:47:54.403"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feaure_image_3f2db87ea7.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-08-03 08:02:06.230",
+                    "updated_at": "2026-08-03 08:02:06.230"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feaure_image_3f2db87ea7.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-08-03 10:55:31.453",
+                    "updated_at": "2026-08-03 10:55:31.453"
+                  }
+                ],
+                "created_at": "2026-07-31T11:47:54.403Z",
+                "updated_at": "2026-08-03T09:55:31.453Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feaure_image_3f2db87ea7.jpg"
+              },
+              {
+                "id": 6122982,
+                "src_cftle": "i/Mobile_ee9a89ada0.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Mobile_ee9a89ada0.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Mobile_ee9a89ada0.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  }
+                ],
+                "created_at": "2026-07-31T11:47:54.404Z",
+                "updated_at": "2026-07-31T11:47:54.404Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_ee9a89ada0.jpg"
+              },
+              {
+                "id": 6122983,
+                "src_cftle": "i/Banner_6799f762ee.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "376x",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "1650x",
+                    "created_at": "2026-07-31 12:47:54.404",
+                    "updated_at": "2026-07-31 12:47:54.404"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "600x",
+                    "created_at": "2026-07-31 12:52:07.600",
+                    "updated_at": "2026-07-31 12:52:07.600"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Banner_6799f762ee.webp",
+                    "format": "webp",
+                    "transform": "1300x500",
+                    "created_at": "2026-07-31 12:54:16.118",
+                    "updated_at": "2026-07-31 12:54:16.118"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Banner_6799f762ee.jpg",
+                    "format": "jpg",
+                    "transform": "1300x500",
+                    "created_at": "2026-07-31 13:06:11.536",
+                    "updated_at": "2026-07-31 13:06:11.536"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Banner_6799f762ee.jpg",
+                    "format": "jpg",
+                    "transform": "600x",
+                    "created_at": "2026-07-31 13:29:38.777",
+                    "updated_at": "2026-07-31 13:29:38.777"
+                  }
+                ],
+                "created_at": "2026-07-31T11:47:54.404Z",
+                "updated_at": "2026-07-31T12:29:38.777Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_6799f762ee.jpg"
+              },
+              {
+                "id": 6122985,
+                "src_cftle": "i/Gallery_5_5fb703c369.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_5fb703c369.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_5fb703c369.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_5fb703c369.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:41.824",
+                    "updated_at": "2026-07-31 13:00:41.824"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_5_5fb703c369.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.265",
+                    "updated_at": "2026-07-31 13:04:21.265"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.449Z",
+                "updated_at": "2026-07-31T12:04:21.265Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_5fb703c369.jpg"
+              },
+              {
+                "id": 6122986,
+                "src_cftle": "i/Gallery_6_5e2f8ab40b.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_6_5e2f8ab40b.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_6_5e2f8ab40b.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_5e2f8ab40b.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:42.123",
+                    "updated_at": "2026-07-31 13:00:42.123"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_6_5e2f8ab40b.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.204",
+                    "updated_at": "2026-07-31 13:04:21.204"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.448Z",
+                "updated_at": "2026-07-31T12:04:21.204Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_5e2f8ab40b.jpg"
+              },
+              {
+                "id": 6122987,
+                "src_cftle": "i/Gallery_7_2bd3d6cc3b.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_7_2bd3d6cc3b.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_7_2bd3d6cc3b.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_7_2bd3d6cc3b.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:41.715",
+                    "updated_at": "2026-07-31 13:00:41.715"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_7_2bd3d6cc3b.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.273",
+                    "updated_at": "2026-07-31 13:04:21.273"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.448Z",
+                "updated_at": "2026-07-31T12:04:21.273Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_7_2bd3d6cc3b.jpg"
+              },
+              {
+                "id": 6122988,
+                "src_cftle": "i/Gallery_0e49a0f373.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_0e49a0f373.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_0e49a0f373.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_0e49a0f373.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:41.830",
+                    "updated_at": "2026-07-31 13:00:41.830"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_0e49a0f373.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.270",
+                    "updated_at": "2026-07-31 13:04:21.270"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_0e49a0f373.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-08-03 08:02:06.244",
+                    "updated_at": "2026-08-03 08:02:06.244"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_0e49a0f373.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-08-03 10:55:31.472",
+                    "updated_at": "2026-08-03 10:55:31.472"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.448Z",
+                "updated_at": "2026-08-03T09:55:31.472Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_0e49a0f373.jpg"
+              },
+              {
+                "id": 6122989,
+                "src_cftle": "i/Gallery_3_5a2b45fa8c.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_5a2b45fa8c.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_5a2b45fa8c.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_5a2b45fa8c.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:00:41.496",
+                    "updated_at": "2026-07-31 13:00:41.496"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_5a2b45fa8c.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:42.128",
+                    "updated_at": "2026-07-31 13:00:42.128"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.449Z",
+                "updated_at": "2026-07-31T12:00:42.128Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_5a2b45fa8c.jpg"
+              },
+              {
+                "id": 6122990,
+                "src_cftle": "i/Gallery_4_be46f3d197.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_4_be46f3d197.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_4_be46f3d197.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.449",
+                    "updated_at": "2026-07-31 12:53:30.449"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_be46f3d197.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 14:30:37.277",
+                    "updated_at": "2026-07-31 14:30:37.277"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_be46f3d197.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 14:30:38.796",
+                    "updated_at": "2026-07-31 14:30:38.796"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.449Z",
+                "updated_at": "2026-07-31T13:30:38.796Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_be46f3d197.jpg"
+              },
+              {
+                "id": 6122991,
+                "src_cftle": "i/Gallery_9_03a5e2ace9.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_9_03a5e2ace9.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_9_03a5e2ace9.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-07-31 12:53:30.448",
+                    "updated_at": "2026-07-31 12:53:30.448"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_9_03a5e2ace9.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-07-31 13:00:41.604",
+                    "updated_at": "2026-07-31 13:00:41.604"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_9_03a5e2ace9.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.279",
+                    "updated_at": "2026-07-31 13:04:21.279"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_9_03a5e2ace9.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-08-03 08:02:06.211",
+                    "updated_at": "2026-08-03 08:02:06.211"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_9_03a5e2ace9.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-08-03 10:55:31.466",
+                    "updated_at": "2026-08-03 10:55:31.466"
+                  }
+                ],
+                "created_at": "2026-07-31T11:53:30.448Z",
+                "updated_at": "2026-08-03T09:55:31.466Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_9_03a5e2ace9.jpg"
+              },
+              {
+                "id": 6123010,
+                "src_cftle": "i/Map_1_641e2cd210.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Map_1_641e2cd210.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:00:41.508",
+                    "updated_at": "2026-07-31 13:00:41.508"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Map_1_641e2cd210.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2026-07-31 13:00:42.290",
+                    "updated_at": "2026-07-31 13:00:42.290"
+                  }
+                ],
+                "created_at": "2026-07-31T12:00:41.508Z",
+                "updated_at": "2026-07-31T12:00:42.290Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Map_1_641e2cd210.jpg"
+              },
+              {
+                "id": 6123014,
+                "src_cftle": "i/Unique_selling_point_08291946e3.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Unique_selling_point_08291946e3.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2026-07-31 13:00:42.278",
+                    "updated_at": "2026-07-31 13:00:42.278"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Unique_selling_point_08291946e3.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-07-31 13:04:21.271",
+                    "updated_at": "2026-07-31 13:04:21.271"
+                  }
+                ],
+                "created_at": "2026-07-31T12:00:41.770Z",
+                "updated_at": "2026-07-31T12:04:21.271Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Unique_selling_point_08291946e3.jpg"
+              }
+            ],
+            "bitrix": {
+              "id": 1532,
+              "pf_id": null,
+              "source": null,
+              "project_id": null,
+              "tower_name": "Valia",
+              "campaign_name": "Valia",
+              "property_type": "Apartment",
+              "developer_name": "Emaar Properties",
+              "project_location": "Dubai Creek Harbour"
+            },
+            "completion_year": "2030",
+            "agent_segmentation": "Standard",
+            "images1": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_9_03a5e2ace9.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_9_03a5e2ace9.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_0e49a0f373.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_0e49a0f373.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_7_2bd3d6cc3b.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_7_2bd3d6cc3b.webp"
+              }
+            ],
+            "images2": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feaure_image_3f2db87ea7.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feaure_image_3f2db87ea7.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_9_03a5e2ace9.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_9_03a5e2ace9.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_0e49a0f373.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_0e49a0f373.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_7_2bd3d6cc3b.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_7_2bd3d6cc3b.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_6_5e2f8ab40b.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_6_5e2f8ab40b.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_5fb703c369.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_5fb703c369.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_5a2b45fa8c.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_5a2b45fa8c.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_4_be46f3d197.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_4_be46f3d197.webp"
+              }
+            ],
+            "images": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feaure_image_3f2db87ea7.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feaure_image_3f2db87ea7.webp"
+              }
+            ],
+            "imageCount": 1
+          },
+          {
+            "id": 3459,
+            "building_type": [
+              "apartment",
+              "studio",
+              "offices"
+            ],
+            "developer": "Imtiaz Developments",
+            "status": null,
+            "title": "Raw District 2",
+            "slug": "raw-district-2-imtiaz-developments-sheikh-zayed-road",
+            "display_address": "Sheikh Zayed Road",
+            "display_bedrooms": null,
+            "min_bedrooms": 1,
+            "max_bedrooms": 3,
+            "about": "<p>RAW District 2 by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/developed-by-imtiaz-developments/\">Imtiaz Developments</a> is a modern mixed-use project in Downtown Jebel Ali, positioned along <a targe",
+            "price": "666,000",
+            "display_price": "666K",
+            "virtual_tour_url": null,
+            "agent_category": "B",
+            "media_images": [
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_a84fbbd46f.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_bea6dc211e.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_2_78b1e3f9af.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_0fa2cd14d1.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_1_6f9c2b7260.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_4ae2ed20f7.jpg"
+              }
+            ],
+            "tile_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feature_874855a212.jpg"
+            },
+            "banner_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_108d3d702d.jpg"
+            },
+            "banner_image_mobile": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_8ee998ec20.jpg"
+            },
+            "ads_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Sponsored_30f7e69118.jpg"
+            },
+            "ads_mobile_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_3edab8bc93.jpg"
+            },
+            "ggfx_results": [
+              {
+                "id": 6064120,
+                "src_cftle": "i/Gallery_1_6f9c2b7260.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_1_6f9c2b7260.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_1_6f9c2b7260.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_1_6f9c2b7260.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 11:41:02.755",
+                    "updated_at": "2026-06-22 11:41:02.755"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_1_6f9c2b7260.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:32.755",
+                    "updated_at": "2026-06-22 13:29:32.755"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_1_6f9c2b7260.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 13:15:07.361",
+                    "updated_at": "2026-07-07 13:15:07.361"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_1_6f9c2b7260.jpg",
+                    "format": "jpg",
+                    "transform": "340x",
+                    "created_at": "2026-07-07 15:59:52.102",
+                    "updated_at": "2026-07-07 15:59:52.102"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T14:59:52.102Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_1_6f9c2b7260.jpg"
+              },
+              {
+                "id": 6064121,
+                "src_cftle": "i/Gallery_6_4ae2ed20f7.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_6_4ae2ed20f7.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_6_4ae2ed20f7.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_4ae2ed20f7.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 11:41:02.727",
+                    "updated_at": "2026-06-22 11:41:02.727"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_6_4ae2ed20f7.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:31.814",
+                    "updated_at": "2026-06-22 13:29:31.814"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_6_4ae2ed20f7.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 13:15:07.329",
+                    "updated_at": "2026-07-07 13:15:07.329"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T12:15:07.329Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_6_4ae2ed20f7.jpg"
+              },
+              {
+                "id": 6064122,
+                "src_cftle": "i/Gallery_3_bea6dc211e.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_bea6dc211e.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_bea6dc211e.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_bea6dc211e.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 11:41:02.971",
+                    "updated_at": "2026-06-22 11:41:02.971"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_bea6dc211e.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:22.870",
+                    "updated_at": "2026-06-22 13:29:22.870"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_3_bea6dc211e.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 16:55:50.630",
+                    "updated_at": "2026-06-22 16:55:50.630"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_3_bea6dc211e.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-06-23 07:28:02.934",
+                    "updated_at": "2026-06-23 07:28:02.934"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_3_bea6dc211e.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 13:15:07.378",
+                    "updated_at": "2026-07-07 13:15:07.378"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_3_bea6dc211e.jpg",
+                    "format": "jpg",
+                    "transform": "340x",
+                    "created_at": "2026-07-07 15:59:52.100",
+                    "updated_at": "2026-07-07 15:59:52.100"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T14:59:52.100Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_3_bea6dc211e.jpg"
+              },
+              {
+                "id": 6064124,
+                "src_cftle": "i/Gallery_2_78b1e3f9af.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_2_78b1e3f9af.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_2_78b1e3f9af.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_2_78b1e3f9af.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 11:41:02.940",
+                    "updated_at": "2026-06-22 11:41:02.940"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_2_78b1e3f9af.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:34.588",
+                    "updated_at": "2026-06-22 13:29:34.588"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_2_78b1e3f9af.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 13:15:07.234",
+                    "updated_at": "2026-07-07 13:15:07.234"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_2_78b1e3f9af.jpg",
+                    "format": "jpg",
+                    "transform": "340x",
+                    "created_at": "2026-07-07 15:59:52.058",
+                    "updated_at": "2026-07-07 15:59:52.058"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T14:59:52.058Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_2_78b1e3f9af.jpg"
+              },
+              {
+                "id": 6064125,
+                "src_cftle": "i/Gallery_4_0fa2cd14d1.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_4_0fa2cd14d1.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_4_0fa2cd14d1.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_0fa2cd14d1.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 11:41:02.525",
+                    "updated_at": "2026-06-22 11:41:02.525"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_0fa2cd14d1.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 13:29:23.636",
+                    "updated_at": "2026-06-22 13:29:23.636"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_4_0fa2cd14d1.jpg",
+                    "format": "jpg",
+                    "transform": "340x",
+                    "created_at": "2026-07-07 13:15:07.218",
+                    "updated_at": "2026-07-07 13:15:07.218"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_4_0fa2cd14d1.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 15:59:52.108",
+                    "updated_at": "2026-07-07 15:59:52.108"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T14:59:52.108Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_4_0fa2cd14d1.jpg"
+              },
+              {
+                "id": 6064126,
+                "src_cftle": "i/Gallery_5_a84fbbd46f.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_a84fbbd46f.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_a84fbbd46f.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_a84fbbd46f.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2026-06-22 11:41:02.492",
+                    "updated_at": "2026-06-22 11:41:02.492"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Gallery_5_a84fbbd46f.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:22.431",
+                    "updated_at": "2026-06-22 13:29:22.431"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Gallery_5_a84fbbd46f.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-06-22 16:55:50.657",
+                    "updated_at": "2026-06-22 16:55:50.657"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Gallery_5_a84fbbd46f.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-06-23 07:28:02.894",
+                    "updated_at": "2026-06-23 07:28:02.894"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/Gallery_5_a84fbbd46f.jpg",
+                    "format": "jpg",
+                    "transform": "1504x",
+                    "created_at": "2026-07-07 13:15:07.290",
+                    "updated_at": "2026-07-07 13:15:07.290"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-07-07T12:15:07.290Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Gallery_5_a84fbbd46f.jpg"
+              },
+              {
+                "id": 6064128,
+                "src_cftle": "i/Banner_108d3d702d.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/Banner_108d3d702d.webp",
+                    "format": "webp",
+                    "transform": "376x",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Banner_108d3d702d.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Banner_108d3d702d.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/Banner_108d3d702d.webp",
+                    "format": "webp",
+                    "transform": "1650x",
+                    "created_at": "2026-06-22 11:32:54.645",
+                    "updated_at": "2026-06-22 11:32:54.645"
+                  }
+                ],
+                "created_at": "2026-06-22T10:32:54.645Z",
+                "updated_at": "2026-06-22T10:32:54.645Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Banner_108d3d702d.jpg"
+              },
+              {
+                "id": 6064135,
+                "src_cftle": "i/Map_Location_2_c3ab668679.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x600/Map_Location_2_c3ab668679.webp",
+                    "format": "webp",
+                    "transform": "1392x600",
+                    "created_at": "2026-06-22 11:41:02.988",
+                    "updated_at": "2026-06-22 11:41:02.988"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x250/Map_Location_2_c3ab668679.webp",
+                    "format": "webp",
+                    "transform": "340x250",
+                    "created_at": "2026-06-22 13:29:32.369",
+                    "updated_at": "2026-06-22 13:29:32.369"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x600/Map_Location_2_c3ab668679.jpg",
+                    "format": "jpg",
+                    "transform": "1392x600",
+                    "created_at": "2026-07-07 13:15:07.109",
+                    "updated_at": "2026-07-07 13:15:07.109"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x250/Map_Location_2_c3ab668679.jpg",
+                    "format": "jpg",
+                    "transform": "340x250",
+                    "created_at": "2026-07-07 15:59:52.104",
+                    "updated_at": "2026-07-07 15:59:52.104"
+                  }
+                ],
+                "created_at": "2026-06-22T10:41:03.000Z",
+                "updated_at": "2026-07-07T14:59:52.104Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Map_Location_2_c3ab668679.jpg"
+              },
+              {
+                "id": 6064136,
+                "src_cftle": "i/Selling_Point_211599fed3.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/Selling_Point_211599fed3.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2026-06-22 11:41:02.910",
+                    "updated_at": "2026-06-22 11:41:02.910"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/Selling_Point_211599fed3.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2026-06-22 13:29:32.188",
+                    "updated_at": "2026-06-22 13:29:32.188"
+                  }
+                ],
+                "created_at": "2026-06-22T10:41:02.975Z",
+                "updated_at": "2026-06-22T12:29:32.188Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Selling_Point_211599fed3.jpg"
+              },
+              {
+                "id": 6071216,
+                "src_cftle": "i/Feature_874855a212.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feature_874855a212.webp",
+                    "alias": "images",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2026-06-26 10:19:12.520",
+                    "updated_at": "2026-06-26 10:19:12.520"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feature_874855a212.webp",
+                    "alias": "images",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2026-06-26 10:19:12.520",
+                    "updated_at": "2026-06-26 10:19:12.520"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/Feature_874855a212.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2026-06-26 16:40:58.464",
+                    "updated_at": "2026-06-26 16:40:58.464"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/Feature_874855a212.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2026-06-26 23:44:11.437",
+                    "updated_at": "2026-06-26 23:44:11.437"
+                  }
+                ],
+                "created_at": "2026-06-26T09:19:12.520Z",
+                "updated_at": "2026-06-26T22:44:11.437Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Feature_874855a212.jpg"
+              },
+              {
+                "id": 6071217,
+                "src_cftle": "i/Mobile_8ee998ec20.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/Mobile_8ee998ec20.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2026-06-26 10:19:12.521",
+                    "updated_at": "2026-06-26 10:19:12.521"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/Mobile_8ee998ec20.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2026-06-26 10:19:12.521",
+                    "updated_at": "2026-06-26 10:19:12.521"
+                  }
+                ],
+                "created_at": "2026-06-26T09:19:12.521Z",
+                "updated_at": "2026-06-26T09:19:12.521Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/Mobile_8ee998ec20.jpg"
+              },
+              {
+                "id": 6107415,
+                "src_cftle": "i/Mobile_3edab8bc93.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/420x/Mobile_3edab8bc93.webp",
+                    "format": "webp",
+                    "transform": "420x",
+                    "created_at": "2026-07-14 13:16:55.631",
+                    "updated_at": "2026-07-14 13:16:55.631"
+                  }
+                ],
+                "created_at": "2026-07-14T12:16:55.631Z",
+                "updated_at": "2026-07-14T12:16:55.631Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Mobile_3edab8bc93.jpg"
+              },
+              {
+                "id": 6112182,
+                "src_cftle": "i/Sponsored_30f7e69118.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/Sponsored_30f7e69118.webp",
+                    "format": "webp",
+                    "transform": "1300x500",
+                    "created_at": "2026-07-20 06:37:45.167",
+                    "updated_at": "2026-07-20 06:37:45.167"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/Sponsored_30f7e69118.webp",
+                    "format": "webp",
+                    "transform": "600x",
+                    "created_at": "2026-07-27 11:46:38.712",
+                    "updated_at": "2026-07-27 11:46:38.712"
+                  }
+                ],
+                "created_at": "2026-07-20T05:37:45.169Z",
+                "updated_at": "2026-07-27T10:46:38.712Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": "i/Sponsored_30f7e69118.jpg"
+              }
+            ],
+            "bitrix": {
+              "id": 1514,
+              "pf_id": null,
+              "source": null,
+              "project_id": null,
+              "tower_name": null,
+              "campaign_name": "Raw District",
+              "property_type": "Apartment",
+              "developer_name": "Imtiaz Developments",
+              "project_location": " Sheikh Zayed Road"
+            },
+            "completion_year": "TBA",
+            "agent_segmentation": "Standard",
+            "images1": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_a84fbbd46f.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_a84fbbd46f.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_bea6dc211e.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_bea6dc211e.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_2_78b1e3f9af.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_2_78b1e3f9af.webp"
+              }
+            ],
+            "images2": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feature_874855a212.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feature_874855a212.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_5_a84fbbd46f.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_5_a84fbbd46f.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_3_bea6dc211e.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_3_bea6dc211e.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_2_78b1e3f9af.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_2_78b1e3f9af.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_4_0fa2cd14d1.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_4_0fa2cd14d1.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_1_6f9c2b7260.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_1_6f9c2b7260.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Gallery_6_4ae2ed20f7.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Gallery_6_4ae2ed20f7.webp"
+              }
+            ],
+            "images": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/Feature_874855a212.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/Feature_874855a212.webp"
+              }
+            ],
+            "imageCount": 1
+          }
+        ],
+        "content": [
+          {
+            "id": 33,
+            "title": "Properties for Sale in Jumeirah Beach Residence (JBR)",
+            "area": "jumeirah-beach-residence",
+            "building_type": null,
+            "description": "<p>Jumeirah Beach Residence (JBR) is one of Dubai’s most coveted residential areas, renowned for its luxury waterfront lifestyle. With stunning views of the Arabian Gulf, this dynamic neighborhood offers residents a blend of upscale living, leisure, and convenience. In <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-marina/\">Dubai Marina</a>, JBR provides direct access to a vibrant beach, shopping districts, and top-notch entertainment. Its central location makes it highly desirable for investors and individuals seeking a balanced lifestyle.</p><p>The area is home to some of Dubai's most iconic towers, and the properties for sale in <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-beach-residence/\">Jumeirah Beach Residence (JBR)</a> range from lavish apartments to high-end penthouses. The community is famous for its luxurious beachfront living and world-class amenities, including swimming pools, gyms, spas, and various dining options. Accessibility is another key feature of JBR, as it is well-connected through significant transport networks, such as the Dubai Tram and Metro, ensuring that residents can easily access the rest of the city.</p><p>Whether you're looking to buy your dream home or seeking a lucrative investment opportunity, properties for sale in Jumeirah Beach Residence (JBR) offer unmatched potential.</p><h2>Why Should You Buy Properties for Sale in Jumeirah Beach Residence (JBR)?</h2><p>Investing in properties for sale in Jumeirah Beach Residence (JBR) is an opportunity to live in one of Dubai’s most prestigious communities. The area offers a combination of stunning beachfront living, luxury amenities, and excellent connectivity.&nbsp;</p><p>JBR is known for its high demand, making it a lucrative area for investors. The proximity to key business districts, the Marina, and popular landmarks adds to its appeal. With a wide range of apartment sizes and configurations, there's something to suit every lifestyle and budget. It’s also a prime location for short-term rentals, providing potential high returns on investment.</p><h2>Popular Areas to Buy Properties for Sale in Jumeirah Beach Residence (JBR)</h2><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/five-jbr/\">Five JBR</a></h3><p>Starting from AED 2,700,000, Five JBR offers luxurious studios, 3 &amp; 4 BR serviced residences, and 5 BR penthouses. It is located on the beach and provides breathtaking views of the sea and Dubai’s skyline. The development features a range of world-class amenities, including a private beach, infinity pool, spa, and gym. It is located on the beach and has amenities. Residents enjoy fine dining, concierge services, and access to premium retail outlets. It’s perfect for those seeking high-end living with the convenience of being close to key attractions.</p><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/la-vie-apartments-by-dp-at-jbr/\">La Vie Apartments by DP at JBR</a></h3><p>La Vie Apartments by DP offers premium beachfront apartments for sale in Jumeirah Beach Residence, starting at AED 1,400,000. With spacious one to four-bedroom units, these residences are ideal for families and individuals who appreciate luxury living. The project includes state-of-the-art amenities such as a fully equipped gym, a private beach, and landscaped gardens.&nbsp;<br>The location offers excellent connectivity to Dubai's central areas, including the Marina, Downtown, and Business Bay. La Vie is designed to meet the needs of modern, sophisticated residents who enjoy luxury living at its finest.</p><h3><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/sparkle-towers-tebyan-jumeirah-beach-residence-jbr/\">Sparkle Towers Tebyani JBR</a></h3><p>Sparkle Towers Tebyani presents a selection of upscale apartments for sale in Jumeirah Beach Residence, with prices starting from AED 3,050,000. Offering one to three-bedroom apartments, this development combines modern design with luxurious amenities. Residents can enjoy a private pool, fitness center, children’s play area, and concierge services.&nbsp;<br>The location is perfect for those who seek a blend of quiet residential living with easy access to the hustle and bustle of Dubai Marina and the iconic JBR Walk.</p><h2>Investment Potential in Jumeirah Beach Residence</h2><h3>High Rental Yields</h3><p>Jumeirah Beach Residence (JBR) is one of Dubai’s most sought-after residential areas, with a record of consistently high rental yields. The area benefits from strong demand due to its proximity to the beach, luxury amenities, and easy access to major business hubs like Dubai Marina, <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/palm-jumeirah/\">Palm Jumeirah</a>, and the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-internet-city/\">Dubai Internet City</a>. This high demand for rental properties ensures that owners can achieve attractive returns on their investment, making it a favorable choice for those seeking reliable income from real estate.</p><h3>Prime Location &nbsp;</h3><p>JBR is strategically located along the Dubai coastline, offering residents and investors direct access to pristine beaches, world-class hotels, and upscale retail options. The area is close to key business districts, transportation links (including the Dubai Metro), and popular entertainment venues such as The Walk at JBR, Dubai Marina Mall, and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/bluewater-island-dubai/\">Bluewaters Island</a>. The combination of leisure and convenience makes JBR an attractive destination for both long-term residents and short-term visitors, ensuring that demand for residential units remains consistently strong over the long term.</p><h3>Luxury Living</h3><p>JBR offers a luxurious living experience with upscale residential buildings, waterfront views, and high-end amenities such as swimming pools, gyms, and 24/7 concierge services. Its premium nature attracts affluent individuals, including high-net-worth individuals (HNWIs) and expatriates, seeking comfort, security, and exclusivity.&nbsp;<br>These residents are willing to pay a premium for the convenience and quality of life the area offers, which drives up rental and resale values. This makes JBR an ideal location for investors looking to tap into Dubai’s luxury real estate market.</p><h3>Stable Market</h3><p>Despite fluctuations in the real estate market, JBR has demonstrated stability and resilience. The area's enduring popularity and status as a well-established residential and tourist destination has helped it maintain strong demand even during economic downturns.&nbsp;<br>The Dubai property market, as a whole, is known for its cyclical nature, but JBR has proven to be less volatile compared to other districts. Its consistent performance makes it a safer investment choice, particularly for long-term capital appreciation.</p><h3>Demand for Short-Term Rentals&nbsp;</h3><p>With Dubai being one of the world’s most popular tourist destinations, the demand for short-term rental properties in areas like JBR has increased. Many tourists are drawn to JBR’s beachfront lifestyle, proximity to tourist attractions, and various dining and entertainment options.&nbsp;<br>This growing interest has created a lucrative market for investors interested in short-term rental opportunities through multiple platforms. Short-term rentals offer high earning potential, especially during peak seasons like holidays and major events (e.g., the Dubai Shopping Festival, Expo 2020, etc.), making JBR a prime location for short-term rental investments.</p><h2>Types of Properties for Sale in Jumeirah Beach Residence (JBR)</h2><p>Properties for sale in Jumeirah Beach Residence (JBR) include various options, from one-bedroom apartments to expansive five-bedroom penthouses. These properties cater to a range of buyers, from individuals looking for a luxurious home by the beach to investors seeking high returns. The architectural styles are modern and sophisticated, reflecting the upscale nature of the area. Many properties also have private balconies offering panoramic views of the sea, Palm Jumeirah, or Dubai Marina.</p><h2>Advantages of Buying Properties for Sale in Jumeirah Beach Residence (JBR)</h2><ul><li><strong>Beachfront Living: </strong>JBR offers direct access to a pristine beach, a rare feature in Dubai.</li><li><strong>High Demand: </strong>This area's properties attract buyers and renters, ensuring strong market demand.</li><li><strong>Luxury Amenities:</strong> JBR's swimming pools, gyms, fine dining, and vibrant community make it a perfect choice.</li><li><strong>Connectivity: </strong>Excellent transport links, including Dubai Metro and Tram, make getting around the city easy.</li><li><strong>Proximity to Key Areas:</strong> Close to Dubai Marina, Palm Jumeirah, and central business districts like Business Bay and Downtown.</li></ul><h2>How to Find the Best Properties for Sale in Jumeirah Beach Residence (JBR)?</h2><p>Finding the best properties for sale in Jumeirah Beach Residence (JBR) requires working with a professional real estate agent or company familiar with the area. Begin by browsing listings on trusted property websites. Narrow your options based on your budget, preferences, and desired amenities. It’s also important to compare prices in similar developments and locations to ensure you get the best value for your investment. Additionally, visiting properties in person is essential to get a feel for the community and the amenities.</p><h2>Properties for Sale in Nearby Areas of Jumeirah Beach Residence (JBR)</h2><ul><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-marina/\">Properties for Sale in Dubai Marina</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-palm-jumeirah/\">Properties for Sale in Palm Jumeirah</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-internet-city/\">Properties for Sale in Dubai Internet City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-business-bay/\">Properties for Sale in Business Bay</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-downtown-dubai/\">Properties for Sale in Downtown Dubai</a></li></ul><h2>FAQ’s</h2><h3>What is the starting price for properties for sale in Jumeirah Beach Residence (JBR)?</h3><p>Prices for properties in JBR start from AED 1,750,000, depending on the type and size of the property.</p><h3>What amenities can I expect in properties for sale in Jumeirah Beach Residence?</h3><p>Properties in JBR offer a range of luxury amenities, such as private beaches, gyms, pools, fine dining, retail outlets, and 24/7 concierge services.</p><h3>Are properties for sale in Jumeirah Beach Residence a good investment?</h3><p>Yes, JBR offers high rental yields, stable property values, and strong demand, making it an attractive investment option.</p><h3>What types of properties are available in Jumeirah Beach Residence (JBR)?</h3><p>JBR offers a range of properties, including one to five-bedroom apartments and penthouses with stunning views of the sea and city.</p><h3>How is the connectivity in Jumeirah Beach Residence?</h3><p>JBR offers excellent connectivity, with access to the Dubai Metro, Tram, and major highways, making commuting easy for residents.</p><h3>Is Jumeirah Beach Residence (JBR) family-friendly?</h3><p>Yes, JBR is a family-friendly community with parks, children’s play areas, schools, and proximity to entertainment and leisure options.</p><h3>Can I rent out my property in Jumeirah Beach Residence?</h3><p>Yes, due to high demand from tourists and expatriates, JBR is an excellent location for short-term and long-term rentals.</p><h3>How close is JBR to Dubai's business districts?</h3><p>JBR is centrally located, offering easy access to business hubs such as Dubai Marina, Downtown Dubai, Business Bay, and Palm Jumeirah.</p>"
+          }
+        ]
+      },
+      "template": "search"
+    },
+    "pageContext": {}
+  },
+  "staticQueryHashes": [
+    "1546599633",
+    "1722115342",
+    "2073252141",
+    "2508511111",
+    "268405316",
+    "2729460511",
+    "285207698",
+    "2990965877",
+    "338142919",
+    "3432741055",
+    "3472835299",
+    "348503923",
+    "3592264445",
+    "3636316658",
+    "3783427077",
+    "389056714",
+    "3996374893",
+    "4119191191",
+    "702895677",
+    "867548045"
+  ],
+  "matchPath": "/buy/*"
+}

@@ -1,6 +1,12 @@
 import { cft } from "@/lib/store";
 import { Rich, stripHtml } from "./rich";
 import { PropertyCard } from "./property-card";
+import { SaveButton } from "./save-button";
+
+// Helper to determine if property is signature
+function isSignatureProperty(p: any): boolean {
+  return p.price >= 20000000; // Signature threshold
+}
 
 export function PropertyDetailPage({ data, route }: { data: any; route: string }) {
   const p = data;
@@ -18,6 +24,10 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
   const type = building || p.building_type || "Property";
   const size = p.floorarea_min ?? p.floorarea_max;
   const description = p.long_description || p.description || p.introtext || "";
+  const completionYear = p.completion_year || "N/A";
+  const pricePerSqFt = size && p.price ? Math.round(p.price / size) : null;
+  const isSignature = isSignatureProperty(p);
+  const status = p.status || "Ready";
 
   return (
     <div>
@@ -52,6 +62,18 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
           <div className="property-banner">
             <div className="images-section">
               <div className="dd-v-i"></div>
+              {/* Status Badge */}
+              {status && (
+                <div className="property-status-badge">
+                  {status.replace(/-/g, " ")}
+                </div>
+              )}
+              {/* Signature Badge */}
+              {isSignature && (
+                <div className="signature-badge">
+                  <img src="/images/signature-badge.svg" alt="Signature Project" />
+                </div>
+              )}
               <div className="d-block d-xl-none mob-bann-prop-img">
                 <div className="d-block mob-banner-img">
                   <div className="main-image img-zoom">
@@ -59,11 +81,19 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                   </div>
                 </div>
               </div>
-              <div className="d-none d-xl-flex sub-images">
-                {thumbs.map((t, i) => (
-                  <div className="sub-image img-zoom" key={i}>
-                    <img loading="eager" draggable="false" src={cft(t, 464, 312)} alt={`${type} - Provident Estate`} />
-                  </div>
+              {/* Desktop Image Gallery - Full width main image with thumbnails */}
+              <div className="d-none d-xl-block">
+                <div className="main-image-container img-zoom">
+                  {big && <img loading="eager" src={cft(big, 1200, 675)} alt={`${type} - Provident Estate`} />}
+                </div>
+                <div className="thumbnail-gallery">
+                  {thumbs.map((t, i) => (
+                    <div className="thumbnail-item img-zoom" key={i}>
+                      <img loading="eager" draggable="false" src={cft(t, 150, 100)} alt={`${type} - thumbnail ${i + 1}`} />
+                    </div>
+                  ))}
+                </div>
+              </div>
                 ))}
               </div>
             </div>
@@ -81,11 +111,28 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                     <h1 style={{ position: "absolute", top: 0, opacity: 0, fontSize: 10 }}>
                       {type} for {sale ? "rent" : "sale"} with {p.bedroom} bedroom in {p.display_address || "Dubai"} at {p.price ? "AED " + p.price.toLocaleString() : ""} [{p.crm_id}]
                     </h1>
-                    <h2 className="price">
-                      {p.price_qualifier ? `${p.price_qualifier} ` : "AED "}
-                      {(p.price || 0).toLocaleString()}
-                    </h2>
-                    <button className="mortgage-link">Calculate your mortgage repayments</button>
+                     <div className="price-section">
+                       <h2 className="price">
+                         {p.price_qualifier ? `${p.price_qualifier} ` : "AED "}
+                         {(p.price || 0).toLocaleString()}
+                       </h2>
+                       {pricePerSqFt && (
+                         <p className="price-per-sqft">
+                           AED {pricePerSqFt.toLocaleString()} / sq ft
+                         </p>
+                       )}
+                     </div>
+                     <button className="mortgage-link">Calculate your mortgage repayments</button>
+                     <div className="detail-save-wrap">
+                       <SaveButton
+                         propertyRef={route + "/"}
+                         slug={p.slug || ""}
+                         title={title}
+                         price={p.price || 0}
+                         thumb={images[0] || ""}
+                         variant="button"
+                       />
+                     </div>
                     <div className="description-section">
                       <p className="description1">{p.introtext}</p>
                       <p className="description2">{p.display_address || p.address || ""}</p>
@@ -116,33 +163,84 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                         </p>
                       )}
                     </div>
-                    <div className="key-info-section">
-                      <p className="heading">Key Information</p>
-                      <div className="key-infos">
-                        <KeyInfo label="Property Type" value={type} />
-                        <KeyInfo label="Purpose" value={purpose} />
-                        <KeyInfo label="Completion" value={completion} />
-                        <KeyInfo label="Furnishing Type" value={furnishing} />
-                        <KeyInfo label="Property ID" value={p.crm_id || ""} />
-                      </div>
-                    </div>
+                     <div className="key-info-section">
+                       <p className="heading">Key Information</p>
+                       <div className="key-infos">
+                         <KeyInfo label="Property Type" value={type} />
+                         <KeyInfo label="Purpose" value={purpose} />
+                         <KeyInfo label="Completion" value={completion} />
+                         <KeyInfo label="Completion Year" value={completionYear} />
+                         <KeyInfo label="Furnishing Type" value={furnishing} />
+                         {size && <KeyInfo label="Size" value={`${Number(size).toLocaleString()} sq ft`} />}
+                         <KeyInfo label="Property ID" value={p.crm_id || ""} />
+                       </div>
+                     </div>
                     <div className="divider"></div>
-                    <div>
-                      <div className="long-description-section" id="contentsection-property">
-                        <p className="heading">Description</p>
-                        <div className="read-more-wrap long-description">
-                          <div className="read-more">
-                            <Rich html={description} />
-                          </div>
+                    {Array.isArray(p.amenities) && p.amenities.length > 0 && (
+                      <div className="property-features-section">
+                        <p className="heading">Amenities</p>
+                        <div className="features-wrap">
+                          {p.amenities.map((a: string, i: number) => (
+                            <div className="feature-item" key={i}>
+                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10.5l4 4L16 6.5" stroke="#EE7133" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                              <p className="feature-text">{a}</p>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    )}
+                     <div className="divider"></div>
+                     <div>
+                       <div className="long-description-section" id="contentsection-property">
+                         <p className="heading">Description</p>
+                         <div className="read-more-wrap long-description">
+                           <div className="read-more">
+                             <Rich html={description} />
+                           </div>
+                         </div>
+                       </div>
+                       
+                       {/* Floor Plans Section */}
+                       {p.floor_plans && p.floor_plans.length > 0 && (
+                         <div className="floor-plans-section">
+                           <p className="heading">Floor Plans</p>
+                           <div className="floor-plans-gallery">
+                             {p.floor_plans.map((plan: any, i: number) => (
+                               <div className="floor-plan-item" key={i}>
+                                 <img src={cft(plan.url, 400, 300)} alt={`Floor plan ${i + 1}`} />
+                               </div>
+                             ))}
+                           </div>
+                         </div>
+                       )}
+                       
+                       {/* Nearby Amenities Section */}
+                       <div className="nearby-amenities-section">
+                         <p className="heading">Nearby Amenities</p>
+                         <div className="amenities-map">
+                           <img src="https://maps.googleapis.com/maps/api/staticmap?center={p.latitude},{p.longitude}&zoom=14&size=600x300&maptype=roadmap&markers=color:red%7C{p.latitude},{p.longitude}&key=YOUR_API_KEY" alt="Location map" />
+                         </div>
+                       </div>
+                       
+                       {/* Similar Properties Section */}
+                       <div className="similar-properties-section">
+                         <p className="heading">Similar Properties</p>
+                         <div className="similar-properties-slider">
+                           {/* This would be populated with similar properties from the database */}
+                           <PropertyCard hit={p} />
+                           <PropertyCard hit={p} />
+                           <PropertyCard hit={p} />
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
             <div className="col-xl-3 col-lg-12">
-              <div className="right-section-wrap">
+              <div className="right-section-wrap sticky-sidebar">
                 <div className="right-section">
                   <div className="property-nego-card-wrap">
                     <div className="border-side">

@@ -1,6 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./provident.css";
+import "./header-styles.css";
+import "./developer-styles.css";
+import "./auth-styles.css";
+import "./app-styles.css";
+import "./portal.css";
+import "./app-shell.css";
 
 export const metadata: Metadata = {
   title: {

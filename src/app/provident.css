@@ -49,6 +49,211 @@
   flex-direction: column;
   gap: 8px;
 }
+
+/* Property Detail Page Styles */
+.property-status-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #EE7133;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10;
+  text-transform: uppercase;
+}
+
+.signature-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.signature-badge img {
+  width: 80px;
+  height: auto;
+}
+
+/* Desktop Image Gallery */
+.d-none.d-xl-block .main-image-container {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.d-none.d-xl-block .main-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.thumbnail-gallery {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.thumbnail-item {
+  flex: 0 0 100px;
+  cursor: pointer;
+}
+
+.thumbnail-item img {
+  width: 100%;
+  height: 66px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid transparent;
+}
+
+.thumbnail-item:hover img,
+.thumbnail-item.active img {
+  border-color: #EE7133;
+}
+
+/* Sticky Sidebar */
+.sticky-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+/* Price Section */
+.price-section {
+  margin-bottom: 16px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 700;
+  color: #07234B;
+  margin: 0;
+}
+
+.price-per-sqft {
+  font-size: 16px;
+  color: #666;
+  margin: 4px 0 0;
+}
+
+/* Key Information */
+.key-info-section {
+  margin: 24px 0;
+}
+
+.key-info-section .heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #07234B;
+  margin-bottom: 16px;
+}
+
+.key-infos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.key-info-item {
+  display: flex;
+  align-items: center;
+}
+
+.key-info-item .label {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.key-info-item .value {
+  font-size: 16px;
+  color: #07234B;
+  margin: 4px 0 0;
+  font-weight: 500;
+}
+
+/* Floor Plans */
+.floor-plans-section {
+  margin: 32px 0;
+}
+
+.floor-plans-section .heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #07234B;
+  margin-bottom: 16px;
+}
+
+.floor-plans-gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.floor-plan-item {
+  flex: 0 0 200px;
+}
+
+.floor-plan-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Nearby Amenities */
+.nearby-amenities-section {
+  margin: 32px 0;
+}
+
+.nearby-amenities-section .heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #07234B;
+  margin-bottom: 16px;
+}
+
+.amenities-map {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.amenities-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Similar Properties */
+.similar-properties-section {
+  margin: 32px 0;
+}
+
+.similar-properties-section .heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #07234B;
+  margin-bottom: 16px;
+}
+
+.similar-properties-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 24px 0;
+}
 .sitemap-group a {
   color: #35373c;
   font-size: 14px;
@@ -87,3 +292,31 @@
 .search-filters-section .filters-section .dropdown-menu{min-width:220px;top:calc(100% + 8px)}
 .mobile-toggle-filter .dropdown-menu{min-width:200px;top:calc(100% + 8px)}
 .mobile-toggle-filter .filter-dropdown{padding:0}
+
+.developer-card .img-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  height: 200px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+
+.developer-card .img-section .logo-section {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+  bottom: 0;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  margin: 16px;
+  padding: 12px;
+  position: absolute;
+  width: 140px;
+}
+

@@ -1,1 +1,1510 @@
-{"componentChunkName":"component---src-pages-buy-js","path":"buy/properties-for-sale/in-jumeirah-golf-estates","result":{"serverData":{"data":{"status":true,"hits":[],"nbHits":0,"page":1,"nbPages":0,"hitsPerPage":20,"projects":[{"id":28,"building_type":["villa"],"developer":"Durar Group","status":"ready","title":"Jasmine Lane","slug":"jasmine-lane","display_address":"Jumeirah Golf Estates","display_bedrooms":null,"min_bedrooms":3,"max_bedrooms":3,"about":"<p>Jasmine Lane by Elie Saab is a residential masterpiece that can be seen in Dubai’s exclusive Jumeirah Golf Estates. This exclusive community features an assortment of luxurious mansions that were carefully crafted by Durar Group, a company known f","price":"3,500,000","display_price":"3.5M","virtual_tour_url":null,"agent_category":"B","media_images":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_1_f03835502e.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_2_4ac97f1276.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_3_4f1dfac723.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_4_8cf4448e3a.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_5_abbea20786.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_6_d58b0b0352.jpg"}],"tile_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_featured_b12716d8be.jpg"},"banner_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_banner_b1514c0b4d.jpg"},"ggfx_results":[{"id":5230,"src_cftle":"i/jasmine_featured_b12716d8be.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_featured_b12716d8be.webp","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_featured_b12716d8be.webp","format":"webp","transform":"464x312"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_featured_b12716d8be.jpg","format":"jpg","transform":"340x252","created_at":"2024-09-30 11:20:30.196","updated_at":"2024-09-30 11:20:30.196"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_featured_b12716d8be.jpg","format":"jpg","transform":"464x312","created_at":"2024-09-30 11:20:30.526","updated_at":"2024-09-30 11:20:30.526"}],"created_at":"2024-06-14T10:47:31.778Z","updated_at":"2024-11-20T08:30:40.151Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146729,"src_cftle":"i/jasmine_lane_banner_b1514c0b4d.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"376x","created_at":"2024-06-16 17:56:25.298","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/2400x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"2400x","created_at":"2024-06-16 17:56:25.947","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"744x","created_at":"2024-06-18 10:24:39.907","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"1300x","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"464x312","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"600x","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"340x252","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"1300x500","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"1650x","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/jasmine_lane_banner_b1514c0b4d.webp","format":"webp","transform":"376x512","created_at":"2025-03-20 09:49:09.124","updated_at":"2025-03-20 09:49:09.124"}],"created_at":"2024-06-16T16:56:25.298Z","updated_at":"2025-03-20T09:49:09.124Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146730,"src_cftle":"i/jasmine_lane_3_4f1dfac723.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:25.316","updated_at":"2025-04-29 11:38:41.658"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"1504x","created_at":"2024-07-13 20:22:04.796","updated_at":"2025-04-29 11:38:41.658"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"464x312","created_at":"2025-04-29 06:37:58.099","updated_at":"2025-04-29 11:38:41.658"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"340x252","created_at":"2025-04-29 11:38:41.658","updated_at":"2025-04-29 11:38:41.658"}],"created_at":"2024-06-16T16:56:25.316Z","updated_at":"2025-04-29T10:38:41.658Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146731,"src_cftle":"i/jasmine_lane_1_f03835502e.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"1504x","created_at":"2024-06-16 17:56:25.758","updated_at":"2024-06-16 17:56:25.758"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"340x","created_at":"2024-06-18 10:24:40.005","updated_at":"2024-06-18 10:24:40.005"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"464x312"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"1300x500"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/jasmine_lane_1_f03835502e.webp","format":"webp","transform":"600x"}],"created_at":"2024-06-16T16:56:25.370Z","updated_at":"2024-11-20T05:47:58.388Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146732,"src_cftle":"i/jasmine_lane_2_4ac97f1276.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:25.393","updated_at":"2024-06-16 17:56:25.393"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"1504x","created_at":"2024-06-18 10:24:39.971","updated_at":"2024-06-18 10:24:39.971"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"464x312"}],"created_at":"2024-06-16T16:56:25.307Z","updated_at":"2024-11-15T09:21:22.486Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146735,"src_cftle":"i/jasmine_lane_4_8cf4448e3a.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_4_8cf4448e3a.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:26.680","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_4_8cf4448e3a.webp","format":"webp","transform":"1504x","created_at":"2024-07-13 20:22:05.130","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_4_8cf4448e3a.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_4_8cf4448e3a.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"}],"created_at":"2024-06-16T16:56:26.266Z","updated_at":"2025-05-13T11:51:55.891Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146737,"src_cftle":"i/jasmine_lane_5_abbea20786.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_5_abbea20786.webp","format":"webp","transform":"1504x","created_at":"2024-07-13 20:22:05.203","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_5_abbea20786.webp","format":"webp","transform":"340x","created_at":"2024-06-18 10:24:39.989","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_5_abbea20786.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_5_abbea20786.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"}],"created_at":"2024-06-16T16:56:26.826Z","updated_at":"2025-05-13T11:51:55.891Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146749,"src_cftle":"i/jasmine_lane_6_d58b0b0352.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_6_d58b0b0352.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:27.661","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_6_d58b0b0352.webp","format":"webp","transform":"1504x","created_at":"2024-07-13 20:22:05.265","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_6_d58b0b0352.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_6_d58b0b0352.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:51:55.891","updated_at":"2025-05-13 12:51:55.891"}],"created_at":"2024-06-16T16:56:27.661Z","updated_at":"2025-05-13T11:51:55.891Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146751,"src_cftle":"i/jasmine_lane_map_ea5f4c8884.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_map_ea5f4c8884.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:27.840","updated_at":"2024-06-16 17:56:27.840"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/jasmine_lane_map_ea5f4c8884.webp","format":"webp","transform":"1392x","created_at":"2024-07-13 20:22:05.573","updated_at":"2024-07-13 20:22:05.573"}],"created_at":"2024-06-16T16:56:27.840Z","updated_at":"2024-07-13T19:22:05.573Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146754,"src_cftle":"i/jasmine_lane_selling_a9d1871ee6.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_selling_a9d1871ee6.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:56:27.715","updated_at":"2024-06-16 17:56:27.715"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/jasmine_lane_selling_a9d1871ee6.webp","format":"webp","transform":"1392x","created_at":"2024-07-13 20:22:05.475","updated_at":"2024-07-13 20:22:05.475"}],"created_at":"2024-06-16T16:56:28.507Z","updated_at":"2024-07-13T19:22:05.475Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146757,"src_cftle":"i/jasmine_brochure_bf167bd57d.png","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_brochure_bf167bd57d.webp","format":"webp","transform":"1504x","created_at":"2024-07-13 20:22:05.602","updated_at":"2024-07-13 20:22:05.602"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_brochure_bf167bd57d.webp","format":"webp","transform":"340x","created_at":"2024-06-18 10:24:40.708","updated_at":"2024-06-18 10:24:40.708"}],"created_at":"2024-06-16T16:56:29.314Z","updated_at":"2024-07-13T19:22:05.602Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":146769,"src_cftle":"i/jasmine_lane_video_d42d3c2b43.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1968x/jasmine_lane_video_d42d3c2b43.webp","format":"webp","transform":"1968x","created_at":"2024-07-13 20:22:05.811","updated_at":"2024-07-13 20:22:05.811"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/696x/jasmine_lane_video_d42d3c2b43.webp","format":"webp","transform":"696x","created_at":"2024-06-18 10:24:40.764","updated_at":"2024-06-18 10:24:40.764"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/336x/jasmine_lane_video_d42d3c2b43.webp","format":"webp","transform":"336x","created_at":"2024-06-18 10:27:40.465","updated_at":"2024-06-18 10:27:40.465"}],"created_at":"2024-06-16T16:56:30.069Z","updated_at":"2024-07-13T19:22:05.811Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1166247,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_3_4f1dfac723.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"340x252","created_at":"2024-08-12 07:22:48.596","updated_at":"2024-08-12 07:22:48.596"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_3_4f1dfac723.webp","format":"webp","transform":"464x312","created_at":"2024-08-12 07:22:48.596","updated_at":"2024-08-12 07:22:48.596"}],"created_at":"2024-07-11T04:42:46.865Z","updated_at":"2024-08-12T06:22:48.650Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1166248,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_2_4ac97f1276.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"340x252","created_at":"2024-08-12 07:22:48.596","updated_at":"2024-08-12 07:22:48.596"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_2_4ac97f1276.webp","format":"webp","transform":"464x312","created_at":"2024-08-12 07:22:48.596","updated_at":"2024-08-12 07:22:48.596"}],"created_at":"2024-07-11T04:42:47.065Z","updated_at":"2024-08-12T06:22:48.663Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1741479,"src_cftle":"i/off-plan/null/images/i/jasmine_featured_b12716d8be.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_featured_b12716d8be.webp","format":"webp","transform":"340x252","created_at":"2024-10-11 07:05:41.658","updated_at":"2024-10-11 07:05:41.658"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_featured_b12716d8be.webp","format":"webp","transform":"464x312","created_at":"2024-10-11 07:05:41.658","updated_at":"2024-10-11 07:05:41.658"}],"created_at":"2024-07-23T06:41:42.400Z","updated_at":"2024-10-11T06:05:41.735Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4521482,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_5_abbea20786.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_5_abbea20786.webp","alias":"images2","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_5_abbea20786.webp","alias":"images2","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:25:33.846Z","updated_at":"2024-11-14T11:37:57.349Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4521483,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_6_d58b0b0352.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_6_d58b0b0352.webp","alias":"images2","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_6_d58b0b0352.webp","alias":"images2","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:25:33.842Z","updated_at":"2024-11-14T11:37:57.351Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4521485,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_4_8cf4448e3a.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_4_8cf4448e3a.webp","alias":"images1","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_4_8cf4448e3a.webp","alias":"images1","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:25:34.201Z","updated_at":"2024-10-14T08:25:34.201Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4699068,"src_cftle":"i/off-plan/null/images/i/jasmine_lane_1_f03835502e.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_1_f03835502e.webp","alias":"images1","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_1_f03835502e.webp","alias":"images1","format":"webp","transform":"464x312"}],"created_at":"2024-11-14T11:37:57.414Z","updated_at":"2024-11-05T08:43:08.000Z","created_by_id":null,"updated_by_id":null,"src_url":null}],"bitrix":{"id":30,"pf_id":"are.2.12739","source":null,"project_id":"Jasmine Lane","tower_name":null,"campaign_name":"Elie Saab - Jasmine Lane","property_type":"Villas","developer_name":"Durar Group","project_location":"Jumeirah Golf Estates"},"video_url":"https://youtube.com/watch?v=heygagZaWLE","completion_year":"2024","agent_segmentation":"Standard","images1":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_1_f03835502e.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_1_f03835502e.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_2_4ac97f1276.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_2_4ac97f1276.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_3_4f1dfac723.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_3_4f1dfac723.webp"}],"images2":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_featured_b12716d8be.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_featured_b12716d8be.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_1_f03835502e.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_1_f03835502e.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_2_4ac97f1276.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_2_4ac97f1276.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_3_4f1dfac723.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_3_4f1dfac723.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_4_8cf4448e3a.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_4_8cf4448e3a.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_5_abbea20786.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_5_abbea20786.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_6_d58b0b0352.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_6_d58b0b0352.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_featured_b12716d8be.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_featured_b12716d8be.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_lane_1_f03835502e.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_lane_1_f03835502e.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_lane_2_4ac97f1276.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_lane_2_4ac97f1276.webp"}],"images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_featured_b12716d8be.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_featured_b12716d8be.webp"}],"imageCount":1},{"id":131,"building_type":["apartment"],"developer":"Jumeirah Golf","status":"ready","title":"Al Andalus","slug":"al-andalus","display_address":"Jumeirah Golf Estates","display_bedrooms":null,"min_bedrooms":1,"max_bedrooms":4,"about":"<p>Al Andalus at Jumeirah Golf Estates is home to 2 championship golf courses, Fire &amp; Earth. The <strong>1-4 apartments</strong> are ready and you can enjoy the amazing views of the golf courses. One of the 16 beautifully crafted clusters of Jume","price":"800,000","display_price":"800K","virtual_tour_url":null,"agent_category":"B","media_images":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_1_c2dc12e676.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_3_d4b860ac21.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_4_d626e102e0.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_5_3ef90485ef.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_6_d5640557da.jpg"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_2_47a5dbf3f5.jpg"}],"tile_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/alandalus_feature_d2405ef1b0.jpg"},"banner_image":{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/alandalus_baner_64771704de.jpg"},"ggfx_results":[{"id":5224,"src_cftle":"i/alandalus_feature_d2405ef1b0.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_feature_d2405ef1b0.webp","format":"webp","transform":"340x252","created_at":"2024-06-14 11:47:31.702","updated_at":"2024-06-14 11:47:31.702"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_feature_d2405ef1b0.webp","format":"webp","transform":"464x312","created_at":"2024-06-14 11:47:32.520","updated_at":"2024-06-14 11:47:32.520"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_feature_d2405ef1b0.jpg","format":"jpg","transform":"340x252","created_at":"2024-09-30 11:20:30.202","updated_at":"2024-09-30 11:20:30.202"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_feature_d2405ef1b0.jpg","format":"jpg","transform":"464x312","created_at":"2024-09-30 11:20:30.622","updated_at":"2024-09-30 11:20:30.622"}],"created_at":"2024-06-14T10:47:31.702Z","updated_at":"2024-09-30T10:20:30.622Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":121291,"src_cftle":"i/alandalus_baner_64771704de.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/2400x/alandalus_baner_64771704de.webp","format":"webp","transform":"2400x","created_at":"2024-06-16 10:48:56.008","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/alandalus_baner_64771704de.webp","format":"webp","transform":"744x","created_at":"2024-06-16 17:44:53.333","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/alandalus_baner_64771704de.webp","format":"webp","transform":"376x","created_at":"2024-06-16 17:47:05.806","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x/alandalus_baner_64771704de.webp","format":"webp","transform":"1300x","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/alandalus_baner_64771704de.webp","format":"webp","transform":"600x","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_baner_64771704de.webp","format":"webp","transform":"464x312","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_baner_64771704de.webp","format":"webp","transform":"340x252","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/alandalus_baner_64771704de.webp","format":"webp","transform":"1300x500","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/alandalus_baner_64771704de.webp","format":"webp","transform":"1650x","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/alandalus_baner_64771704de.webp","format":"webp","transform":"376x512","created_at":"2025-03-19 21:57:58.618","updated_at":"2025-03-19 21:57:58.618"}],"created_at":"2024-06-16T09:48:55.915Z","updated_at":"2025-03-19T21:57:58.618Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":121293,"src_cftle":"i/andalus_1_c2dc12e676.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_1_c2dc12e676.webp","format":"webp","transform":"1504x","created_at":"2024-06-16 10:48:57.019","updated_at":"2024-06-16 10:48:57.019"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_1_c2dc12e676.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:44:53.370","updated_at":"2024-06-16 17:44:53.370"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_1_c2dc12e676.webp","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_1_c2dc12e676.webp","format":"webp","transform":"464x312"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/andalus_1_c2dc12e676.webp","format":"webp","transform":"1300x500"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/andalus_1_c2dc12e676.webp","format":"webp","transform":"600x"}],"created_at":"2024-06-16T09:48:56.962Z","updated_at":"2024-11-19T07:50:25.209Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":121297,"src_cftle":"i/andalus_3_d4b860ac21.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_3_d4b860ac21.webp","format":"webp","transform":"1504x","created_at":"2024-06-16 10:48:57.361","updated_at":"2024-06-16 10:48:57.361"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_3_d4b860ac21.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:44:53.341","updated_at":"2024-06-16 17:44:53.341"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_3_d4b860ac21.webp","format":"webp","transform":"464x312"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_3_d4b860ac21.webp","format":"webp","transform":"340x252"}],"created_at":"2024-06-16T09:48:57.072Z","updated_at":"2024-11-15T09:21:22.583Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145665,"src_cftle":"i/andalus_4_d626e102e0.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_4_d626e102e0.webp","format":"webp","transform":"1504x","created_at":"2024-07-15 07:51:07.484","updated_at":"2025-04-29 06:37:58.507"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_4_d626e102e0.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:47:07.525","updated_at":"2025-04-29 06:37:58.507"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_4_d626e102e0.webp","format":"webp","transform":"464x312","created_at":"2025-04-29 06:37:58.152","updated_at":"2025-04-29 06:37:58.507"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_4_d626e102e0.webp","format":"webp","transform":"340x252","created_at":"2025-04-29 06:37:58.507","updated_at":"2025-04-29 06:37:58.507"}],"created_at":"2024-06-16T16:44:53.466Z","updated_at":"2025-04-29T05:37:58.507Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145667,"src_cftle":"i/andalus_5_3ef90485ef.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_5_3ef90485ef.webp","format":"webp","transform":"1504x","created_at":"2024-07-15 07:51:07.477","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_5_3ef90485ef.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:47:07.701","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_5_3ef90485ef.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_5_3ef90485ef.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"}],"created_at":"2024-06-16T16:44:53.555Z","updated_at":"2025-05-13T11:49:27.977Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145668,"src_cftle":"i/andalus_6_d5640557da.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_6_d5640557da.webp","format":"webp","transform":"1504x","created_at":"2024-07-15 07:51:07.774","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_6_d5640557da.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:47:09.681","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_6_d5640557da.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_6_d5640557da.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"}],"created_at":"2024-06-16T16:44:53.693Z","updated_at":"2025-05-13T11:49:27.977Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145669,"src_cftle":"i/andalus_2_47a5dbf3f5.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_2_47a5dbf3f5.webp","format":"webp","transform":"1504x","created_at":"2024-07-15 07:51:07.769","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_2_47a5dbf3f5.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:47:11.861","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_2_47a5dbf3f5.webp","alias":"images2","format":"webp","transform":"340x252","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_2_47a5dbf3f5.webp","alias":"images2","format":"webp","transform":"464x312","created_at":"2025-05-13 12:49:27.977","updated_at":"2025-05-13 12:49:27.977"}],"created_at":"2024-06-16T16:44:53.913Z","updated_at":"2025-05-13T11:49:27.977Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145675,"src_cftle":"i/andalus_8_ce02495393.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/andalus_8_ce02495393.webp","format":"webp","transform":"1392x","created_at":"2024-07-15 15:21:12.511","updated_at":"2024-07-15 15:21:12.511"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_8_ce02495393.webp","format":"webp","transform":"340x","created_at":"2024-06-16 17:47:12.666","updated_at":"2024-06-16 17:47:12.666"}],"created_at":"2024-06-16T16:44:54.177Z","updated_at":"2024-07-15T14:21:12.511Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":145676,"src_cftle":"i/alandalus_location_cfae574c1b.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/alandalus_location_cfae574c1b.webp","format":"webp","transform":"1392x","created_at":"2024-06-16 17:44:55.276","updated_at":"2024-06-16 17:44:55.276"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/alandalus_location_cfae574c1b.webp","format":"webp","transform":"340x","created_at":"2024-07-15 07:51:07.157","updated_at":"2024-07-15 07:51:07.157"}],"created_at":"2024-06-16T16:44:54.564Z","updated_at":"2024-07-15T06:51:07.157Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1166563,"src_cftle":"i/off-plan/null/images/i/andalus_4_d626e102e0.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_4_d626e102e0.webp","format":"webp","transform":"340x252","created_at":"2024-07-23 07:43:36.580","updated_at":"2024-07-23 07:43:36.580"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_4_d626e102e0.webp","format":"webp","transform":"464x312","created_at":"2024-07-23 07:43:36.580","updated_at":"2024-07-23 07:43:36.580"}],"created_at":"2024-07-11T04:44:48.623Z","updated_at":"2024-07-23T06:43:36.644Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1166564,"src_cftle":"i/off-plan/null/images/i/andalus_3_d4b860ac21.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_3_d4b860ac21.webp","format":"webp","transform":"340x252","created_at":"2024-07-23 07:43:36.580","updated_at":"2024-07-23 07:43:36.580"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_3_d4b860ac21.webp","format":"webp","transform":"464x312","created_at":"2024-07-23 07:43:36.580","updated_at":"2024-07-23 07:43:36.580"}],"created_at":"2024-07-11T04:44:49.114Z","updated_at":"2024-07-23T06:43:36.625Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":1741825,"src_cftle":"i/off-plan/null/images/i/alandalus_feature_d2405ef1b0.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/alandalus_feature_d2405ef1b0.webp","format":"webp","transform":"340x252","created_at":"2024-10-11 07:07:30.628","updated_at":"2024-10-11 07:07:30.628"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/alandalus_feature_d2405ef1b0.webp","format":"webp","transform":"464x312","created_at":"2024-10-11 07:07:30.628","updated_at":"2024-10-11 07:07:30.628"}],"created_at":"2024-07-23T06:43:36.635Z","updated_at":"2024-10-11T06:07:30.677Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4522529,"src_cftle":"i/off-plan/null/images/i/andalus_6_d5640557da.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_6_d5640557da.webp","alias":"images2","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_6_d5640557da.webp","alias":"images2","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:27:36.100Z","updated_at":"2024-11-07T12:21:57.589Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4522530,"src_cftle":"i/off-plan/null/images/i/andalus_2_47a5dbf3f5.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_2_47a5dbf3f5.webp","alias":"images2","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_2_47a5dbf3f5.webp","alias":"images2","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:27:36.100Z","updated_at":"2024-11-07T12:21:57.587Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4522531,"src_cftle":"i/off-plan/null/images/i/andalus_5_3ef90485ef.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_5_3ef90485ef.webp","alias":"images1","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_5_3ef90485ef.webp","alias":"images1","format":"webp","transform":"464x312"}],"created_at":"2024-10-14T08:27:36.483Z","updated_at":"2024-10-14T08:27:36.483Z","created_by_id":null,"updated_by_id":null,"src_url":null},{"id":4698935,"src_cftle":"i/off-plan/null/images/i/andalus_1_c2dc12e676.jpg","transforms":[{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_1_c2dc12e676.webp","alias":"images1","format":"webp","transform":"340x252"},{"url":"https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_1_c2dc12e676.webp","alias":"images1","format":"webp","transform":"464x312"}],"created_at":"2024-11-14T11:36:08.244Z","updated_at":"2024-11-05T08:44:56.000Z","created_by_id":null,"updated_by_id":null,"src_url":null}],"bitrix":{"id":135,"pf_id":"are.2.938","source":null,"project_id":"Al Andalus","tower_name":null,"campaign_name":"Al Andalus","property_type":"Apartment","developer_name":"Jumeirah Golf","project_location":"Jumeirah Golf Estates"},"completion_year":"Ready","agent_segmentation":"Standard","images1":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_1_c2dc12e676.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_1_c2dc12e676.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_3_d4b860ac21.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_3_d4b860ac21.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_4_d626e102e0.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_4_d626e102e0.webp"}],"images2":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/alandalus_feature_d2405ef1b0.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/alandalus_feature_d2405ef1b0.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_1_c2dc12e676.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_1_c2dc12e676.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_3_d4b860ac21.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_3_d4b860ac21.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_4_d626e102e0.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_4_d626e102e0.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_5_3ef90485ef.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_5_3ef90485ef.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_6_d5640557da.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_6_d5640557da.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_2_47a5dbf3f5.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_2_47a5dbf3f5.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/alandalus_feature_d2405ef1b0.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/alandalus_feature_d2405ef1b0.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/andalus_1_c2dc12e676.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/andalus_1_c2dc12e676.webp"},{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/andalus_3_d4b860ac21.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/andalus_3_d4b860ac21.webp"}],"images":[{"340x252":"https://d3h330vgpwpjr8.cloudfront.net/x/340x252/alandalus_feature_d2405ef1b0.webp","464x312":"https://d3h330vgpwpjr8.cloudfront.net/x/464x312/alandalus_feature_d2405ef1b0.webp"}],"imageCount":1}],"content":[{"id":44,"title":"Properties for Sale in Jumeirah Golf Estates","area":"jumeirah-golf-estates","building_type":null,"description":"<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-golf-estates/\">Jumeirah Golf Estates</a> is a premier residential golf community nestled between two championship golf courses, Fire and Earth. Spanning 1,119 hectares of lush greenery, the development offers a mix of villas, townhouses, and apartments, making it a top choice for those seeking world-class amenities and attractive investment opportunities. For those interested in Jumeirah Golf Estates properties for sale, the area is a freehold zone, offering ownership options to both locals and expats.</p><p>The community features over 1,835 homes and is home to 700 families, divided into 16 sub-communities. These are thoughtfully built around the Fire and Earth golf courses, renowned for hosting the prestigious DP World Tour Championship. With its gated clusters, stunning natural landscapes, and uniquely designed homes, Jumeirah Golf Estates ensures a secure and luxurious lifestyle for its residents.</p><p>Families seeking Jumeirah Golf Estates properties for sale will appreciate the community’s family-friendly environment. Parks, playgrounds, fitness centers, and other amenities cater to a balanced lifestyle, blending relaxation and recreation seamlessly. Whether you’re looking for a home or an investment, this prestigious community offers something special for everyone.</p><h2>Why Should You Invest in a Property for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is the epitome of luxury golf estate living, offering an unmatched combination of prime location, stunning landscapes, and world-class amenities. With the extension of the Dubai Metro Red Line and the addition of Jumeirah Golf Estates Station, the community has solidified its status as one of the top residential destinations in Dubai. For those looking to purchase properties in Jumeirah Golf Estates, the area provides an impressive range of luxury villas, high-end townhouses, and elegant apartments surrounded by lush greenery and expansive golf courses.</p><p>The community is designed around two prestigious golf courses, with two more under development, making it a haven for golf enthusiasts. Spanning 1,100 hectares of landscaped grounds, Jumeirah Golf Estates features five lakes and sustainable green spaces, offering a serene and eco-friendly environment. Whether you’re interested in properties for sale in Jumeirah Golf Estates or exploring investment opportunities, the gated estates cater to both luxury living and long-term value appreciation.</p><p>At the heart of this premier development is The Norman Clubhouse, a vibrant social hub offering dining options, a rooftop barbecue area, a swimming pool, and other lifestyle facilities. With 16 unique residential clusters, each offering a range of properties for sale in Jumeirah Golf Estates, this community stands out as one of the most beautiful and coveted villa communities in Dubai. Investing here means embracing a lifestyle of luxury, tranquility, and connectivity.</p><h2>Types of Properties for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates features 16 distinct communities overlooking the Earth and Fire golf courses, offering a mix of architectural elegance and natural beauty. The Earth Course, inspired by Mediterranean design, comprises 606 villas, while the Fire Course reflects desert hues with 438 residences, all within gated clusters.&nbsp;</p><p>With 3 to 6-bedroom configurations, private gardens, and exceptional amenities, the community caters to families and luxury seekers. For those looking to purchase properties in Jumeirah Golf Estates, this premier development provides an unmatched lifestyle surrounded by world-class golf courses and lush landscapes.</p><h3>Apartments</h3><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/apartment-for-sale/in-jumeirah-golf-estates/\">Apartments in Jumeirah Golf Estates</a> feature modern 1 to 4-bedroom apartments, ideal for individuals, couples, or small families. These residences combine contemporary design with practical layouts, offering stunning views of the lush golf courses and green landscapes.&nbsp;</p><p>Residents can enjoy top-tier amenities, including swimming pools, fitness centers, covered parking, and 24/7 security. Additionally, the apartments are situated close to community parks, retail outlets, and dining options, ensuring a comfortable and connected lifestyle.</p><h3>Villas</h3><p>The<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/villa-for-sale/in-jumeirah-golf-estates/\"> villas in Jumeirah Golf Estates</a> are the pinnacle of luxury, offering 3 to 6-bedroom configurations within a gated community. Each villa is thoughtfully designed with spacious interiors, private gardens, and a focus on privacy and elegance.&nbsp;</p><p>These homes are perfect for families looking for a peaceful lifestyle amidst lush greenery. Amenities include private pools, outdoor entertainment spaces, access to golf courses, and proximity to The Norman Clubhouse, which offers fine dining, a rooftop barbecue area, and social facilities.</p><h3>Townhouses</h3><p>For those seeking a balance between space and affordability, Jumeirah Golf Estates also offers 2 to 4-bedroom townhouses. These properties are designed for modern living, with open layouts and elegant finishes.&nbsp;</p><p>Townhouse residents benefit from shared amenities, such as community pools, children's play areas, fitness facilities, and landscaped walking paths, creating a family-friendly environment within this prestigious development.</p><h3>Off-Plan Properties for Sale in Jumeirah Golf Estates</h3><p>Jumeirah Golf Estates offers exciting <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-jumeirah-golf-estates/completion-off-plan/\">off-plan opportunities</a>, including Jouri Hills and Jasmine Lane, two standout developments catering to modern and luxurious lifestyles.&nbsp;</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/jouri-hills-arada-properties-jumeirah-golf-estates/\">Jouri Hills</a> features a collection of contemporary townhouses and villas, ranging from 3 to 6 bedrooms, designed with smart home technology and sustainable living in mind. Residents will enjoy access to private gardens, swimming pools, and a host of community amenities such as parks, fitness centers, and walking trails.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/jasmine-lane/\">Jasmine Lane</a>, on the other hand, is an exclusive gated community offering elegant townhouses with sleek designs and high-end finishes. These residences provide a blend of comfort and sophistication, with spacious layouts and proximity to world-class golf courses.&nbsp;</p><p>Both projects represent excellent investment opportunities, combining luxury with the promise of strong returns in one of Dubai’s most prestigious residential communities.</p><h2>Advantages of Purchasing Properties in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is strategically located at the junction of Sheikh Mohammed Bin Zayed Road (E311) and D57, offering residents seamless connectivity to key areas of Dubai. The Jumeirah Golf Estates Metro Station, the largest underground station on Route 2020, serves the community and its surroundings, including <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/green-community/\">Green Community</a> and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-production-city/\">Dubai Production City</a>.&nbsp;</p><p>The station is well-equipped with disabled parking, taxi drop-off points, bus stops, and retail shops, adding to the convenience of living here. This accessibility makes properties for sale in Jumeirah Golf Estates a highly desirable choice for both homebuyers and investors.</p><p>For everyday needs, residents can rely on Spinneys, located within the community, offering groceries and doorstep delivery services. Additionally, the area features Fairway The Marketplace by Choithrams, a medium-sized supermarket chain known for its wide range of products and online delivery options. These conveniences, combined with a vibrant community center, enhance the lifestyle for those considering a property for sale in Jumeirah Golf Estates.</p><p>The community’s prime location also means close proximity to leisure and business hubs such as <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-sports-city/\">Dubai Sports City</a>, <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-village-triangle/\">Jumeirah Village Triangle (JVT)</a>, and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-investments-park/\">Dubai Investment Park (DIP)</a>. With nearby amenities and neighboring developments, Jumeirah Golf Estates properties for sale offer the perfect blend of luxury, convenience, and investment potential for those looking to purchase a home in one of Dubai's most prestigious residential areas.</p><h2>Popular Sub-Communities to Buy a Property for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is home to a range of exceptional sub-communities, each offering unique layouts, amenities, and lifestyle benefits. Among the most sought-after areas for buying a property for sale in Jumeirah Golf Estates are Al Andalus and Redwood Avenue.</p><h3>Al Andalus</h3><p>Al Andalus is a Mediterranean-inspired sub-community offering a mix of apartments and townhouses. The units in this neighborhood range from 1 to 4-bedroom apartments and 2 to 4-bedroom townhouses, designed to exude elegance and comfort. Residents enjoy lush landscaping, water features, and proximity to the Earth golf course.&nbsp;</p><p>Amenities include a fully equipped gym, swimming pools, walking trails, and retail outlets. Al Andalus also houses a clubhouse that features fine dining options, creating a social hub for its residents. Its well-planned layout and affordability make it a prime option for those looking to purchase Jumeirah Golf Estates properties for sale.</p><h3>Redwood Avenue</h3><p>Redwood Avenue is an exclusive enclave of luxury villas, offering 4 to 6-bedroom layouts with expansive interiors and private gardens. These villas are set amidst lush greenery, overlooking the Fire golf course, providing stunning views and a tranquil environment. The community is gated, ensuring security and privacy for its residents.&nbsp;</p><p>Amenities include private swimming pools, landscaped gardens, and access to The Norman Clubhouse, which features a rooftop barbecue area, a fitness center, and dining facilities. With its high-end finishes and spacious layouts, Redwood Avenue is ideal for families and investors seeking a property for sale in Jumeirah Golf Estates.</p><p>Both Al Andalus and Redwood Avenue offer a premium living experience, combining world-class amenities with the serenity of golf course living, making them top choices for those considering purchasing properties in Jumeirah Golf Estates.</p><h2>Freehold vs Leasehold Properties for Sale in Property for Sale in Jumeirah Golf Estates</h2><p>When exploring properties for sale in Jumeirah Golf Estates, understanding the difference between freehold and leasehold properties is crucial. Freehold properties grant full ownership of both the property and the land, making them an ideal choice for expats and investors seeking long-term ownership with greater flexibility. In contrast, leasehold properties are owned for a fixed period (typically up to 99 years), after which ownership reverts to the freeholder.&nbsp;</p><p>Jumeirah Golf Estates predominantly offers freehold properties, allowing buyers to enjoy complete ownership of luxurious villas, townhouses, and apartments in a prestigious, family-friendly community. This ownership structure adds significant value, making it a prime location for property investment in Dubai.</p><h2>Properties Purchase for Foreigners and Expats in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is one of the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/blog/dubai-freehold-areas-list/\">freehold communities in Dubai</a>, making it an attractive option for foreigners and expats seeking to invest in the city’s real estate market. Freehold status allows non-UAE nationals to purchase and fully own properties, including the land, without any time restrictions.</p><p>The community offers a wide variety of options, from luxurious villas and spacious townhouses to modern apartments, catering to diverse preferences and budgets. With world-class amenities, stunning golf course views, and a prime location near major highways and metro access, purchasing properties in Jumeirah Golf Estates is an excellent choice for those looking to settle or invest in one of Dubai’s most prestigious residential areas.</p><h2>Properties for Sale in the Nearby Areas of Property for Sale in Jumeirah Golf Estates</h2><ul><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-sports-city/\">Properties for Sale in Dubai Sports City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-production-city-impz/\">Properties for Sale in Dubai Production City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-jumeirah-village-triangle/\">Properties for Sale in Jumeirah Village Triangle (JVT)</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-investment-park-dip/\">Properties for Sale in in Dubai Investment Park (DIP)</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-arabian-ranches/\">Properties for Sale in Arabian Ranches</a></li></ul><h2>FAQs</h2><h3>What types of properties are available in Jumeirah Golf Estates?</h3><p>Jumeirah Golf Estates offers a mix of villas, townhouses, and apartments in various configurations, catering to diverse preferences and lifestyles.</p><h3>Are the properties in Jumeirah Golf Estates freehold?</h3><p>Yes, Jumeirah Golf Estates is a freehold community, allowing both expats and foreign investors full ownership of properties.</p><h3>What are the key amenities offered in Jumeirah Golf Estates?</h3><p>Amenities include world-class golf courses, swimming pools, fitness centers, parks, playgrounds, The Norman Clubhouse, retail outlets, and dining options.</p><h3>Is Jumeirah Golf Estates a family-friendly community?</h3><p>Absolutely! The gated environment, lush landscaping, spacious homes, and family-oriented amenities make it ideal for families.</p><h3>How accessible is Jumeirah Golf Estates?</h3><p>The community is located near Sheikh Mohammed Bin Zayed Road and features the Jumeirah Golf Estates Metro Station, providing excellent connectivity to the rest of Dubai.</p><h3>What are the popular sub-communities in Jumeirah Golf Estates?</h3><p>Popular sub-communities include Al Andalus, offering apartments and townhouses, and Redwood Avenue, featuring luxury villas with golf course views.</p><h3>Are off-plan properties available in Jumeirah Golf Estates?</h3><p>Yes, off-plan projects like Jouri Hills and Jasmine Lane offer modern and luxurious residential options for investors and homebuyers.</p>"}]},"template":"search"},"pageContext":{}},"staticQueryHashes":["1546599633","1722115342","2073252141","2508511111","268405316","2729460511","285207698","2990965877","338142919","3432741055","3472835299","348503923","3592264445","3636316658","3783427077","389056714","3996374893","4119191191","702895677","867548045"],"matchPath":"/buy/*"}
+{
+  "componentChunkName": "component---src-pages-buy-js",
+  "path": "buy/properties-for-sale/in-jumeirah-golf-estates",
+  "result": {
+    "serverData": {
+      "data": {
+        "status": true,
+        "hits": [],
+        "nbHits": 0,
+        "page": 1,
+        "nbPages": 1,
+        "hitsPerPage": 20,
+        "projects": [
+          {
+            "id": 28,
+            "building_type": [
+              "villa"
+            ],
+            "developer": "Durar Group",
+            "status": "ready",
+            "title": "Jasmine Lane",
+            "slug": "jasmine-lane",
+            "display_address": "Jumeirah Golf Estates",
+            "display_bedrooms": null,
+            "min_bedrooms": 3,
+            "max_bedrooms": 3,
+            "about": "<p>Jasmine Lane by Elie Saab is a residential masterpiece that can be seen in Dubai’s exclusive Jumeirah Golf Estates. This exclusive community features an assortment of luxurious mansions that were carefully crafted by Durar Group, a company known f",
+            "price": "3,500,000",
+            "display_price": "3.5M",
+            "virtual_tour_url": null,
+            "agent_category": "B",
+            "media_images": [
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_1_f03835502e.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_2_4ac97f1276.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_3_4f1dfac723.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_4_8cf4448e3a.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_5_abbea20786.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_6_d58b0b0352.jpg"
+              }
+            ],
+            "tile_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_featured_b12716d8be.jpg"
+            },
+            "banner_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/jasmine_lane_banner_b1514c0b4d.jpg"
+            },
+            "ggfx_results": [
+              {
+                "id": 5230,
+                "src_cftle": "i/jasmine_featured_b12716d8be.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_featured_b12716d8be.webp",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_featured_b12716d8be.webp",
+                    "format": "webp",
+                    "transform": "464x312"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_featured_b12716d8be.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2024-09-30 11:20:30.196",
+                    "updated_at": "2024-09-30 11:20:30.196"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_featured_b12716d8be.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2024-09-30 11:20:30.526",
+                    "updated_at": "2024-09-30 11:20:30.526"
+                  }
+                ],
+                "created_at": "2024-06-14T10:47:31.778Z",
+                "updated_at": "2024-11-20T08:30:40.151Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146729,
+                "src_cftle": "i/jasmine_lane_banner_b1514c0b4d.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "376x",
+                    "created_at": "2024-06-16 17:56:25.298",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/2400x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "2400x",
+                    "created_at": "2024-06-16 17:56:25.947",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2024-06-18 10:24:39.907",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "1300x",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "600x",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "1300x500",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "1650x",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/jasmine_lane_banner_b1514c0b4d.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2025-03-20 09:49:09.124",
+                    "updated_at": "2025-03-20 09:49:09.124"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:25.298Z",
+                "updated_at": "2025-03-20T09:49:09.124Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146730,
+                "src_cftle": "i/jasmine_lane_3_4f1dfac723.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:25.316",
+                    "updated_at": "2025-04-29 11:38:41.658"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-13 20:22:04.796",
+                    "updated_at": "2025-04-29 11:38:41.658"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-04-29 06:37:58.099",
+                    "updated_at": "2025-04-29 11:38:41.658"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-04-29 11:38:41.658",
+                    "updated_at": "2025-04-29 11:38:41.658"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:25.316Z",
+                "updated_at": "2025-04-29T10:38:41.658Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146731,
+                "src_cftle": "i/jasmine_lane_1_f03835502e.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-06-16 17:56:25.758",
+                    "updated_at": "2024-06-16 17:56:25.758"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-18 10:24:40.005",
+                    "updated_at": "2024-06-18 10:24:40.005"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "464x312"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "1300x500"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/jasmine_lane_1_f03835502e.webp",
+                    "format": "webp",
+                    "transform": "600x"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:25.370Z",
+                "updated_at": "2024-11-20T05:47:58.388Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146732,
+                "src_cftle": "i/jasmine_lane_2_4ac97f1276.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:25.393",
+                    "updated_at": "2024-06-16 17:56:25.393"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-06-18 10:24:39.971",
+                    "updated_at": "2024-06-18 10:24:39.971"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:25.307Z",
+                "updated_at": "2024-11-15T09:21:22.486Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146735,
+                "src_cftle": "i/jasmine_lane_4_8cf4448e3a.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_4_8cf4448e3a.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:26.680",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_4_8cf4448e3a.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-13 20:22:05.130",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_4_8cf4448e3a.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_4_8cf4448e3a.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:26.266Z",
+                "updated_at": "2025-05-13T11:51:55.891Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146737,
+                "src_cftle": "i/jasmine_lane_5_abbea20786.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_5_abbea20786.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-13 20:22:05.203",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_5_abbea20786.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-18 10:24:39.989",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_5_abbea20786.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_5_abbea20786.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:26.826Z",
+                "updated_at": "2025-05-13T11:51:55.891Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146749,
+                "src_cftle": "i/jasmine_lane_6_d58b0b0352.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_6_d58b0b0352.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:27.661",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_lane_6_d58b0b0352.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-13 20:22:05.265",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/jasmine_lane_6_d58b0b0352.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/jasmine_lane_6_d58b0b0352.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:51:55.891",
+                    "updated_at": "2025-05-13 12:51:55.891"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:27.661Z",
+                "updated_at": "2025-05-13T11:51:55.891Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146751,
+                "src_cftle": "i/jasmine_lane_map_ea5f4c8884.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_map_ea5f4c8884.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:27.840",
+                    "updated_at": "2024-06-16 17:56:27.840"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/jasmine_lane_map_ea5f4c8884.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2024-07-13 20:22:05.573",
+                    "updated_at": "2024-07-13 20:22:05.573"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:27.840Z",
+                "updated_at": "2024-07-13T19:22:05.573Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146754,
+                "src_cftle": "i/jasmine_lane_selling_a9d1871ee6.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_lane_selling_a9d1871ee6.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:56:27.715",
+                    "updated_at": "2024-06-16 17:56:27.715"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/jasmine_lane_selling_a9d1871ee6.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2024-07-13 20:22:05.475",
+                    "updated_at": "2024-07-13 20:22:05.475"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:28.507Z",
+                "updated_at": "2024-07-13T19:22:05.475Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146757,
+                "src_cftle": "i/jasmine_brochure_bf167bd57d.png",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/jasmine_brochure_bf167bd57d.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-13 20:22:05.602",
+                    "updated_at": "2024-07-13 20:22:05.602"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/jasmine_brochure_bf167bd57d.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-18 10:24:40.708",
+                    "updated_at": "2024-06-18 10:24:40.708"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:29.314Z",
+                "updated_at": "2024-07-13T19:22:05.602Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 146769,
+                "src_cftle": "i/jasmine_lane_video_d42d3c2b43.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1968x/jasmine_lane_video_d42d3c2b43.webp",
+                    "format": "webp",
+                    "transform": "1968x",
+                    "created_at": "2024-07-13 20:22:05.811",
+                    "updated_at": "2024-07-13 20:22:05.811"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/696x/jasmine_lane_video_d42d3c2b43.webp",
+                    "format": "webp",
+                    "transform": "696x",
+                    "created_at": "2024-06-18 10:24:40.764",
+                    "updated_at": "2024-06-18 10:24:40.764"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/336x/jasmine_lane_video_d42d3c2b43.webp",
+                    "format": "webp",
+                    "transform": "336x",
+                    "created_at": "2024-06-18 10:27:40.465",
+                    "updated_at": "2024-06-18 10:27:40.465"
+                  }
+                ],
+                "created_at": "2024-06-16T16:56:30.069Z",
+                "updated_at": "2024-07-13T19:22:05.811Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1166247,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_3_4f1dfac723.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-08-12 07:22:48.596",
+                    "updated_at": "2024-08-12 07:22:48.596"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_3_4f1dfac723.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-08-12 07:22:48.596",
+                    "updated_at": "2024-08-12 07:22:48.596"
+                  }
+                ],
+                "created_at": "2024-07-11T04:42:46.865Z",
+                "updated_at": "2024-08-12T06:22:48.650Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1166248,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_2_4ac97f1276.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-08-12 07:22:48.596",
+                    "updated_at": "2024-08-12 07:22:48.596"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_2_4ac97f1276.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-08-12 07:22:48.596",
+                    "updated_at": "2024-08-12 07:22:48.596"
+                  }
+                ],
+                "created_at": "2024-07-11T04:42:47.065Z",
+                "updated_at": "2024-08-12T06:22:48.663Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1741479,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_featured_b12716d8be.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_featured_b12716d8be.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-10-11 07:05:41.658",
+                    "updated_at": "2024-10-11 07:05:41.658"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_featured_b12716d8be.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-10-11 07:05:41.658",
+                    "updated_at": "2024-10-11 07:05:41.658"
+                  }
+                ],
+                "created_at": "2024-07-23T06:41:42.400Z",
+                "updated_at": "2024-10-11T06:05:41.735Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4521482,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_5_abbea20786.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_5_abbea20786.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_5_abbea20786.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:25:33.846Z",
+                "updated_at": "2024-11-14T11:37:57.349Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4521483,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_6_d58b0b0352.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_6_d58b0b0352.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_6_d58b0b0352.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:25:33.842Z",
+                "updated_at": "2024-11-14T11:37:57.351Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4521485,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_4_8cf4448e3a.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_4_8cf4448e3a.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_4_8cf4448e3a.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:25:34.201Z",
+                "updated_at": "2024-10-14T08:25:34.201Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4699068,
+                "src_cftle": "i/off-plan/null/images/i/jasmine_lane_1_f03835502e.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/jasmine_lane_1_f03835502e.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/jasmine_lane_1_f03835502e.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-11-14T11:37:57.414Z",
+                "updated_at": "2024-11-05T08:43:08.000Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              }
+            ],
+            "bitrix": {
+              "id": 30,
+              "pf_id": "are.2.12739",
+              "source": null,
+              "project_id": "Jasmine Lane",
+              "tower_name": null,
+              "campaign_name": "Elie Saab - Jasmine Lane",
+              "property_type": "Villas",
+              "developer_name": "Durar Group",
+              "project_location": "Jumeirah Golf Estates"
+            },
+            "video_url": "https://youtube.com/watch?v=heygagZaWLE",
+            "completion_year": "2024",
+            "agent_segmentation": "Standard",
+            "images1": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_1_f03835502e.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_1_f03835502e.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_2_4ac97f1276.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_2_4ac97f1276.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_3_4f1dfac723.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_3_4f1dfac723.webp"
+              }
+            ],
+            "images2": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_featured_b12716d8be.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_featured_b12716d8be.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_1_f03835502e.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_1_f03835502e.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_2_4ac97f1276.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_2_4ac97f1276.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_3_4f1dfac723.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_3_4f1dfac723.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_4_8cf4448e3a.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_4_8cf4448e3a.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_5_abbea20786.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_5_abbea20786.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_lane_6_d58b0b0352.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_lane_6_d58b0b0352.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_featured_b12716d8be.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_featured_b12716d8be.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_lane_1_f03835502e.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_lane_1_f03835502e.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/jasmine_lane_2_4ac97f1276.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/jasmine_lane_2_4ac97f1276.webp"
+              }
+            ],
+            "images": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/jasmine_featured_b12716d8be.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/jasmine_featured_b12716d8be.webp"
+              }
+            ],
+            "imageCount": 1
+          },
+          {
+            "id": 131,
+            "building_type": [
+              "apartment"
+            ],
+            "developer": "Jumeirah Golf",
+            "status": "ready",
+            "title": "Al Andalus",
+            "slug": "al-andalus",
+            "display_address": "Jumeirah Golf Estates",
+            "display_bedrooms": null,
+            "min_bedrooms": 1,
+            "max_bedrooms": 4,
+            "about": "<p>Al Andalus at Jumeirah Golf Estates is home to 2 championship golf courses, Fire &amp; Earth. The <strong>1-4 apartments</strong> are ready and you can enjoy the amazing views of the golf courses. One of the 16 beautifully crafted clusters of Jume",
+            "price": "800,000",
+            "display_price": "800K",
+            "virtual_tour_url": null,
+            "agent_category": "B",
+            "media_images": [
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_1_c2dc12e676.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_3_d4b860ac21.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_4_d626e102e0.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_5_3ef90485ef.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_6_d5640557da.jpg"
+              },
+              {
+                "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/andalus_2_47a5dbf3f5.jpg"
+              }
+            ],
+            "tile_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/alandalus_feature_d2405ef1b0.jpg"
+            },
+            "banner_image": {
+              "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/i/alandalus_baner_64771704de.jpg"
+            },
+            "ggfx_results": [
+              {
+                "id": 5224,
+                "src_cftle": "i/alandalus_feature_d2405ef1b0.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_feature_d2405ef1b0.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-06-14 11:47:31.702",
+                    "updated_at": "2024-06-14 11:47:31.702"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_feature_d2405ef1b0.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-06-14 11:47:32.520",
+                    "updated_at": "2024-06-14 11:47:32.520"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_feature_d2405ef1b0.jpg",
+                    "format": "jpg",
+                    "transform": "340x252",
+                    "created_at": "2024-09-30 11:20:30.202",
+                    "updated_at": "2024-09-30 11:20:30.202"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_feature_d2405ef1b0.jpg",
+                    "format": "jpg",
+                    "transform": "464x312",
+                    "created_at": "2024-09-30 11:20:30.622",
+                    "updated_at": "2024-09-30 11:20:30.622"
+                  }
+                ],
+                "created_at": "2024-06-14T10:47:31.702Z",
+                "updated_at": "2024-09-30T10:20:30.622Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 121291,
+                "src_cftle": "i/alandalus_baner_64771704de.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/2400x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "2400x",
+                    "created_at": "2024-06-16 10:48:56.008",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/744x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "744x",
+                    "created_at": "2024-06-16 17:44:53.333",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "376x",
+                    "created_at": "2024-06-16 17:47:05.806",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "1300x",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "600x",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "1300x500",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1650x/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "1650x",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/376x512/alandalus_baner_64771704de.webp",
+                    "format": "webp",
+                    "transform": "376x512",
+                    "created_at": "2025-03-19 21:57:58.618",
+                    "updated_at": "2025-03-19 21:57:58.618"
+                  }
+                ],
+                "created_at": "2024-06-16T09:48:55.915Z",
+                "updated_at": "2025-03-19T21:57:58.618Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 121293,
+                "src_cftle": "i/andalus_1_c2dc12e676.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-06-16 10:48:57.019",
+                    "updated_at": "2024-06-16 10:48:57.019"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:44:53.370",
+                    "updated_at": "2024-06-16 17:44:53.370"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "464x312"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1300x500/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "1300x500"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/600x/andalus_1_c2dc12e676.webp",
+                    "format": "webp",
+                    "transform": "600x"
+                  }
+                ],
+                "created_at": "2024-06-16T09:48:56.962Z",
+                "updated_at": "2024-11-19T07:50:25.209Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 121297,
+                "src_cftle": "i/andalus_3_d4b860ac21.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-06-16 10:48:57.361",
+                    "updated_at": "2024-06-16 10:48:57.361"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:44:53.341",
+                    "updated_at": "2024-06-16 17:44:53.341"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "464x312"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "340x252"
+                  }
+                ],
+                "created_at": "2024-06-16T09:48:57.072Z",
+                "updated_at": "2024-11-15T09:21:22.583Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145665,
+                "src_cftle": "i/andalus_4_d626e102e0.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-15 07:51:07.484",
+                    "updated_at": "2025-04-29 06:37:58.507"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:47:07.525",
+                    "updated_at": "2025-04-29 06:37:58.507"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-04-29 06:37:58.152",
+                    "updated_at": "2025-04-29 06:37:58.507"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-04-29 06:37:58.507",
+                    "updated_at": "2025-04-29 06:37:58.507"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:53.466Z",
+                "updated_at": "2025-04-29T05:37:58.507Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145667,
+                "src_cftle": "i/andalus_5_3ef90485ef.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_5_3ef90485ef.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-15 07:51:07.477",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_5_3ef90485ef.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:47:07.701",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_5_3ef90485ef.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_5_3ef90485ef.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:53.555Z",
+                "updated_at": "2025-05-13T11:49:27.977Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145668,
+                "src_cftle": "i/andalus_6_d5640557da.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_6_d5640557da.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-15 07:51:07.774",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_6_d5640557da.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:47:09.681",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_6_d5640557da.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_6_d5640557da.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:53.693Z",
+                "updated_at": "2025-05-13T11:49:27.977Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145669,
+                "src_cftle": "i/andalus_2_47a5dbf3f5.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1504x/andalus_2_47a5dbf3f5.webp",
+                    "format": "webp",
+                    "transform": "1504x",
+                    "created_at": "2024-07-15 07:51:07.769",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_2_47a5dbf3f5.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:47:11.861",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x252/andalus_2_47a5dbf3f5.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/464x312/andalus_2_47a5dbf3f5.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2025-05-13 12:49:27.977",
+                    "updated_at": "2025-05-13 12:49:27.977"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:53.913Z",
+                "updated_at": "2025-05-13T11:49:27.977Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145675,
+                "src_cftle": "i/andalus_8_ce02495393.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/andalus_8_ce02495393.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2024-07-15 15:21:12.511",
+                    "updated_at": "2024-07-15 15:21:12.511"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/andalus_8_ce02495393.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-06-16 17:47:12.666",
+                    "updated_at": "2024-06-16 17:47:12.666"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:54.177Z",
+                "updated_at": "2024-07-15T14:21:12.511Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 145676,
+                "src_cftle": "i/alandalus_location_cfae574c1b.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/1392x/alandalus_location_cfae574c1b.webp",
+                    "format": "webp",
+                    "transform": "1392x",
+                    "created_at": "2024-06-16 17:44:55.276",
+                    "updated_at": "2024-06-16 17:44:55.276"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/340x/alandalus_location_cfae574c1b.webp",
+                    "format": "webp",
+                    "transform": "340x",
+                    "created_at": "2024-07-15 07:51:07.157",
+                    "updated_at": "2024-07-15 07:51:07.157"
+                  }
+                ],
+                "created_at": "2024-06-16T16:44:54.564Z",
+                "updated_at": "2024-07-15T06:51:07.157Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1166563,
+                "src_cftle": "i/off-plan/null/images/i/andalus_4_d626e102e0.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-07-23 07:43:36.580",
+                    "updated_at": "2024-07-23 07:43:36.580"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_4_d626e102e0.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-07-23 07:43:36.580",
+                    "updated_at": "2024-07-23 07:43:36.580"
+                  }
+                ],
+                "created_at": "2024-07-11T04:44:48.623Z",
+                "updated_at": "2024-07-23T06:43:36.644Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1166564,
+                "src_cftle": "i/off-plan/null/images/i/andalus_3_d4b860ac21.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-07-23 07:43:36.580",
+                    "updated_at": "2024-07-23 07:43:36.580"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_3_d4b860ac21.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-07-23 07:43:36.580",
+                    "updated_at": "2024-07-23 07:43:36.580"
+                  }
+                ],
+                "created_at": "2024-07-11T04:44:49.114Z",
+                "updated_at": "2024-07-23T06:43:36.625Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 1741825,
+                "src_cftle": "i/off-plan/null/images/i/alandalus_feature_d2405ef1b0.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/alandalus_feature_d2405ef1b0.webp",
+                    "format": "webp",
+                    "transform": "340x252",
+                    "created_at": "2024-10-11 07:07:30.628",
+                    "updated_at": "2024-10-11 07:07:30.628"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/alandalus_feature_d2405ef1b0.webp",
+                    "format": "webp",
+                    "transform": "464x312",
+                    "created_at": "2024-10-11 07:07:30.628",
+                    "updated_at": "2024-10-11 07:07:30.628"
+                  }
+                ],
+                "created_at": "2024-07-23T06:43:36.635Z",
+                "updated_at": "2024-10-11T06:07:30.677Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4522529,
+                "src_cftle": "i/off-plan/null/images/i/andalus_6_d5640557da.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_6_d5640557da.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_6_d5640557da.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:27:36.100Z",
+                "updated_at": "2024-11-07T12:21:57.589Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4522530,
+                "src_cftle": "i/off-plan/null/images/i/andalus_2_47a5dbf3f5.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_2_47a5dbf3f5.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_2_47a5dbf3f5.webp",
+                    "alias": "images2",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:27:36.100Z",
+                "updated_at": "2024-11-07T12:21:57.587Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4522531,
+                "src_cftle": "i/off-plan/null/images/i/andalus_5_3ef90485ef.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_5_3ef90485ef.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_5_3ef90485ef.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-10-14T08:27:36.483Z",
+                "updated_at": "2024-10-14T08:27:36.483Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              },
+              {
+                "id": 4698935,
+                "src_cftle": "i/off-plan/null/images/i/andalus_1_c2dc12e676.jpg",
+                "transforms": [
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/340x252/andalus_1_c2dc12e676.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "340x252"
+                  },
+                  {
+                    "url": "https://ggfx-providentestate.s3.eu-west-2.amazonaws.com/x/off-plan/null/images/i/464x312/andalus_1_c2dc12e676.webp",
+                    "alias": "images1",
+                    "format": "webp",
+                    "transform": "464x312"
+                  }
+                ],
+                "created_at": "2024-11-14T11:36:08.244Z",
+                "updated_at": "2024-11-05T08:44:56.000Z",
+                "created_by_id": null,
+                "updated_by_id": null,
+                "src_url": null
+              }
+            ],
+            "bitrix": {
+              "id": 135,
+              "pf_id": "are.2.938",
+              "source": null,
+              "project_id": "Al Andalus",
+              "tower_name": null,
+              "campaign_name": "Al Andalus",
+              "property_type": "Apartment",
+              "developer_name": "Jumeirah Golf",
+              "project_location": "Jumeirah Golf Estates"
+            },
+            "completion_year": "Ready",
+            "agent_segmentation": "Standard",
+            "images1": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_1_c2dc12e676.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_1_c2dc12e676.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_3_d4b860ac21.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_3_d4b860ac21.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_4_d626e102e0.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_4_d626e102e0.webp"
+              }
+            ],
+            "images2": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/alandalus_feature_d2405ef1b0.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/alandalus_feature_d2405ef1b0.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_1_c2dc12e676.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_1_c2dc12e676.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_3_d4b860ac21.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_3_d4b860ac21.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_4_d626e102e0.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_4_d626e102e0.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_5_3ef90485ef.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_5_3ef90485ef.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_6_d5640557da.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_6_d5640557da.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/andalus_2_47a5dbf3f5.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/andalus_2_47a5dbf3f5.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/alandalus_feature_d2405ef1b0.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/alandalus_feature_d2405ef1b0.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/andalus_1_c2dc12e676.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/andalus_1_c2dc12e676.webp"
+              },
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/340x252/andalus_3_d4b860ac21.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/off-plan/null/images/i/464x312/andalus_3_d4b860ac21.webp"
+              }
+            ],
+            "images": [
+              {
+                "340x252": "https://d3h330vgpwpjr8.cloudfront.net/x/340x252/alandalus_feature_d2405ef1b0.webp",
+                "464x312": "https://d3h330vgpwpjr8.cloudfront.net/x/464x312/alandalus_feature_d2405ef1b0.webp"
+              }
+            ],
+            "imageCount": 1
+          }
+        ],
+        "content": [
+          {
+            "id": 44,
+            "title": "Properties for Sale in Jumeirah Golf Estates",
+            "area": "jumeirah-golf-estates",
+            "building_type": null,
+            "description": "<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-golf-estates/\">Jumeirah Golf Estates</a> is a premier residential golf community nestled between two championship golf courses, Fire and Earth. Spanning 1,119 hectares of lush greenery, the development offers a mix of villas, townhouses, and apartments, making it a top choice for those seeking world-class amenities and attractive investment opportunities. For those interested in Jumeirah Golf Estates properties for sale, the area is a freehold zone, offering ownership options to both locals and expats.</p><p>The community features over 1,835 homes and is home to 700 families, divided into 16 sub-communities. These are thoughtfully built around the Fire and Earth golf courses, renowned for hosting the prestigious DP World Tour Championship. With its gated clusters, stunning natural landscapes, and uniquely designed homes, Jumeirah Golf Estates ensures a secure and luxurious lifestyle for its residents.</p><p>Families seeking Jumeirah Golf Estates properties for sale will appreciate the community’s family-friendly environment. Parks, playgrounds, fitness centers, and other amenities cater to a balanced lifestyle, blending relaxation and recreation seamlessly. Whether you’re looking for a home or an investment, this prestigious community offers something special for everyone.</p><h2>Why Should You Invest in a Property for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is the epitome of luxury golf estate living, offering an unmatched combination of prime location, stunning landscapes, and world-class amenities. With the extension of the Dubai Metro Red Line and the addition of Jumeirah Golf Estates Station, the community has solidified its status as one of the top residential destinations in Dubai. For those looking to purchase properties in Jumeirah Golf Estates, the area provides an impressive range of luxury villas, high-end townhouses, and elegant apartments surrounded by lush greenery and expansive golf courses.</p><p>The community is designed around two prestigious golf courses, with two more under development, making it a haven for golf enthusiasts. Spanning 1,100 hectares of landscaped grounds, Jumeirah Golf Estates features five lakes and sustainable green spaces, offering a serene and eco-friendly environment. Whether you’re interested in properties for sale in Jumeirah Golf Estates or exploring investment opportunities, the gated estates cater to both luxury living and long-term value appreciation.</p><p>At the heart of this premier development is The Norman Clubhouse, a vibrant social hub offering dining options, a rooftop barbecue area, a swimming pool, and other lifestyle facilities. With 16 unique residential clusters, each offering a range of properties for sale in Jumeirah Golf Estates, this community stands out as one of the most beautiful and coveted villa communities in Dubai. Investing here means embracing a lifestyle of luxury, tranquility, and connectivity.</p><h2>Types of Properties for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates features 16 distinct communities overlooking the Earth and Fire golf courses, offering a mix of architectural elegance and natural beauty. The Earth Course, inspired by Mediterranean design, comprises 606 villas, while the Fire Course reflects desert hues with 438 residences, all within gated clusters.&nbsp;</p><p>With 3 to 6-bedroom configurations, private gardens, and exceptional amenities, the community caters to families and luxury seekers. For those looking to purchase properties in Jumeirah Golf Estates, this premier development provides an unmatched lifestyle surrounded by world-class golf courses and lush landscapes.</p><h3>Apartments</h3><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/apartment-for-sale/in-jumeirah-golf-estates/\">Apartments in Jumeirah Golf Estates</a> feature modern 1 to 4-bedroom apartments, ideal for individuals, couples, or small families. These residences combine contemporary design with practical layouts, offering stunning views of the lush golf courses and green landscapes.&nbsp;</p><p>Residents can enjoy top-tier amenities, including swimming pools, fitness centers, covered parking, and 24/7 security. Additionally, the apartments are situated close to community parks, retail outlets, and dining options, ensuring a comfortable and connected lifestyle.</p><h3>Villas</h3><p>The<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/villa-for-sale/in-jumeirah-golf-estates/\"> villas in Jumeirah Golf Estates</a> are the pinnacle of luxury, offering 3 to 6-bedroom configurations within a gated community. Each villa is thoughtfully designed with spacious interiors, private gardens, and a focus on privacy and elegance.&nbsp;</p><p>These homes are perfect for families looking for a peaceful lifestyle amidst lush greenery. Amenities include private pools, outdoor entertainment spaces, access to golf courses, and proximity to The Norman Clubhouse, which offers fine dining, a rooftop barbecue area, and social facilities.</p><h3>Townhouses</h3><p>For those seeking a balance between space and affordability, Jumeirah Golf Estates also offers 2 to 4-bedroom townhouses. These properties are designed for modern living, with open layouts and elegant finishes.&nbsp;</p><p>Townhouse residents benefit from shared amenities, such as community pools, children's play areas, fitness facilities, and landscaped walking paths, creating a family-friendly environment within this prestigious development.</p><h3>Off-Plan Properties for Sale in Jumeirah Golf Estates</h3><p>Jumeirah Golf Estates offers exciting <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-jumeirah-golf-estates/completion-off-plan/\">off-plan opportunities</a>, including Jouri Hills and Jasmine Lane, two standout developments catering to modern and luxurious lifestyles.&nbsp;</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/jouri-hills-arada-properties-jumeirah-golf-estates/\">Jouri Hills</a> features a collection of contemporary townhouses and villas, ranging from 3 to 6 bedrooms, designed with smart home technology and sustainable living in mind. Residents will enjoy access to private gardens, swimming pools, and a host of community amenities such as parks, fitness centers, and walking trails.</p><p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/new-projects/jasmine-lane/\">Jasmine Lane</a>, on the other hand, is an exclusive gated community offering elegant townhouses with sleek designs and high-end finishes. These residences provide a blend of comfort and sophistication, with spacious layouts and proximity to world-class golf courses.&nbsp;</p><p>Both projects represent excellent investment opportunities, combining luxury with the promise of strong returns in one of Dubai’s most prestigious residential communities.</p><h2>Advantages of Purchasing Properties in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is strategically located at the junction of Sheikh Mohammed Bin Zayed Road (E311) and D57, offering residents seamless connectivity to key areas of Dubai. The Jumeirah Golf Estates Metro Station, the largest underground station on Route 2020, serves the community and its surroundings, including <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/green-community/\">Green Community</a> and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-production-city/\">Dubai Production City</a>.&nbsp;</p><p>The station is well-equipped with disabled parking, taxi drop-off points, bus stops, and retail shops, adding to the convenience of living here. This accessibility makes properties for sale in Jumeirah Golf Estates a highly desirable choice for both homebuyers and investors.</p><p>For everyday needs, residents can rely on Spinneys, located within the community, offering groceries and doorstep delivery services. Additionally, the area features Fairway The Marketplace by Choithrams, a medium-sized supermarket chain known for its wide range of products and online delivery options. These conveniences, combined with a vibrant community center, enhance the lifestyle for those considering a property for sale in Jumeirah Golf Estates.</p><p>The community’s prime location also means close proximity to leisure and business hubs such as <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-sports-city/\">Dubai Sports City</a>, <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/jumeirah-village-triangle/\">Jumeirah Village Triangle (JVT)</a>, and <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/area-guides/dubai-investments-park/\">Dubai Investment Park (DIP)</a>. With nearby amenities and neighboring developments, Jumeirah Golf Estates properties for sale offer the perfect blend of luxury, convenience, and investment potential for those looking to purchase a home in one of Dubai's most prestigious residential areas.</p><h2>Popular Sub-Communities to Buy a Property for Sale in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is home to a range of exceptional sub-communities, each offering unique layouts, amenities, and lifestyle benefits. Among the most sought-after areas for buying a property for sale in Jumeirah Golf Estates are Al Andalus and Redwood Avenue.</p><h3>Al Andalus</h3><p>Al Andalus is a Mediterranean-inspired sub-community offering a mix of apartments and townhouses. The units in this neighborhood range from 1 to 4-bedroom apartments and 2 to 4-bedroom townhouses, designed to exude elegance and comfort. Residents enjoy lush landscaping, water features, and proximity to the Earth golf course.&nbsp;</p><p>Amenities include a fully equipped gym, swimming pools, walking trails, and retail outlets. Al Andalus also houses a clubhouse that features fine dining options, creating a social hub for its residents. Its well-planned layout and affordability make it a prime option for those looking to purchase Jumeirah Golf Estates properties for sale.</p><h3>Redwood Avenue</h3><p>Redwood Avenue is an exclusive enclave of luxury villas, offering 4 to 6-bedroom layouts with expansive interiors and private gardens. These villas are set amidst lush greenery, overlooking the Fire golf course, providing stunning views and a tranquil environment. The community is gated, ensuring security and privacy for its residents.&nbsp;</p><p>Amenities include private swimming pools, landscaped gardens, and access to The Norman Clubhouse, which features a rooftop barbecue area, a fitness center, and dining facilities. With its high-end finishes and spacious layouts, Redwood Avenue is ideal for families and investors seeking a property for sale in Jumeirah Golf Estates.</p><p>Both Al Andalus and Redwood Avenue offer a premium living experience, combining world-class amenities with the serenity of golf course living, making them top choices for those considering purchasing properties in Jumeirah Golf Estates.</p><h2>Freehold vs Leasehold Properties for Sale in Property for Sale in Jumeirah Golf Estates</h2><p>When exploring properties for sale in Jumeirah Golf Estates, understanding the difference between freehold and leasehold properties is crucial. Freehold properties grant full ownership of both the property and the land, making them an ideal choice for expats and investors seeking long-term ownership with greater flexibility. In contrast, leasehold properties are owned for a fixed period (typically up to 99 years), after which ownership reverts to the freeholder.&nbsp;</p><p>Jumeirah Golf Estates predominantly offers freehold properties, allowing buyers to enjoy complete ownership of luxurious villas, townhouses, and apartments in a prestigious, family-friendly community. This ownership structure adds significant value, making it a prime location for property investment in Dubai.</p><h2>Properties Purchase for Foreigners and Expats in Jumeirah Golf Estates</h2><p>Jumeirah Golf Estates is one of the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/blog/dubai-freehold-areas-list/\">freehold communities in Dubai</a>, making it an attractive option for foreigners and expats seeking to invest in the city’s real estate market. Freehold status allows non-UAE nationals to purchase and fully own properties, including the land, without any time restrictions.</p><p>The community offers a wide variety of options, from luxurious villas and spacious townhouses to modern apartments, catering to diverse preferences and budgets. With world-class amenities, stunning golf course views, and a prime location near major highways and metro access, purchasing properties in Jumeirah Golf Estates is an excellent choice for those looking to settle or invest in one of Dubai’s most prestigious residential areas.</p><h2>Properties for Sale in the Nearby Areas of Property for Sale in Jumeirah Golf Estates</h2><ul><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-sports-city/\">Properties for Sale in Dubai Sports City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-production-city-impz/\">Properties for Sale in Dubai Production City</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-jumeirah-village-triangle/\">Properties for Sale in Jumeirah Village Triangle (JVT)</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-dubai-investment-park-dip/\">Properties for Sale in in Dubai Investment Park (DIP)</a></li><li><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://providentestate.com/buy/properties-for-sale/in-arabian-ranches/\">Properties for Sale in Arabian Ranches</a></li></ul><h2>FAQs</h2><h3>What types of properties are available in Jumeirah Golf Estates?</h3><p>Jumeirah Golf Estates offers a mix of villas, townhouses, and apartments in various configurations, catering to diverse preferences and lifestyles.</p><h3>Are the properties in Jumeirah Golf Estates freehold?</h3><p>Yes, Jumeirah Golf Estates is a freehold community, allowing both expats and foreign investors full ownership of properties.</p><h3>What are the key amenities offered in Jumeirah Golf Estates?</h3><p>Amenities include world-class golf courses, swimming pools, fitness centers, parks, playgrounds, The Norman Clubhouse, retail outlets, and dining options.</p><h3>Is Jumeirah Golf Estates a family-friendly community?</h3><p>Absolutely! The gated environment, lush landscaping, spacious homes, and family-oriented amenities make it ideal for families.</p><h3>How accessible is Jumeirah Golf Estates?</h3><p>The community is located near Sheikh Mohammed Bin Zayed Road and features the Jumeirah Golf Estates Metro Station, providing excellent connectivity to the rest of Dubai.</p><h3>What are the popular sub-communities in Jumeirah Golf Estates?</h3><p>Popular sub-communities include Al Andalus, offering apartments and townhouses, and Redwood Avenue, featuring luxury villas with golf course views.</p><h3>Are off-plan properties available in Jumeirah Golf Estates?</h3><p>Yes, off-plan projects like Jouri Hills and Jasmine Lane offer modern and luxurious residential options for investors and homebuyers.</p>"
+          }
+        ]
+      },
+      "template": "search"
+    },
+    "pageContext": {}
+  },
+  "staticQueryHashes": [
+    "1546599633",
+    "1722115342",
+    "2073252141",
+    "2508511111",
+    "268405316",
+    "2729460511",
+    "285207698",
+    "2990965877",
+    "338142919",
+    "3432741055",
+    "3472835299",
+    "348503923",
+    "3592264445",
+    "3636316658",
+    "3783427077",
+    "389056714",
+    "3996374893",
+    "4119191191",
+    "702895677",
+    "867548045"
+  ],
+  "matchPath": "/buy/*"
+}

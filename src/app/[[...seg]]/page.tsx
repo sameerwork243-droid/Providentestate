@@ -2,7 +2,8 @@ import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPageData, classify } from "@/lib/ref";
-import { developerHubData, developerHits, typeHubData } from "@/lib/store";
+import { developerHubData, developerHits, typeHubData, routeFilters, matchHit } from "@/lib/store";
+import { dbPropsToHits, dbPropertyByRoute } from "@/server/property-bridge";
 import { SiteHeader } from "@/components/header";
 import { SiteFooter } from "@/components/footer";
 import { HomePage } from "@/components/home";
@@ -40,7 +41,8 @@ function routesFromRaw() {
   return [...routes];
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 0;
 
 const ALIASES: Record<string, string> = {
   "/buy": "/buy/properties-for-sale",
@@ -112,9 +114,22 @@ export default async function Page({ params }: { params: Promise<{ seg?: string[
   }
 
   const pd = getPageData(routeBase);
-  if (!pd) notFound();
-  const model = classify(pd, routeBase);
+  let model = pd ? classify(pd, routeBase) : null;
+
+  if (!model) {
+    const dbp = dbPropertyByRoute(routeBase);
+    if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };
+  }
   if (!model) notFound();
+  if (model.kind === "listing" && pageNum === 1) {
+    const kind = route.startsWith("/let") ? "let" : "buy";
+    const filters = routeFilters(route);
+    const dbHits = dbPropsToHits(kind);
+    const merged = [...dbHits.filter((h) => matchHit(h, filters)), ...(model.data.hits || [])];
+    model.data.hits = merged;
+    model.data.nbHits = (model.data.nbHits ?? merged.length) + dbHits.length;
+    model.data.nbPages = Math.max(1, Math.ceil((model.data.nbHits ?? 1) / (model.data.hitsPerPage || 20)));
+  }
 
   const transparent = route === "/" || (route.startsWith("/new-projects/") && route !== "/new-projects/");
 

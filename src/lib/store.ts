@@ -374,7 +374,7 @@ export function developerHits(limit = 40): any[] {
   return [...seen.entries()].map(([developer, count]) => ({ developer, count })).slice(0, limit);
 }
 
-/** Developer corpus (slug, name, logo, description) from the saved developers list. */
+/** Developer corpus (slug, name, logo, description, background) from the saved developers list. */
 export function developersList(): any[] {
   const j = loadRel("developers.json");
   const list = j && Array.isArray(j) ? j : [];
@@ -382,6 +382,7 @@ export function developersList(): any[] {
     slug: d.slug || "",
     name: d.name || "",
     logo: d.logo ? `https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.logo}` : "https://d3h330vgpwpjr8.cloudfront.net/x/296x/placeholder.jpg",
+    background: "https://d3h330vgpwpjr8.cloudfront.net/x/600x400/developer-bg-placeholder.jpg", // Placeholder background
     description: d.description || "",
   }));
 }

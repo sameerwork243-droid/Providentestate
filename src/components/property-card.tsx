@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { PriceFmt, addressOf, propLink, waLink } from "@/lib/props";
 import { CardGallery } from "./card-gallery";
+import { SaveButton } from "./save-button";
 
 const signatureBadge = readFileSync(path.join(process.cwd(), "src", "data", "signature-badge.svg"), "utf8");
 const moreBoxIcon = readFileSync(path.join(process.cwd(), "src", "data", "more-box.svg"), "utf8");
@@ -23,15 +24,18 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
           {signature && <p className="img-tag hidee" dangerouslySetInnerHTML={{ __html: signatureBadge }}></p>}
         </div>
         <div className="content-section">
-          <div className="pr-bk">
-            <a className="price" href={link}>
-              <PriceFmt value={hit.price} qualifier={hit.price_qualifier} />
-            </a>
-            <div className="sb-myacc icon wishlist-icn undefined">
-              <span className="property-save icon-save"></span>
-              <span className=" property-save icon-saved"></span>
+            <div className="pr-bk">
+              <a className="price" href={link}>
+                <PriceFmt value={hit.price} qualifier={hit.price_qualifier} />
+              </a>
+              <SaveButton
+                propertyRef={link}
+                slug={hit.slug || ""}
+                title={hit.title || hit.building?.[0] || "Property"}
+                price={hit.price || 0}
+                thumb={imgs[0]?.["340x252"] || ""}
+              />
             </div>
-          </div>
           <a className="ammenities" href={link}>
             {hit.description || hit.building?.[0] || "View Details"}
           </a>
