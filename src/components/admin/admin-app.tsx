@@ -185,59 +185,62 @@ function ResourceManager({ endpoint, title, fields, columns }: { endpoint: strin
 
   return (
     <>
-      <div className="app-card">
-        <div className="app-card-head">
-          <div>
-            <h2>{title}</h2>
-            <p className="app-card-sub">{items?.length ?? 0} records</p>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <input className="app-search" placeholder="Search…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
-            <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add</button>
-          </div>
-        </div>
-        {items === null ? (
-          <p className="app-empty">Loading…</p>
-        ) : items.length === 0 ? (
-          <p className="app-empty">No records found.</p>
-        ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table className="app-table">
-              <thead><tr>{columns.map((c) => <th key={c.key}>{c.label}</th>)}<th></th></tr></thead>
-              <tbody>
-                {items.map((row) => (
-                  <tr key={row.id}>
-                    {columns.map((c) => <td key={c.key}>{c.render(row)}</td>)}
-                    <td>
-                      <div className="row-actions">
-                        <button type="button" className="app-btn ghost sm" onClick={() => { setEditing(row); }}>Edit</button>
-                        <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-      {(creating || editing) && (
-        <FormModal
-          title={editing ? `Edit ${title.slice(0, -1)}` : `New ${title.slice(0, -1)}`}
+      {creating || editing ? (
+        <FormPage
+          title={editing ? `Edit ${singular(title)}` : `New ${singular(title)}`}
+          backLabel={title}
           fields={fields}
           initial={editing || {}}
           busy={busy}
           onCancel={() => { setCreating(false); setEditing(null); }}
           onSave={save}
         />
+      ) : (
+        <div className="app-card">
+          <div className="app-card-head">
+            <div>
+              <h2>{title}</h2>
+              <p className="app-card-sub">{items?.length ?? 0} records</p>
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <input className="app-search" placeholder="Search…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
+              <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add</button>
+            </div>
+          </div>
+          {items === null ? (
+            <p className="app-empty">Loading…</p>
+          ) : items.length === 0 ? (
+            <p className="app-empty">No records found.</p>
+          ) : (
+            <div style={{ overflowX: "auto" }}>
+              <table className="app-table">
+                <thead><tr>{columns.map((c) => <th key={c.key}>{c.label}</th>)}<th></th></tr></thead>
+                <tbody>
+                  {items.map((row) => (
+                    <tr key={row.id}>
+                      {columns.map((c) => <td key={c.key}>{c.render(row)}</td>)}
+                      <td>
+                        <div className="row-actions">
+                          <button type="button" className="app-btn ghost sm" onClick={() => { setEditing(row); }}>Edit</button>
+                          <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       )}
       {toast && <div className="app-toast">{toast}</div>}
     </>
   );
 }
 
-function FormModal({ title, fields, initial, busy, onCancel, onSave }: {
+function FormPage({ title, backLabel, fields, initial, busy, onCancel, onSave }: {
   title: string;
+  backLabel: string;
   fields: FieldDef[];
   initial: Record<string, any>;
   busy: boolean;
@@ -255,52 +258,55 @@ function FormModal({ title, fields, initial, busy, onCancel, onSave }: {
     setForm((f) => ({ ...f, [key]: value }));
   }
   return (
-    <div className="app-modal-backdrop" onClick={onCancel}>
-      <div className="app-modal wide" onClick={(e) => e.stopPropagation()}>
-        <h3>{title}</h3>
-        <form
-          className="app-form-grid"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSave(form);
-          }}
-        >
-          {fields.map((fd) => (
-            <div className={"app-field" + (fd.full ? " full" : "")} key={fd.key}>
-              <label>{fd.label}</label>
-              {fd.type === "textarea" ? (
-                <textarea value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)} />
-              ) : fd.type === "number" ? (
-                <input type="number" value={form[fd.key] ?? ""} onChange={(e) => set(fd.key, e.target.value)} />
-              ) : fd.type === "select" ? (
-                <select value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)}>
-                  <option value="">—</option>
-                  {(fd.options || []).map((o) => <option key={o} value={o}>{o}</option>)}
-                </select>
-              ) : fd.type === "checkbox" ? (
-                <div className="app-check-row">
-                  <input type="checkbox" checked={Boolean(form[fd.key])} onChange={(e) => set(fd.key, e.target.checked ? 1 : 0)} />
-                  <span style={{ fontSize: 13 }}>{fd.hint || "Enabled"}</span>
-                </div>
-              ) : fd.type === "json" ? (
-                <input
-                  type="text"
-                  placeholder="Comma separated values"
-                  value={Array.isArray(form[fd.key]) ? form[fd.key].join(", ") : (form[fd.key] || "")}
-                  onChange={(e) => set(fd.key, e.target.value)}
-                />
-              ) : (
-                <input type="text" value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)} />
-              )}
-              {fd.hint && fd.type !== "checkbox" && <div className="hint">{fd.hint}</div>}
-            </div>
-          ))}
-          <div className="modal-actions full">
-            <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
-            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
-          </div>
-        </form>
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>{title}</h2>
+          <button type="button" className="app-btn ghost sm form-page-back" onClick={onCancel}>← Back to {backLabel}</button>
+        </div>
       </div>
+      <form
+        className="app-form-grid"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave(form);
+        }}
+      >
+        {fields.map((fd) => (
+          <div className={"app-field" + (fd.full ? " full" : "")} key={fd.key}>
+            <label>{fd.label}</label>
+            {fd.type === "textarea" ? (
+              <textarea value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)} />
+            ) : fd.type === "number" ? (
+              <input type="number" value={form[fd.key] ?? ""} onChange={(e) => set(fd.key, e.target.value)} />
+            ) : fd.type === "select" ? (
+              <select value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)}>
+                <option value="">—</option>
+                {(fd.options || []).map((o) => <option key={o} value={o}>{o}</option>)}
+              </select>
+            ) : fd.type === "checkbox" ? (
+              <div className="app-check-row">
+                <input type="checkbox" checked={Boolean(form[fd.key])} onChange={(e) => set(fd.key, e.target.checked ? 1 : 0)} />
+                <span style={{ fontSize: 13 }}>{fd.hint || "Enabled"}</span>
+              </div>
+            ) : fd.type === "json" ? (
+              <input
+                type="text"
+                placeholder="Comma separated values"
+                value={Array.isArray(form[fd.key]) ? form[fd.key].join(", ") : (form[fd.key] || "")}
+                onChange={(e) => set(fd.key, e.target.value)}
+              />
+            ) : (
+              <input type="text" value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)} />
+            )}
+            {fd.hint && fd.type !== "checkbox" && <div className="hint">{fd.hint}</div>}
+          </div>
+        ))}
+        <div className="form-actions full">
+          <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+        </div>
+      </form>
     </div>
   );
 }
@@ -459,59 +465,7 @@ function PropertiesManager() {
 
   return (
     <>
-      <div className="app-card">
-        <div className="app-card-head">
-          <div>
-            <h2>Properties</h2>
-            <p className="app-card-sub">{items?.length ?? 0} records — created properties appear on the public site</p>
-          </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <input className="app-search" placeholder="Search title, slug, developer…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
-            <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ New property</button>
-          </div>
-        </div>
-        {items === null ? (
-          <p className="app-empty">Loading…</p>
-        ) : items.length === 0 ? (
-          <p className="app-empty">No properties yet. Create your first one.</p>
-        ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table className="app-table">
-              <thead>
-                <tr><th>Title</th><th>Type</th><th>Price</th><th>Beds</th><th>Media</th><th>Status</th><th></th></tr>
-              </thead>
-              <tbody>
-                {items.map((row) => (
-                  <tr key={row.id}>
-                    <td>
-                      <strong>{row.title}</strong>
-                      <div style={{ fontSize: 12, color: "#9399a4" }}>/{row.transaction_type}/{row.slug}{row.id}/</div>
-                    </td>
-                    <td>{row.property_type}</td>
-                    <td>{"AED " + Number(row.price).toLocaleString()}</td>
-                    <td>{row.bedroom} bd / {row.bathroom} ba</td>
-                    <td>{row.image_count} img · {row.amenity_count} am.</td>
-                    <td>
-                      <span className={"app-badge " + (Number(row.published) ? "active" : "inactive")}>
-                        {Number(row.published) ? "published" : "draft"}
-                      </span>
-                      {Number(row.featured) === 1 && <span className="app-badge" style={{ background: "#fff3e0", color: "#b26a00", marginLeft: 4 }}>featured</span>}
-                    </td>
-                    <td>
-                      <div className="row-actions">
-                        <a className="app-btn ghost sm" href={`/${row.transaction_type}/${row.slug}${row.id}/`} target="_blank">View</a>
-                        <button type="button" className="app-btn ghost sm" onClick={() => openEdit(row)}>Edit</button>
-                        <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-      {(creating || editing) && (
+      {creating || editing ? (
         <PropertyForm
           key={editing?.id ?? "new"}
           initial={editing}
@@ -520,6 +474,59 @@ function PropertiesManager() {
           onDone={(msg) => { showToast(msg); setCreating(false); setEditing(null); load(q); }}
           setBusy={setBusy}
         />
+      ) : (
+        <div className="app-card">
+          <div className="app-card-head">
+            <div>
+              <h2>Properties</h2>
+              <p className="app-card-sub">{items?.length ?? 0} records — created properties appear on the public site</p>
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <input className="app-search" placeholder="Search title, slug, developer…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
+              <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ New property</button>
+            </div>
+          </div>
+          {items === null ? (
+            <p className="app-empty">Loading…</p>
+          ) : items.length === 0 ? (
+            <p className="app-empty">No properties yet. Create your first one.</p>
+          ) : (
+            <div style={{ overflowX: "auto" }}>
+              <table className="app-table">
+                <thead>
+                  <tr><th>Title</th><th>Type</th><th>Price</th><th>Beds</th><th>Media</th><th>Status</th><th></th></tr>
+                </thead>
+                <tbody>
+                  {items.map((row) => (
+                    <tr key={row.id}>
+                      <td>
+                        <strong>{row.title}</strong>
+                        <div style={{ fontSize: 12, color: "#9399a4" }}>/{row.transaction_type}/{row.slug}{row.id}/</div>
+                      </td>
+                      <td>{row.property_type}</td>
+                      <td>{"AED " + Number(row.price).toLocaleString()}</td>
+                      <td>{row.bedroom} bd / {row.bathroom} ba</td>
+                      <td>{row.image_count} img · {row.amenity_count} am.</td>
+                      <td>
+                        <span className={"app-badge " + (Number(row.published) ? "active" : "inactive")}>
+                          {Number(row.published) ? "published" : "draft"}
+                        </span>
+                        {Number(row.featured) === 1 && <span className="app-badge" style={{ background: "#fff3e0", color: "#b26a00", marginLeft: 4 }}>featured</span>}
+                      </td>
+                      <td>
+                        <div className="row-actions">
+                          <a className="app-btn ghost sm" href={`/${row.transaction_type}/${row.slug}${row.id}/`} target="_blank">View</a>
+                          <button type="button" className="app-btn ghost sm" onClick={() => openEdit(row)}>Edit</button>
+                          <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       )}
       {toast && <div className="app-toast">{toast}</div>}
     </>
@@ -546,9 +553,9 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
   const [amenityList, setAmenityList] = useState<string[]>([]);
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>(initial?.amenities || []);
   const [newAmenity, setNewAmenity] = useState("");
-  const [uploading, setUploading] = useState(false);
-  const [uploadTarget, setUploadTarget] = useState<number | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState<{ done: number; total: number } | null>(null);
+  const imageRef = useRef<HTMLInputElement>(null);
+  const videoRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch("/api/admin/amenities")
@@ -572,33 +579,37 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
     setNewAmenity("");
   }
 
-  function pickFile(index: number) {
-    setUploadTarget(index);
-    fileRef.current?.click();
+  async function uploadFiles(e: React.ChangeEvent<HTMLInputElement>, kind: string) {
+    const files = Array.from(e.target.files || []);
+    e.target.value = "";
+    if (!files.length) return;
+    setUploading({ done: 0, total: files.length });
+    for (const file of files) {
+      try {
+        const fd = new FormData();
+        fd.append("file", file);
+        const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+        const d = await res.json().catch(() => ({}));
+        if (res.ok && d.url) {
+          setMedia((ms) => [...ms, { kind, url: String(d.url) }]);
+        } else {
+          alert(d.error || "Upload failed");
+        }
+      } catch {
+        alert("Upload failed");
+      }
+      setUploading((u) => (u ? { done: u.done + 1, total: u.total } : u));
+    }
+    setUploading(null);
   }
 
-  async function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file || uploadTarget == null) return;
-    setUploading(true);
+  function mediaFileName(url: string): string {
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        alert(d.error || "Upload failed");
-        return;
-      }
-      setMedia((ms) =>
-        ms.map((m, j) => (j === uploadTarget ? { ...m, url: String(d.url || "") } : m))
-      );
+      const clean = url.split("?")[0].split("#")[0];
+      const name = decodeURIComponent(clean.split("/").pop() || "");
+      return name || url;
     } catch {
-      alert("Upload failed");
-    } finally {
-      setUploading(false);
-      setUploadTarget(null);
+      return url;
     }
   }
 
@@ -628,10 +639,15 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
   }
 
   return (
-    <div className="app-modal-backdrop" onClick={onCancel}>
-      <div className="app-modal wide" onClick={(e) => e.stopPropagation()}>
-        <h3>{initial ? "Edit property" : "New property"}</h3>
-        <form className="app-form-grid" onSubmit={submit}>
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>{initial ? "Edit property" : "New property"}</h2>
+          <p className="app-card-sub">{initial ? "Update the property details below." : "Fill in the details to publish a new property."}</p>
+        </div>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Properties</button>
+      </div>
+      <form className="app-form-grid" onSubmit={submit}>
           <div className="full" style={{ borderBottom: "1px solid #f0f3f8", paddingBottom: 12 }}>
             <strong style={{ color: "#142121", fontSize: 14 }}>General information</strong>
           </div>
@@ -663,7 +679,16 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
             <strong style={{ color: "#142121", fontSize: 14 }}>Media</strong>
           </div>
           {media.map((m, i) => (
-            <div className="full" style={{ display: "flex", gap: 10 }} key={i}>
+            <div className="full" style={{ display: "flex", gap: 10, alignItems: "center" }} key={i}>
+              {m.kind === "image" && m.url ? (
+                <img
+                  src={m.url}
+                  alt=""
+                  style={{ border: "1px solid #e1e8ed", borderRadius: 4, height: 40, objectFit: "cover", width: 56 }}
+                />
+              ) : (
+                <span style={{ color: "#9399a4", flex: "0 0 56px", fontSize: 10, letterSpacing: "0.5px", textAlign: "center" }}>VIDEO</span>
+              )}
               <select
                 style={{ flex: "0 0 130px", border: "1px solid #e1e8ed", borderRadius: 6, padding: "8px" }}
                 value={m.kind}
@@ -671,44 +696,38 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
               >
                 {["image", "video", "floorplan", "brochure"].map((k) => <option key={k} value={k}>{k}</option>)}
               </select>
-              <input
-                type="text"
-                style={{ flex: 1, border: "1px solid #e1e8ed", borderRadius: 6, padding: "8px" }}
-                placeholder="https://… image or video URL"
-                value={m.url}
-                onChange={(e) => setMedia(media.map((x, j) => (j === i ? { ...x, url: e.target.value } : x)))}
-              />
-              <button
-                type="button"
-                className="app-btn ghost sm"
-                style={{ flex: "0 0 auto" }}
-                disabled={uploading}
-                onClick={() => pickFile(i)}
-              >
-                {uploading && uploadTarget === i ? "Uploading…" : "Upload from device"}
-              </button>
+              <span style={{ color: "#35373c", flex: 1, fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={m.url}>
+                {mediaFileName(m.url)}
+              </span>
               <button type="button" className="app-btn danger sm" onClick={() => setMedia(media.filter((_, j) => j !== i))}>×</button>
             </div>
           ))}
-          <div className="full" style={{ display: "flex", gap: 8 }}>
+          <div className="full" style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <input
-              ref={fileRef}
+              ref={imageRef}
               type="file"
               accept="image/*"
+              multiple
               style={{ display: "none" }}
-              onChange={uploadFile}
+              onChange={(e) => uploadFiles(e, "image")}
             />
-            <button type="button" className="app-btn ghost sm" onClick={() => setMedia([...media, { kind: "image", url: "" }])}>
-              + Add image / video
+            <input
+              ref={videoRef}
+              type="file"
+              accept="video/*"
+              multiple
+              style={{ display: "none" }}
+              onChange={(e) => uploadFiles(e, "video")}
+            />
+            <button type="button" className="app-btn sm" disabled={!!uploading} onClick={() => imageRef.current?.click()}>
+              + Add images
             </button>
-            <button
-              type="button"
-              className="app-btn sm"
-              disabled={uploading}
-              onClick={() => { setMedia((ms) => [...ms, { kind: "image", url: "" }]); pickFile(media.length); }}
-            >
-              {uploading ? "Uploading…" : "+ Upload image from device"}
+            <button type="button" className="app-btn ghost sm" disabled={!!uploading} onClick={() => videoRef.current?.click()}>
+              + Add video
             </button>
+            {uploading && (
+              <span className="hint">Uploading {uploading.done + 1}/{uploading.total}…</span>
+            )}
           </div>
 
           <div className="full" style={{ borderBottom: "1px solid #f0f3f8", paddingBottom: 12 }}>
@@ -738,12 +757,11 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
             )}
           </div>
 
-          <div className="modal-actions full">
+          <div className="form-actions full">
             <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
             <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save property"}</button>
           </div>
         </form>
-      </div>
     </div>
   );
 }
@@ -802,56 +820,57 @@ function UsersManager() {
 
   return (
     <>
-      <div className="app-card">
-        <div className="app-card-head">
-          <div>
-            <h2>Users</h2>
-            <p className="app-card-sub">{items?.length ?? 0} accounts</p>
-          </div>
-          <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add user</button>
-        </div>
-        {items === null ? (
-          <p className="app-empty">Loading…</p>
-        ) : items.length === 0 ? (
-          <p className="app-empty">No users.</p>
-        ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table className="app-table">
-              <thead><tr><th>User</th><th>Role</th><th>Status</th><th>Last login</th><th></th></tr></thead>
-              <tbody>
-                {items.map((row) => (
-                  <tr key={row.id}>
-                    <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
-                    <td><span className="app-badge" style={{ background: row.role === "admin" ? "#e3f2fd" : "#f0f3f8", color: "#075985" }}>{row.role}</span></td>
-                    <td><span className={"app-badge " + (Number(row.is_active) ? "active" : "inactive")}>{Number(row.is_active) ? "active" : "disabled"}</span></td>
-                    <td>{row.last_login_at ? fmtDate(row.last_login_at) : "—"}</td>
-                    <td>
-                      <div className="row-actions">
-                        <button type="button" className="app-btn ghost sm" onClick={() => setEditing(row)}>Edit</button>
-                        <button type="button" className="app-btn ghost sm" onClick={() => toggleActive(row)}>{Number(row.is_active) ? "Disable" : "Enable"}</button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-      {(creating || editing) && (
-        <UserModal
+      {creating || editing ? (
+        <UserForm
           user={editing}
           busy={busy}
           onCancel={() => { setCreating(false); setEditing(null); }}
           onSave={(f) => save(f, editing?.id)}
         />
+      ) : (
+        <div className="app-card">
+          <div className="app-card-head">
+            <div>
+              <h2>Users</h2>
+              <p className="app-card-sub">{items?.length ?? 0} accounts</p>
+            </div>
+            <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add user</button>
+          </div>
+          {items === null ? (
+            <p className="app-empty">Loading…</p>
+          ) : items.length === 0 ? (
+            <p className="app-empty">No users.</p>
+          ) : (
+            <div style={{ overflowX: "auto" }}>
+              <table className="app-table">
+                <thead><tr><th>User</th><th>Role</th><th>Status</th><th>Last login</th><th></th></tr></thead>
+                <tbody>
+                  {items.map((row) => (
+                    <tr key={row.id}>
+                      <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
+                      <td><span className="app-badge" style={{ background: row.role === "admin" ? "#e3f2fd" : "#f0f3f8", color: "#075985" }}>{row.role}</span></td>
+                      <td><span className={"app-badge " + (Number(row.is_active) ? "active" : "inactive")}>{Number(row.is_active) ? "active" : "disabled"}</span></td>
+                      <td>{row.last_login_at ? fmtDate(row.last_login_at) : "—"}</td>
+                      <td>
+                        <div className="row-actions">
+                          <button type="button" className="app-btn ghost sm" onClick={() => setEditing(row)}>Edit</button>
+                          <button type="button" className="app-btn ghost sm" onClick={() => toggleActive(row)}>{Number(row.is_active) ? "Disable" : "Enable"}</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       )}
       {toast && <div className="app-toast">{toast}</div>}
     </>
   );
 }
 
-function UserModal({ user, busy, onCancel, onSave }: { user: any | null; busy: boolean; onCancel: () => void; onSave: (f: any) => void }) {
+function UserForm({ user, busy, onCancel, onSave }: { user: any | null; busy: boolean; onCancel: () => void; onSave: (f: any) => void }) {
   const [form, setForm] = useState({
     name: user?.name || "",
     email: user?.email || "",
@@ -861,37 +880,40 @@ function UserModal({ user, busy, onCancel, onSave }: { user: any | null; busy: b
     password: "",
   });
   return (
-    <div className="app-modal-backdrop" onClick={onCancel}>
-      <div className="app-modal" onClick={(e) => e.stopPropagation()}>
-        <h3>{user ? "Edit user" : "Add user"}</h3>
-        <form className="app-form-grid" onSubmit={(e) => { e.preventDefault(); onSave(form); }}>
-          <div className="app-field"><label>Full name</label><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required /></div>
-          <div className="app-field"><label>Email</label><input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></div>
-          <div className="app-field"><label>Phone</label><input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
-          <div className="app-field">
-            <label>Role</label>
-            <select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
-              <option value="user">user</option>
-              <option value="agent">agent</option>
-              <option value="admin">admin</option>
-            </select>
-          </div>
-          <div className="app-field full">
-            <label>{user ? "New password (leave blank to keep)" : "Password"}</label>
-            <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} placeholder={user ? "" : "Min 8 chars, letters + numbers"} required={!user} />
-          </div>
-          <div className="app-field full">
-            <div className="app-check-row">
-              <input type="checkbox" checked={form.is_active} onChange={(e) => setForm({ ...form, is_active: e.target.checked })} />
-              <span style={{ fontSize: 13 }}>Account active</span>
-            </div>
-          </div>
-          <div className="modal-actions full">
-            <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
-            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
-          </div>
-        </form>
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>{user ? "Edit user" : "Add user"}</h2>
+        </div>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Users</button>
       </div>
+      <form className="app-form-grid" onSubmit={(e) => { e.preventDefault(); onSave(form); }}>
+        <div className="app-field"><label>Full name</label><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required /></div>
+        <div className="app-field"><label>Email</label><input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></div>
+        <div className="app-field"><label>Phone</label><input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
+        <div className="app-field">
+          <label>Role</label>
+          <select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
+            <option value="user">user</option>
+            <option value="agent">agent</option>
+            <option value="admin">admin</option>
+          </select>
+        </div>
+        <div className="app-field full">
+          <label>{user ? "New password (leave blank to keep)" : "Password"}</label>
+          <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} placeholder={user ? "" : "Min 8 chars, letters + numbers"} required={!user} />
+        </div>
+        <div className="app-field full">
+          <div className="app-check-row">
+            <input type="checkbox" checked={form.is_active} onChange={(e) => setForm({ ...form, is_active: e.target.checked })} />
+            <span style={{ fontSize: 13 }}>Account active</span>
+          </div>
+        </div>
+        <div className="form-actions full">
+          <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+        </div>
+      </form>
     </div>
   );
 }
@@ -1023,6 +1045,8 @@ function ViewingsManager() {
 function CategoriesManager() {
   const [items, setItems] = useState<any[] | null>(null);
   const [toast, setToast] = useState("");
+  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState<any | null>(null);
   const load = useCallback(() => {
     fetch("/api/admin/categories")
       .then((r) => r.json())
@@ -1030,10 +1054,7 @@ function CategoriesManager() {
       .catch(() => setItems([]));
   }, []);
   useEffect(load, [load]);
-  async function save(row: any) {
-    const name = prompt("Category name", row?.name || "");
-    if (!name) return;
-    const body = { name, slug: row?.slug || "", type: row?.type || "", sort: row?.sort || 0 };
+  async function save(row: any, body: any) {
     await fetch("/api/admin/categories" + (row?.id ? `?id=${row.id}` : ""), {
       method: row?.id ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
@@ -1041,6 +1062,8 @@ function CategoriesManager() {
     });
     setToast(row?.id ? "Updated" : "Created");
     setTimeout(() => setToast(""), 2000);
+    setCreating(false);
+    setEditing(null);
     load();
   }
   async function remove(row: any) {
@@ -1049,37 +1072,92 @@ function CategoriesManager() {
     load();
   }
   return (
-    <div className="app-card">
-      <div className="app-card-head">
-        <div><h2>Categories</h2><p className="app-card-sub">{items?.length ?? 0} entries</p></div>
-        <button type="button" className="app-btn" onClick={() => save(null)}>+ Add</button>
-      </div>
-      {items === null ? (
-        <p className="app-empty">Loading…</p>
-      ) : items.length === 0 ? (
-        <p className="app-empty">No categories.</p>
+    <>
+      {creating || editing ? (
+        <CategoryForm
+          row={editing}
+          onCancel={() => { setCreating(false); setEditing(null); }}
+          onSave={save}
+        />
       ) : (
-        <table className="app-table">
-          <thead><tr><th>Name</th><th>Slug</th><th>Type</th><th>Sort</th><th></th></tr></thead>
-          <tbody>
-            {items.map((row) => (
-              <tr key={row.id}>
-                <td><strong>{row.name}</strong></td>
-                <td>{row.slug}</td>
-                <td>{row.type}</td>
-                <td>{row.sort}</td>
-                <td>
-                  <div className="row-actions">
-                    <button type="button" className="app-btn ghost sm" onClick={() => save(row)}>Edit</button>
-                    <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="app-card">
+          <div className="app-card-head">
+            <div><h2>Categories</h2><p className="app-card-sub">{items?.length ?? 0} entries</p></div>
+            <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add</button>
+          </div>
+          {items === null ? (
+            <p className="app-empty">Loading…</p>
+          ) : items.length === 0 ? (
+            <p className="app-empty">No categories.</p>
+          ) : (
+            <table className="app-table">
+              <thead><tr><th>Name</th><th>Slug</th><th>Type</th><th>Sort</th><th></th></tr></thead>
+              <tbody>
+                {items.map((row) => (
+                  <tr key={row.id}>
+                    <td><strong>{row.name}</strong></td>
+                    <td>{row.slug}</td>
+                    <td>{row.type}</td>
+                    <td>{row.sort}</td>
+                    <td>
+                      <div className="row-actions">
+                        <button type="button" className="app-btn ghost sm" onClick={() => setEditing(row)}>Edit</button>
+                        <button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       )}
       {toast && <div className="app-toast">{toast}</div>}
+    </>
+  );
+}
+
+function CategoryForm({ row, onCancel, onSave }: { row: any | null; onCancel: () => void; onSave: (row: any | null, body: any) => void }) {
+  const [name, setName] = useState(row?.name || "");
+  const [slug, setSlug] = useState(row?.slug || "");
+  const [type, setType] = useState(row?.type || "");
+  const [sort, setSort] = useState(row?.sort || 0);
+  return (
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>{row ? "Edit category" : "Add category"}</h2>
+        </div>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Categories</button>
+      </div>
+      <form
+        className="app-form-grid"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave(row, { name: name.trim(), slug: slug.trim(), type: type.trim(), sort: Number(sort) || 0 });
+        }}
+      >
+        <div className="app-field full">
+          <label>Name</label>
+          <input value={name} onChange={(e) => setName(e.target.value)} required />
+        </div>
+        <div className="app-field">
+          <label>Slug</label>
+          <input value={slug} onChange={(e) => setSlug(e.target.value)} />
+        </div>
+        <div className="app-field">
+          <label>Type</label>
+          <input value={type} onChange={(e) => setType(e.target.value)} />
+        </div>
+        <div className="app-field">
+          <label>Sort order</label>
+          <input type="number" value={sort} onChange={(e) => setSort(e.target.value)} />
+        </div>
+        <div className="form-actions full">
+          <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="app-btn">Save</button>
+        </div>
+      </form>
     </div>
   );
 }
@@ -1189,4 +1267,8 @@ function fmtDate(s: string): string {
   const d = new Date(s);
   if (isNaN(d.getTime())) return "";
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function singular(title: string): string {
+  return title.replace(/ies$/, "y").replace(/s$/, "");
 }

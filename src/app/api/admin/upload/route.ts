@@ -13,8 +13,8 @@ export async function POST(req: Request) {
   if (!(file instanceof File) || file.size === 0) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
-  if (!file.type.startsWith("image/")) {
-    return NextResponse.json({ error: "Only image files are allowed" }, { status: 400 });
+  if (!file.type.startsWith("image/") && !file.type.startsWith("video/")) {
+    return NextResponse.json({ error: "Only image or video files are allowed" }, { status: 400 });
   }
 
   const safe = file.name.toLowerCase().replace(/[^a-z0-9.\-_]+/g, "-");

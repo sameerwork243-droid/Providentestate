@@ -44,11 +44,17 @@
 .shell-brand a {
   align-items: center;
   display: inline-flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .shell-brand img {
-  height: 42px;
-  width: auto;
+  display: block;
+  height: auto;
+  max-height: 42px;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
 }
 
 .shell-nav {

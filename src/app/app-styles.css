@@ -386,6 +386,25 @@
   margin-top: 24px;
 }
 
+/* ===== Inline form pages (create/edit screens in the content area) ===== */
+.app-card .form-actions {
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.app-card .form-page-back {
+  color: #005480;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  padding: 0;
+}
+
 /* ===== Toast ===== */
 .app-toast {
   background: #323232;
