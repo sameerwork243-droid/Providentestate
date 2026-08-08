@@ -1,6 +1,7 @@
 import { Rich, stripHtml } from "./rich";
 import { cft, areaLabel, communities } from "@/lib/store";
 import { Questionnaire } from "./modules";
+import { CountryFlag } from "./phone-flag";
 
 export function ProjectPages({ data, route, hub = false }: { data: any; route: string; hub?: boolean }) {
   const hits = (data?.hits || []).filter((h: any) => h && h.slug);
@@ -318,7 +319,7 @@ function ProjectDetail({ hit, route }: { hit: any; route: string }) {
                 <span>Register Interest</span>
               </a>
               <a className="button button-white" href={`tel:${"+971 50 539 0249".replace(/\s/g, "")}`}>
-                <span>Call Us</span>
+                <span><CountryFlag /> Call Us</span>
               </a>
             </div>
           </div>

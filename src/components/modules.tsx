@@ -4,6 +4,7 @@ import { Rich, ctaHref, stripHtml } from "./rich";
 import { FaqList } from "./faq";
 import { ServiceImage } from "./service-image";
 import { PartnerImage } from "./partner-image";
+import { CountryFlag } from "./phone-flag";
 import {
   communities,
   featuredIds,
@@ -608,7 +609,7 @@ function ContactModule({ m }: { m: any }) {
               <span>Contact Us</span>
             </a>
             <a className="button button-white-outline" href="tel:+971 50 539 0249">
-              <span>+971 50 539 0249</span>
+              <span><CountryFlag /> +971 50 539 0249</span>
             </a>
           </div>
         </div>
@@ -704,6 +705,7 @@ function OfficeLocation({ m }: { m: any }) {
                   <p className="address">{o.address}</p>
                   {o.phone && (
                     <p className="phone">
+                      <CountryFlag />{" "}
                       <a href={`tel:${o.phone.replace(/\s/g, "")}`}>{o.phone}</a>
                     </p>
                   )}
@@ -793,7 +795,7 @@ function FormModule({ m }: { m: any }) {
               <div className="cta-content phone-content">
                 <p className="cta-label">Phone</p>
                 <a className="cta-value" href="tel:+971 50 539 0249">
-                  +971 50 539 0249
+                  <CountryFlag /> +971 50 539 0249
                 </a>
               </div>
             </div>

@@ -7,6 +7,7 @@ import { AreaGuidesListing } from "./area-guides-listing";
 import { BlogListing } from "./blog-listing";
 import { DeveloperListing } from "./developer-listing";
 import { cfw, cft, blogPosts, projectsByArea, projectBySlug, areaGuidesData, developersList } from "@/lib/store";
+import { CountryFlag } from "./phone-flag";
 
 const QUICK_LINKS = [
   { label: "Buy", href: "/buy/properties-for-sale/" },
@@ -384,6 +385,7 @@ function TeamDetail({ t, route }: { t: any; route: string }) {
             <div className="cta-section agent-cta-section">
               {phone && (
                 <a className="property-cta" href={`tel:${phone}`}>
+                  <CountryFlag />
                   <span>Call</span>
                 </a>
               )}

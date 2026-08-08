@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PortalShell, type PortalNavSection, type PortalUser } from "@/components/portal/portal-shell";
+import { COUNTRIES, CountryFlag } from "@/components/phone-flag";
 
 type User = PortalUser;
 
@@ -67,7 +68,7 @@ export function AdminApp({ user }: { user: User }) {
       {tab === "testimonials" && <ResourceManager endpoint="testimonials" title="Testimonials" fields={TESTIMONIAL_FIELDS} columns={testimonialColumns} />}
       {tab === "faqs" && <ResourceManager endpoint="faqs" title="FAQs" fields={FAQ_FIELDS} columns={faqColumns} />}
       {tab === "media" && <ResourceManager endpoint="media" title="Media Library" fields={MEDIA_FIELDS} columns={mediaColumns} />}
-      {tab === "contact" && <KVManager endpoint="contact" title="Contact Information" defaults={CONTACT_KEYS} />}
+      {tab === "contact" && <KVManager endpoint="contact" title="Contact Information" defaults={CONTACT_KEYS} selects={{ country: true }} />}
       {tab === "homepage" && <KVManager endpoint="homepage" title="Homepage Content" defaults={HOMEPAGE_KEYS} />}
     </PortalShell>
   );
@@ -410,7 +411,7 @@ const MEDIA_FIELDS: FieldDef[] = [
   { key: "alt", label: "Alt text", full: true },
 ];
 
-const CONTACT_KEYS = ["phone", "email", "whatsapp", "address", "office_hours"];
+const CONTACT_KEYS = ["country", "phone", "email", "whatsapp", "address", "office_hours"];
 const HOMEPAGE_KEYS = ["hero_title", "hero_subtitle", "announcement_bar", "stats_heading", "featured_heading"];
 
 function coerceJsonFields(form: Record<string, any>, fields: FieldDef[]): Record<string, any> {
@@ -847,7 +848,7 @@ function UsersManager() {
                 <tbody>
                   {items.map((row) => (
                     <tr key={row.id}>
-                      <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
+                      <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}{row.phone ? " " : ""}{row.phone ? <CountryFlag /> : null}</div></td>
                       <td><span className="app-badge" style={{ background: row.role === "admin" ? "#e3f2fd" : "#f0f3f8", color: "#075985" }}>{row.role}</span></td>
                       <td><span className={"app-badge " + (Number(row.is_active) ? "active" : "inactive")}>{Number(row.is_active) ? "active" : "disabled"}</span></td>
                       <td>{row.last_login_at ? fmtDate(row.last_login_at) : "—"}</td>
@@ -1162,7 +1163,7 @@ function CategoryForm({ row, onCancel, onSave }: { row: any | null; onCancel: ()
   );
 }
 
-function KVManager({ endpoint, title, defaults }: { endpoint: string; title: string; defaults: string[] }) {
+function KVManager({ endpoint, title, defaults, selects }: { endpoint: string; title: string; defaults: string[]; selects?: Record<string, boolean> }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [toast, setToast] = useState("");
   const [busy, setBusy] = useState(false);
@@ -1198,7 +1199,21 @@ function KVManager({ endpoint, title, defaults }: { endpoint: string; title: str
         {Object.entries(values).map(([key, value]) => (
           <div className="app-field" key={key}>
             <label>{key.replace(/_/g, " ")}</label>
-            <input value={value} onChange={(e) => setValues({ ...values, [key]: e.target.value })} />
+            {selects?.[key] ? (
+              <select value={value} onChange={(e) => setValues({ ...values, [key]: e.target.value })}>
+                <option value="">Select country</option>
+                {COUNTRIES.map((c) => (
+                  <option key={c.code} value={c.code}>{c.flag} {c.name} ({c.dial})</option>
+                ))}
+              </select>
+            ) : key === "phone" && values.country ? (
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <CountryFlag code={values.country} />
+                <input value={value} onChange={(e) => setValues({ ...values, [key]: e.target.value })} />
+              </div>
+            ) : (
+              <input value={value} onChange={(e) => setValues({ ...values, [key]: e.target.value })} />
+            )}
           </div>
         ))}
         <div className="full">

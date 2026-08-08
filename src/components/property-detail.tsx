@@ -3,6 +3,7 @@ import { Rich, stripHtml } from "./rich";
 import { PropertyCard } from "./property-card";
 import { SaveButton } from "./save-button";
 import { PropertyGallery } from "./property-gallery";
+import { CountryFlag } from "./phone-flag";
 
 // Helper to determine if property is signature
 function isSignatureProperty(p: any): boolean {
@@ -118,7 +119,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                     <div className="info-section">
                       <p className="bedrooms">
                         <svg width="16" height="16" className="bed-icon" viewBox="0 0 16 16" fill="none">
-                          <path d="M1.714 10.857c.631 0 1.143-.767 1.143-1.714s-.512-1.714-1.143-1.714S.57 7.196.57 8.143s.513 1.714 1.143 1.714ZM5.143 5.714c.631 0 1.143-.767 1.143-1.714S5.774 2.286 5.143 2.286 4 3.053 4 4s.512 1.714 1.143 1.714ZM10.857 5.714C11.488 5.714 12 4.947 12 4s-.512-1.714-1.143-1.714S9.714 3.053 9.714 4s.512 1.714 1.143 1.714ZM14.286 10.857c.63 0 1.143-.767 1.143-1.714s-.512-1.714-1.143-1.714-1.143.767-1.143 1.714.512 1.714 1.143 1.714ZM11.429 11.429c0 1.577-1.852 2.285-3.429 2.285-1.577 0-3.429-.708-3.429-2.285 0-1.578 1.143-4 3.429-4 2.286 0 3.429 2.422 3.429 4Z" fill="#07234B" />
+                          <path d="M14.6666 12.6667V10.6667M14.6666 10.6667V8C14.6666 6.52724 13.4727 5.33333 12 5.33333H7.99998V10.6667M14.6666 10.6667H7.99998M7.99998 10.6667H1.33331M1.33331 10.6667V4M1.33331 10.6667V12.6667M5.99999 7.33333C5.99999 8.06973 5.40303 8.66667 4.66665 8.66667C3.93027 8.66667 3.33332 8.06973 3.33332 7.33333C3.33332 6.59695 3.93027 6 4.66665 6C5.40303 6 5.99999 6.59695 5.99999 7.33333Z" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>
                           {p.bedroom} Bed{p.bedroom !== 1 ? "s" : ""}
@@ -126,7 +127,8 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                       </p>
                       <p className="bathrooms">
                         <svg width="16" height="16" className="bath-icon" viewBox="0 0 16 16" fill="none">
-                          <path d="M5.5 14v-3.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75V14m0 0h3V2.364M8.5 14h5V7.167M1.5 14h1m12 0h-12m-1-8 3-1.09m8-2.91-1 .364m0 4.136 2 .667m1 .333-1-.333m-9-2.258V2h-2v12m2-9.09 7-2.546" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M8 3.33333C10.2091 3.33333 12 5.12419 12 7.33333V8H4V7.33333C4 5.12419 5.79086 3.33333 8 3.33333ZM8 3.33333V2" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M4 10.3335H4.00999M4 13.3335H4.00999M7.99501 10.3335H8.00499M7.99501 13.3335H8.00499M11.99 10.3335H12M11.99 13.3335H12" stroke="#35373C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>
                           {p.bathroom} Bath{p.bathroom !== 1 ? "s" : ""}
@@ -135,7 +137,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                       {size != null && (
                         <p className="size">
                           <svg width="16" height="16" className="arrow-4-icon" viewBox="0 0 16 16" fill="none">
-                            <path d="M6 3h7v7M3 6H2v7h7v-1M6 6h7M3 3l10 10" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M2.5 2.5V5.5M2.5 2.5H5.5M2.5 2.5L6 6M2.5 13.5V10.5M2.5 13.5H5.5M2.5 13.5L6 10M13.5 2.5L10.5 2.5M13.5 2.5V5.5M13.5 2.5L10 6M13.5 13.5H10.5M13.5 13.5V10.5M13.5 13.5L10 10" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                           <span>{Number(size).toLocaleString()} sq ft</span>
                         </p>
@@ -224,6 +226,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                     <div className="border-side">
                       <div className="top-section">
                         <a href={`tel:${phone.replace(/\s/g, "")}`} className="button button-orange">
+                          <CountryFlag />
                           <svg width="16" height="16" className="phone-icon" viewBox="0 0 16 16" fill="none">
                             <path d="M14.5 11.3v2a1.34 1.34 0 0 1-1.47 1.34 13.2 13.2 0 0 1-5.74-2 13.2 13.2 0 0 1-4-4A13.2 13.2 0 0 1 1.3 2.97 1.34 1.34 0 0 1 2.63 1.5h2a1.34 1.34 0 0 1 1.34 1.14c.07.66.27 1.3.47 1.87a1.34 1.34 0 0 1-.33 1.4l-.87.87a10.7 10.7 0 0 0 4 4l.87-.87a1.34 1.34 0 0 1 1.4-.33c.57.2 1.21.4 1.87.47.62.06 1.1.6 1.1 1.25Z" stroke="#EE7133" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>

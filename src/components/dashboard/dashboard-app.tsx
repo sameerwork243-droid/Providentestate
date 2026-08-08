@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { PortalShell, PortalIcon, type PortalNavSection, type PortalUser } from "@/components/portal/portal-shell";
+import { COUNTRIES } from "@/components/phone-flag";
 
 type User = PortalUser;
 
@@ -573,26 +574,7 @@ function ProfileTab({ user }: { user: User }) {
     setPasswordStrength(Math.min(5, strength));
   };
 
-  const countries = [
-    { code: "AE", name: "United Arab Emirates", dial: "+971", flag: "🇦🇪" },
-    { code: "GB", name: "United Kingdom", dial: "+44", flag: "🇬🇧" },
-    { code: "US", name: "United States", dial: "+1", flag: "🇺🇸" },
-    { code: "IN", name: "India", dial: "+91", flag: "🇮🇳" },
-    { code: "PK", name: "Pakistan", dial: "+92", flag: "🇵🇰" },
-    { code: "SA", name: "Saudi Arabia", dial: "+966", flag: "🇸🇦" },
-    { code: "EG", name: "Egypt", dial: "+20", flag: "🇪🇬" },
-    { code: "PH", name: "Philippines", dial: "+63", flag: "🇵🇭" },
-    { code: "BD", name: "Bangladesh", dial: "+880", flag: "🇧🇩" },
-    { code: "LK", name: "Sri Lanka", dial: "+94", flag: "🇱🇰" },
-    { code: "JO", name: "Jordan", dial: "+962", flag: "🇯🇴" },
-    { code: "LB", name: "Lebanon", dial: "+961", flag: "🇱🇧" },
-    { code: "IQ", name: "Iraq", dial: "+964", flag: "🇮🇶" },
-    { code: "IR", name: "Iran", dial: "+98", flag: "🇮🇷" },
-    { code: "OM", name: "Oman", dial: "+968", flag: "🇴🇲" },
-    { code: "QA", name: "Qatar", dial: "+974", flag: "🇶🇦" },
-    { code: "KW", name: "Kuwait", dial: "+965", flag: "🇰🇼" },
-    { code: "BH", name: "Bahrain", dial: "+973", flag: "🇧🇭" },
-  ];
+  const countries = COUNTRIES;
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   const phoneNumber = data.user.phone || "";

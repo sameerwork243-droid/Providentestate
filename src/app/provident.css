@@ -359,3 +359,26 @@
   width: 140px;
 }
 
+/* ---- property detail banner: gap above image + align image with price text ---- */
+.property-banner-wrap {
+  margin-top: 32px;
+}
+@media screen and (min-width: 744px) {
+  .property-banner-wrap {
+    margin-top: 56px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .property-banner-wrap {
+    margin-top: 64px;
+  }
+}
+.property-banner-wrap .property-banner {
+  margin-left: 0;
+  margin-right: 0;
+}
+.property-banner-wrap .property-banner .images-section {
+  display: block;
+}
+
+

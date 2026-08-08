@@ -3,6 +3,7 @@ import { Rich } from "./rich";
 import { Questionnaire } from "./modules";
 import { FilterDropdown, TypeSelect, MortgageCalculator } from "./listing-ui";
 import { synthHits, areaLabel, existsRel, teamMembers, projectHits } from "@/lib/store";
+import { CountryFlag } from "./phone-flag";
 
 export function ListingPage({ data, route, page = 1 }: { data: any; route: string; page?: number }) {
   const hits = page <= 1 ? data.hits || [] : synthHits(route, page);
@@ -323,7 +324,7 @@ export function ListingPage({ data, route, page = 1 }: { data: any; route: strin
                     </div>
                     <div className="cta-section">
                       <a className="button button-orange" href={`tel:${String(expert.phone || "").replace(/\s/g, "")}`}>
-                        <span>Call {expert.name.split(" ")[0]}</span>
+                        <span><CountryFlag /> Call {expert.name.split(" ")[0]}</span>
                       </a>
                       <a
                         className="button button-white"
