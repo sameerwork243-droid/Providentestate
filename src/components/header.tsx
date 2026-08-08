@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { WHITE_LOGO, BLUE_LOGO } from "./logo-data";
 import { HeaderAccountButton } from "@/components/account/header-account-button";
-import styles from "./header.module.css";
 
 const CF = "https://d3h330vgpwpjr8.cloudfront.net/x/16x16/";
 
@@ -192,37 +191,31 @@ const MENUS: MenuDef[] = [
   },
   { label: "Blogs", href: "/blog/", columns: [], plain: true },
   {
-    label: "About Us",
+    label: "More",
     columns: [
       {
         heading: "",
         off: false,
         links: [
-          { label: "About Us", href: "/about/" },
+          { label: "About us", href: "/about/" },
           { label: "Meet the Team", href: "/team/" },
+          { label: "Careers", href: "/careers/" },
           { label: "Our Awards", href: "/about/our-awards/" },
+          { label: "Contact Us", href: "/contact/" },
+          { label: "Real Estate Guides", href: "/real-estate-guides/" },
+          { label: "Complaints Procedure", href: "/complaints-procedure/" },
           { label: "Philanthropy", href: "/about/philanthropy/" },
           { label: "Testimonials", href: "/about/reviews/" },
           { label: "Sustainability Initiative", href: "/about/sustainability-initiative/" },
         ],
       },
     ],
-    cta: {
-      title: "Looking for a property?",
-      subtitle: "Discover our signature collection",
-      label: "Explore Now",
-      href: "/buy/properties-for-sale/",
-    },
   },
-  { label: "Careers", href: "/careers/", columns: [], plain: true },
-  { label: "Real Estate Guides", href: "/real-estate-guides/", columns: [], plain: true },
-  { label: "Complaints Procedure", href: "/complaints-procedure/", columns: [], plain: true },
-  { label: "Contact Us", href: "/contact/", columns: [], plain: true },
 ];
 
 function SubMenuLink({ l }: { l: MenuLink }) {
   return (
-    <a className={styles["sub-menu-link"]} href={l.href}>
+    <a className="sub-menu-link" href={l.href}>
       {l.icon && (
         <img
           loading="eager"
@@ -230,7 +223,7 @@ function SubMenuLink({ l }: { l: MenuLink }) {
           src={CF + l.icon}
           srcSet={`${CF + l.icon} 16w`}
           sizes="(min-width: 100px) 16px"
-          alt={l.label}
+          alt="banner-bg - Provident Estate"
         />
       )}
       {l.label}
@@ -241,31 +234,31 @@ function SubMenuLink({ l }: { l: MenuLink }) {
 function MegaMenu({ m }: { m: MenuDef }) {
   if (m.plain)
     return (
-      <div className={`${styles["nav-menu"]} ${styles["nav-menu-list"]}`}>
-        <a className={styles["main-menu"]} href={m.href}>
+      <div className="nav-menu nav-menu-list">
+        <a className="main-menu" href={m.href}>
           <span>{m.label}</span>
         </a>
       </div>
     );
   return (
-    <div className={`${styles["nav-menu"]} ${styles["nav-menu-list"]}`}>
+    <div className="nav-menu nav-menu-list">
       {m.href ? (
-        <a className={styles["main-menu"]} href={m.href}>
+        <a className="main-menu" href={m.href}>
           <span>{m.label}</span>
         </a>
       ) : (
-        <button className={styles["main-menu"]}>
+        <button className="main-menu">
           <span>{m.label}</span>
         </button>
       )}
-      <div className={styles["sub-menu-wrap"]}>
-        <div className={styles["sub-menu-section"]}>
-          <div className={styles["menu-section-only"]}>
+      <div className="sub-menu-wrap">
+        <div className="sub-menu-section">
+          <div className="menu-section-only">
             {m.intro && <p className="h4">{m.intro}</p>}
             {m.columns.map((c, ci) => (
-              <div key={ci} className={`${styles["sub-menu"]} ${c.off !== false ? styles.offplan : ""} ${ci > 0 ? styles.bt : ""}`}>
-                {c.heading && <p className={styles.heading}>{c.heading}</p>}
-                <div className={styles["sub-menu-list"]}>
+              <div key={ci} className={"sub-menu" + (c.off !== false ? " offplan" : "") + (ci > 0 ? " bt" : "")}>
+                {c.heading && <p className="heading">{c.heading}</p>}
+                <div className="sub-menu-list">
                   {c.links.map((l, li) => (
                     <SubMenuLink key={li} l={l} />
                   ))}
@@ -275,9 +268,9 @@ function MegaMenu({ m }: { m: MenuDef }) {
           </div>
           {m.cta && (
             <>
-              <div className={styles.divider}></div>
-              <div className={`${styles["content-cta-section"]} sub-menu offplan`}>
-                <div className={styles["image-bg"]}>
+              <div className="divider"></div>
+              <div className="content-cta-section sub-menu offplan">
+                <div className="image-bg">
                   {m.cta.image && (
                     <img
                       loading="eager"
@@ -286,10 +279,10 @@ function MegaMenu({ m }: { m: MenuDef }) {
                       alt="banner-bg - Provident Estate"
                     />
                   )}
-                  <div className={styles.content}>
-                    <p className={styles.heading}>{m.cta.title}</p>
-                    {m.cta.subtitle && <p className={styles.description}>{m.cta.subtitle}</p>}
-                    <a className={`${styles.button} button-orange`} href={m.cta.href}>
+                  <div className="content">
+                    <p className="heading">{m.cta.title}</p>
+                    {m.cta.subtitle && <p className="description">{m.cta.subtitle}</p>}
+                    <a className="button button-orange" href={m.cta.href}>
                       <span>{m.cta.label}</span>
                     </a>
                   </div>
@@ -307,7 +300,7 @@ const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
 function Logo({ white }: { white?: boolean }) {
   return (
-    <Link href="/" className={`${styles.logo} logo`}>
+    <Link href="/" className="logo">
       <img draggable="false" src={LOGO_PREFIX + (white ? WHITE_LOGO : BLUE_LOGO)} alt="Provident Estate" />
     </Link>
   );
@@ -319,7 +312,6 @@ const WA_LINK =
 export function SiteHeader({ transparent }: { transparent: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [drawer, setDrawer] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 10);
@@ -338,32 +330,15 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
   const t = transparent && !scrolled;
   const btn = t ? "button-white-outline" : "button-white";
 
-  const handleMenuEnter = (label: string) => {
-    setActiveMenu(label);
-  };
-
-  const handleMenuLeave = () => {
-    setActiveMenu(null);
-  };
-
   return (
-    <div className={`${styles["header-wrap"]} ${t ? styles["header-transparent"] : ""}`}>
-      <div className={`${styles.header} container`}>
+    <div className={t ? "header-wrap header-transparent" : "header-wrap"}>
+      <div className="header container">
         <Logo white={t} />
-        <div className={styles["nav-menu-section"]}>
+        <div className="nav-menu-section">
           {MENUS.map((m, i) => (
-            <div
-              key={i}
-              className={`${styles["nav-menu"]} ${activeMenu === m.label ? styles.active : ""}`}
-              onMouseEnter={() => handleMenuEnter(m.label)}
-              onMouseLeave={handleMenuLeave}
-              onFocus={() => handleMenuEnter(m.label)}
-              onBlur={handleMenuLeave}
-            >
-              <MegaMenu m={m} />
-            </div>
+            <MegaMenu key={i} m={m} />
           ))}
-          <div className={`${styles["dev-to"]} d-none d-md-block`}>
+          <div className="dev-to d-none d-md-block">
             <div className="dev-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
@@ -379,17 +354,17 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               </svg>
             </div>
           </div>
-          <div className={`${styles["d-none"]} ${styles["d-xl-flex"]} log-in-btn`}>
+          <div className="d-none d-xl-flex log-in-btn">
             <HeaderAccountButton className={btn} />
           </div>
-          <div className={`${styles["nav-menu"]} ${styles["d-xl-flex"]} ${styles["d-md-none"]} nav-menu-property-list-button`}>
+          <div className="nav-menu d-xl-flex d-md-none nav-menu-property-list-button">
             <a className={"button list-prop-btn " + btn} href="/list-your-property/">
               List Your Property
             </a>
           </div>
           <a
             href={WA_LINK}
-            className={`${styles["nav-menu"]} ${styles["nav-menu-icon-wrap"]}`}
+            className="nav-menu nav-menu-icon-wrap"
             aria-label="WhatsApp Us"
             target="_blank"
             rel="noreferrer"
@@ -400,7 +375,7 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={`${styles["whatsapp-icon"]} ${styles["menu-icon"]}`}
+              className="whatsapp-icon menu-icon"
             >
               <path
                 fillRule="evenodd"
@@ -410,14 +385,14 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               />
             </svg>
           </a>
-          <a href="tel:+971 50 539 0249" className={`${styles["nav-menu"]} ${styles["nav-menu-icon-wrap"]}`} aria-label="Call Us">
+          <a href="tel:+971 50 539 0249" className="nav-menu nav-menu-icon-wrap" aria-label="Call Us">
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={`${styles["mobile-icon"]} ${styles["menu-icon"]}`}
+              className="mobile-icon menu-icon"
             >
               <path
                 d="M10.5 1.5H8.25C7.00736 1.5 6 2.50736 6 3.75V20.25C6 21.4926 7.00736 22.5 8.25 22.5H15.75C16.9926 22.5 18 21.4926 18 20.25V3.75C18 2.50736 16.9926 1.5 15.75 1.5H13.5M10.5 1.5V3H13.5V1.5M10.5 1.5H13.5M10.5 20.25H13.5"
@@ -427,14 +402,14 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               />
             </svg>
           </a>
-          <a className={`${styles["nav-menu"]} ${styles["nav-menu-icon-wrap"]}`} aria-label="Search Properties" href="/buy/properties-for-sale/">
+          <a className="nav-menu nav-menu-icon-wrap" aria-label="Search Properties" href="/buy/properties-for-sale/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="17"
               height="16"
               viewBox="0 0 17 16"
               fill="none"
-              className={`${styles["search-icon"]} ${styles["menu-icon"]}`}
+              className="search-icon menu-icon"
             >
               <path
                 d="M14.5 14L11.0355 10.5355M11.0355 10.5355C11.9404 9.63071 12.5 8.38071 12.5 7C12.5 4.23858 10.2614 2 7.5 2C4.73858 2 2.5 4.23858 2.5 7C2.5 9.76142 4.73858 12 7.5 12C8.88071 12 10.1307 11.4404 11.0355 10.5355Z"
@@ -444,14 +419,14 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               />
             </svg>
           </a>
-          <button className={`${styles["nav-menu"]} ${styles["nav-menu-icon-wrap"]}`} onClick={() => setDrawer(true)}>
+          <button className="nav-menu nav-menu-icon-wrap" onClick={() => setDrawer(true)}>
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={`${styles["bars-icon"]} ${styles["menu-icon"]}`}
+              className="bars-icon menu-icon"
             >
               <path
                 d="M3.75 6.75H20.25M3.75 12H20.25M3.75 17.25H20.25"
@@ -471,39 +446,39 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
 function MobileDrawer({ onClose }: { onClose: () => void }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <div className={styles["mobile-drawer-overlay"]} onClick={onClose}>
-      <div className={styles["mobile-drawer"]} onClick={(e) => e.stopPropagation()}>
-        <div className={styles["mobile-drawer-header"]}>
+    <div className="mobile-drawer-overlay" onClick={onClose}>
+      <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
+        <div className="mobile-drawer-header">
           <Logo />
-          <button className={styles["mobile-drawer-close"]} onClick={onClose} aria-label="Close">
+          <button className="mobile-drawer-close" onClick={onClose} aria-label="Close">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M5 5l10 10M15 5 5 15" stroke="#35373C" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </button>
         </div>
-        <div className={styles["mobile-drawer-body"]}>
+        <div className="mobile-drawer-body">
           {MENUS.map((m, i) =>
             m.plain ? (
-              <a key={i} className={styles["mobile-nav-item"]} href={m.href} onClick={onClose}>
+              <a key={i} className="mobile-nav-item" href={m.href} onClick={onClose}>
                 {m.label}
               </a>
             ) : (
-              <div key={i} className={`${styles["accordion-item"]} ${open === i ? styles.open : ""}`}>
-                <p className={styles.title + " accordion-header"}>
+              <div key={i} className={"accordion-item" + (open === i ? " open" : "")}>
+                <p className="title accordion-header">
                   <button
                     type="button"
                     aria-expanded={open === i}
-                    className={`${styles["accordion-button"]} ${open === i ? "" : styles.collapsed}`}
+                    className={"accordion-button" + (open === i ? "" : " collapsed")}
                     onClick={() => setOpen(open === i ? null : i)}
                   >
                     {m.label}
                   </button>
                 </p>
-                <div className={styles["accordion-collapse"]} style={{ display: open === i ? "block" : "none" }}>
-                  <div className={`${styles["cta-section"]} accordion-body`}>
+                <div className="accordion-collapse" style={{ display: open === i ? "block" : "none" }}>
+                  <div className="cta-section accordion-body">
                     {m.columns.flatMap((c) =>
                       c.links.map((l, li) => (
-                        <a key={li} className={styles.cta} href={l.href} onClick={onClose}>
+                        <a key={li} className="cta" href={l.href} onClick={onClose}>
                           <span>{l.label}</span>
                         </a>
                       ))
@@ -514,8 +489,8 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
             )
           )}
         </div>
-        <div className={styles["mobile-drawer-footer"]}>
-          <a className={`${styles.button} list-prop-btn button-white-outline`} href="/list-your-property/" onClick={onClose}>
+        <div className="mobile-drawer-footer">
+          <a className="button list-prop-btn button-white-outline" href="/list-your-property/" onClick={onClose}>
             List Your Property
           </a>
         </div>
