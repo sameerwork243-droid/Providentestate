@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PortalShell, type PortalNavSection, type PortalUser } from "@/components/portal/portal-shell";
 
 type User = PortalUser;
@@ -546,6 +546,9 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
   const [amenityList, setAmenityList] = useState<string[]>([]);
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>(initial?.amenities || []);
   const [newAmenity, setNewAmenity] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [uploadTarget, setUploadTarget] = useState<number | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch("/api/admin/amenities")
@@ -567,6 +570,36 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
     setAmenityList((l) => [...l, name]);
     setSelectedAmenities((s) => [...s, name]);
     setNewAmenity("");
+  }
+
+  function pickFile(index: number) {
+    setUploadTarget(index);
+    fileRef.current?.click();
+  }
+
+  async function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file || uploadTarget == null) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(d.error || "Upload failed");
+        return;
+      }
+      setMedia((ms) =>
+        ms.map((m, j) => (j === uploadTarget ? { ...m, url: String(d.url || "") } : m))
+      );
+    } catch {
+      alert("Upload failed");
+    } finally {
+      setUploading(false);
+      setUploadTarget(null);
+    }
   }
 
   async function submit(e: React.FormEvent) {
@@ -645,12 +678,36 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
                 value={m.url}
                 onChange={(e) => setMedia(media.map((x, j) => (j === i ? { ...x, url: e.target.value } : x)))}
               />
+              <button
+                type="button"
+                className="app-btn ghost sm"
+                style={{ flex: "0 0 auto" }}
+                disabled={uploading}
+                onClick={() => pickFile(i)}
+              >
+                {uploading && uploadTarget === i ? "Uploading…" : "Upload from device"}
+              </button>
               <button type="button" className="app-btn danger sm" onClick={() => setMedia(media.filter((_, j) => j !== i))}>×</button>
             </div>
           ))}
-          <div className="full">
+          <div className="full" style={{ display: "flex", gap: 8 }}>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={uploadFile}
+            />
             <button type="button" className="app-btn ghost sm" onClick={() => setMedia([...media, { kind: "image", url: "" }])}>
               + Add image / video
+            </button>
+            <button
+              type="button"
+              className="app-btn sm"
+              disabled={uploading}
+              onClick={() => { setMedia((ms) => [...ms, { kind: "image", url: "" }]); pickFile(media.length); }}
+            >
+              {uploading ? "Uploading…" : "+ Upload image from device"}
             </button>
           </div>
 
