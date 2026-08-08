@@ -46,6 +46,8 @@ next-env.d.ts
 /data/raw/html/
 /tmp/
 /dev/
+/data/provident.db-shm
+/data/provident.db-wal
 
 .vercel
 .env*
