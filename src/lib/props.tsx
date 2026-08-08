@@ -20,12 +20,13 @@ export function addressOf(hit: any): string {
 }
 
 export function propLink(hit: any): string {
-  const base = hit.search_type === "rental" || hit.search_type === "rent" ? "/let/" : "/buy/";
+  const t = String(hit.search_type || "").toLowerCase();
+  const base = t.includes("rent") || t.includes("letting") ? "/let/" : "/buy/";
   return `${base}${hit.slug || ""}${hit.id}/`;
 }
 
 export function waLink(hit: any): string {
-  const neg = hit.crm_negotiator_id || {};
+  const neg = Array.isArray(hit.crm_negotiator_id) ? hit.crm_negotiator_id[0] || {} : hit.crm_negotiator_id || {};
   const phone = neg.phone || "+971 50 440 2783";
   const ref = hit.crm_id || "";
   const type = hit.building?.[0] || hit.building_type || "";
@@ -33,7 +34,21 @@ export function waLink(hit: any): string {
   const loc = addressOf(hit);
   const link = propLink(hit);
   const text = `Hello Provident,\n\nI would like to know more about this property:\n\n• Reference: ${ref}\n• Type: ${type}\n• Price: ${price}\n• Location: ${loc}\n• Link: https://providentestate.com${link}\n\nModifying this message will prevent it from being sent to the agent.`;
-  return `https://wa.provident.ae/inquire?phone=${encodeURIComponent(phone.replace(/\D/g, ""))}&text=${encodeURIComponent(
-    text
-  )}&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22`;
+  const searchType = String(hit.search_type || "").toLowerCase();
+  const kind = searchType.includes("rent") || searchType.includes("letting") ? "secondaryrent" : "secondarysale";
+  const params = new URLSearchParams({
+    phone: "971505389860",
+    text,
+    resp_name: neg.name || "",
+    utm_source: "Browser Direct",
+    gclid: '"',
+    type: kind,
+    referrer_url: `https://providentestate.com${link}`,
+    event_type: "Whatsapp Click",
+    utm_platform: '"',
+  });
+  if (neg.email) params.set("email", neg.email);
+  const respPhone = String(neg.phone || "").replace(/\D/g, "");
+  if (respPhone) params.set("resp_phone", respPhone);
+  return `https://wa.provident.ae/inquire?${params.toString()}`;
 }

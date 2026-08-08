@@ -2,13 +2,13 @@ import { PropertyCard } from "./property-card";
 import { Rich } from "./rich";
 import { Questionnaire } from "./modules";
 import { FilterDropdown, TypeSelect, MortgageCalculator } from "./listing-ui";
-import { synthHits, areaLabel, existsRel, teamMembers, projectHits } from "@/lib/store";
+import { synthHits, areaLabel, teamMembers, projectHits, routeFilters } from "@/lib/store";
 import { CountryFlag } from "./phone-flag";
 
 export function ListingPage({ data, route, page = 1 }: { data: any; route: string; page?: number }) {
   const hits = page <= 1 ? data.hits || [] : synthHits(route, page);
   const nbHits = data.nbHits ?? hits.length;
-  const f = parseRoute(route);
+  const f = routeFilters(route);
   const rent = route.startsWith("/let");
   const h1 = titleFromRoute(route, rent, true);
   const baseRoute = route.replace(/\/page\/\d+\/?$/, "").replace(/\/$/, "");
@@ -506,28 +506,29 @@ const USEFUL_LINKS = [
   { label: "News & Insights", href: "/blog/" },
 ];
 
-function parseRoute(route: string) {
-  const segs = route.replace(/^\//, "").split("/").filter(Boolean);
-  const f: { type: string | null; area: string | null; priceMin: number | null } = { type: null, area: null, priceMin: null };
-  for (const s of segs) {
-    if (s.startsWith("in-")) f.area = s.slice(3);
-    else if (/^above-\d+$/.test(s)) f.priceMin = parseInt(s.slice(6), 10);
-    else if (/-for-sale$/.test(s)) f.type = s.replace(/-for-sale$/, "");
-    else if (/-for-rent$/.test(s)) f.type = s.replace(/-for-rent$/, "");
-  }
-  return f;
-}
-
 function titleFromRoute(route: string, rent: boolean, h1 = false): string {
-  const f = parseRoute(route);
+  const f = routeFilters(route);
   const verb = rent ? "for rent" : "for sale";
-  const type = f.type ? f.type.replace(/-/g, " ") : "properties";
+  const type = f.type && f.type !== "properties" ? f.type.replace(/-/g, " ") : "properties";
   const parts: string[] = [];
   if (h1) {
-    if (f.type === "properties") parts.push(`Properties ${verb} in Dubai`);
+    if (type === "properties") parts.push(`Properties ${verb} in Dubai`);
     else parts.push(`${type.charAt(0).toUpperCase() + type.slice(1)} ${verb} in Dubai`);
     if (f.area) parts.push(`in ${areaLabel(f.area)}`);
     if (f.priceMin) parts.push(`above AED ${f.priceMin.toLocaleString()}`);
+    if (f.priceMax) parts.push(`under AED ${f.priceMax.toLocaleString()}`);
+    if (f.bedsMin != null || f.bedsMax != null) {
+      if (f.bedsMax === 0) parts.push("Studios");
+      else if (f.bedsMin != null && f.bedsMax != null && f.bedsMin !== f.bedsMax) parts.push(`with ${f.bedsMin} to ${f.bedsMax} Bedrooms`);
+      else {
+        const b = f.bedsMin ?? f.bedsMax ?? 0;
+        parts.push(`with ${b} Bedroom${b !== 1 ? "s" : ""}`);
+      }
+    }
+    if (f.sizeMin != null && f.sizeMax != null) parts.push(`with size ${f.sizeMin.toLocaleString()} to ${f.sizeMax.toLocaleString()} sqft`);
+    else if (f.sizeMin != null) parts.push(`above ${f.sizeMin.toLocaleString()} sqft`);
+    else if (f.sizeMax != null) parts.push(`under ${f.sizeMax.toLocaleString()} sqft`);
+    for (const a of f.amenities) parts.push(`with ${a.replace(/-/g, " ")}`);
   } else {
     parts.push(`${type} ${verb}`);
     if (f.area) parts.push(`in ${areaLabel(f.area)}`);
@@ -571,8 +572,8 @@ function typeOptions(route: string) {
   return TYPES.map((t) => {
     const suffix = rent ? `${t}-for-rent` : `${t}-for-sale`;
     const href = `/${rent ? "let" : "buy"}/${suffix}/`;
-    return { label: t.replace(/-/g, " "), href, exists: existsRel(`listings/${rent ? "let" : "buy"}/${suffix}.json`) };
-  }).filter((o) => o.exists);
+    return { label: t.replace(/-/g, " "), href };
+  });
 }
 
 function priceOptions(route: string) {
@@ -580,18 +581,18 @@ function priceOptions(route: string) {
   const base = `/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}`;
   return PRICES.map((p) => {
     const href = `${base}/${p.suffix}/`;
-    return { label: p.label, href, exists: existsRel(`listings/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}/${p.suffix}.json`) };
-  }).filter((o) => o.exists);
+    return { label: p.label, href };
+  });
 }
 
 function bedOptions(route: string) {
   const rent = route.startsWith("/let");
-  const type = parseRoute(route).type || "properties";
+  const type = routeFilters(route).type || "properties";
   const base = `/${rent ? "let" : "buy"}/${type}-for-${rent ? "rent" : "sale"}`;
   return BEDS.map((b) => {
     const href = `${base}/${b.suffix}/`;
-    return { label: b.label, href, exists: existsRel(`listings/${rent ? "let" : "buy"}/${type}-for-${rent ? "rent" : "sale"}/${b.suffix}.json`) };
-  }).filter((o) => o.exists);
+    return { label: b.label, href };
+  });
 }
 
 function sizeOptions(route: string) {
@@ -599,8 +600,8 @@ function sizeOptions(route: string) {
   const base = `/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}`;
   return SIZES.map((s) => {
     const href = `${base}/${s.suffix}/`;
-    return { label: s.label, href, exists: existsRel(`listings/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}/${s.suffix}.json`) };
-  }).filter((o) => o.exists);
+    return { label: s.label, href };
+  });
 }
 
 function amenityOptions(route: string) {
@@ -608,6 +609,6 @@ function amenityOptions(route: string) {
   const base = `/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}`;
   return AMENITIES.map((a) => {
     const href = `${base}/${a.suffix}/`;
-    return { label: a.label, href, exists: existsRel(`listings/${rent ? "let" : "buy"}/properties-for-${rent ? "rent" : "sale"}/${a.suffix}.json`) };
-  }).filter((o) => o.exists);
+    return { label: a.label, href };
+  });
 }

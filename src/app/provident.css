@@ -382,3 +382,28 @@
 }
 
 
+
+/* ---- property detail: restore original flex layout, let panel/card/form shrink (fixes horizontal overflow) ---- */
+.property-detail-page .property-detail-body .right-section-wrap { flex: 1 1; min-width: 0; }
+.property-detail-page .property-detail-body .right-section { min-width: 0; }
+.property-detail-page .property-detail-body .right-section .property-nego-card-wrap { min-width: 0; }
+.property-detail-page .property-detail-body .property-nego-card-wrap .border-side { min-width: 0; }
+.property-detail-page .property-detail-body .property-nego-card-wrap .book-a-viewing-form { min-width: 0; }
+.property-detail-page .property-detail-body .property-nego-card-wrap .top-section { min-width: 0; }
+.property-detail-page .property-detail-body .custom-form .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.property-detail-page .property-detail-body .custom-form .form-grid .form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media screen and (max-width: 1399px) {
+  .property-detail-page .property-detail-body .custom-form .form-grid { grid-template-columns: 1fr; }
+}
+@media screen and (min-width: 1400px) {
+  .property-detail-page .property-detail-body .custom-form .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---- similar properties: fixed-width sliding cards (no more squeezed/clipped CTAs) ---- */
+.similar-properties-slider .property-card-wrapper { flex: 0 0 auto; width: 100%; max-width: 350px; }
+@media screen and (min-width: 744px) {
+  .similar-properties-slider .property-card-wrapper { max-width: none; width: calc(50% - 8px); }
+}
+@media screen and (min-width: 1200px) {
+  .similar-properties-slider .property-card-wrapper { width: calc((100% - 32px) / 3); }
+}

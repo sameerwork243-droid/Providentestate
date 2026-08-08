@@ -110,10 +110,10 @@ export function corpus(kind: "buy" | "let"): any[] {
   return out;
 }
 
-/** Route constraints from a listing route: kind, type, area, price, bedrooms, completion, amenities. */
+/** Route constraints from a listing route: kind, type, area, price, bedrooms, size, completion, amenities. */
 export function routeFilters(route: string) {
   const segs = route.split("/").filter(Boolean);
-  const f: { rent: boolean; type: string | null; area: string | null; priceMin: number | null; priceMax: number | null; bedsMin: number | null; bedsMax: number | null; completion: string | null; furnished: boolean; amenities: string[] } = {
+  const f: { rent: boolean; type: string | null; area: string | null; priceMin: number | null; priceMax: number | null; bedsMin: number | null; bedsMax: number | null; sizeMin: number | null; sizeMax: number | null; completion: string | null; furnished: boolean; amenities: string[] } = {
     rent: segs[0] === "let",
     type: null,
     area: null,
@@ -121,6 +121,8 @@ export function routeFilters(route: string) {
     priceMax: null,
     bedsMin: null,
     bedsMax: null,
+    sizeMin: null,
+    sizeMax: null,
     completion: null,
     furnished: false,
     amenities: [],
@@ -128,10 +130,22 @@ export function routeFilters(route: string) {
   for (const s of segs) {
     if (s.startsWith("in-")) f.area = s.slice(3);
     else if (/^above-\d+$/.test(s)) f.priceMin = parseInt(s.slice(6), 10);
-    else if (/^under-\d+$/.test(s)) f.priceMax = parseInt(s.slice(6), 10);
-    else if (/^with-(\d+)-to-(\d+)-bedrooms$/.test(s)) {
+    else if (/^under-(\d+)$/.test(s)) f.priceMax = parseInt(s.match(/^under-(\d+)$/)![1], 10);
+    else if (/^under-(\d+)-bedrooms$/.test(s)) {
+      const m = s.match(/^under-(\d+)-bedrooms$/);
+      if (m) f.bedsMax = +m[1];
+    } else if (/^with-(\d+)-to-(\d+)-bedrooms$/.test(s)) {
       const m = s.match(/^with-(\d+)-to-(\d+)-bedrooms$/);
       if (m) { f.bedsMin = +m[1]; f.bedsMax = +m[2]; }
+    } else if (/^with-size-under-(\d+)$/.test(s)) {
+      const m = s.match(/^with-size-under-(\d+)$/);
+      if (m) f.sizeMax = +m[1];
+    } else if (/^with-size-(\d+)-to-(\d+)$/.test(s)) {
+      const m = s.match(/^with-size-(\d+)-to-(\d+)$/);
+      if (m) { f.sizeMin = +m[1]; f.sizeMax = +m[2]; }
+    } else if (/^with-size-above-(\d+)$/.test(s)) {
+      const m = s.match(/^with-size-above-(\d+)$/);
+      if (m) f.sizeMin = +m[1];
     } else if (s === "furnished") f.furnished = true;
     else if (s.startsWith("completion-")) f.completion = s.slice(11);
     else if (s.startsWith("with-amenities-")) f.amenities.push(s.slice(15));
@@ -142,19 +156,52 @@ export function routeFilters(route: string) {
 }
 
 export function matchHit(h: any, f: ReturnType<typeof routeFilters>): boolean {
-  if (f.type && f.type !== "properties" && h.department?.toLowerCase() !== f.type && !(h.building_type || "").toLowerCase().includes(f.type)) {
-    const t = (f.type || "").toLowerCase();
-    if (!(t === "commercial-properties" || t === "whole-building" || t === "plots" || t === "short-term")) return false;
+  if (f.type && f.type !== "properties") {
+    const ft = f.type.toLowerCase();
+    if (
+      h.department?.toLowerCase() !== ft &&
+      !(h.building_type || "").toLowerCase().includes(ft) &&
+      !(h.building || []).some((b: any) => String(b).toLowerCase().includes(ft))
+    ) {
+      if (!(ft === "commercial-properties" || ft === "whole-building" || ft === "plots" || ft === "short-term")) return false;
+    }
   }
   if (f.area) {
-    const hay = [h.address_full?.area, h.address_full?.address3, h.address_full?.address4, h.display_address].filter(Boolean).join(" ").toLowerCase();
-    if (!hay.includes(f.area.replace(/-/g, " "))) return false;
+    const hay = [h.address_full?.area, h.address_full?.address3, h.address_full?.address4, h.display_address].filter(Boolean).join(" ").toLowerCase().replace(/[^a-z0-9]+/g, " ");
+    if (!hay.includes(f.area.toLowerCase().replace(/[^a-z0-9]+/g, " "))) return false;
   }
   if (f.priceMin != null && (h.price ?? 0) < f.priceMin) return false;
   if (f.priceMax != null && (h.price ?? 0) > f.priceMax) return false;
   if (f.bedsMin != null && (h.bedroom ?? 0) < f.bedsMin) return false;
   if (f.bedsMax != null && (h.bedroom ?? 0) > f.bedsMax) return false;
+  if (f.sizeMin != null || f.sizeMax != null) {
+    const sz = h.floorarea_min ?? h.floorarea_max ?? 0;
+    if (f.sizeMin != null && sz < f.sizeMin) return false;
+    if (f.sizeMax != null && sz > f.sizeMax) return false;
+  }
+  if (f.amenities.length) {
+    const amens = [...(h.accommodation_summary || []), ...(h.amenities || [])].map((x: any) => String(x).toLowerCase());
+    for (const a of f.amenities) {
+      const want = a.replace(/-/g, " ");
+      if (!amens.some((x) => x.includes(want))) return false;
+    }
+  }
   return true;
+}
+
+/** Nearest existing listing page-data file for a route, walking up filter/area segments. */
+export function baseListingRel(route: string): string | null {
+  let rel = route.replace(/^\//, "").replace(/\/page\/\d+$/, "").replace(/\/+$/, "");
+  const parts = rel.split("/").filter(Boolean);
+  while (parts.length) {
+    const candidate = parts.join("/");
+    if (candidate === "buy" || candidate === "let") {
+      return candidate === "buy" ? "buy/properties-for-sale" : "let/properties-for-rent";
+    }
+    if (loadRel(path.join("listings", candidate) + ".json")) return candidate;
+    parts.pop();
+  }
+  return null;
 }
 
 /** Synthesize a page of hits for routes we did not scrape (page > 1). */

@@ -2,7 +2,7 @@ import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPageData, classify } from "@/lib/ref";
-import { developerHubData, developerHits, typeHubData, routeFilters, matchHit } from "@/lib/store";
+import { developerHubData, developerHits, typeHubData, routeFilters, matchHit, baseListingRel, corpus } from "@/lib/store";
 import { dbPropsToHits, dbPropertyByRoute } from "@/server/property-bridge";
 import { SiteHeader } from "@/components/header";
 import { SiteFooter } from "@/components/footer";
@@ -117,12 +117,19 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const pd = getPageData(routeBase);
   let model = pd ? classify(pd, routeBase) : null;
 
+  if (!model && (routeBase === "/buy" || routeBase === "/let" || routeBase.startsWith("/buy/") || routeBase.startsWith("/let/"))) {
+    const base = baseListingRel(routeBase);
+    if (base) {
+      const basePd = getPageData("/" + base);
+      if (basePd) model = classify(basePd, "/" + base);
+    }
+  }
   if (!model) {
     const dbp = await dbPropertyByRoute(routeBase);
     if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };
   }
   if (!model) notFound();
-  if (model.kind === "listing" && pageNum === 1) {
+  if (model.kind === "listing") {
     const kind = route.startsWith("/let") ? "let" : "buy";
     const filters = routeFilters(route);
     const q = (x: string | string[] | undefined) => (Array.isArray(x) ? x[0] : x);
@@ -139,11 +146,22 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     if (f.minPrice != null && filters.priceMin == null) filters.priceMin = n(f.minPrice);
     if (f.maxPrice != null && filters.priceMax == null) filters.priceMax = n(f.maxPrice);
     if (f.areas && filters.area == null) filters.area = f.areas.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
-    const dbHits = await dbPropsToHits(kind);
-    const merged = [...dbHits.filter((h) => matchHit(h, filters)), ...(model.data.hits || [])].filter((h) => matchHit(h, filters));
+    const seen = new Set<string>();
+    const merged: any[] = [];
+    const push = (h: any) => {
+      const key = h.crm_id ?? h.id ?? h.slug;
+      if (key != null) {
+        if (seen.has(String(key))) return;
+        seen.add(String(key));
+      }
+      merged.push(h);
+    };
+    for (const h of corpus(kind)) if (matchHit(h, filters)) push(h);
+    for (const h of await dbPropsToHits(kind)) if (matchHit(h, filters)) push(h);
+    for (const h of model.data.hits || []) if (matchHit(h, filters)) push(h);
     model.data.hits = merged;
-    model.data.nbHits = (model.data.nbHits ?? merged.length) + dbHits.length;
-    model.data.nbPages = Math.max(1, Math.ceil((model.data.nbHits ?? 1) / (model.data.hitsPerPage || 20)));
+    model.data.nbHits = merged.length;
+    model.data.nbPages = Math.max(1, Math.ceil(merged.length / (model.data.hitsPerPage || 20)));
   }
 
   const transparent = route === "/" || (route.startsWith("/new-projects/") && route !== "/new-projects/");

@@ -12,6 +12,8 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
   const link = propLink(hit);
   const imgs = hit.images || [];
   const desc = longDesc(hit);
+  const neg = Array.isArray(hit.crm_negotiator_id) ? hit.crm_negotiator_id[0] || {} : hit.crm_negotiator_id || {};
+  const cardPhone = neg.phone || "+971 50 440 2783";
   return (
     <div className="property-card-wrapper">
       <div
@@ -96,7 +98,7 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
               </svg>
               <span>Book a Viewing</span>
             </a>
-            <a href={`tel:${hit.crm_negotiator_id?.phone || "+971 50 440 2783"}`} className="property-cta">
+            <a href={`tel:${cardPhone}`} className="property-cta">
               <CountryFlag />
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
                 <path d="M14.5 11.3v2a1.34 1.34 0 0 1-1.47 1.34 13.2 13.2 0 0 1-5.74-2 13.2 13.2 0 0 1-4-4A13.2 13.2 0 0 1 1.3 2.97 1.34 1.34 0 0 1 2.63 1.5h2a1.34 1.34 0 0 1 1.34 1.14c.07.66.27 1.3.47 1.87a1.34 1.34 0 0 1-.33 1.4l-.87.87a10.7 10.7 0 0 0 4 4l.87-.87a1.34 1.34 0 0 1 1.4-.33c.57.2 1.21.4 1.87.47.62.06 1.1.6 1.1 1.25Z" stroke="#EE7133" strokeLinecap="round" strokeLinejoin="round" />
