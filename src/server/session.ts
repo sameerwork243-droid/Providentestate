@@ -6,8 +6,8 @@ import { AuthUser, createSessionToken, deleteSession, getUserByToken, touchLastL
 
 export const SESSION_COOKIE = "provident_session";
 
-function ensure() {
-  ensureSeeded();
+async function ensure() {
+  await ensureSeeded();
   return getDb();
 }
 
@@ -15,7 +15,7 @@ export async function getAuthUser(): Promise<AuthUser | null> {
   const jar = await cookies();
   const token = jar.get(SESSION_COOKIE)?.value;
   if (!token) return null;
-  ensure();
+  await ensure();
   return getUserByToken(token);
 }
 
@@ -23,8 +23,8 @@ export async function loginUser(
   userId: number,
   remember: boolean
 ): Promise<void> {
-  ensure();
-  const { token, expiresAt } = createSessionToken(userId, remember);
+  await ensure();
+  const { token, expiresAt } = await createSessionToken(userId, remember);
   const jar = await cookies();
   jar.set(SESSION_COOKIE, token, {
     httpOnly: true,
@@ -33,15 +33,15 @@ export async function loginUser(
     path: "/",
     maxAge: Math.floor((expiresAt - Date.now()) / 1000),
   });
-  touchLastLogin(userId);
+  await touchLastLogin(userId);
 }
 
 export async function logoutUser(): Promise<void> {
   const jar = await cookies();
   const token = jar.get(SESSION_COOKIE)?.value;
   if (token) {
-    ensure();
-    deleteSession(token);
+    await ensure();
+    await deleteSession(token);
   }
   jar.delete(SESSION_COOKIE);
 }

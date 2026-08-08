@@ -14,7 +14,7 @@ export async function DELETE(req: Request) {
   const reason = String(body.reason || "").trim();
 
   // Log account deletion
-  run(
+  await run(
     "INSERT INTO account_deletion_logs (user_id, reason, created_at) VALUES (?, ?, ?)",
     user.id,
     reason,
@@ -22,7 +22,7 @@ export async function DELETE(req: Request) {
   );
 
   // Delete user (cascades to sessions, saved_properties, viewings, notifications, user_addresses, notification_preferences, password_updates)
-  run("DELETE FROM users WHERE id = ?", user.id);
+  await run("DELETE FROM users WHERE id = ?", user.id);
 
   // Inquiries have ON DELETE SET NULL, so they remain but user_id is cleared
 

@@ -4,7 +4,7 @@ import { rows, row, run } from "@/server/db";
 
 export async function GET() {
   await requireAdmin();
-  const items = rows(
+  const items = await rows(
     `SELECT v.*, u.name AS user_name, u.email AS user_email
      FROM viewings v LEFT JOIN users u ON u.id = v.user_id
      ORDER BY v.created_at DESC LIMIT 300`
@@ -20,12 +20,12 @@ export async function PATCH(req: Request) {
   if (!id || !["requested", "confirmed", "completed", "cancelled"].includes(status)) {
     return NextResponse.json({ error: "Invalid status update" }, { status: 400 });
   }
-  const item = row("SELECT user_id FROM viewings WHERE id = ?", id);
+  const item = await row("SELECT user_id FROM viewings WHERE id = ?", id);
   if (item) {
-    run("UPDATE viewings SET status = ? WHERE id = ?", status, id);
+    await run("UPDATE viewings SET status = ? WHERE id = ?", status, id);
     const userId = Number(item.user_id);
     if (userId) {
-      run(
+      await run(
         "INSERT INTO notifications (user_id, title, body, type, created_at) VALUES (?, ?, ?, 'viewing', ?)",
         userId,
         "Viewing update",
@@ -40,6 +40,6 @@ export async function PATCH(req: Request) {
 export async function DELETE(req: Request) {
   await requireAdmin();
   const body = await req.json().catch(() => null);
-  if (body?.id) run("DELETE FROM viewings WHERE id = ?", Number(body.id));
+  if (body?.id) await run("DELETE FROM viewings WHERE id = ?", Number(body.id));
   return NextResponse.json({ ok: true });
 }

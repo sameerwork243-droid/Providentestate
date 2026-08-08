@@ -6,7 +6,7 @@ import { loginUser } from "@/server/session";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-  ensureSeeded();
+  await ensureSeeded();
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== "object") {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please enter your email and password" }, { status: 400 });
   }
 
-  const user = findUserByEmail(email);
+  const user = await findUserByEmail(email);
   if (!user || !verifyPassword(password, String(user.password_hash))) {
     return NextResponse.json({ error: "Incorrect email or password" }, { status: 401 });
   }

@@ -5,7 +5,7 @@ import { rows, run, now } from "@/server/db";
 export async function GET() {
   const user = await getAuthUser();
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  const items = rows("SELECT * FROM viewings WHERE user_id = ? ORDER BY created_at DESC", user.id);
+  const items = await rows("SELECT * FROM viewings WHERE user_id = ? ORDER BY created_at DESC", user.id);
   return NextResponse.json({ items });
 }
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   if (!preferredDate) {
     return NextResponse.json({ error: "Please choose a preferred date" }, { status: 400 });
   }
-  const res = run(
+  const res = await run(
     "INSERT INTO viewings (user_id, property_ref, property_slug, preferred_date, time_slot, notes, status, created_at) VALUES (?, ?, ?, ?, ?, ?, 'requested', ?)",
     user.id,
     String(body.property_ref || ""),

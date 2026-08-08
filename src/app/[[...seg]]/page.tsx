@@ -118,7 +118,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   let model = pd ? classify(pd, routeBase) : null;
 
   if (!model) {
-    const dbp = dbPropertyByRoute(routeBase);
+    const dbp = await dbPropertyByRoute(routeBase);
     if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };
   }
   if (!model) notFound();
@@ -139,7 +139,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     if (f.minPrice != null && filters.priceMin == null) filters.priceMin = n(f.minPrice);
     if (f.maxPrice != null && filters.priceMax == null) filters.priceMax = n(f.maxPrice);
     if (f.areas && filters.area == null) filters.area = f.areas.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
-    const dbHits = dbPropsToHits(kind);
+    const dbHits = await dbPropsToHits(kind);
     const merged = [...dbHits.filter((h) => matchHit(h, filters)), ...(model.data.hits || [])].filter((h) => matchHit(h, filters));
     model.data.hits = merged;
     model.data.nbHits = (model.data.nbHits ?? merged.length) + dbHits.length;

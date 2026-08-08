@@ -6,7 +6,7 @@ export async function GET(req: Request) {
   const user = await getAuthUser();
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
-  const preferences = row(
+  const preferences = await row(
     `SELECT subscribe_news, email_notifications, property_alerts
      FROM notification_preferences WHERE user_id = ?`,
     user.id
@@ -40,9 +40,9 @@ export async function PUT(req: Request) {
   const email_notifications = Number(Boolean(preferences.email_notifications));
   const property_alerts = Number(Boolean(preferences.property_alerts));
 
-  const existingPrefs = row("SELECT id FROM notification_preferences WHERE user_id = ?", user.id);
+  const existingPrefs = await row("SELECT id FROM notification_preferences WHERE user_id = ?", user.id);
   if (existingPrefs) {
-    run(
+    await run(
       `UPDATE notification_preferences SET
         subscribe_news = ?,
         email_notifications = ?,
@@ -56,7 +56,7 @@ export async function PUT(req: Request) {
       (existingPrefs as { id: number }).id
     );
   } else {
-    run(
+    await run(
       `INSERT INTO notification_preferences (
         user_id, subscribe_news, email_notifications, property_alerts, created_at, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?)`,

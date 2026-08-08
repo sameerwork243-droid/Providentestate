@@ -33,10 +33,10 @@ export interface AuthUser {
   created_at: string;
 }
 
-export function createSessionToken(userId: number, remember: boolean): { token: string; expiresAt: number } {
+export async function createSessionToken(userId: number, remember: boolean): Promise<{ token: string; expiresAt: number }> {
   const token = randomBytes(32).toString("hex");
   const expiresAt = Date.now() + (remember ? REMEMBER_TTL_MS : SESSION_TTL_MS);
-  run(
+  await run(
     "INSERT INTO sessions (user_id, token_hash, expires_at, user_agent, ip, created_at) VALUES (?, ?, ?, ?, ?, ?)",
     userId,
     hashToken(token),
@@ -48,18 +48,18 @@ export function createSessionToken(userId: number, remember: boolean): { token: 
   return { token, expiresAt };
 }
 
-export function getUserByToken(token: string | undefined | null): AuthUser | null {
+export async function getUserByToken(token: string | undefined | null): Promise<AuthUser | null> {
   if (!token) return null;
-  const s = row<{ user_id: number; expires_at: number }>(
+  const s = await row<{ user_id: number; expires_at: number }>(
     "SELECT user_id, expires_at FROM sessions WHERE token_hash = ?",
     hashToken(token)
   );
   if (!s) return null;
   if (s.expires_at < Date.now()) {
-    run("DELETE FROM sessions WHERE token_hash = ?", hashToken(token));
+    await run("DELETE FROM sessions WHERE token_hash = ?", hashToken(token));
     return null;
   }
-  const u = row<Record<string, unknown>>(
+  const u = await row<Record<string, unknown>>(
     `SELECT u.id, u.email, u.name, u.phone, u.avatar, r.name AS role, u.last_login_at, u.created_at
      FROM users u JOIN roles r ON r.id = u.role_id
      WHERE u.id = ? AND u.is_active = 1`,
@@ -78,22 +78,22 @@ export function getUserByToken(token: string | undefined | null): AuthUser | nul
   };
 }
 
-export function deleteSession(token: string): void {
-  run("DELETE FROM sessions WHERE token_hash = ?", hashToken(token));
+export async function deleteSession(token: string): Promise<void> {
+  await run("DELETE FROM sessions WHERE token_hash = ?", hashToken(token));
 }
 
-export function deleteAllSessions(userId: number): void {
-  run("DELETE FROM sessions WHERE user_id = ?", userId);
+export async function deleteAllSessions(userId: number): Promise<void> {
+  await run("DELETE FROM sessions WHERE user_id = ?", userId);
 }
 
-export function touchLastLogin(userId: number): void {
-  run("UPDATE users SET last_login_at = ? WHERE id = ?", new Date().toISOString(), userId);
+export async function touchLastLogin(userId: number): Promise<void> {
+  await run("UPDATE users SET last_login_at = ? WHERE id = ?", new Date().toISOString(), userId);
 }
 
-export function findUserByEmail(email: string): Record<string, unknown> | undefined {
+export async function findUserByEmail(email: string): Promise<Record<string, unknown> | undefined> {
   return row(
     `SELECT u.id, u.email, u.password_hash, u.name, u.phone, u.avatar, u.role_id, u.is_active, r.name AS role
-     FROM users u JOIN roles r ON r.id = u.role_id WHERE u.email = ?`,
+     FROM users u JOIN roles r ON r.id = u.role_id WHERE LOWER(u.email) = ?`,
     email.trim().toLowerCase()
   );
 }

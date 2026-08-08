@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   const q = (searchParams.get("q") || "").trim();
   const where = q ? " WHERE (u.email LIKE ? OR u.name LIKE ?)" : "";
   const params: unknown[] = q ? [`%${q}%`, `%${q}%`] : [];
-  const items = rows(
+  const items = await rows(
     `SELECT u.id, u.email, u.name, u.phone, u.avatar, u.is_active, u.last_login_at, u.created_at,
        COALESCE(r.name, 'user') AS role
      FROM users u LEFT JOIN roles r ON r.id = u.role_id${where} ORDER BY u.id DESC LIMIT 200`,
@@ -30,11 +30,11 @@ export async function POST(req: Request) {
   if (password.length < 8 || !/[A-Za-z]/.test(password) || !/\d/.test(password)) {
     return NextResponse.json({ error: "Password must be 8+ chars with letters and numbers" }, { status: 400 });
   }
-  const clash = row("SELECT 1 FROM users WHERE email = ?", email);
+  const clash = await row("SELECT 1 FROM users WHERE LOWER(email) = ?", email);
   if (clash) return NextResponse.json({ error: "Email already in use" }, { status: 409 });
   const role = String(body.role || "user");
-  const roleRow = row("SELECT id FROM roles WHERE name = ?", role);
-  const res = run(
+  const roleRow = await row("SELECT id FROM roles WHERE name = ?", role);
+  const res = await run(
     "INSERT INTO users (email, password_hash, name, phone, role_id, is_active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
     email,
     hashPassword(password),

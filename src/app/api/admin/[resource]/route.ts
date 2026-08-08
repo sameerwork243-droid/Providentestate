@@ -9,7 +9,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ resource: strin
   const cfg = crudByResource(resource);
   if (!cfg) return NextResponse.json({ error: "Unknown resource" }, { status: 404 });
   const { searchParams } = new URL(req.url);
-  const result = listRows(cfg, {
+  const result = await listRows(cfg, {
     search: searchParams.get("q") || "",
     page: Number(searchParams.get("page") || 1),
   });
@@ -22,7 +22,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ resource: stri
   const cfg = crudByResource(resource);
   if (!cfg) return NextResponse.json({ error: "Unknown resource" }, { status: 404 });
   const body = await req.json().catch(() => null);
-  const res = createRow(cfg, body || {});
+  const res = await createRow(cfg, body || {});
   if (!res.ok) return NextResponse.json({ error: res.error }, { status: 400 });
   return NextResponse.json({ id: res.id }, { status: 201 });
 }

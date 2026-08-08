@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb, run, now } from "@/server/db";
+import { row, run, now } from "@/server/db";
 import { ensureSeeded } from "@/server/seed";
 import { hashPassword, findUserByEmail } from "@/server/auth-core";
 import { loginUser, getAuthUser } from "@/server/session";
@@ -7,7 +7,7 @@ import { loginUser, getAuthUser } from "@/server/session";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-  ensureSeeded();
+  await ensureSeeded();
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== "object") {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
@@ -24,13 +24,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Password must contain letters and numbers" }, { status: 400 });
   }
 
-  const existing = findUserByEmail(email);
+  const existing = await findUserByEmail(email);
   if (existing) {
     return NextResponse.json({ error: "An account with this email already exists" }, { status: 409 });
   }
 
-  const userRole = getDb().prepare("SELECT id FROM roles WHERE name = 'user'").get() as { id: number } | undefined;
-  const res = run(
+  const userRole = await row("SELECT id FROM roles WHERE name = 'user'") as { id: number } | undefined;
+  const res = await run(
     "INSERT INTO users (email, password_hash, name, phone, role_id, is_active, created_at) VALUES (?, ?, ?, ?, ?, 1, ?)",
     email,
     hashPassword(password),

@@ -7,7 +7,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function GET() {
   const user = await getAuthUser();
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  const items = rows(
+  const items = await rows(
     "SELECT * FROM inquiries WHERE user_id = ? ORDER BY created_at DESC",
     user.id
   );
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   if (message.length < 10) {
     return NextResponse.json({ error: "Message must be at least 10 characters" }, { status: 400 });
   }
-  const res = run(
+  const res = await run(
     "INSERT INTO inquiries (user_id, name, email, phone, kind, property_ref, property_slug, message, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'new', ?)",
     user.id,
     String(body.name || user.name || ""),

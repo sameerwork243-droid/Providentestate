@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") || "";
   const where = status ? " WHERE i.status = ?" : "";
-  const items = rows(
+  const items = await rows(
     `SELECT i.*, u.name AS user_name, u.email AS user_email
      FROM inquiries i LEFT JOIN users u ON u.id = i.user_id${where}
      ORDER BY i.created_at DESC LIMIT 300`,
@@ -24,12 +24,12 @@ export async function PATCH(req: Request) {
   if (!id || !["new", "contacted", "closed"].includes(status)) {
     return NextResponse.json({ error: "Invalid status update" }, { status: 400 });
   }
-  const item = row("SELECT user_id FROM inquiries WHERE id = ?", id);
+  const item = await row("SELECT user_id FROM inquiries WHERE id = ?", id);
   if (item) {
-    run("UPDATE inquiries SET status = ? WHERE id = ?", status, id);
+    await run("UPDATE inquiries SET status = ? WHERE id = ?", status, id);
     const userId = Number(item.user_id);
     if (userId) {
-      run(
+      await run(
         "INSERT INTO notifications (user_id, title, body, type, created_at) VALUES (?, ?, ?, 'inquiry', ?)",
         userId,
         "Inquiry status updated",
@@ -44,6 +44,6 @@ export async function PATCH(req: Request) {
 export async function DELETE(req: Request) {
   await requireAdmin();
   const body = await req.json().catch(() => null);
-  if (body?.id) run("DELETE FROM inquiries WHERE id = ?", Number(body.id));
+  if (body?.id) await run("DELETE FROM inquiries WHERE id = ?", Number(body.id));
   return NextResponse.json({ ok: true });
 }

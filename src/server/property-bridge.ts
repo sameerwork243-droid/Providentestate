@@ -1,4 +1,4 @@
-import { getDb, rows } from "@/server/db";
+import { rows, dbEnabled } from "@/server/db";
 import { ensureSeeded } from "@/server/seed";
 
 export interface DbHit {
@@ -51,8 +51,9 @@ const DEPARTMENT: Record<string, string> = {
   land: "plots",
 };
 
-function dbQuery(kind: "buy" | "let") {
-  ensureSeeded();
+async function dbQuery(kind: "buy" | "let") {
+  if (!dbEnabled()) return [];
+  await ensureSeeded();
   const txn = kind === "let" ? "rent" : "buy";
   return rows<Record<string, unknown>>(
     `SELECT p.*,
@@ -103,13 +104,14 @@ function dbHit(p: Record<string, unknown>): DbHit {
 }
 
 /** Published DB properties shaped like listing hits for a given kind (buy|let). */
-export function dbPropsToHits(kind: "buy" | "let"): DbHit[] {
-  return dbQuery(kind).map(dbHit);
+export async function dbPropsToHits(kind: "buy" | "let"): Promise<DbHit[]> {
+  return (await dbQuery(kind)).map(dbHit);
 }
 
-/** Resolve a route like /buy/my-apartment42/ or /let/my-apartment/ to a DB property detail. */
-export function dbPropertyByRoute(route: string): { data: any; kind: "buy" | "let" } | null {
-  ensureSeeded();
+/** Resolve a route like /buy/my-apartment42/ to a DB property detail. */
+export async function dbPropertyByRoute(route: string): Promise<{ data: any; kind: "buy" | "let" } | null> {
+  if (!dbEnabled()) return null;
+  await ensureSeeded();
   const m = route.match(/^\/(buy|let)\/([^/]+?)\/?$/);
   if (!m) return null;
   const kind: "buy" | "let" = m[1] as "buy" | "let";
@@ -120,17 +122,19 @@ export function dbPropertyByRoute(route: string): { data: any; kind: "buy" | "le
   const txn = kind === "let" ? "rent" : "buy";
 
   let p: Record<string, unknown> | undefined;
-  if (id) p = rows(`SELECT * FROM properties WHERE id = ? AND published = 1 AND transaction_type = ?`, id, txn)[0];
-  if (!p && slug) p = rows(`SELECT * FROM properties WHERE slug = ? AND published = 1 AND transaction_type = ?`, slug, txn)[0];
+  if (id) p = (await rows(`SELECT * FROM properties WHERE id = ? AND published = 1 AND transaction_type = ?`, id, txn))[0];
+  if (!p && slug) p = (await rows(`SELECT * FROM properties WHERE slug = ? AND published = 1 AND transaction_type = ?`, slug, txn))[0];
   if (!p) return null;
 
-  const media = rows(`SELECT * FROM property_media WHERE property_id = ? ORDER BY sort_order, id`, Number(p.id));
+  const media = await rows(`SELECT * FROM property_media WHERE property_id = ? ORDER BY sort_order, id`, Number(p.id));
   const images = media
     .filter((m2) => m2.kind === "image")
     .map((m2) => ({ url: String(m2.url), srcUrl: String(m2.url) }));
-  const amenityNames = rows(
-    `SELECT a.name FROM property_amenities pa JOIN amenities a ON a.id = pa.amenity_id WHERE pa.property_id = ? ORDER BY a.name`,
-    Number(p.id)
+  const amenityNames = (
+    await rows(
+      `SELECT a.name FROM property_amenities pa JOIN amenities a ON a.id = pa.amenity_id WHERE pa.property_id = ? ORDER BY a.name`,
+      Number(p.id)
+    )
   ).map((a) => String(a.name));
 
   const hit = dbHit(p);

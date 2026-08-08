@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  serverExternalPackages: ["pg"],
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,

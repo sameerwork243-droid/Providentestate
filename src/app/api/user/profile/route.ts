@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
   // Get user details
-  const userRecord = row(
+  const userRecord = await row(
     `SELECT u.id, u.email, u.name, u.phone, u.first_name, u.surname, u.avatar, u.role_id, u.is_active, u.created_at, u.updated_at
      FROM users u WHERE u.id = ?`,
     user.id
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
   if (!userRecord) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   // Get user address
-  const address = row(
+  const address = await row(
     `SELECT address_line1, address_line2, town_city, postcode, country, is_primary
      FROM user_addresses WHERE user_id = ? AND is_primary = 1`,
     user.id
@@ -31,7 +31,7 @@ export async function GET(req: Request) {
   };
 
   // Get notification preferences
-  const preferences = row(
+  const preferences = await row(
     `SELECT subscribe_news, email_notifications, property_alerts
      FROM notification_preferences WHERE user_id = ?`,
     user.id
@@ -88,7 +88,7 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
   }
   if (email !== user.email) {
-    const clash = row("SELECT COUNT(*) AS n FROM users WHERE email = ? AND id != ?", email, user.id);
+    const clash = await row("SELECT COUNT(*) AS n FROM users WHERE LOWER(email) = ? AND id != ?", email, user.id);
     if (Number((clash as { n: number }).n) > 0) {
       return NextResponse.json({ error: "That email is already in use" }, { status: 409 });
     }
@@ -105,7 +105,7 @@ export async function PUT(req: Request) {
   const country = String(address.country || "").trim();
 
   // Update user
-  run(
+  await run(
     `UPDATE users SET
       first_name = ?,
       surname = ?,
@@ -124,9 +124,9 @@ export async function PUT(req: Request) {
   );
 
   // Update or insert address
-  const existingAddress = row("SELECT id FROM user_addresses WHERE user_id = ? AND is_primary = 1", user.id);
+  const existingAddress = await row("SELECT id FROM user_addresses WHERE user_id = ? AND is_primary = 1", user.id);
   if (existingAddress) {
-    run(
+    await run(
       `UPDATE user_addresses SET
         address_line1 = ?,
         address_line2 = ?,
@@ -144,7 +144,7 @@ export async function PUT(req: Request) {
       (existingAddress as { id: number }).id
     );
   } else {
-    run(
+    await run(
       `INSERT INTO user_addresses (
         user_id, address_line1, address_line2, town_city, postcode, country, is_primary, created_at, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -166,9 +166,9 @@ export async function PUT(req: Request) {
   const email_notifications = Number(Boolean(preferences.email_notifications));
   const property_alerts = Number(Boolean(preferences.property_alerts));
 
-  const existingPrefs = row("SELECT id FROM notification_preferences WHERE user_id = ?", user.id);
+  const existingPrefs = await row("SELECT id FROM notification_preferences WHERE user_id = ?", user.id);
   if (existingPrefs) {
-    run(
+    await run(
       `UPDATE notification_preferences SET
         subscribe_news = ?,
         email_notifications = ?,
@@ -182,7 +182,7 @@ export async function PUT(req: Request) {
       (existingPrefs as { id: number }).id
     );
   } else {
-    run(
+    await run(
       `INSERT INTO notification_preferences (
         user_id, subscribe_news, email_notifications, property_alerts, created_at, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?)`,

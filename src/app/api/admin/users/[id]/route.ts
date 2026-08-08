@@ -7,7 +7,7 @@ export async function PUT(req: Request, ctx: { params: Promise<{ id: string }> }
   await requireAdmin();
   const { id } = await ctx.params;
   const uid = Number(id);
-  const exists = row("SELECT 1 FROM users WHERE id = ?", uid);
+  const exists = await row("SELECT 1 FROM users WHERE id = ?", uid);
   if (!exists) return NextResponse.json({ error: "User not found" }, { status: 404 });
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== "object") return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
@@ -23,7 +23,7 @@ export async function PUT(req: Request, ctx: { params: Promise<{ id: string }> }
   if ("email" in body) {
     const email = String(body.email || "").trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ error: "Valid email is required" }, { status: 400 });
-    const clash = row("SELECT 1 FROM users WHERE email = ? AND id != ?", email, uid);
+    const clash = await row("SELECT 1 FROM users WHERE LOWER(email) = ? AND id != ?", email, uid);
     if (clash) return NextResponse.json({ error: "Email already in use" }, { status: 409 });
     sets.push("email = ?");
     params.push(email);
@@ -33,7 +33,7 @@ export async function PUT(req: Request, ctx: { params: Promise<{ id: string }> }
     params.push(String(body.phone || ""));
   }
   if ("role" in body) {
-    const roleRow = row("SELECT id FROM roles WHERE name = ?", String(body.role || "user"));
+    const roleRow = await row("SELECT id FROM roles WHERE name = ?", String(body.role || "user"));
     if (roleRow) {
       sets.push("role_id = ?");
       params.push(Number(roleRow.id));
@@ -54,7 +54,7 @@ export async function PUT(req: Request, ctx: { params: Promise<{ id: string }> }
   if (sets.length) {
     sets.push("updated_at = ?");
     params.push(now(), uid);
-    run(`UPDATE users SET ${sets.join(", ")} WHERE id = ?`, ...params);
+    await run(`UPDATE users SET ${sets.join(", ")} WHERE id = ?`, ...params);
   }
   return NextResponse.json({ ok: true });
 }
@@ -62,6 +62,6 @@ export async function PUT(req: Request, ctx: { params: Promise<{ id: string }> }
 export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string }> }) {
   await requireAdmin();
   const { id } = await ctx.params;
-  run("DELETE FROM users WHERE id = ?", Number(id));
+  await run("DELETE FROM users WHERE id = ?", Number(id));
   return NextResponse.json({ ok: true });
 }

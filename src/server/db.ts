@@ -1,26 +1,87 @@
-import { DatabaseSync, StatementSync } from "node:sqlite";
-import path from "node:path";
-import fs from "node:fs";
+import { Pool, PoolClient } from "pg";
 
-let db: DatabaseSync | null = null;
-const DB_FILE = process.env.PROVIDENT_DB_FILE || path.join(process.cwd(), "data", "provident.db");
-const JOURNAL_MODE = process.env.PROVIDENT_SQLITE_JOURNAL || "WAL";
+let pool: Pool | null = null;
+let ready: Promise<void> | null = null;
 
-export function getDb(): DatabaseSync {
-  if (db) return db;
-  fs.mkdirSync(path.dirname(DB_FILE), { recursive: true });
-  db = new DatabaseSync(DB_FILE);
-  db.exec(`PRAGMA journal_mode = ${JOURNAL_MODE};`);
-  db.exec("PRAGMA foreign_keys = ON;");
-  db.exec("PRAGMA busy_timeout = 5000;");
-  runMigrations(db);
-  return db;
+const DATABASE_URL = process.env.PROVIDENT_DATABASE_URL || process.env.DATABASE_URL || "";
+
+/** True when a Postgres connection string is configured. */
+export function dbEnabled(): boolean {
+  return !!DATABASE_URL;
 }
 
-export function closeDb(): void {
-  if (db) {
-    db.close();
-    db = null;
+function pgParams(sql: string): string {
+  let i = 0;
+  return sql.replace(/\?/g, () => `$${++i}`);
+}
+
+function sslFor(url: string): boolean | { rejectUnauthorized: boolean } {
+  if (process.env.PROVIDENT_PG_SSL === "0") return false;
+  if (url.includes("sslmode=require") || url.includes("neon.tech")) {
+    return { rejectUnauthorized: false };
+  }
+  return false;
+}
+
+export function getPool(): Pool {
+  if (pool) return pool;
+  if (!DATABASE_URL) {
+    throw new Error(
+      "No database configured: set PROVIDENT_DATABASE_URL (or DATABASE_URL) to a Postgres connection string"
+    );
+  }
+  pool = new Pool({
+    connectionString: DATABASE_URL,
+    ssl: sslFor(DATABASE_URL),
+    max: 10,
+  });
+  pool.on("error", (err) => {
+    console.error("[db] pool error:", err);
+  });
+  return pool;
+}
+
+export function getDb(): Pool {
+  return getPool();
+}
+
+async function migrate(): Promise<void> {
+  const c = await getPool().connect();
+  try {
+    for (const sql of MIGRATIONS) {
+      try {
+        await c.query(sql);
+      } catch (err) {
+        console.error("[db] migration error:", err);
+      }
+    }
+    for (const sql of ALTER_MIGRATIONS) {
+      try {
+        await c.query(sql);
+      } catch (err) {
+        console.error("[db] alter migration error:", err);
+      }
+    }
+  } finally {
+    c.release();
+  }
+}
+
+export function ensureMigrated(): Promise<void> {
+  if (!ready) {
+    ready = migrate().catch((err) => {
+      ready = null;
+      throw err;
+    });
+  }
+  return ready;
+}
+
+export async function closeDb(): Promise<void> {
+  if (pool) {
+    await pool.end();
+    pool = null;
+    ready = null;
   }
 }
 
@@ -28,34 +89,47 @@ export function now(): string {
   return new Date().toISOString();
 }
 
-export function rows<T = Record<string, unknown>>(sql: string, ...params: unknown[]): T[] {
-  const db = getDb();
-  return db.prepare(sql).all(...params) as T[];
+export async function rows<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T[]> {
+  await ensureMigrated();
+  const res = await getPool().query(pgParams(sql), params);
+  return res.rows as T[];
 }
 
-export function row<T = Record<string, unknown>>(sql: string, ...params: unknown[]): T | undefined {
-  const db = getDb();
-  return db.prepare(sql).get(...params) as T | undefined;
+export async function row<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T | undefined> {
+  await ensureMigrated();
+  const res = await getPool().query(pgParams(sql), params);
+  return res.rows[0] as T | undefined;
 }
 
-export function run(sql: string, ...params: unknown[]): { changes: number; lastId: number } {
-  const db = getDb();
-  const res = db.prepare(sql).run(...params);
-  return { changes: Number(res.changes), lastId: Number(res.lastInsertRowid) };
+export async function run(
+  sql: string,
+  ...params: unknown[]
+): Promise<{ changes: number; lastId: number }> {
+  await ensureMigrated();
+  const isInsert = /^\s*insert\s/i.test(sql);
+  const withReturning = isInsert && !/\breturning\b/i.test(sql);
+  const query = withReturning ? `${pgParams(sql)} RETURNING id` : pgParams(sql);
+  const res = await getPool().query(query, params);
+  const lastId = withReturning && res.rows.length ? Number(res.rows[0].id) : 0;
+  return { changes: res.rowCount ?? 0, lastId };
 }
 
-export function prepare(sql: string): StatementSync {
-  return getDb().prepare(sql);
+export function prepare(sql: string): { all: (...p: unknown[]) => Promise<unknown[]>; get: (...p: unknown[]) => Promise<unknown | undefined>; run: (...p: unknown[]) => Promise<{ changes: number; lastId: number }> } {
+  return {
+    all: (...p: unknown[]) => rows(sql, ...p),
+    get: (...p: unknown[]) => row(sql, ...p),
+    run: (...p: unknown[]) => run(sql, ...p),
+  };
 }
 
 const MIGRATIONS: string[] = [
   `CREATE TABLE IF NOT EXISTS roles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL UNIQUE
   );`,
   `CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
     name TEXT NOT NULL,
     phone TEXT DEFAULT '',
@@ -68,10 +142,10 @@ const MIGRATIONS: string[] = [
     FOREIGN KEY (role_id) REFERENCES roles(id)
   );`,
   `CREATE TABLE IF NOT EXISTS sessions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     token_hash TEXT NOT NULL UNIQUE,
-    expires_at INTEGER NOT NULL,
+    expires_at BIGINT NOT NULL,
     user_agent TEXT DEFAULT '',
     ip TEXT DEFAULT '',
     created_at TEXT NOT NULL,
@@ -80,7 +154,7 @@ const MIGRATIONS: string[] = [
   `CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);`,
   `CREATE INDEX IF NOT EXISTS idx_sessions_expiry ON sessions(expires_at);`,
   `CREATE TABLE IF NOT EXISTS saved_properties (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     property_ref TEXT NOT NULL,
     property_slug TEXT NOT NULL DEFAULT '',
@@ -93,7 +167,7 @@ const MIGRATIONS: string[] = [
   );`,
   `CREATE INDEX IF NOT EXISTS idx_saved_user ON saved_properties(user_id);`,
   `CREATE TABLE IF NOT EXISTS inquiries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
@@ -109,7 +183,7 @@ const MIGRATIONS: string[] = [
   `CREATE INDEX IF NOT EXISTS idx_inquiries_user ON inquiries(user_id);`,
   `CREATE INDEX IF NOT EXISTS idx_inquiries_status ON inquiries(status);`,
   `CREATE TABLE IF NOT EXISTS viewings (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     property_ref TEXT DEFAULT '',
     property_slug TEXT DEFAULT '',
@@ -122,7 +196,7 @@ const MIGRATIONS: string[] = [
   );`,
   `CREATE INDEX IF NOT EXISTS idx_viewings_user ON viewings(user_id);`,
   `CREATE TABLE IF NOT EXISTS notifications (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     title TEXT NOT NULL,
     body TEXT DEFAULT '',
@@ -133,11 +207,11 @@ const MIGRATIONS: string[] = [
   );`,
   `CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);`,
   `CREATE TABLE IF NOT EXISTS amenities (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL UNIQUE
   );`,
   `CREATE TABLE IF NOT EXISTS properties (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,
     title TEXT NOT NULL,
     category TEXT DEFAULT '',
@@ -174,7 +248,7 @@ const MIGRATIONS: string[] = [
   `CREATE INDEX IF NOT EXISTS idx_properties_featured ON properties(featured);`,
   `CREATE INDEX IF NOT EXISTS idx_properties_transaction ON properties(transaction_type);`,
   `CREATE TABLE IF NOT EXISTS property_media (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     property_id INTEGER NOT NULL,
     kind TEXT NOT NULL DEFAULT 'image',
     url TEXT NOT NULL,
@@ -191,7 +265,7 @@ const MIGRATIONS: string[] = [
     FOREIGN KEY (amenity_id) REFERENCES amenities(id) ON DELETE CASCADE
   );`,
   `CREATE TABLE IF NOT EXISTS services (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     icon TEXT DEFAULT '',
@@ -206,7 +280,7 @@ const MIGRATIONS: string[] = [
     updated_at TEXT
   );`,
   `CREATE TABLE IF NOT EXISTS agents (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     role TEXT DEFAULT '',
@@ -221,7 +295,7 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL
   );`,
   `CREATE TABLE IF NOT EXISTS developers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     region TEXT DEFAULT '',
@@ -233,7 +307,7 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL
   );`,
   `CREATE TABLE IF NOT EXISTS communities (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     region TEXT DEFAULT '',
@@ -241,14 +315,14 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL
   );`,
   `CREATE TABLE IF NOT EXISTS categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     type TEXT DEFAULT '',
     sort INTEGER NOT NULL DEFAULT 0
   );`,
   `CREATE TABLE IF NOT EXISTS testimonials (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     author TEXT NOT NULL,
     role TEXT DEFAULT '',
     content TEXT DEFAULT '',
@@ -258,7 +332,7 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL
   );`,
   `CREATE TABLE IF NOT EXISTS faqs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     question TEXT NOT NULL,
     answer TEXT DEFAULT '',
     category TEXT DEFAULT '',
@@ -267,25 +341,24 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL
   );`,
   `CREATE TABLE IF NOT EXISTS homepage_content (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     key TEXT NOT NULL UNIQUE,
     value TEXT DEFAULT ''
   );`,
   `CREATE TABLE IF NOT EXISTS contact_info (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     key TEXT NOT NULL UNIQUE,
     value TEXT DEFAULT ''
   );`,
   `CREATE TABLE IF NOT EXISTS media_library (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     url TEXT NOT NULL,
     kind TEXT DEFAULT 'image',
     alt TEXT DEFAULT '',
     created_at TEXT NOT NULL
   );`,
-  // Profile section tables
   `CREATE TABLE IF NOT EXISTS user_addresses (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     address_line1 TEXT DEFAULT '',
     address_line2 TEXT DEFAULT '',
@@ -299,7 +372,7 @@ const MIGRATIONS: string[] = [
   );`,
   `CREATE INDEX IF NOT EXISTS idx_user_addresses_user ON user_addresses(user_id);`,
   `CREATE TABLE IF NOT EXISTS notification_preferences (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     subscribe_news INTEGER NOT NULL DEFAULT 1,
     email_notifications INTEGER NOT NULL DEFAULT 1,
@@ -310,13 +383,13 @@ const MIGRATIONS: string[] = [
   );`,
   `CREATE INDEX IF NOT EXISTS idx_notification_preferences_user ON notification_preferences(user_id);`,
   `CREATE TABLE IF NOT EXISTS password_updates (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     created_at TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   );`,
   `CREATE TABLE IF NOT EXISTS account_deletion_logs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     reason TEXT DEFAULT '',
     created_at TEXT NOT NULL,
@@ -326,27 +399,8 @@ const MIGRATIONS: string[] = [
 
 // Add first_name and surname columns to users table (if not exists)
 const ALTER_MIGRATIONS: string[] = [
-  `ALTER TABLE users ADD COLUMN first_name TEXT DEFAULT ''`,
-  `ALTER TABLE users ADD COLUMN surname TEXT DEFAULT ''`,
+  `ALTER TABLE users ADD COLUMN IF NOT EXISTS first_name TEXT DEFAULT ''`,
+  `ALTER TABLE users ADD COLUMN IF NOT EXISTS surname TEXT DEFAULT ''`,
 ];
 
-function runMigrations(db: DatabaseSync): void {
-  for (const sql of MIGRATIONS) {
-    try {
-      db.exec(sql);
-    } catch (err) {
-      console.error("[db] migration error:", err);
-    }
-  }
-  // Run ALTER TABLE migrations separately (SQLite doesn't support IF NOT EXISTS in ALTER TABLE ADD COLUMN)
-  for (const sql of ALTER_MIGRATIONS) {
-    try {
-      db.exec(sql);
-    } catch (err) {
-      // Column may already exist
-      if (!String(err).includes("duplicate column name")) {
-        console.error("[db] alter migration error:", err);
-      }
-    }
-  }
-}
+export type { PoolClient };

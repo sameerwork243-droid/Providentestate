@@ -36,7 +36,7 @@ export function AdminApp({ user }: { user: User }) {
       label: "Directory",
       items: [
         { key: "developers", label: "Developers", icon: "building" },
-        { key: "communities", label: "Communities", icon: "map" },
+        { key: "communities", label: "Areas", icon: "map" },
         { key: "categories", label: "Categories", icon: "tag" },
       ],
     },
@@ -45,7 +45,7 @@ export function AdminApp({ user }: { user: User }) {
       items: [
         { key: "testimonials", label: "Testimonials", icon: "star" },
         { key: "faqs", label: "FAQs", icon: "question" },
-        { key: "media", label: "Media Library", icon: "image" },
+        { key: "media", label: "Blogs", icon: "image" },
         { key: "contact", label: "Contact Info", icon: "phone" },
         { key: "homepage", label: "Homepage Content", icon: "grid" },
       ],

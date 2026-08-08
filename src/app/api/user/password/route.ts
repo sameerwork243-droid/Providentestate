@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   }
 
   // Update password
-  run(
+  await run(
     "UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?",
     hashPassword(new_password),
     now(),
@@ -34,14 +34,14 @@ export async function POST(req: Request) {
   );
 
   // Log password update
-  run(
+  await run(
     "INSERT INTO password_updates (user_id, created_at) VALUES (?, ?)",
     user.id,
     now()
   );
 
-  // Invalidate all sessions (including current) — user will be logged out
-  deleteAllSessions(user.id);
+  // Invalidate all sessions (including current) �?" user will be logged out
+  await deleteAllSessions(user.id);
 
   return NextResponse.json({ ok: true });
 }

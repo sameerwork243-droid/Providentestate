@@ -21,13 +21,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "New password must contain letters and numbers" }, { status: 400 });
   }
 
-  const record = findUserByEmail(user.email);
+  const record = await findUserByEmail(user.email);
   if (!record || !verifyPassword(current, String(record.password_hash))) {
     return NextResponse.json({ error: "Current password is incorrect" }, { status: 400 });
   }
 
-  run("UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?", hashPassword(next), now(), user.id);
-  deleteAllSessions(user.id);
+  await run("UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?", hashPassword(next), now(), user.id);
+  await deleteAllSessions(user.id);
 
   return NextResponse.json({ ok: true });
 }
