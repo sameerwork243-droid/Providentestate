@@ -46,3 +46,6 @@ next-env.d.ts
 /data/raw/html/
 /tmp/
 /dev/
+
+.vercel
+.env*
