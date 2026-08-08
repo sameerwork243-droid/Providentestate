@@ -27,7 +27,7 @@ function walk(dir: string, base: string): string[] {
 }
 
 function routesFromRaw() {
-  const raw = path.join(process.cwd(), "data", "raw");
+  const raw = path.join("data", "raw");
   const routes = new Set<string>();
   for (const sub of ["pages", "listings", "projects", "properties"]) {
     const dir = path.join(raw, sub);

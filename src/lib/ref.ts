@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 
-const RAW = path.join(process.cwd(), "data", "raw");
+const RAW = path.join("data", "raw");
 
 function load(rel: string) {
   const file = path.join(RAW, rel);

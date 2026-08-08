@@ -3,7 +3,7 @@ import path from "node:path";
 import homeJson from "@/data/home.json";
 import { cft } from "./image";
 
-const RAW = path.join(process.cwd(), "data", "raw");
+const RAW = path.join("data", "raw");
 const cache = new Map<string, any>();
 
 export function loadRel(rel: string): any | null {
@@ -92,10 +92,14 @@ export function byLink(link: string): any | null {
 }
 
 let corpusCache: Record<string, any[]> = {};
+const PROPS_DIR: Record<"buy" | "let", string> = {
+  buy: path.join(RAW, "properties", "buy"),
+  let: path.join(RAW, "properties", "let"),
+};
 /** Full converted corpus for a kind (buy|let) — loaded lazily once. */
 export function corpus(kind: "buy" | "let"): any[] {
   if (corpusCache[kind]) return corpusCache[kind];
-  const dir = path.join(RAW, "properties", kind);
+  const dir = PROPS_DIR[kind];
   const out: any[] = [];
   try {
     for (const e of readdirSync(dir)) {
