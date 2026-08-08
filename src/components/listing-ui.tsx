@@ -92,8 +92,18 @@ export function TypeSelect({ options }: { options: { label: string; href: string
   );
 }
 
-export function MortgageCalculator() {
-  const [price, setPrice] = useState("3,000,000");
+export function MortgageCalculator({
+  initialPrice = "3,000,000",
+  currency = "AED",
+  heading = "Mortgage Calculator",
+  panel = false,
+}: {
+  initialPrice?: string;
+  currency?: string;
+  heading?: string;
+  panel?: boolean;
+}) {
+  const [price, setPrice] = useState(initialPrice);
   const [down, setDown] = useState(25);
   const [rate, setRate] = useState(3.75);
   const [years, setYears] = useState(25);
@@ -103,16 +113,80 @@ export function MortgageCalculator() {
   const r = (rate || 0) / 12 / 100;
   const n = (years || 0) * 12;
   const monthly = p > 0 && r > 0 && n > 0 ? (principal * r) / (1 - Math.pow(1 + r, -n)) : 0;
+  const fmt = (v: number) => (v ? Math.round(v).toLocaleString("en-US") : "0");
+
+  if (panel) {
+    return (
+      <div className="property-mortagage-wrap" id="mortgage-calculator">
+        <h2 className="heading">{heading}</h2>
+        <div className="property-calc">
+          <div className="calculator-section">
+            <div className="input-section">
+              <div className="label-bk">
+                <label>Total Price</label>
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  className="input-item"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+                <span className="fix-txt">{currency}</span>
+              </div>
+              <div className="label-bk">
+                <label>Down Payment (%)</label>
+                <input type="number" className="input-item" value={down} onChange={(e) => setDown(parseFloat(e.target.value))} />
+              </div>
+              <div className="label-bk">
+                <label>Interest Rate (%)</label>
+                <input type="number" className="input-item" value={rate} onChange={(e) => setRate(parseFloat(e.target.value))} />
+              </div>
+              <div className="label-bk">
+                <label>Loan Period (Years)</label>
+                <input type="number" className="input-item" value={years} onChange={(e) => setYears(parseFloat(e.target.value))} />
+              </div>
+            </div>
+          </div>
+          <div className="result-section">
+            <div className="pric-bx">
+              <p className="per-txt">Monthly repayment</p>
+              <p className="results">
+                {currency} {fmt(monthly)} /month
+              </p>
+            </div>
+            <div className="div-bor"></div>
+            <div className="nn-bt">
+              <div className="one-bk">
+                <p className="tit">Total Loan Amount</p>
+                <p className="con">
+                  {currency} {fmt(principal)}
+                </p>
+              </div>
+              <div className="one-bk">
+                <p className="tit">Duration</p>
+                <p className="con">{years || 0} Years</p>
+              </div>
+              <div className="one-bk tif">
+                <a className="button button-orange trigger-button" href="/property-services/mortgages/">
+                  <span>Get a free consultation</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="results-calculator section-m">
       <div className="container">
         <div className="property-mortagage-wrap" id="mortgage-calculator">
-          <h2 className="title">Mortgage Calculator</h2>
+          <h2 className="title">{heading}</h2>
           <p className="content">Calculate your monthly mortgage repayments</p>
           <div className="calculator-section">
             <div className="input-section">
-              <p className="label">Total Price (AED)</p>
+              <p className="label">Total Price ({currency})</p>
               <input
                 type="text"
                 inputMode="decimal"
@@ -137,7 +211,7 @@ export function MortgageCalculator() {
           <div className="result-section">
             <div className="left-side">
               <p className="text">Monthly Payments</p>
-              <p className="results"> AED {monthly ? Math.round(monthly).toLocaleString("en-US") : 0} /month</p>
+              <p className="results"> {currency} {fmt(monthly)} /month</p>
             </div>
             <div className="right-side">
               <a className="button button-orange trigger-button" href="/property-services/mortgages/">

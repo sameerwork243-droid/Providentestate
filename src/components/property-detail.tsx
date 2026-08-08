@@ -5,6 +5,7 @@ import { SaveButton } from "./save-button";
 import { PropertyGallery } from "./property-gallery";
 import { waLink } from "@/lib/props";
 import { PropertyEnquiryForm } from "./property-enquiry-form";
+import { MortgageCalculator } from "./listing-ui";
 
 // Helper to determine if property is signature
 function isSignatureProperty(p: any): boolean {
@@ -37,6 +38,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
   const isSignature = isSignatureProperty(p);
   const status = p.status || "Ready";
   const waHref = waLink({ ...p, search_type: sale ? "rent" : "sale" });
+  const qualifier = Array.isArray(p.price_qualifier) ? p.price_qualifier[0] || "AED" : p.price_qualifier || "AED";
 
   return (
     <div>
@@ -203,7 +205,15 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                          </div>
                        )}
                        
-                       {/* Similar Properties Section */}
+                        {/* Mortgage Calculator Section */}
+                        <MortgageCalculator
+                          initialPrice={p.price ? p.price.toLocaleString("en-US") : undefined}
+                          currency={qualifier}
+                          heading="Calculate Mortgage Repayments"
+                          panel
+                        />
+
+                        {/* Similar Properties Section */}
                        <div className="similar-properties-section">
                          <p className="heading">Similar Properties</p>
                          <div className="similar-properties-slider">
@@ -241,7 +251,6 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                           WhatsApp
                         </a>
                       </div>
-                      <PropertyEnquiryForm propertyRef={p.crm_id || ""} propertySlug={p.slug || ""} route={route} />
                       <div className="bottom-section">
                         <a className="img-section img-zoom" href={neg.url ? neg.url : "/team/"}>
                           <div className="img-section">
@@ -272,42 +281,14 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                           </a>
                         </div>
                       </div>
+                      <PropertyEnquiryForm propertyRef={p.crm_id || ""} propertySlug={p.slug || ""} route={route} />
                     </div>
                   </div>
-                  <div className="property-mortagage-wrap">
-                    <div className="property-calc">
-                      <div className="calculator-section">
-                        <p className="title">Mortgage Calculator</p>
-                        <div className="input-section">
-                          <div className="label-bk">
-                            <label>Property Price (AED)</label>
-                            <input type="text" defaultValue={p.price ? p.price.toLocaleString() : ""} />
-                          </div>
-                          <div className="label-bk">
-                            <label>Down Payment (%)</label>
-                            <input type="text" defaultValue="20" />
-                          </div>
-                          <div className="label-bk">
-                            <label>Interest Rate (%)</label>
-                            <input type="text" defaultValue="4" />
-                          </div>
-                          <div className="label-bk">
-                            <label>Loan Term (years)</label>
-                            <input type="text" defaultValue="25" />
-                          </div>
-                        </div>
-                        <div className="result-section">
-                          <p>Estimated Monthly Payment</p>
-                          <p className="value">AED 0</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 </div>
-               </div>
+                </div>
+           </div>
           </div>
-        </div>
-       <div className="floating-cta-shell-wrap detail-prop">
+         </div>
+        <div className="floating-cta-shell-wrap detail-prop">
         <div className="floating-cta-shell container">
           <div className="floating-section">
             <a className="button button-orange" href="/book-a-viewing/">

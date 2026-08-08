@@ -407,3 +407,13 @@
 @media screen and (min-width: 1200px) {
   .similar-properties-slider .property-card-wrapper { width: calc((100% - 32px) / 3); }
 }
+
+/* ---- mortgage repayment calculator (property detail): functional panel layout ---- */
+.property-mortagage-wrap .property-calc .calculator-section { display: flex; grid-template-columns: none; margin: 0; }
+.property-mortagage-wrap .property-calc .calculator-section .input-section { display: grid; gap: 16px; }
+.property-mortagage-wrap .property-calc .calculator-section .input-section .label-bk label { color: #35373c; font-family: Plus Jakarta Sans; font-size: 12px; font-weight: 700; line-height: 140%; }
+.property-mortagage-wrap .property-calc .calculator-section .input-section .label-bk:first-child .input-item { padding-right: 64px; }
+.property-mortagage-wrap .property-calc .result-section .one-bk.tif .button { width: 100%; }
+@media screen and (min-width: 744px) {
+  .property-mortagage-wrap .property-calc .calculator-section .input-section { gap: 24px; }
+}
