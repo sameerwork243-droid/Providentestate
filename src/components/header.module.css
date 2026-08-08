@@ -307,7 +307,8 @@
 }
 
 .accordion-button::after {
-  content: '+';n  transition: transform 0.3s ease;
+  content: '+';
+  transition: transform 0.3s ease;
 }
 
 .accordion-button.collapsed::after {

@@ -263,7 +263,7 @@ function MegaMenu({ m }: { m: MenuDef }) {
           <div className={styles["menu-section-only"]}>
             {m.intro && <p className="h4">{m.intro}</p>}
             {m.columns.map((c, ci) => (
-              <div key={ci} className={`${styles.sub-menu} ${c.off !== false ? styles.offplan : ""} ${ci > 0 ? styles.bt : ""}`}>
+              <div key={ci} className={`${styles["sub-menu"]} ${c.off !== false ? styles.offplan : ""} ${ci > 0 ? styles.bt : ""}`}>
                 {c.heading && <p className={styles.heading}>{c.heading}</p>}
                 <div className={styles["sub-menu-list"]}>
                   {c.links.map((l, li) => (
