@@ -4,12 +4,13 @@ import fs from "node:fs";
 
 let db: DatabaseSync | null = null;
 const DB_FILE = process.env.PROVIDENT_DB_FILE || path.join(process.cwd(), "data", "provident.db");
+const JOURNAL_MODE = process.env.PROVIDENT_SQLITE_JOURNAL || "WAL";
 
 export function getDb(): DatabaseSync {
   if (db) return db;
   fs.mkdirSync(path.dirname(DB_FILE), { recursive: true });
   db = new DatabaseSync(DB_FILE);
-  db.exec("PRAGMA journal_mode = WAL;");
+  db.exec(`PRAGMA journal_mode = ${JOURNAL_MODE};`);
   db.exec("PRAGMA foreign_keys = ON;");
   db.exec("PRAGMA busy_timeout = 5000;");
   runMigrations(db);
