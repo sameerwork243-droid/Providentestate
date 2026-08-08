@@ -379,6 +379,13 @@
   margin: 0;
 }
 
+.portal-auth-card .portal-auth-logo {
+  display: block;
+  height: 26px;
+  margin-bottom: 24px;
+  width: auto;
+}
+
 .portal-auth-card .auth-subtitle {
   color: #35373c;
   font-size: 14px;

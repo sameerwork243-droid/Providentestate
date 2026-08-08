@@ -39,73 +39,57 @@ export function LoginForm({ initialEmail = "" }: { initialEmail?: string }) {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-banner">
-        <div className="login-banner-overlay" />
-      </div>
+    <>
+      <img className="portal-auth-logo" draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
+      <h1>Login to your account</h1>
+      <p className="auth-subtitle">Welcome back. Enter your details to access your account.</p>
 
-      <div className="login-panel">
-        <Link href="/" className="back-link">
-          ← Back to website
-        </Link>
+      {error && <div className="auth-error">{error}</div>}
 
-        <div className="login-card">
-          <img className="login-card-logo" draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
-          <h1 className="brand-title">Provident.</h1>
-          
-          <h2 className="login-heading">Login to your account</h2>
-          
-          <p className="signup-prompt">
-            Don't have an account yet? <Link href="/register/">Sign Up</Link>
-          </p>
-
-          <div className="divider">
-            <span>or login with email</span>
-          </div>
-
-          {error && <div className="auth-error">{error}</div>}
-
-          <form onSubmit={onSubmit} noValidate>
-            <div className="form-group">
-              <label htmlFor="auth-email">Email Address *</label>
-              <input
-                id="auth-email"
-                type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="auth-password">Password *</label>
-              <input
-                id="auth-password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="forgot-password">
-              <Link href="/forgot-password/">Forgot your password?</Link>
-            </div>
-
-            <p className="terms-text">
-              By clicking "Continue" you agree to our <Link href="/privacy">Privacy Policy</Link>.
-            </p>
-
-            <button className="continue-btn" type="submit" disabled={busy}>
-              {busy ? "Signing in…" : "Continue"}
-            </button>
-          </form>
+      <form onSubmit={onSubmit} noValidate>
+        <div className="auth-field">
+          <label htmlFor="auth-email">Email Address *</label>
+          <input
+            id="auth-email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-      </div>
-    </div>
+
+        <div className="auth-field">
+          <label htmlFor="auth-password">Password *</label>
+          <input
+            id="auth-password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="auth-row">
+          <span />
+          <Link href="/forgot-password/">Forgot your password?</Link>
+        </div>
+
+        <p className="auth-terms">
+          By clicking "Continue" you agree to our <Link href="/privacy">Privacy Policy</Link>.
+        </p>
+
+        <button className="portal-btn block" type="submit" disabled={busy}>
+          {busy ? "Signing in…" : "Continue"}
+        </button>
+      </form>
+
+      <p className="auth-alt">
+        Don&apos;t have an account yet? <Link href="/register/">Sign Up</Link>
+      </p>
+    </>
   );
 }

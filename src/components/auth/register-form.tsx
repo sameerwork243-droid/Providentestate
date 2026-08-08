@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { BLUE_LOGO } from "@/components/logo-data";
+
+const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
 export function RegisterForm() {
   const router = useRouter();
@@ -43,12 +46,14 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate>
+    <>
+      <img className="portal-auth-logo" draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
       <h1>Create your account</h1>
       <p className="auth-subtitle">
         Join Provident Estate to save properties, book viewings and track your inquiries in one place.
       </p>
       {error && <div className="auth-error">{error}</div>}
+      <form onSubmit={onSubmit} noValidate>
       <div className="auth-field">
         <label htmlFor="reg-name">Full name</label>
         <input id="reg-name" type="text" autoComplete="name" placeholder="John Smith" value={form.name} onChange={(e) => set("name", e.target.value)} required />
@@ -80,12 +85,13 @@ export function RegisterForm() {
       <button className="portal-btn block" type="submit" disabled={busy}>
         {busy ? "Creating account…" : "Create Account"}
       </button>
+      </form>
       <p className="auth-terms">
         By creating an account you agree to Provident Estate&apos;s terms of use and privacy policy.
       </p>
       <p className="auth-alt">
         Already have an account? <Link href="/login/">Sign in</Link>
       </p>
-    </form>
+    </>
   );
 }
