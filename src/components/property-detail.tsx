@@ -2,6 +2,7 @@ import { cft } from "@/lib/store";
 import { Rich, stripHtml } from "./rich";
 import { PropertyCard } from "./property-card";
 import { SaveButton } from "./save-button";
+import { PropertyGallery } from "./property-gallery";
 
 // Helper to determine if property is signature
 function isSignatureProperty(p: any): boolean {
@@ -11,8 +12,6 @@ function isSignatureProperty(p: any): boolean {
 export function PropertyDetailPage({ data, route }: { data: any; route: string }) {
   const p = data;
   const images = (p.images || []).map((im: any) => im.srcUrl || im.url).filter(Boolean) as string[];
-  const big = images[0] || "";
-  const thumbs = images.slice(0, 6);
   const title = p.title || `${p.building?.[0] || "Property"} in ${p.display_address || "Dubai"}`;
   const sale = (p.search_type || "").toLowerCase().includes("rent") || route.startsWith("/let");
   const purpose = sale ? "For Rent" : "For Sale";
@@ -74,28 +73,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                   <img src="/images/signature-badge.svg" alt="Signature Project" />
                 </div>
               )}
-              <div className="d-block d-xl-none mob-bann-prop-img">
-                <div className="d-block mob-banner-img">
-                  <div className="main-image img-zoom">
-                    {big && <img loading="eager" src={cft(big, 696, 520)} alt={`${type} - Provident Estate`} />}
-                  </div>
-                </div>
-              </div>
-              {/* Desktop Image Gallery - Full width main image with thumbnails */}
-              <div className="d-none d-xl-block">
-                <div className="main-image-container img-zoom">
-                  {big && <img loading="eager" src={cft(big, 1200, 675)} alt={`${type} - Provident Estate`} />}
-                </div>
-                <div className="thumbnail-gallery">
-                  {thumbs.map((t, i) => (
-                    <div className="thumbnail-item img-zoom" key={i}>
-                      <img loading="eager" draggable="false" src={cft(t, 150, 100)} alt={`${type} - thumbnail ${i + 1}`} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-                ))}
-              </div>
+              <PropertyGallery imgs={images} type={type} />
             </div>
           </div>
         </div>

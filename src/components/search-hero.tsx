@@ -302,6 +302,7 @@ function PriceSelect({
 export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]; showTabs?: boolean; review?: string }) {
   const [tab, setTab] = useState(0);
   const [q, setQ] = useState("");
+  const [areaSlug, setAreaSlug] = useState("");
   const [sugg, setSugg] = useState(false);
   const [bedsOpen, setBedsOpen] = useState(false);
   const [priceOpen, setPriceOpen] = useState(false);
@@ -332,14 +333,20 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
 
   const tabBase = tab === 0 ? "/buy/properties-for-sale" : tab === 1 ? "/let/properties-for-rent" : "/new-projects";
 
-  const go = (area?: string) => {
+  const selectArea = (label: string) => {
+    setQ(label);
+    setAreaSlug(label.replace(/[^a-z0-9]+/gi, "-").toLowerCase());
+    setSugg(false);
+  };
+
+  const go = () => {
     const params = new URLSearchParams();
-    const target = area ? `${tabBase}/in-${area.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}/` : tabBase + "/";
+    const target = areaSlug ? `${tabBase}/in-${areaSlug}/` : tabBase + "/";
     if (minBed) params.set("minBedroom", minBed);
     if (maxBed) params.set("maxBedroom", maxBed);
     if (minPrice) params.set("minPrice", minPrice);
     if (maxPrice) params.set("maxPrice", maxPrice);
-    if (q.trim() && !area) params.set("areas", q.trim());
+    if (q.trim() && !areaSlug) params.set("areas", q.trim());
     router.push(target + (params.toString() ? "?" + params.toString() : ""));
   };
 
@@ -380,6 +387,7 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
                       value={q}
                       onChange={(e) => {
                         setQ(e.target.value);
+                        setAreaSlug("");
                         setSugg(true);
                       }}
                       onFocus={() => setSugg(true)}
@@ -389,16 +397,18 @@ export function HeroSearch({ areas, showTabs = true, review }: { areas: string[]
                       }}
                     />
                     {sugg && matches.length > 0 && (
-                      <div className="autosuggest__suggestions">
-                        {matches.map((a) => (
-                          <button key={a} onMouseDown={() => go(a)} className="autosuggest__suggestion">
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                              <path d="M10 7C10 8.10457 9.10457 9 8 9C6.89543 9 6 8.10457 6 7C6 5.89543 6.89543 5 8 5C9.10457 5 10 5.89543 10 7Z" stroke="#9399A4" />
-                              <path d="M13 7C13 11.7614 8 14.5 8 14.5C8 14.5 3 11.7614 3 7C3 4.23858 5.23858 2 8 2C10.7614 2 13 4.23858 13 7Z" stroke="#9399A4" />
-                            </svg>
-                            {a}
-                          </button>
-                        ))}
+                      <div className="autosuggest__suggestions-container">
+                        <div className="autosuggest__suggestions-list">
+                          {matches.map((a) => (
+                            <button key={a} onMouseDown={() => selectArea(a)} className="autosuggest__suggestion">
+                              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M10 7C10 8.10457 9.10457 9 8 9C6.89543 9 6 8.10457 6 7C6 5.89543 6.89543 5 8 5C9.10457 5 10 5.89543 10 7Z" stroke="#9399A4" />
+                                <path d="M13 7C13 11.7614 8 14.5 8 14.5C8 14.5 3 11.7614 3 7C3 4.23858 5.23858 2 8 2C10.7614 2 13 4.23858 13 7Z" stroke="#9399A4" />
+                              </svg>
+                              {a}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>

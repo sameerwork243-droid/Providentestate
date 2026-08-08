@@ -77,8 +77,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: { params: Promise<{ seg?: string[] }> }) {
+export default async function Page({ params, searchParams }: { params: Promise<{ seg?: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { seg = [] } = await params;
+  const sp = await searchParams;
   const route = "/" + seg.join("/");
 
   const pageMatch = route.match(/^(.*?)\/page\/(\d+)\/?$/);
@@ -124,8 +125,22 @@ export default async function Page({ params }: { params: Promise<{ seg?: string[
   if (model.kind === "listing" && pageNum === 1) {
     const kind = route.startsWith("/let") ? "let" : "buy";
     const filters = routeFilters(route);
+    const q = (x: string | string[] | undefined) => (Array.isArray(x) ? x[0] : x);
+    const n = (v: string | undefined) => (v && !isNaN(Number(v)) ? parseInt(v, 10) : null);
+    const f = sp ? {
+      minBedroom: q(sp.minBedroom),
+      maxBedroom: q(sp.maxBedroom),
+      minPrice: q(sp.minPrice),
+      maxPrice: q(sp.maxPrice),
+      areas: q(sp.areas),
+    } : {};
+    if (f.minBedroom != null && filters.bedsMin == null) filters.bedsMin = n(f.minBedroom);
+    if (f.maxBedroom != null && filters.bedsMax == null) filters.bedsMax = n(f.maxBedroom);
+    if (f.minPrice != null && filters.priceMin == null) filters.priceMin = n(f.minPrice);
+    if (f.maxPrice != null && filters.priceMax == null) filters.priceMax = n(f.maxPrice);
+    if (f.areas && filters.area == null) filters.area = f.areas.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
     const dbHits = dbPropsToHits(kind);
-    const merged = [...dbHits.filter((h) => matchHit(h, filters)), ...(model.data.hits || [])];
+    const merged = [...dbHits.filter((h) => matchHit(h, filters)), ...(model.data.hits || [])].filter((h) => matchHit(h, filters));
     model.data.hits = merged;
     model.data.nbHits = (model.data.nbHits ?? merged.length) + dbHits.length;
     model.data.nbPages = Math.max(1, Math.ceil((model.data.nbHits ?? 1) / (model.data.hitsPerPage || 20)));
