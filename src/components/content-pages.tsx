@@ -185,15 +185,19 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
                     <Rich html={descHtml} />
                   </div>
                 )}
-                {allCtas.length > 0 && (
-                  <div className="cta-section">
-                    {allCtas.map((c: any, i: number) => (
-                      <a key={i} className={"button " + (i === 0 ? "button-orange" : "button-white")} href={ctaHref(c, "/contact/")}>
-                        <span>{c.cta_label || "Learn More"}</span>
-                      </a>
-                    ))}
-                  </div>
-                )}
+               {allCtas.length > 0 && (
+                 <div className="cta-section">
+                   {allCtas.map((c: any, i: number) => {
+                     const iconClass = c.icon ? `icon-${c.icon}` : "";
+                     return (
+                       <a key={i} className={"button " + (i === 0 ? "button-orange" : "button-white") + " " + iconClass} href={ctaHref(c, "/contact/")}>
+                         {c.icon && <span className="cta-icon"></span>}
+                         <span>{c.cta_label || "Learn More"}</span>
+                       </a>
+                     );
+                   })}
+                 </div>
+               )}
               </div>
             </div>
           </div>
