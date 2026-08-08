@@ -5,9 +5,15 @@ import { PortalFooter } from "@/components/portal/portal-shell";
 
 const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
-export function PortalAuthLayout({ children }: { children: React.ReactNode }) {
+export function PortalAuthLayout({
+  children,
+  footerBare = false,
+}: {
+  children: React.ReactNode;
+  footerBare?: boolean;
+}) {
   return (
-    <div className="portal-root">
+    <div className={`portal-root${footerBare ? " portal-auth-nofoot" : ""}`}>
       <header className="portal-appbar">
         <Link className="portal-brand" href="/" aria-label="Provident Estate">
           <img draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />

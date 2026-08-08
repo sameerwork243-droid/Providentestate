@@ -264,6 +264,16 @@
   padding: 24px 24px 48px;
 }
 
+.portal-auth-nofoot .portal-footer {
+  background: transparent;
+  border-top: 0;
+}
+
+.portal-auth-nofoot .portal-copy {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .portal-footer-inner {
   align-items: flex-start;
   display: flex;

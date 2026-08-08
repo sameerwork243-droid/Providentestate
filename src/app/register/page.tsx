@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Create Account" };
 export default async function RegisterPage() {
   await requireGuest();
   return (
-    <PortalAuthLayout>
+    <PortalAuthLayout footerBare>
       <RegisterForm />
     </PortalAuthLayout>
   );

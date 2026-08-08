@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Sign In" };
 export default async function LoginPage() {
   await requireGuest();
   return (
-    <PortalAuthLayout>
+    <PortalAuthLayout footerBare>
       <LoginForm />
     </PortalAuthLayout>
   );
