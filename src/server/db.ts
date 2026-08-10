@@ -101,13 +101,23 @@ export async function row<T = Record<string, unknown>>(sql: string, ...params: u
   return res.rows[0] as T | undefined;
 }
 
+// Tables that use a composite primary key and therefore have no `id` column.
+// `run()` must not append `RETURNING id` to inserts targeting these tables.
+const TABLES_WITHOUT_ID = new Set(["property_amenities"]);
+
+function insertTable(sql: string): string | null {
+  const m = /^\s*insert\s+into\s+([a-z_][a-z0-9_]*)/i.exec(sql);
+  return m ? m[1].toLowerCase() : null;
+}
+
 export async function run(
   sql: string,
   ...params: unknown[]
 ): Promise<{ changes: number; lastId: number }> {
   await ensureMigrated();
   const isInsert = /^\s*insert\s/i.test(sql);
-  const withReturning = isInsert && !/\breturning\b/i.test(sql);
+  const table = insertTable(sql);
+  const withReturning = isInsert && !/\breturning\b/i.test(sql) && !(table && TABLES_WITHOUT_ID.has(table));
   const query = withReturning ? `${pgParams(sql)} RETURNING id` : pgParams(sql);
   const res = await getPool().query(query, params);
   const lastId = withReturning && res.rows.length ? Number(res.rows[0].id) : 0;
