@@ -274,12 +274,11 @@ export function AdsBanner({ m }: { m: any }) {
 export function TileBlock({ m }: { m: any }) {
   const style = (m.style || "").replace(/ads_banner/g, "").trim();
   const alignRight = m.img_align === "right";
-  const white = alignRight || m.bg_color === "white";
-  const light = style.includes("light") || m.bg_color === "light" || m.img_align === "left";
-  const magic = typeof m.cta?.custom_link === "string" && m.cta.custom_link.startsWith("$");
+  const bgClass = m.bg_color === "ash" || m.bg_color === "white" || m.bg_color === "light" ? " " + m.bg_color : (alignRight ? " white" : "");
+  const magic = typeof m.cta?.custom_link === "string" && (m.cta.custom_link.startsWith("#") || m.cta.custom_link.startsWith("$"));
   const isAward = style === "award" || style.includes("award");
   const isYoutube = typeof m.video_url === "string" && /youtu\.?be/.test(m.video_url);
-  const tileImg = m.image?.url
+  const tileImg = m.image?.url && !isYoutube
     ? (() => {
         const W = alignRight ? 640 : 696;
         const H = alignRight ? 500 : 400;
@@ -300,16 +299,11 @@ export function TileBlock({ m }: { m: any }) {
       })()
     : null;
   return (
-    <div className={"tile-block-wrapper " + (style ? style + " " : "") + "section-m" + (white ? " white" : "") + (light ? " light" : "")}>
+    <div className={"tile-block-wrapper " + (style ? style + " " : "") + "section-m" + bgClass}>
       <div className={"tile-block-container " + (alignRight ? "align-img-right contain-image " : "") + "container"}>
         <div className="img-section">
           <div>
             {tileImg}
-            {m.video_url && !isYoutube && (
-              <video autoPlay muted loop playsInline preload="none" poster={m.image?.url || undefined}>
-                <source src={m.video_url} type="video/mp4" />
-              </video>
-            )}
             {m.video_url && isYoutube && (
               <a className="video-link-wrap" href={m.video_url} target="_blank" rel="noreferrer" aria-label="Play video">
                 <button className="play-button" aria-label="play button" type="button"></button>
@@ -320,6 +314,7 @@ export function TileBlock({ m }: { m: any }) {
         <div className="content-section">
           <div>
             {isAward && <AwardBadge />}
+            {m.heading && <p className="heading">{m.heading}</p>}
             <div className="design_title">
               <Rich html={m.design_title?.data?.design_title} />
             </div>

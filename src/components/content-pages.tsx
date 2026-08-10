@@ -120,9 +120,7 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
   const title = banner.title || page.page_name || "";
   const mods = Array.isArray(page.modules) ? page.modules : [];
   const crumbLeaf = banner.title || page.page_name || stripHtml(title) || "Page";
-  const ctas = [...(banner.ctas || [])];
-  const ctaText = banner.cta_text?.cta ? { ...banner.cta_text.cta, cta_label: banner.cta_text.cta.cta_label || "Learn More" } : null;
-  const allCtas = [...ctas, ctaText].filter(Boolean);
+  const allCtas = [...(banner.ctas || [])];
   const descHtml = banner.description?.data?.description;
 
   if (page.page_class === "developers_listing_page") return <DevelopersListingPage page={page} route={route} />;
@@ -188,11 +186,37 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
                {allCtas.length > 0 && (
                  <div className="cta-section">
                    {allCtas.map((c: any, i: number) => {
-                     const iconClass = c.icon ? `icon-${c.icon}` : "";
-                     return (
-                       <a key={i} className={"button " + (i === 0 ? "button-orange" : "button-white") + " " + iconClass} href={ctaHref(c, "/contact/")}>
-                         {c.icon && <span className="cta-icon"></span>}
-                         <span>{c.cta_label || "Learn More"}</span>
+                     const magic = typeof c.custom_link === "string" && (c.custom_link.startsWith("#") || c.custom_link.startsWith("$"));
+                     const label = c.cta_label || "Learn More";
+                     const gray = c.icon === "phone-blue" || c.icon === "right-arrow-white";
+                     const cls = "button " + (gray ? "button-gray" : "button-orange");
+                     const btn = (
+                       <>
+                         <span>{label}</span>
+                         {c.icon === "up-right-arrow-white" && (
+                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-up-right-icon">
+                             <path d="M2.25 9.75L9.75 2.25M9.75 2.25L4.125 2.25M9.75 2.25V7.875" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
+                           </svg>
+                         )}
+                         {c.icon === "phone-blue" && (
+                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mobile-icon">
+                             <path d="M10.5 1.5H8.25C7.00736 1.5 6 2.50736 6 3.75V20.25C6 21.4926 7.00736 22.5 8.25 22.5H15.75C16.9926 22.5 18 21.4926 18 20.25V3.75C18 2.50736 16.9926 1.5 15.75 1.5H13.5M10.5 1.5V3H13.5V1.5M10.5 1.5H13.5M10.5 20.25H13.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+                           </svg>
+                         )}
+                         {c.icon === "right-arrow-white" && (
+                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="right-arrow-icon">
+                             <path d="M2.25 6H9.75M9.75 6L5.625 1.875M9.75 6L5.625 10.125" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+                           </svg>
+                         )}
+                       </>
+                     );
+                     return magic ? (
+                       <button key={i} className={cls} type="button">
+                         {btn}
+                       </button>
+                     ) : (
+                       <a key={i} className={cls} href={ctaHref(c, "/contact/")}>
+                         {btn}
                        </a>
                      );
                    })}
