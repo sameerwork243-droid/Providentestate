@@ -357,7 +357,7 @@ export function salesHits(): any[] {
 }
 
 /** Team member summaries (name, slug, designation, image) from the saved team corpus. */
-export function teamMembers(limit = 100): any[] {
+export function teamMembers(limit = 1000): any[] {
   const dir = path.join(RAW, "pages", "team");
   const out: any[] = [];
   try {
@@ -373,9 +373,18 @@ export function teamMembers(limit = 100): any[] {
         image: t.extra?.profile_image || t.image?.url || null,
         phone: t.phone || t.office_phone || "",
         email: t.email || "",
+        category: Array.isArray(t.category?.strapi_json_value) ? t.category.strapi_json_value : [],
+        languages: Array.isArray(t.languages?.strapi_json_value) ? t.languages.strapi_json_value : [],
+        rank: typeof t.rank === "number" ? t.rank : null,
       });
     }
   } catch {}
+  out.sort((a, b) => {
+    const ra = a.rank == null ? Number.MAX_SAFE_INTEGER : a.rank;
+    const rb = b.rank == null ? Number.MAX_SAFE_INTEGER : b.rank;
+    if (ra !== rb) return ra - rb;
+    return (a.name || "").localeCompare(b.name || "");
+  });
   return out.slice(0, limit);
 }
 

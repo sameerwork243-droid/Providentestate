@@ -45,7 +45,7 @@ export function FilterDropdown({
   );
 }
 
-export function TypeSelect({ options }: { options: { label: string; href: string }[] }) {
+export function TypeSelect({ options, label = "Property Type" }: { options: { label: string; href: string }[]; label?: string }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
 
@@ -65,7 +65,7 @@ export function TypeSelect({ options }: { options: { label: string; href: string
           onClick={() => setOpen(!open)}
         >
           <div className="react-select__value-container react-select__value-container--has-value css-hlgwow">
-            <div className="react-select__single-value css-1ubv46r-singleValue">Property Type</div>
+            <div className="react-select__single-value css-1ubv46r-singleValue">{label}</div>
           </div>
           <div className="react-select__indicators css-1wy0on6">
             <span className="react-select__indicator-separator css-1uei4ir-indicatorSeparator"></span>

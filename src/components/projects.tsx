@@ -2,6 +2,7 @@ import { Rich, stripHtml } from "./rich";
 import { cft, areaLabel, communities } from "@/lib/store";
 import { Questionnaire } from "./modules";
 import { CountryFlag } from "./phone-flag";
+import { FilterDropdown, TypeSelect } from "./listing-ui";
 
 export function ProjectPages({ data, route, hub = false }: { data: any; route: string; hub?: boolean }) {
   const hits = (data?.hits || []).filter((h: any) => h && h.slug);
@@ -34,25 +35,10 @@ export function ProjectPages({ data, route, hub = false }: { data: any; route: s
                 </div>
               </div>
               <div className="filters-section d-none d-xl-flex">
-                <div className="react-select-wrap filter-select building-type-select">
-                  <div className="react-select css-b62m3t-container">
-                    <div className="react-select__control css-14qho42-control">
-                      <div className="react-select__value-container react-select__value-container--has-value css-hlgwow">
-                        <div className="react-select__single-value css-1ubv46r-singleValue">All Types</div>
-                      </div>
-                      <div className="react-select__indicators css-1wy0on6">
-                        <div className="dropdown-indicator react-select__indicator react-select__dropdown-indicator css-15ctyzv-indicatorContainer">
-                          <svg className="arrow-down-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M13 5.5L8 10.5L3 5.5" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ProjectFilter label="Area" links={areaLinks(route)} />
-                <ProjectFilter label="Type" links={typeLinks(route)} />
-                <ProjectFilter label="Completion" links={completionLinks(route)} />
+                <TypeSelect options={typeLinks(route)} label="All Types" />
+                <FilterDropdown label="Area" options={areaLinks(route)} />
+                <FilterDropdown label="Type" options={typeLinks(route)} />
+                <FilterDropdown label="Completion" options={completionLinks(route)} />
               </div>
             </div>
           </div>
@@ -139,28 +125,6 @@ export function ProjectPages({ data, route, hub = false }: { data: any; route: s
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function ProjectFilter({ label, links }: { label: string; links: { label: string; href: string }[] }) {
-  return (
-    <div className="filter-dropdown dropdown">
-      <button className="custom-dropdown-toggle filter-dropdown-toggle dropdown-toggle" aria-expanded="false">
-        <span>
-          <span>{label}</span>
-        </span>
-        <svg className="arrow-down-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M13 5.5L8 10.5L3 5.5" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-      <div className="dropdown-menu">
-        {links.map((l) => (
-          <a key={l.href} className="dropdown-item" href={l.href}>
-            {l.label}
-          </a>
-        ))}
       </div>
     </div>
   );

@@ -6,6 +6,13 @@
   z-index: 3;
 }
 
+.search-filters-container .cta-section .sb-myacc.icon.wishlist-icn {
+  position: static;
+  right: auto;
+  top: auto;
+  z-index: auto;
+}
+
 .sb-myacc.icon.wishlist-icn a {
   align-items: center;
   background: rgba(255, 255, 255, 0.92);
@@ -518,4 +525,157 @@
   .app-card {
     padding: 16px;
   }
+}
+
+/* ===== react-select base structure (restores missing emotion styles) ===== */
+.react-select__control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  outline: 0 !important;
+}
+
+.react-select__control .react-select__value-container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.react-select__control .react-select__single-value {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-select__control .react-select__indicators {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.react-select__control .react-select__indicators .react-select__indicator {
+  align-items: center;
+  display: flex;
+}
+
+.react-select__menu {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(7, 35, 75, 0.16), 0 0 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 20;
+}
+
+.react-select__menu-list {
+  padding: 4px 0;
+}
+
+.react-select__option {
+  background: transparent;
+  color: #35373c;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.react-select__option--is-focused,
+.react-select__option:active {
+  background: #f0f3f8;
+  color: #07234b;
+}
+
+.react-select__option--is-selected {
+  background: #f0f3f8;
+  color: #07234b;
+}
+
+/* ===== Property Type select in the search filters bar ===== */
+.search-filters-container .filters-section .filter-select .react-select__control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__value-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__single-value {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__indicators {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__indicator-separator {
+  display: none;
+}
+
+.search-filters-container .filters-section .filter-select .dropdown-indicator {
+  display: flex;
+  align-items: center;
+  margin-left: 12px !important;
+}
+
+.search-filters-container .filters-section .filter-select .dropdown-indicator svg {
+  display: block;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__menu {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(7, 35, 75, 0.16), 0 0 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.08);
+  margin-top: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 20;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__menu-list {
+  padding: 4px 0;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__option {
+  color: #35373c;
+  display: block;
+  font-size: 14px;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__option:hover,
+.search-filters-container .filters-section .filter-select .react-select__option--is-focused,
+.search-filters-container .filters-section .filter-select .react-select__option:active {
+  background: #f0f3f8;
+  color: #07234b;
+}
+
+.search-filters-container .filters-section .filter-select .react-select__option--is-selected {
+  background: #f0f3f8;
+  color: #07234b;
 }
