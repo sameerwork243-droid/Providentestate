@@ -117,16 +117,16 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const pd = getPageData(routeBase);
   let model = pd ? classify(pd, routeBase) : null;
 
+  if (!model) {
+    const dbp = await dbPropertyByRoute(routeBase);
+    if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };
+  }
   if (!model && (routeBase === "/buy" || routeBase === "/let" || routeBase.startsWith("/buy/") || routeBase.startsWith("/let/"))) {
     const base = baseListingRel(routeBase);
     if (base) {
       const basePd = getPageData("/" + base);
       if (basePd) model = classify(basePd, "/" + base);
     }
-  }
-  if (!model) {
-    const dbp = await dbPropertyByRoute(routeBase);
-    if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };
   }
   if (!model) notFound();
   if (model.kind === "listing") {

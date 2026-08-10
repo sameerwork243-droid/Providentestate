@@ -74,6 +74,7 @@ function dbHit(p: Record<string, unknown>): DbHit {
     "464x312": u,
     "696x520": u,
   });
+  const placeholder = "/images/property-placeholder.svg";
   return {
     id,
     slug: String(p.slug || `property-${id}`),
@@ -93,8 +94,8 @@ function dbHit(p: Record<string, unknown>): DbHit {
     description: String(p.introtext || ""),
     long_description: String(p.long_description || ""),
     introtext: String(p.introtext || ""),
-    images: thumb ? [img(thumb)] : [],
-    imageCount: thumb ? 1 : 0,
+    images: thumb ? [img(thumb)] : [img(placeholder)],
+    imageCount: thumb ? 1 : 1,
     search_type: String(p.transaction_type) === "rent" ? "rental" : "sale",
     crm_negotiator_id: { name: "Provident Estate", phone: "+971 50 539 0249", email: "info@providentestate.com" },
     status: String(p.status || "ready"),
@@ -127,9 +128,10 @@ export async function dbPropertyByRoute(route: string): Promise<{ data: any; kin
   if (!p) return null;
 
   const media = await rows(`SELECT * FROM property_media WHERE property_id = ? ORDER BY sort_order, id`, Number(p.id));
-  const images = media
+  let images = media
     .filter((m2) => m2.kind === "image")
     .map((m2) => ({ url: String(m2.url), srcUrl: String(m2.url) }));
+  if (!images.length) images = [{ url: "/images/property-placeholder.svg", srcUrl: "/images/property-placeholder.svg" }];
   const amenityNames = (
     await rows(
       `SELECT a.name FROM property_amenities pa JOIN amenities a ON a.id = pa.amenity_id WHERE pa.property_id = ? ORDER BY a.name`,
