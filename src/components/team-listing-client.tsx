@@ -88,9 +88,9 @@ export function TeamListingClient({ members }: { members: any[] }) {
             <div className="search-team-filter">
               <div className="search-box-comm">
                 <input
-                  className="search-input"
+                  className="form-control search"
                   type="text"
-                  placeholder="Search team members..."
+                  placeholder="Search Name, Designation..."
                   value={query}
                   onChange={(e) => {
                     setQuery(e.target.value);
@@ -99,23 +99,25 @@ export function TeamListingClient({ members }: { members: any[] }) {
                 />
               </div>
               <div className="select-boxes">
-                <div className="react-select-wrap">
-                  <select
-                    className="select-field"
-                    aria-label="Category"
-                    value={category}
-                    onChange={(e) => {
-                      setCategory(e.target.value);
-                      setPage(1);
-                    }}
-                  >
-                    <option value="">{tab}</option>
-                    {TABS.filter((t) => t !== tab).map((t) => (
-                      <option key={t} value={TAB_MAP[t]}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
+                <div className="d-block d-xl-none tab-width">
+                  <div className="react-select-wrap">
+                    <select
+                      className="select-field"
+                      aria-label="Category"
+                      value={category}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                        setPage(1);
+                      }}
+                    >
+                      <option value="">{tab}</option>
+                      {TABS.filter((t) => t !== tab).map((t) => (
+                        <option key={t} value={TAB_MAP[t]}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
                 <div className="react-select-wrap">
                   <select
@@ -140,23 +142,19 @@ export function TeamListingClient({ members }: { members: any[] }) {
           </div>
           <div className="team-category-select-section"></div>
           <div className="team-listing-section">
-            <div className="row">
-              {pageMembers.map((t: any, i: number) => (
-                <div className="col-xl-3 col-md-4 col-sm-6" key={i}>
-                  <div className="team-card-wrap">
-                    <div className="team-card rounded-card">
-                      <a className="img-section img-zoom" href={`/team/${t.slug}/`}>
-                        {t.image && <img loading="lazy" draggable="false" src={t.image} alt={t.name} />}
-                      </a>
-                      <div className="content">
-                        <p className="name">{t.name}</p>
-                        <p className="designation">{t.designation}</p>
-                      </div>
-                    </div>
-                  </div>
+            {pageMembers.map((t: any, i: number) => (
+              <div className="team-card-wrap" key={i}>
+                <div className="team-card rounded-card">
+                  <a className="img-section img-zoom" href={`/team/${t.slug}/`}>
+                    {t.image && <img loading="lazy" draggable="false" src={t.image} alt={t.name} />}
+                  </a>
+                  <a href={`/team/${t.slug}/`}>
+                    <p className="name">{t.name}</p>
+                  </a>
+                  <p className="designation">{t.designation}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
           <nav className="pagination-wrapper" aria-label="Team pagination">
             <div>

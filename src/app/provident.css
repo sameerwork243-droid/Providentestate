@@ -438,3 +438,35 @@
 @media screen and (min-width: 744px) {
   .property-mortagage-wrap .property-calc .calculator-section .input-section { gap: 24px; }
 }
+
+/* ---- team listing: native selects styled to match live react-select ---- */
+.team-listing-wrap .max-filter .select-boxes .react-select-wrap .select-field,
+.pagination-select-wrap .select-field {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M13 5.5L8 10.5L3 5.5' stroke='%2307234B' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+  border: 1px solid #e1e8ed;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  height: 44px;
+  line-height: 140%;
+  min-width: 150px;
+  padding: 0 40px 0 16px;
+  width: 100%;
+}
+@media screen and (min-width: 744px) {
+  .team-listing-wrap .max-filter .select-boxes .react-select-wrap .select-field { border-radius: 4px; height: 46px; min-width: 40%; }
+}
+@media screen and (min-width: 1200px) {
+  .team-listing-wrap .max-filter .select-boxes .react-select-wrap .select-field { height: 46px; }
+}
+.team-listing-wrap .max-filter .select-boxes .react-select-wrap .select-field:focus {
+  border-color: #e1e8ed;
+  outline: none;
+}
