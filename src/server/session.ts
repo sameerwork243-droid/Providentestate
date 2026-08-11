@@ -21,7 +21,8 @@ export async function getAuthUser(): Promise<AuthUser | null> {
 
 export async function loginUser(
   userId: number,
-  remember: boolean
+  remember: boolean,
+  isSecure: boolean = process.env.NODE_ENV === "production"
 ): Promise<void> {
   await ensure();
   const { token, expiresAt } = await createSessionToken(userId, remember);
@@ -29,11 +30,20 @@ export async function loginUser(
   jar.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: isSecure,
     path: "/",
     maxAge: Math.floor((expiresAt - Date.now()) / 1000),
   });
   await touchLastLogin(userId);
+}
+
+/** True when the request arrived over HTTPS (drives the Secure cookie flag). */
+export function requestIsHttps(req: Request): boolean {
+  try {
+    return new URL(req.url).protocol === "https:";
+  } catch {
+    return false;
+  }
 }
 
 export async function logoutUser(): Promise<void> {

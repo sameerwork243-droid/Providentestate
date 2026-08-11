@@ -4,9 +4,12 @@ import { Questionnaire } from "./modules";
 import { FilterDropdown, TypeSelect, MortgageCalculator } from "./listing-ui";
 import { synthHits, areaLabel, teamMembers, projectHits, routeFilters } from "@/lib/store";
 import { CountryFlag } from "./phone-flag";
+import { ReadMore } from "./read-more";
 
 export function ListingPage({ data, route, page = 1 }: { data: any; route: string; page?: number }) {
-  const hits = page <= 1 ? data.hits || [] : synthHits(route, page);
+  const list = data.hits || [];
+  const start = (page - 1) * 20;
+  const hits = list.length ? list.slice(start, start + 20) : synthHits(route, page);
   const nbHits = data.nbHits ?? hits.length;
   const f = routeFilters(route);
   const rent = route.startsWith("/let");
@@ -396,11 +399,9 @@ export function ListingPage({ data, route, page = 1 }: { data: any; route: strin
         <div className="text-copy-wrap section-p" id="contentsection-text-copy">
           <div className="text-copy-container container">
             <h2 className="title">{content?.title}</h2>
-            <div className="read-more-wrap description">
-              <div className="read-more">
-                <Rich html={contentDesc} />
-              </div>
-            </div>
+            <ReadMore className="description">
+              <Rich html={contentDesc} />
+            </ReadMore>
           </div>
         </div>
       )}
@@ -435,7 +436,7 @@ function Pagination({
     );
 
   return (
-    <div className="search-pagination-wrapper container">
+    <div className="pagination-wrapper search-pagination-wrapper container">
       <div>
         <div className="pagination-container">
           <a

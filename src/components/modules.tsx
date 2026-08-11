@@ -22,6 +22,9 @@ import {
 import homeJson from "@/data/home.json";
 import { TeamListingClient } from "./team-listing-client";
 import { OfficeCard } from "./office-card";
+import { dbTeamMembers } from "@/server/content-bridge";
+import { ContactEnquiryForm } from "./contact-enquiry-form";
+import { DreamHomeQuiz } from "./dream-home-quiz";
 
 export { Rich, ctaHref, stripHtml };
 
@@ -579,7 +582,7 @@ export function Questionnaire({ m }: { m: any }) {
                     </div>
                   </div>
                   <div className="cta-section">
-                    <a className="button button-orange cursur">Find My Dream Home!</a>
+                    <DreamHomeQuiz />
                     <div className="help-info">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path
@@ -855,41 +858,7 @@ function FormModule({ m }: { m: any }) {
           </div>
         </div>
         <div className="form-section">
-          <form action="#" method="post" className="custom-form">
-            <div className="form-grid">
-              <div className="form-section">
-                <div className="input-box input-box-name">
-                  <label className="input-label" htmlFor="name">
-                    Full Name
-                  </label>
-                  <input className="input-field" type="text" name="name" id="name" placeholder="Full Name" />
-                </div>
-                <div className="input-box input-box-telephone">
-                  <label className="input-label" htmlFor="phone">
-                    Phone Number
-                  </label>
-                  <input className="input-field" type="tel" name="phone" id="phone" placeholder="Phone Number" />
-                </div>
-                <div className="input-box input-box-email">
-                  <label className="input-label" htmlFor="email">
-                    Email Address
-                  </label>
-                  <input className="input-field" type="email" name="email" id="email" placeholder="Email Address" />
-                </div>
-                <div className="input-box input-box-message">
-                  <label className="input-label" htmlFor="message">
-                    Message
-                  </label>
-                  <textarea className="input-field input-textarea" name="message" id="message" placeholder="Message"></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="form-bottom">
-              <button className="reg-btn button button-orange" type="submit">
-                <span>Submit</span>
-              </button>
-            </div>
-          </form>
+          <ContactEnquiryForm />
         </div>
       </div>
     </div>
@@ -998,8 +967,11 @@ export function NewsListing() {
   );
 }
 
-export function TeamListing() {
+export async function TeamListing() {
   const members = teamMembers(1000);
+  const db = await dbTeamMembers();
+  const seen = new Set(members.map((m: any) => m.slug));
+  for (const m of db) if (!seen.has(m.slug)) members.push(m);
   if (!members.length) return null;
   return <TeamListingClient members={members} />;
 }

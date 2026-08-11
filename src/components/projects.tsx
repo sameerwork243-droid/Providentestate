@@ -3,6 +3,8 @@ import { cft, areaLabel, communities } from "@/lib/store";
 import { Questionnaire } from "./modules";
 import { CountryFlag } from "./phone-flag";
 import { FilterDropdown, TypeSelect } from "./listing-ui";
+import { ReadMore } from "./read-more";
+import { RegisterInterestForm } from "./register-interest-form";
 
 export function ProjectPages({ data, route, hub = false }: { data: any; route: string; hub?: boolean }) {
   const hits = (data?.hits || []).filter((h: any) => h && h.slug);
@@ -110,11 +112,9 @@ export function ProjectPages({ data, route, hub = false }: { data: any; route: s
           {content?.description && (
             <div className="text-copy-wrap section-p">
               <div className="text-copy-container container">
-                <div className="read-more-wrap description">
-                  <div className="read-more">
-                    <Rich html={content.description} />
-                  </div>
-                </div>
+                <ReadMore className="description">
+                  <Rich html={content.description} />
+                </ReadMore>
               </div>
             </div>
           )}
@@ -403,16 +403,7 @@ function ProjectDetail({ hit, route }: { hit: any; route: string }) {
               </div>
             </div>
             <div className="col-xl-6 col-lg-12">
-              <form className="contact-form" action="#" method="post">
-                <div className="input-section">
-                  <input type="text" name="name" placeholder="Full Name" />
-                  <input type="tel" name="phone" placeholder="Phone Number" />
-                  <input type="email" name="email" placeholder="Email Address" />
-                </div>
-                <button className="button button-orange" type="submit">
-                  <span>Submit</span>
-                </button>
-              </form>
+              <RegisterInterestForm projectTitle={hit.title} />
             </div>
           </div>
         </div>

@@ -18,3 +18,11 @@ export async function POST(req: Request) {
   const res = await run("INSERT INTO amenities (name) VALUES (?)", name);
   return NextResponse.json({ id: res.lastId }, { status: 201 });
 }
+
+export async function DELETE(req: Request) {
+  await requireAdmin();
+  const name = String(new URL(req.url).searchParams.get("name") || "").trim();
+  if (!name) return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  await run("DELETE FROM amenities WHERE name = ?", name);
+  return NextResponse.json({ ok: true });
+}

@@ -103,6 +103,46 @@ export const MEDIA: CrudConfig = {
   defaultOrder: "id DESC",
 };
 
+export const JOBS: CrudConfig = {
+  table: "jobs",
+  fields: [
+    { name: "title", required: true },
+    { name: "slug", required: true },
+    { name: "location" },
+    { name: "summary", type: "text" },
+    { name: "job_details", type: "text" },
+    { name: "published", type: "int" },
+  ],
+  searchable: ["title", "slug", "location"],
+  defaultOrder: "published DESC, id DESC",
+};
+
+export const PROJECTS: CrudConfig = {
+  table: "projects",
+  fields: [
+    { name: "title", required: true },
+    { name: "slug", required: true },
+    { name: "status" },
+    { name: "price", type: "int" },
+    { name: "currency" },
+    { name: "community" },
+    { name: "developer" },
+    { name: "building_type", type: "json" },
+    { name: "department" },
+    { name: "bedrooms_min", type: "int" },
+    { name: "bedrooms_max", type: "int" },
+    { name: "display_address" },
+    { name: "about", type: "text" },
+    { name: "images", type: "json" },
+    { name: "amenities", type: "json" },
+    { name: "banner_image" },
+    { name: "completion_year", type: "int" },
+    { name: "published", type: "int" },
+  ],
+  searchable: ["title", "slug", "developer", "community"],
+  defaultOrder: "published DESC, id DESC",
+};
+
 const RESOURCES: Record<string, CrudConfig> = {
   services: SERVICES,
   agents: AGENTS,
@@ -111,6 +151,8 @@ const RESOURCES: Record<string, CrudConfig> = {
   testimonials: TESTIMONIALS,
   faqs: FAQS,
   media: MEDIA,
+  jobs: JOBS,
+  projects: PROJECTS,
 };
 
 export function crudByResource(resource: string): CrudConfig | null {

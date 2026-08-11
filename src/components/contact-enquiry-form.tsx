@@ -1,23 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { COUNTRIES } from "./phone-flag";
 
-export function PropertyEnquiryForm({
-  propertyRef,
-  propertySlug,
-  route,
-}: {
-  propertyRef: string;
-  propertySlug: string;
-  route: string;
-}) {
+export function ContactEnquiryForm() {
+  const uid = useId().replace(/[:]/g, "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [dial, setDial] = useState("+971");
   const [number, setNumber] = useState("");
   const [message, setMessage] = useState("");
-  const [agree, setAgree] = useState(false);
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<"idle" | "ok" | "err">("idle");
   const [error, setError] = useState("");
@@ -26,24 +18,17 @@ export function PropertyEnquiryForm({
     e.preventDefault();
     setStatus("idle");
     setError("");
-    if (message.trim().length < 10) {
-      setStatus("err");
-      setError("Message must be at least 10 characters");
-      return;
-    }
     setBusy(true);
     try {
       const res = await fetch("/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          kind: "viewing",
+          kind: "contact",
           name: name.trim(),
           email: email.trim(),
           phone: `${dial} ${number.trim()}`.trim(),
           message: message.trim(),
-          property_ref: propertyRef,
-          property_slug: propertySlug,
         }),
       });
       const data = await res.json().catch(() => null);
@@ -57,7 +42,6 @@ export function PropertyEnquiryForm({
       setEmail("");
       setNumber("");
       setMessage("");
-      setAgree(false);
     } catch {
       setStatus("err");
       setError("Something went wrong. Please try again.");
@@ -67,41 +51,26 @@ export function PropertyEnquiryForm({
   }
 
   return (
-    <div className="book-a-viewing-form" id="bav-form">
-      <form className="custom-form" onSubmit={submit} noValidate>
-        <div className="form-grid">
+    <form className="custom-form" onSubmit={submit} noValidate>
+      <div className="form-grid">
+        <div className="form-section">
           <div className="input-box input-box-name">
-            <label className="input-label" htmlFor="bav-name">
+            <label className="input-label" htmlFor={`cef-name-${uid}`}>
               Full Name
             </label>
             <input
               className="input-field"
               type="text"
-              id="bav-name"
               name="name"
+              id={`cef-name-${uid}`}
               placeholder="Full Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
-          <div className="input-box input-box-email">
-            <label className="input-label" htmlFor="bav-email">
-              Email Address
-            </label>
-            <input
-              className="input-field"
-              type="email"
-              id="bav-email"
-              name="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
           <div className="input-box input-box-telephone">
-            <label className="input-label" htmlFor="bav-phone">
+            <label className="input-label" htmlFor={`cef-phone-${uid}`}>
               Phone Number
             </label>
             <div className="phone-field-row">
@@ -120,68 +89,55 @@ export function PropertyEnquiryForm({
               <input
                 className="input-field"
                 type="tel"
-                id="bav-phone"
                 name="phone"
+                id={`cef-phone-${uid}`}
                 placeholder="Phone Number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
-                required
               />
             </div>
           </div>
+          <div className="input-box input-box-email">
+            <label className="input-label" htmlFor={`cef-email-${uid}`}>
+              Email Address
+            </label>
+            <input
+              className="input-field"
+              type="email"
+              name="email"
+              id={`cef-email-${uid}`}
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
           <div className="input-box input-box-message">
-            <label className="input-label" htmlFor="bav-message">
+            <label className="input-label" htmlFor={`cef-message-${uid}`}>
               Message
             </label>
             <textarea
               className="input-field input-textarea"
-              id="bav-message"
               name="message"
+              id={`cef-message-${uid}`}
               placeholder="Message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>
-          <div className="input-box input-box-checkbox">
-            <label className="input-label">
-              <input
-                type="checkbox"
-                className="checkbox-root"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
-                required
-              />
-              <span>
-                I agree to the{" "}
-                <a href="/terms-and-conditions/">Terms &amp; Conditions</a>{" "}
-                and{" "}
-                <a href="/privacy-policy/">Privacy Policy</a>
-              </span>
-            </label>
-          </div>
         </div>
-        <div className="form-bottom">
-          {status === "ok" && (
-            <p className="success-msg">
-              Thank you for your enquiry — one of our consultants will get back
-              to you shortly.
-            </p>
-          )}
-          {status === "err" && (
-            <p
-              className="error-msg"
-              dangerouslySetInnerHTML={{ __html: error }}
-            ></p>
-          )}
-          <button
-            className="reg-btn button button-orange"
-            type="submit"
-            disabled={busy}
-          >
-            <span>{busy ? "Sending…" : "Request Information"}</span>
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div className="form-bottom">
+        {status === "ok" && (
+          <p className="success-msg">
+            Thank you for your enquiry — one of our consultants will get back to you shortly.
+          </p>
+        )}
+        {status === "err" && <p className="error-msg">{error}</p>}
+        <button className="reg-btn button button-orange" type="submit" disabled={busy}>
+          <span>{busy ? "Submitting…" : "Submit"}</span>
+        </button>
+      </div>
+    </form>
   );
 }

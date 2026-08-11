@@ -6,6 +6,7 @@ import { PropertyGallery } from "./property-gallery";
 import { waLink } from "@/lib/props";
 import { PropertyEnquiryForm } from "./property-enquiry-form";
 import { MortgageCalculator } from "./listing-ui";
+import { ReadMore } from "./read-more";
 
 // Helper to determine if property is signature
 function isSignatureProperty(p: any): boolean {
@@ -85,7 +86,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                   <img src="/images/signature-badge.svg" alt="Signature Project" />
                 </div>
               )}
-              <PropertyGallery imgs={images} type={type} />
+              <PropertyGallery imgs={images} type={type} location={p.display_address} title={title} />
             </div>
           </div>
         </div>
@@ -184,11 +185,9 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                      <div>
                        <div className="long-description-section" id="contentsection-property">
                          <p className="heading">Description</p>
-                         <div className="read-more-wrap long-description">
-                           <div className="read-more">
-                             <Rich html={description} />
-                           </div>
-                         </div>
+<ReadMore className="long-description">
+                            <Rich html={description} />
+                          </ReadMore>
                        </div>
                        
                        {/* Floor Plans Section */}
@@ -291,7 +290,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
         <div className="floating-cta-shell-wrap detail-prop">
         <div className="floating-cta-shell container">
           <div className="floating-section">
-            <a className="button button-orange" href="/book-a-viewing/">
+            <a className="button button-orange" href="#bav-form">
               <span>Email</span>
             </a>
             <a href={`tel:${phone.replace(/\s/g, "")}`} className="button button-orange">

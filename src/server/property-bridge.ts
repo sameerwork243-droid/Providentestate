@@ -23,10 +23,32 @@ export interface DbHit {
   images: { "340x252": string; "464x312": string; "696x520": string }[];
   imageCount: number;
   search_type: "sale" | "rental";
-  crm_negotiator_id: { name: string; phone: string; email: string };
+  crm_negotiator_id: {
+    name: string;
+    phone: string;
+    email: string;
+    url?: string;
+    designation?: string;
+    brn_number?: string;
+  };
   status: string;
   completion_year: number | null;
   furnished: string;
+}
+
+const DEFAULT_NEGOTIATOR = { name: "Provident Estate", phone: "+971 50 539 0249", email: "info@providentestate.com" };
+
+function negotiatorFromRow(p: Record<string, unknown>) {
+  const name = String(p.agent_name || "").trim();
+  if (!name) return DEFAULT_NEGOTIATOR;
+  return {
+    name,
+    url: String(p.agent_img || ""),
+    designation: String(p.agent_role || "Sales Associate"),
+    brn_number: String(p.agent_brn || ""),
+    phone: String(p.agent_phone || DEFAULT_NEGOTIATOR.phone),
+    email: String(p.agent_email || DEFAULT_NEGOTIATOR.email),
+  };
 }
 
 const DEPARTMENT: Record<string, string> = {
@@ -57,8 +79,11 @@ async function dbQuery(kind: "buy" | "let") {
   const txn = kind === "let" ? "rent" : "buy";
   return rows<Record<string, unknown>>(
     `SELECT p.*,
+       ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+       ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email,
        (SELECT m.url FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image' ORDER BY m.is_featured DESC, m.sort_order, m.id LIMIT 1) AS thumb
      FROM properties p
+     LEFT JOIN agents ag ON ag.id = p.agent_id
      WHERE p.published = 1 AND p.transaction_type = ?
      ORDER BY p.created_at DESC`,
     txn
@@ -97,7 +122,7 @@ function dbHit(p: Record<string, unknown>): DbHit {
     images: thumb ? [img(thumb)] : [img(placeholder)],
     imageCount: thumb ? 1 : 1,
     search_type: String(p.transaction_type) === "rent" ? "rental" : "sale",
-    crm_negotiator_id: { name: "Provident Estate", phone: "+971 50 539 0249", email: "info@providentestate.com" },
+    crm_negotiator_id: negotiatorFromRow(p),
     status: String(p.status || "ready"),
     completion_year: p.year_built != null ? Number(p.year_built) : null,
     furnished: String(p.furnished || ""),
@@ -117,14 +142,45 @@ export async function dbPropertyByRoute(route: string): Promise<{ data: any; kin
   if (!m) return null;
   const kind: "buy" | "let" = m[1] as "buy" | "let";
   const part = m[2];
-  const idMatch = part.match(/(\d+)$/);
-  const id = idMatch ? Number(idMatch[1]) : null;
-  const slug = idMatch ? part.slice(0, part.length - idMatch[1].length) : part;
   const txn = kind === "let" ? "rent" : "buy";
 
+  // The card link is `{slug}{id}` concatenated, so a slug ending in digits is
+  // ambiguous (e.g. slug "dsav-2" + id 27 -> "dsav-227"). Try progressive
+  // splits, longest id first, until a row matches.
   let p: Record<string, unknown> | undefined;
-  if (id) p = (await rows(`SELECT * FROM properties WHERE id = ? AND published = 1 AND transaction_type = ?`, id, txn))[0];
-  if (!p && slug) p = (await rows(`SELECT * FROM properties WHERE slug = ? AND published = 1 AND transaction_type = ?`, slug, txn))[0];
+  const digits = (part.match(/\d+$/) || [""])[0];
+  for (let idLen = digits.length; idLen >= 0; idLen--) {
+    const id = idLen > 0 ? Number(digits.slice(digits.length - idLen)) : null;
+    const slug = idLen < digits.length ? part.slice(0, part.length - idLen) : part;
+    if (id != null && id > 0 && id <= 2147483647) {
+      p = (
+        await rows(
+          `SELECT p.*, ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+             ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email
+           FROM properties p
+           LEFT JOIN agents ag ON ag.id = p.agent_id
+           WHERE p.id = ? AND p.published = 1 AND p.transaction_type = ?`,
+          id,
+          txn
+        )
+      )[0];
+      if (p) break;
+    }
+    if (slug) {
+      p = (
+        await rows(
+          `SELECT p.*, ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+             ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email
+           FROM properties p
+           LEFT JOIN agents ag ON ag.id = p.agent_id
+           WHERE p.slug = ? AND p.published = 1 AND p.transaction_type = ?`,
+          slug,
+          txn
+        )
+      )[0];
+      if (p) break;
+    }
+  }
   if (!p) return null;
 
   const media = await rows(`SELECT * FROM property_media WHERE property_id = ? ORDER BY sort_order, id`, Number(p.id));
@@ -148,7 +204,6 @@ export async function dbPropertyByRoute(route: string): Promise<{ data: any; kin
       amenities: amenityNames,
       status: String(p.completion_status || "Ready"),
       furnishing: String(p.furnished || "Unfurnished"),
-      crm_negotiator_id: { name: "Provident Estate", phone: "+971 50 539 0249", email: "info@providentestate.com" },
     },
   };
 }

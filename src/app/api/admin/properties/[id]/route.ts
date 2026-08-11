@@ -5,7 +5,15 @@ import { rows } from "@/server/db";
 export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> }) {
   await requireAdmin();
   const { id } = await ctx.params;
-  const item = (await rows("SELECT * FROM properties WHERE id = ?", Number(id)))[0];
+  const item = (
+    await rows(
+      `SELECT p.*, a.name AS agent_name, a.brn_number AS agent_brn, a.role AS agent_role
+       FROM properties p
+       LEFT JOIN agents a ON a.id = p.agent_id
+       WHERE p.id = ?`,
+      Number(id)
+    )
+  )[0];
   if (!item) return NextResponse.json({ error: "Property not found" }, { status: 404 });
   const amenities = (
     await rows(

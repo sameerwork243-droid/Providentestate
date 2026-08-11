@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ensureSeeded } from "@/server/seed";
 import { findUserByEmail, verifyPassword } from "@/server/auth-core";
-import { loginUser } from "@/server/session";
+import { loginUser, requestIsHttps } from "@/server/session";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "This account has been deactivated" }, { status: 403 });
   }
 
-  await loginUser(Number(user.id), remember);
+  await loginUser(Number(user.id), remember, requestIsHttps(req));
 
   return NextResponse.json({
     user: {

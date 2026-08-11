@@ -6,7 +6,7 @@ import { COUNTRIES, CountryFlag } from "@/components/phone-flag";
 
 type User = PortalUser;
 
-type FieldType = "text" | "textarea" | "number" | "select" | "checkbox" | "json";
+type FieldType = "text" | "textarea" | "number" | "select" | "checkbox" | "json" | "agent";
 type FieldDef = { key: string; label: string; type?: FieldType; options?: string[]; full?: boolean; hint?: string; required?: boolean };
 
 export function AdminApp({ user }: { user: User }) {
@@ -21,6 +21,7 @@ export function AdminApp({ user }: { user: User }) {
       items: [
         { key: "overview", label: "Dashboard", icon: "home" },
         { key: "properties", label: "Properties", icon: "building" },
+        { key: "projects", label: "Projects", icon: "building" },
         { key: "services", label: "Services", icon: "briefcase" },
       ],
     },
@@ -47,8 +48,8 @@ export function AdminApp({ user }: { user: User }) {
         { key: "testimonials", label: "Testimonials", icon: "star" },
         { key: "faqs", label: "FAQs", icon: "question" },
         { key: "media", label: "Blogs", icon: "image" },
-        { key: "contact", label: "Contact Info", icon: "phone" },
         { key: "homepage", label: "Homepage Content", icon: "grid" },
+        { key: "more", label: "More", icon: "menu" },
       ],
     },
   ];
@@ -57,6 +58,7 @@ export function AdminApp({ user }: { user: User }) {
     <PortalShell user={user} title="Admin Panel" sections={sections} active={tab} onNav={setTab}>
       {tab === "overview" && <StatsOverview />}
       {tab === "properties" && <PropertiesManager />}
+      {tab === "projects" && <ResourceManager endpoint="projects" title="New Projects" fields={PROJECT_FIELDS} columns={projectColumns} />}
       {tab === "services" && <ResourceManager endpoint="services" title="Services" fields={SERVICE_FIELDS} columns={serviceColumns} />}
       {tab === "users" && <UsersManager />}
       {tab === "inquiries" && <InquiriesManager />}
@@ -68,9 +70,91 @@ export function AdminApp({ user }: { user: User }) {
       {tab === "testimonials" && <ResourceManager endpoint="testimonials" title="Testimonials" fields={TESTIMONIAL_FIELDS} columns={testimonialColumns} />}
       {tab === "faqs" && <ResourceManager endpoint="faqs" title="FAQs" fields={FAQ_FIELDS} columns={faqColumns} />}
       {tab === "media" && <ResourceManager endpoint="media" title="Media Library" fields={MEDIA_FIELDS} columns={mediaColumns} />}
-      {tab === "contact" && <KVManager endpoint="contact" title="Contact Information" defaults={CONTACT_KEYS} selects={{ country: true }} />}
       {tab === "homepage" && <KVManager endpoint="homepage" title="Homepage Content" defaults={HOMEPAGE_KEYS} />}
+      {tab === "more" && <MoreManager />}
     </PortalShell>
+  );
+}
+
+/* ===================== More (About / Team / Careers / Contact) ===================== */
+
+function MoreManager() {
+  const [sub, setSub] = useState("about");
+  const tabs = [
+    { key: "about", label: "About Us" },
+    { key: "team", label: "Meet the Team" },
+    { key: "careers", label: "Careers" },
+    { key: "contact", label: "Contact Us" },
+  ];
+  return (
+    <div>
+      <div className="profile-tabs">
+        {tabs.map((t) => (
+          <button key={t.key} type="button" className={"profile-tab" + (sub === t.key ? " active" : "")} onClick={() => setSub(t.key)}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+      {sub === "about" && <AboutManager />}
+      {sub === "team" && <ResourceManager endpoint="agents" title="Meet the Team" fields={AGENT_FIELDS} columns={agentColumns} />}
+      {sub === "careers" && <ResourceManager endpoint="jobs" title="Careers" fields={JOB_FIELDS} columns={jobColumns} />}
+      {sub === "contact" && <KVManager endpoint="contact" title="Contact Us" defaults={CONTACT_KEYS} selects={{ country: true }} />}
+    </div>
+  );
+}
+
+function AboutManager() {
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [toast, setToast] = useState("");
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    fetch("/api/admin/about")
+      .then((r) => r.json())
+      .then((d) => {
+        const v: Record<string, string> = {};
+        for (const k of ABOUT_KEYS) v[k] = "";
+        for (const it of d.items || []) v[String(it.key)] = String(it.value || "");
+        setValues(v);
+      })
+      .catch(() => {
+        const v: Record<string, string> = {};
+        for (const k of ABOUT_KEYS) v[k] = "";
+        setValues(v);
+      });
+  }, []);
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    const res = await fetch("/api/admin/about", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: Object.entries(values).map(([key, value]) => ({ key, value })) }) });
+    setBusy(false);
+    if (res.ok) {
+      setToast("Saved");
+      setTimeout(() => setToast(""), 2000);
+    }
+  }
+  return (
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>About Us</h2>
+          <p className="app-card-sub">Edit the content shown on the public About page. Leave a field empty to keep the current website text.</p>
+        </div>
+      </div>
+      <form className="app-form-grid" onSubmit={save}>
+        <div className="app-field full">
+          <label>Main paragraph</label>
+          <textarea rows={4} value={values.hero_title || ""} onChange={(e) => setValues({ ...values, hero_title: e.target.value })} />
+        </div>
+        <div className="app-field full">
+          <label>Intro text (HTML allowed)</label>
+          <textarea rows={8} value={values.intro || ""} onChange={(e) => setValues({ ...values, intro: e.target.value })} />
+        </div>
+        <div className="full">
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+        </div>
+      </form>
+      {toast && <div className="app-toast">{toast}</div>}
+    </div>
   );
 }
 
@@ -325,6 +409,7 @@ const PROPERTY_FIELDS: FieldDef[] = [
   { key: "price_qualifier", label: "Price qualifier", type: "select", options: ["AED", "AED / yearly"] },
   { key: "community", label: "Community", full: true },
   { key: "developer", label: "Developer", full: true },
+  { key: "agent_id", label: "Assigned agent", type: "agent", full: true, hint: "Shown as the negotiator on the public property page" },
   { key: "location", label: "Location", full: true },
   { key: "display_address", label: "Display address", full: true },
   { key: "latitude", label: "Latitude", type: "number" },
@@ -410,6 +495,38 @@ const MEDIA_FIELDS: FieldDef[] = [
   { key: "kind", label: "Kind", type: "select", options: ["image", "video", "floorplan", "brochure"] },
   { key: "alt", label: "Alt text", full: true },
 ];
+
+const JOB_FIELDS: FieldDef[] = [
+  { key: "title", label: "Job title", required: true, full: true },
+  { key: "slug", label: "Slug", required: true, full: true },
+  { key: "location", label: "Location" },
+  { key: "summary", label: "Summary", type: "textarea", full: true },
+  { key: "job_details", label: "Full details (HTML)", type: "textarea", full: true },
+  { key: "published", label: "Published", type: "checkbox", hint: "Visible on the careers page" },
+];
+
+const PROJECT_FIELDS: FieldDef[] = [
+  { key: "title", label: "Project name", required: true, full: true },
+  { key: "slug", label: "Slug", required: true, full: true },
+  { key: "status", label: "Status", type: "select", options: ["ready", "pending", "under_construction", "future_launch", "off-plan"] },
+  { key: "price", label: "Price (AED)", type: "number" },
+  { key: "currency", label: "Currency" },
+  { key: "bedrooms_min", label: "Bedrooms (min)", type: "number" },
+  { key: "bedrooms_max", label: "Bedrooms (max)", type: "number" },
+  { key: "completion_year", label: "Completion year", type: "number" },
+  { key: "community", label: "Community", full: true },
+  { key: "developer", label: "Developer", full: true },
+  { key: "department", label: "Department" },
+  { key: "display_address", label: "Display address", full: true },
+  { key: "building_type", label: "Building types (comma-separated)", type: "json", full: true },
+  { key: "about", label: "About (HTML)", type: "textarea", full: true },
+  { key: "images", label: "Image URLs (comma-separated)", type: "json", full: true },
+  { key: "amenities", label: "Amenities (comma-separated)", type: "json", full: true },
+  { key: "banner_image", label: "Banner image URL", full: true },
+  { key: "published", label: "Published", type: "checkbox", hint: "Visible on the public site" },
+];
+
+const ABOUT_KEYS = ["hero_title", "intro"];
 
 const CONTACT_KEYS = ["country", "phone", "email", "whatsapp", "address", "office_hours"];
 const HOMEPAGE_KEYS = ["hero_title", "hero_subtitle", "announcement_bar", "stats_heading", "featured_heading"];
@@ -558,6 +675,33 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
   const imageRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLInputElement>(null);
 
+  const [agents, setAgents] = useState<any[]>([]);
+  const [agentQuery, setAgentQuery] = useState("");
+  const [agentOpen, setAgentOpen] = useState(false);
+  const agentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch("/api/admin/agents")
+      .then((r) => r.json())
+      .then((d) => setAgents((d.items || []).filter((a: any) => Number(a.published) === 1)))
+      .catch(() => setAgents([]));
+  }, []);
+
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (agentRef.current && !agentRef.current.contains(e.target as Node)) setAgentOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  const selectedAgent = agents.find((a) => Number(a.id) === Number(form.agent_id));
+  const filteredAgents = agents.filter((a) => {
+    const q = agentQuery.trim().toLowerCase();
+    if (!q) return true;
+    return String(a.name || "").toLowerCase().includes(q) || String(a.role || "").toLowerCase().includes(q);
+  });
+
   useEffect(() => {
     fetch("/api/admin/amenities")
       .then((r) => r.json())
@@ -570,6 +714,11 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
   }
   function toggleAmenity(name: string) {
     setSelectedAmenities((s) => (s.includes(name) ? s.filter((x) => x !== name) : [...s, name]));
+  }
+  async function deleteAmenity(name: string) {
+    await fetch(`/api/admin/amenities?name=${encodeURIComponent(name)}`, { method: "DELETE" }).catch(() => null);
+    setAmenityList((l) => l.filter((x) => x !== name));
+    setSelectedAmenities((s) => s.filter((x) => x !== name));
   }
   async function addAmenity() {
     const name = newAmenity.trim();
@@ -669,6 +818,60 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
                   <input type="checkbox" checked={Boolean(form[fd.key])} onChange={(e) => set(fd.key, e.target.checked ? 1 : 0)} />
                   <span style={{ fontSize: 13 }}>{fd.hint || "Enabled"}</span>
                 </div>
+              ) : fd.type === "agent" ? (
+                <div className="agent-select" ref={agentRef}>
+                  <div className="agent-select-current" onClick={() => setAgentOpen((o) => !o)}>
+                    <span className={selectedAgent ? "" : "agent-select-placeholder"}>
+                      {selectedAgent ? selectedAgent.name : "Select an agent…"}
+                    </span>
+                    <span className="agent-select-arrow">▾</span>
+                  </div>
+                  {agentOpen && (
+                    <div className="agent-select-menu">
+                      <input
+                        className="agent-select-search"
+                        placeholder="Search agents…"
+                        value={agentQuery}
+                        onChange={(e) => setAgentQuery(e.target.value)}
+                      />
+                      <div className="agent-select-list">
+                        {filteredAgents.map((a) => (
+                          <button
+                            type="button"
+                            key={a.id}
+                            className={"agent-select-option" + (Number(a.id) === Number(form.agent_id) ? " selected" : "")}
+                            onClick={() => {
+                              set("agent_id", a.id);
+                              setAgentOpen(false);
+                              setAgentQuery("");
+                            }}
+                          >
+                            <span className="agent-select-avatar">
+                              {a.img ? <img src={a.img} alt="" /> : a.name?.charAt(0)?.toUpperCase() || "?"}
+                            </span>
+                            <span className="agent-select-meta">
+                              <strong>{a.name}</strong>
+                              {a.role ? <small>{a.role}</small> : null}
+                            </span>
+                          </button>
+                        ))}
+                        {!filteredAgents.length && <div className="agent-select-empty">No agents found</div>}
+                      </div>
+                    </div>
+                  )}
+                  {form.agent_id !== "" && (
+                    <button
+                      type="button"
+                      className="agent-select-clear"
+                      onClick={() => {
+                        set("agent_id", "");
+                        setAgentQuery("");
+                      }}
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
               ) : (
                 <input type="text" value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)} />
               )}
@@ -748,9 +951,21 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
             </div>
             <div className="app-chip-list">
               {amenityList.map((a) => (
-                <button type="button" key={a} className={"app-chip" + (selectedAmenities.includes(a) ? " active" : "")} onClick={() => toggleAmenity(a)}>
-                  {a}
-                </button>
+                <div key={a} className={"app-chip" + (selectedAmenities.includes(a) ? " active" : "")} onClick={() => toggleAmenity(a)}>
+                  <span className="app-chip-label">{a}</span>
+                  <span
+                    className="app-chip-x"
+                    title={`Delete ${a}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteAmenity(a);
+                    }}
+                  >
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </div>
               ))}
             </div>
             {selectedAmenities.length > 0 && (
@@ -1275,6 +1490,20 @@ const mediaColumns: Column[] = [
   { key: "url", label: "URL", render: (r) => <span style={{ wordBreak: "break-all" }}>{r.url}</span> },
   { key: "kind", label: "Kind", render: (r) => <span className="app-badge" style={{ background: "#f0f3f8" }}>{r.kind}</span> },
   { key: "alt", label: "Alt", render: (r) => r.alt || "—" },
+];
+
+const jobColumns: Column[] = [
+  { key: "title", label: "Job", render: (r) => <strong>{r.title}</strong> },
+  { key: "location", label: "Location", render: (r) => r.location || "—" },
+  { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
+];
+
+const projectColumns: Column[] = [
+  { key: "title", label: "Project", render: (r) => <strong>{r.title}</strong> },
+  { key: "developer", label: "Developer", render: (r) => r.developer || "—" },
+  { key: "price", label: "Price", render: (r) => Number(r.price) ? "AED " + Number(r.price).toLocaleString("en-US") : "—" },
+  { key: "status", label: "Status", render: (r) => <span className="app-badge">{r.status || "—"}</span> },
+  { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
 ];
 
 function fmtDate(s: string): string {

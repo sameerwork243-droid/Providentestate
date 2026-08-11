@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { row, run, now } from "@/server/db";
 import { ensureSeeded } from "@/server/seed";
 import { hashPassword, findUserByEmail } from "@/server/auth-core";
-import { loginUser, getAuthUser } from "@/server/session";
+import { loginUser, getAuthUser, requestIsHttps } from "@/server/session";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     now()
   );
 
-  await loginUser(res.lastId, true);
+  await loginUser(res.lastId, true, requestIsHttps(req));
 
   const user = await getAuthUser();
   return NextResponse.json({ user });

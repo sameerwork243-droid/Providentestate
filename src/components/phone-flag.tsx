@@ -22,7 +22,18 @@ export const COUNTRIES = [
 export function CountryFlag({ code = "AE", className }: { code?: string; className?: string }) {
   const c = COUNTRIES.find((x) => x.code === code) || COUNTRIES[0];
   return (
-    <span className={className} role="img" aria-label={c.name}>
+    <span
+      className={className}
+      role="img"
+      aria-label={c.name}
+      style={{
+        fontFamily:
+          'Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "EmojiOne Color", "Segoe UI Symbol", sans-serif',
+        WebkitFontSmoothing: 'antialiased',
+        textTransform: 'none',
+        lineHeight: 1,
+      }}
+    >
       {c.flag}
     </span>
   );

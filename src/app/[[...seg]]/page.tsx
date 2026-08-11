@@ -4,8 +4,10 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getPageData, classify } from "@/lib/ref";
 import { developerHubData, developerHits, typeHubData, routeFilters, matchHit, baseListingRel, corpus } from "@/lib/store";
 import { dbPropsToHits, dbPropertyByRoute } from "@/server/property-bridge";
+import { dbPageContent, dbTeamBySlug, dbJobBySlug, dbJobs, dbProjects, dbProjectBySlug } from "@/server/content-bridge";
 import { SiteHeader } from "@/components/header";
 import { SiteFooter } from "@/components/footer";
+import { legalModule } from "@/lib/legal-content";
 import { HomePage } from "@/components/home";
 import { ListingPage } from "@/components/listing";
 import { PropertyDetailPage } from "@/components/property-detail";
@@ -40,6 +42,20 @@ function routesFromRaw() {
   }
   return [...routes];
 }
+
+function dedupeBySlug(list: any[]): any[] {
+  const seen = new Set<string>();
+  return list.filter((h) => {
+    const k = String(h?.slug || "");
+    if (!k) return true;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+const devSlugKey = (s: any) => String(s || "").toLowerCase().replace(/[^a-z0-9-]+/g, "-");
+const typeSlugKey = (s: any) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
 
 export const dynamicParams = true;
 export const revalidate = 0;
@@ -104,6 +120,17 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const hubMatch = devMatch || typeMatch;
   if (hubMatch) {
     const hub = devMatch ? developerHubData(devMatch[1]) : typeHubData(typeMatch![1]);
+    const db = await dbProjects();
+    if (db.length) {
+      const extra = devMatch
+        ? db.filter((h) => devSlugKey(h.developer) === devMatch[1])
+        : db.filter((h) => (Array.isArray(h.building_type) ? h.building_type : []).some((b: any) => typeSlugKey(b) === typeMatch![1]));
+      if (extra.length) {
+        hub.hits = dedupeBySlug([...hub.hits, ...extra]);
+        hub.nbHits = hub.hits.length;
+        hub.nbPages = Math.max(1, Math.ceil(hub.hits.length / (hub.hitsPerPage || 20)));
+      }
+    }
     if (!hub.hits.length) notFound();
     return (
       <div className="page-layout">
@@ -127,6 +154,18 @@ export default async function Page({ params, searchParams }: { params: Promise<{
       const basePd = getPageData("/" + base);
       if (basePd) model = classify(basePd, "/" + base);
     }
+  }
+  if (!model && /^\/team\/[a-z0-9-]+$/.test(routeBase)) {
+    const member = await dbTeamBySlug(routeBase.split("/").filter(Boolean).pop()!);
+    if (member) model = { kind: "page", data: member, route: routeBase };
+  }
+  if (!model && /^\/careers\/[a-z0-9-]+$/.test(routeBase)) {
+    const job = await dbJobBySlug(routeBase.split("/").filter(Boolean).pop()!);
+    if (job) model = { kind: "page", data: { id: job.id, slug: job.slug, title: job.title, location: job.location, job_details: { data: { job_details: job.job_details } }, page_name: "careers" }, route: routeBase };
+  }
+  if (!model && /^\/new-projects\/[a-z0-9-]+$/.test(routeBase)) {
+    const project = await dbProjectBySlug(routeBase.split("/").filter(Boolean).pop()!);
+    if (project) model = { kind: "project", data: { hits: [project], nbHits: 1, page: 0, nbPages: 1, hitsPerPage: 1, content: null }, route: routeBase };
   }
   if (!model) notFound();
   if (model.kind === "listing") {
@@ -162,6 +201,49 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     model.data.hits = merged;
     model.data.nbHits = merged.length;
     model.data.nbPages = Math.max(1, Math.ceil(merged.length / (model.data.hitsPerPage || 20)));
+  }
+
+  if (model.kind === "page" && routeBase === "/about") {
+    const kv = await dbPageContent();
+    if (Array.isArray(model.data?.modules)) {
+      for (const mod of model.data.modules) {
+        if (mod?.strapi_component === "modules.content-and-stats") {
+          if (kv.hero_title) mod.title = kv.hero_title;
+          if (kv.intro) mod.description = { data: { description: kv.intro } };
+        }
+      }
+    }
+  }
+
+  if (model.kind === "page" && routeBase === "/careers") {
+    const jobs = await dbJobs();
+    if (jobs.length && Array.isArray(model.data?.modules)) {
+      const cm = model.data.modules.find((mod: any) => mod?.strapi_component === "modules.career-listing");
+      if (cm) {
+        const dbCareers = jobs.map((j: any) => ({ id: j.id, title: j.title, location: j.location, slug: j.slug, job_details: { data: { job_details: j.job_details } } }));
+        cm.careers = [...dbCareers, ...(cm.careers || [])];
+      }
+    }
+  }
+
+  if (model.kind === "page" && (routeBase === "/privacy-policy" || routeBase === "/terms-and-conditions")) {
+    const mods = Array.isArray(model.data?.modules) ? model.data.modules : [];
+    if (!mods.length) {
+      const legal = legalModule(routeBase);
+      if (legal) model.data.modules = [legal];
+    }
+  }
+
+  if (model.kind === "project" && Array.isArray(model.data?.hits) && model.data.hits.length > 1) {
+    const db = await dbProjects();
+    if (db.length) {
+      const before = model.data.hits.length;
+      model.data.hits = dedupeBySlug([...model.data.hits, ...db]);
+      if (model.data.hits.length > before) {
+        model.data.nbHits = model.data.hits.length;
+        model.data.nbPages = Math.max(1, Math.ceil(model.data.hits.length / (model.data.hitsPerPage || 20)));
+      }
+    }
   }
 
   const transparent = route === "/" || (route.startsWith("/new-projects/") && route !== "/new-projects/");

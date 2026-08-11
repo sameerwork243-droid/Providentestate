@@ -8,6 +8,7 @@ import { BlogListing } from "./blog-listing";
 import { DeveloperListing } from "./developer-listing";
 import { cfw, cft, blogPosts, projectsByArea, projectBySlug, areaGuidesData, developersList } from "@/lib/store";
 import { CountryFlag } from "./phone-flag";
+import { ReadMore } from "./read-more";
 
 const QUICK_LINKS = [
   { label: "Buy", href: "/buy/properties-for-sale/" },
@@ -119,114 +120,203 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
   const bg = banner.banner_image?.url;
   const title = banner.title || page.page_name || "";
   const mods = Array.isArray(page.modules) ? page.modules : [];
-  const crumbLeaf = banner.title || page.page_name || stripHtml(title) || "Page";
+  const crumbLeaf = page.page_name || banner.title || stripHtml(title) || "Page";
   const allCtas = [...(banner.ctas || [])];
   const descHtml = banner.description?.data?.description;
+  const videoThumb = banner.banner_video?.thumbnail?.url;
 
   if (page.page_class === "developers_listing_page") return <DevelopersListingPage page={page} route={route} />;
   if (page.page_class === "news_landing_page") return <NewsListingPage page={page} route={route} />;
 
-  return (
-    <div>
-      {!isForm && <MobileBannerMenu />}
-      {isAreasListing ? (
-        <>
-          <Breadcrumbs route={route} crumbs={routeCrumbs(route, "Communities")} />
-          <div className="banner-listing-wrap" style={{ paddingBottom: "186px" }}>
-            <div className="banner-listing-container container">
-              <h1 className="title">{title}</h1>
-              {descHtml && (
-                <div className="description">
-                  <Rich html={descHtml} />
+  const crumbNav = (
+    <div className="breadcrumbs-wrap">
+      <div className="breadcrumbs-container container">
+        <nav className="breadcrumbs">
+          <ol className="breadcrumb">
+            {routeCrumbs(route, crumbLeaf).map((c, i) => (
+              <li className={"breadcrumb-item" + (i === 0 ? " enable-link-home" : "") + (c.active ? " active" : "")} key={i}>
+                <a aria-current={c.active ? "page" : undefined} className={"breadcrumb-link " + (c.active ? "disable-link" : "enable-link")} href={c.href}>
+                  {c.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    </div>
+  );
+
+  const ctaSection = allCtas.length > 0 ? (
+    <div className="cta-section">
+      {allCtas.map((c: any, i: number) => {
+        const magic = typeof c.custom_link === "string" && (c.custom_link.startsWith("#") || c.custom_link.startsWith("$"));
+        const label = c.cta_label || "Learn More";
+        const gray = c.icon === "phone-blue" || c.icon === "right-arrow-white";
+        const cls = "button " + (gray ? "button-gray" : "button-orange");
+        const btn = (
+          <>
+            <span>{label}</span>
+            {c.icon === "up-right-arrow-white" && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-up-right-icon">
+                <path d="M2.25 9.75L9.75 2.25M9.75 2.25L4.125 2.25M9.75 2.25V7.875" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+            {c.icon === "phone-blue" && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mobile-icon">
+                <path d="M10.5 1.5H8.25C7.00736 1.5 6 2.50736 6 3.75V20.25C6 21.4926 7.00736 22.5 8.25 22.5H15.75C16.9926 22.5 18 21.4926 18 20.25V3.75C18 2.50736 16.9926 1.5 15.75 1.5H13.5M10.5 1.5V3H13.5V1.5M10.5 1.5H13.5M10.5 20.25H13.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+            {c.icon === "right-arrow-white" && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="right-arrow-icon">
+                <path d="M2.25 6H9.75M9.75 6L5.625 1.875M9.75 6L5.625 10.125" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </>
+        );
+        return magic ? (
+          <button key={i} className={cls} type="button">
+            {btn}
+          </button>
+        ) : (
+          <a key={i} className={cls} href={ctaHref(c, "/contact/")}>
+            {btn}
+          </a>
+        );
+      })}
+    </div>
+  ) : null;
+
+  const brandBx = (
+    <div className="brand-bx">
+      <h1 className="title">{title}</h1>
+      {banner.heading && <h2 className="heading">{banner.heading}</h2>}
+      {descHtml && (
+        <div className="description">
+          <Rich html={descHtml} />
+        </div>
+      )}
+      {ctaSection}
+    </div>
+  );
+
+  if (isAreasListing) {
+    return (
+      <div>
+        {!isForm && <MobileBannerMenu black />}
+        {crumbNav}
+        <div className="banner-listing-wrap" style={{ paddingBottom: "186px" }}>
+          <div className="banner-listing-container container">
+            <h1 className="title">{title}</h1>
+            {descHtml && (
+              <div className="description">
+                <Rich html={descHtml} />
+              </div>
+            )}
+          </div>
+        </div>
+        <AreaGuidesListing areas={areaGuidesData()} />
+      </div>
+    );
+  }
+
+  if (layout === "landing_page_2") {
+    return (
+      <div>
+        <div className="banner-wrap banner-home-wrap">
+          <div className="bg-section-gradient"></div>
+          <MobileBannerMenu black />
+          {crumbNav}
+          <div className="center-content">
+            <div className="banner-container container">
+              {brandBx}
+              {videoThumb && (
+                <div className="banner-video">
+                  <img
+                    loading="lazy"
+                    draggable="false"
+                    src={cfw(videoThumb, 1968)}
+                    srcSet={`${cfw(videoThumb, 336)} 336w, ${cfw(videoThumb, 696)} 696w, ${cfw(videoThumb, 1968)} 1968w`}
+                    sizes="(max-width: 480px) 336px, (max-width: 1100px) 696px, (min-width: 1100px) 1968px"
+                    alt="banner-video - Provident Estate"
+                    className="video-thumbnail"
+                  />
+                  <button className="play-button" aria-label="play button"></button>
                 </div>
               )}
             </div>
           </div>
-          <AreaGuidesListing areas={areaGuidesData()} />
-        </>
-      ) : (
-        <div className="banner-wrap banner-landing-wrap">
-          <div className="bg-section">
-            {bg && (
-              <img
-                loading="eager"
-                src={cfw(bg, 1773)}
-                srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
-                sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
-                alt="banner-bg - Provident Estate"
-              />
-            )}
-            <div className="overlay"></div>
-          </div>
-          <div className="breadcrumbs-wrap white-color">
-            <div className="breadcrumbs-container container">
-              <nav className="breadcrumbs">
-                <ol className="breadcrumb">
-                  {routeCrumbs(route, crumbLeaf).map((c, i) => (
-                    <li className={"breadcrumb-item" + (i === 0 ? " enable-link-home" : "") + (c.active ? " active" : "")} key={i}>
-                      <a aria-current={c.active ? "page" : undefined} className={"breadcrumb-link " + (c.active ? "disable-link" : "enable-link")} href={c.href}>
-                        {c.label}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            </div>
-          </div>
-          <div>
-            <div className="banner-container container">
-              <div className="brand-bx">
+        </div>
+        {mods.map((m: any, i: number) =>
+          m.strapi_component === "modules.listing-module" && m.module === "communities_listing" ? null : <ModuleWrap m={m} key={i} />
+        )}
+      </div>
+    );
+  }
+
+  if (layout === "listing_page") {
+    return (
+      <div>
+        <div className="listing-page-wrap">
+          <div className="listing-page-top">
+            <div className="bg-section-gradient"></div>
+            <MobileBannerMenu black />
+            {crumbNav}
+            <div className="banner-listing-wrap">
+              <div className="banner-listing-container container">
                 <h1 className="title">{title}</h1>
-                {banner.heading && <h2 className="heading">{banner.heading}</h2>}
                 {descHtml && (
                   <div className="description">
                     <Rich html={descHtml} />
                   </div>
                 )}
-               {allCtas.length > 0 && (
-                 <div className="cta-section">
-                   {allCtas.map((c: any, i: number) => {
-                     const magic = typeof c.custom_link === "string" && (c.custom_link.startsWith("#") || c.custom_link.startsWith("$"));
-                     const label = c.cta_label || "Learn More";
-                     const gray = c.icon === "phone-blue" || c.icon === "right-arrow-white";
-                     const cls = "button " + (gray ? "button-gray" : "button-orange");
-                     const btn = (
-                       <>
-                         <span>{label}</span>
-                         {c.icon === "up-right-arrow-white" && (
-                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-up-right-icon">
-                             <path d="M2.25 9.75L9.75 2.25M9.75 2.25L4.125 2.25M9.75 2.25V7.875" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" />
-                           </svg>
-                         )}
-                         {c.icon === "phone-blue" && (
-                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mobile-icon">
-                             <path d="M10.5 1.5H8.25C7.00736 1.5 6 2.50736 6 3.75V20.25C6 21.4926 7.00736 22.5 8.25 22.5H15.75C16.9926 22.5 18 21.4926 18 20.25V3.75C18 2.50736 16.9926 1.5 15.75 1.5H13.5M10.5 1.5V3H13.5V1.5M10.5 1.5H13.5M10.5 20.25H13.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
-                           </svg>
-                         )}
-                         {c.icon === "right-arrow-white" && (
-                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="right-arrow-icon">
-                             <path d="M2.25 6H9.75M9.75 6L5.625 1.875M9.75 6L5.625 10.125" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round" />
-                           </svg>
-                         )}
-                       </>
-                     );
-                     return magic ? (
-                       <button key={i} className={cls} type="button">
-                         {btn}
-                       </button>
-                     ) : (
-                       <a key={i} className={cls} href={ctaHref(c, "/contact/")}>
-                         {btn}
-                       </a>
-                     );
-                   })}
-                 </div>
-               )}
+                {ctaSection}
               </div>
             </div>
           </div>
         </div>
-      )}
+        {mods.map((m: any, i: number) =>
+          m.strapi_component === "modules.listing-module" && m.module === "communities_listing" ? null : <ModuleWrap m={m} key={i} />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="banner-wrap banner-landing-wrap">
+        {!isForm && <MobileBannerMenu />}
+        <div className="bg-section">
+          {bg && (
+            <img
+              loading="eager"
+              draggable="false"
+              src={cfw(bg, 1773)}
+              srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
+              sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
+              alt="banner-bg - Provident Estate"
+            />
+          )}
+          <div className="overlay"></div>
+        </div>
+        <div className="breadcrumbs-wrap white-color">
+          <div className="breadcrumbs-container container">
+            <nav className="breadcrumbs">
+              <ol className="breadcrumb">
+                {routeCrumbs(route, crumbLeaf).map((c, i) => (
+                  <li className={"breadcrumb-item" + (i === 0 ? " enable-link-home" : "") + (c.active ? " active" : "")} key={i}>
+                    <a aria-current={c.active ? "page" : undefined} className={"breadcrumb-link " + (c.active ? "disable-link" : "enable-link")} href={c.href}>
+                      {c.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div>
+          <div className="banner-container container">{brandBx}</div>
+        </div>
+      </div>
       {mods.map((m: any, i: number) =>
         m.strapi_component === "modules.listing-module" && m.module === "communities_listing" ? null : <ModuleWrap m={m} key={i} />
       )}
@@ -384,11 +474,9 @@ function TeamDetail({ t, route }: { t: any; route: string }) {
             {about && (
               <div className="about-section-wrap" id="about-section">
                 <p className="heading">About {t.name}</p>
-                <div className="read-more-wrap about-section">
-                  <div className="read-more">
-                    <Rich html={about} />
-                  </div>
-                </div>
+                <ReadMore className="about-section">
+                  <Rich html={about} />
+                </ReadMore>
               </div>
             )}
             {(langs.length > 0 || t.license) && (

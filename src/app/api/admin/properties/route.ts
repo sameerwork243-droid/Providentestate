@@ -40,10 +40,11 @@ export async function GET(req: Request) {
   const params: unknown[] = q ? [`%${q}%`, `%${q}%`, `%${q}%`] : [];
   const total = Number((await row(`SELECT COUNT(*) AS n FROM properties${where}`, ...params))?.n ?? 0);
   const items = await rows(
-    `SELECT p.*,
+    `SELECT p.*, a.name AS agent_name,
       (SELECT COUNT(*) FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image') AS image_count,
       (SELECT COUNT(*) FROM property_amenities a WHERE a.property_id = p.id) AS amenity_count
-     FROM properties p${where} ORDER BY p.created_at DESC LIMIT 100`,
+     FROM properties p
+     LEFT JOIN agents a ON a.id = p.agent_id${where} ORDER BY p.created_at DESC LIMIT 100`,
     ...params
   );
   return NextResponse.json({ items, total });
@@ -65,9 +66,9 @@ export async function POST(req: Request) {
   const res = await run(
     `INSERT INTO properties (slug, title, category, property_type, transaction_type, status, price, price_qualifier,
       community, developer, location, latitude, longitude, display_address, bedroom, bathroom, area_sqft, plot_size,
-      parking, furnished, completion_status, year_built, introtext, long_description, featured, published,
+      parking, furnished, completion_status, year_built, introtext, long_description, featured, published, agent_id,
       created_by, created_at, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     slug,
     title,
     String(body.category || ""),
@@ -94,6 +95,7 @@ export async function POST(req: Request) {
     String(body.long_description || ""),
     Number(body.featured || 0),
     Number(body.published || 1),
+    body.agent_id != null && body.agent_id !== "" ? Number(body.agent_id) : null,
     null,
     now(),
     now()
@@ -135,6 +137,10 @@ export async function PUT(req: Request) {
   if ("longitude" in body) {
     sets.push("longitude = ?");
     params.push(body.longitude != null && body.longitude !== "" ? Number(body.longitude) : null);
+  }
+  if ("agent_id" in body) {
+    sets.push("agent_id = ?");
+    params.push(body.agent_id != null && body.agent_id !== "" ? Number(body.agent_id) : null);
   }
   if (sets.length) {
     sets.push("updated_at = ?");

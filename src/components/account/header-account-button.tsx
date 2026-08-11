@@ -8,12 +8,16 @@ export function HeaderAccountButton({ className }: { className?: string }) {
 
   useEffect(() => {
     let live = true;
-    fetch("/api/auth/me")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => live && setUser(d?.user ?? null))
-      .catch(() => live && setUser(null));
+    const check = () =>
+      fetch("/api/auth/me", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => live && setUser(d?.user ?? null))
+        .catch(() => live && setUser(null));
+    check();
+    window.addEventListener("focus", check);
     return () => {
       live = false;
+      window.removeEventListener("focus", check);
     };
   }, []);
 
@@ -22,10 +26,14 @@ export function HeaderAccountButton({ className }: { className?: string }) {
       ? "/admin"
       : "/dashboard"
     : "/login";
-  const label = user ? "My Account" : "Login";
 
   return (
-    <Link href={href} className={"button list-prop-btn " + (className || "")}>
+    <Link
+      href={href}
+      className={"button list-prop-btn " + (className || "")}
+      aria-label={user ? "My Account" : "Login"}
+      style={user === undefined ? { visibility: "hidden" } : undefined}
+    >
       <svg
         className="user-icon user-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +51,7 @@ export function HeaderAccountButton({ className }: { className?: string }) {
           strokeLinejoin="round"
         />
       </svg>
-      {label}
+      {!user && "Login"}
     </Link>
   );
 }
