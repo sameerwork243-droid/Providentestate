@@ -36,7 +36,7 @@ export interface DbHit {
   furnished: string;
 }
 
-const DEFAULT_NEGOTIATOR = { name: "Provident Estate", phone: "+971 50 539 0249", email: "info@providentestate.com" };
+const DEFAULT_NEGOTIATOR = { name: "Zoya Ventures Real Estate", phone: "+971 568 308 221", email: "zoyaventure15@gmail.com" };
 
 function negotiatorFromRow(p: Record<string, unknown>) {
   const name = String(p.agent_name || "").trim();
@@ -183,6 +183,11 @@ export async function dbPropertyByRoute(route: string): Promise<{ data: any; kin
   }
   if (!p) return null;
 
+  return { kind, data: await detailFromRow(p) };
+}
+
+/** Detail-page shape (images + amenities) for a property row. */
+async function detailFromRow(p: Record<string, unknown>): Promise<any> {
   const media = await rows(`SELECT * FROM property_media WHERE property_id = ? ORDER BY sort_order, id`, Number(p.id));
   let images = media
     .filter((m2) => m2.kind === "image")
@@ -197,13 +202,33 @@ export async function dbPropertyByRoute(route: string): Promise<{ data: any; kin
 
   const hit = dbHit(p);
   return {
-    kind,
-    data: {
-      ...hit,
-      images,
-      amenities: amenityNames,
-      status: String(p.completion_status || "Ready"),
-      furnishing: String(p.furnished || "Unfurnished"),
-    },
+    ...hit,
+    images,
+    amenities: amenityNames,
+    status: String(p.completion_status || "Ready"),
+    furnishing: String(p.furnished || "Unfurnished"),
   };
+}
+
+/** Resolve a published DB property by numeric id. CRM references (e.g. "PS-1305268")
+ *  come from the Strapi corpus and are matched by the caller. */
+export async function dbPropertyByRef(ref: string): Promise<{ data: any; kind: "buy" | "let" } | null> {
+  if (!dbEnabled()) return null;
+  await ensureSeeded();
+  const r = String(ref || "").trim();
+  if (!r || !/^\d+$/.test(r)) return null;
+  const p = (
+    await rows(
+      `SELECT p.*, ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+         ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email
+       FROM properties p
+       LEFT JOIN agents ag ON ag.id = p.agent_id
+       WHERE p.published = 1 AND p.id = ?
+       ORDER BY p.id LIMIT 1`,
+      Number(r)
+    )
+  )[0];
+  if (!p) return null;
+  const kind: "buy" | "let" = String(p.transaction_type) === "rent" ? "let" : "buy";
+  return { kind, data: await detailFromRow(p) };
 }

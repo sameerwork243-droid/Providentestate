@@ -1,12 +1,12 @@
 import type { NavLink } from "./types";
 
 export const SITE = {
-  name: "Provident Estate",
+  name: "Zoya Ventures Real Estate",
   domain: "provident.ae",
-  phone: "+971 4 000 0000",
-  phoneLink: "+97140000000",
-  waNumber: "971500000000",
-  email: "info@provident.ae",
+  phone: "+971 568 308 221",
+  phoneLink: "+971568308221",
+  waNumber: "971568308221",
+  email: "zoyaventure15@gmail.com",
   mapQuery: "Dubai Marina",
   social: ["instagram", "facebook", "linkedin", "x", "youtube"],
 };

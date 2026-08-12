@@ -22,8 +22,9 @@ import {
 import homeJson from "@/data/home.json";
 import { TeamListingClient } from "./team-listing-client";
 import { OfficeCard } from "./office-card";
-import { dbTeamMembers } from "@/server/content-bridge";
+import { dbTeamMembers, dbDevelopersTable, dbCommunitiesTable } from "@/server/content-bridge";
 import { ContactEnquiryForm } from "./contact-enquiry-form";
+import { ListPropertyForm } from "./list-property-form";
 import { DreamHomeQuiz } from "./dream-home-quiz";
 
 export { Rich, ctaHref, stripHtml };
@@ -50,7 +51,7 @@ export function DeveloperSlider({ heading }: { heading?: string }) {
                           src={`https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.file}`}
                           srcSet={`https://d3h330vgpwpjr8.cloudfront.net/x/118x/${d.file} 118w, https://d3h330vgpwpjr8.cloudfront.net/x/158x/${d.file} 158w, https://d3h330vgpwpjr8.cloudfront.net/x/296x/${d.file} 296w`}
                           sizes="100px 158px"
-                          alt={`${d.name} - Provident Estate`}
+                          alt={`${d.name} - Zoya Ventures Real Estate`}
                         />
                       </a>
                     </div>
@@ -89,7 +90,7 @@ function FeaturedSlider({ m }: { m: any }) {
                     src={cft(m.logo_image.url, 216, 96)}
                     srcSet={`${cft(m.logo_image.url, 160, 71)} 160w, ${cft(m.logo_image.url, 216, 96)} 216w`}
                     sizes="(max-width: 1199px) 160px, (min-width: 1199px) 216px"
-                    alt="banner-bg - Provident Estate"
+                    alt="banner-bg - Zoya Ventures Real Estate"
                     className="sign-img"
                   />
                 )}
@@ -203,7 +204,7 @@ function ContentAndLinks({ m }: { m: any }) {
                       src={c.icon?.url ? cft(c.icon.url, 48, 48) : undefined}
                       srcSet={c.icon?.url ? `${cft(c.icon.url, 40, 40)} 40w, ${cft(c.icon.url, 48, 48)} 48w` : undefined}
                       sizes="(max-width: 1199px) 40px, (min-width: 1199px) 48px"
-                      alt="icon - Provident Estate"
+                      alt="icon - Zoya Ventures Real Estate"
                       width={48}
                       height={48}
                     />
@@ -248,7 +249,7 @@ export function AdsBanner({ m }: { m: any }) {
           <div className="gradient-overlay">
             <div className="banner-section">
               <div className="bg-img">
-                {b.bg_image?.url && <img loading="lazy" draggable="false" src={cft(b.bg_image.url, 1128, 368)} alt={b.title + " - Provident Estate"} />}
+                {b.bg_image?.url && <img loading="lazy" draggable="false" src={cft(b.bg_image.url, 1128, 368)} alt={b.title + " - Zoya Ventures Real Estate"} />}
               </div>
               <div className="content-section">
                 <div className="content">
@@ -296,7 +297,7 @@ export function TileBlock({ m }: { m: any }) {
             src={base}
             srcSet={`${small} ${sw}w, ${base} ${W}w, `}
             sizes={`(max-width: 480px) ${sw}px, (min-width: 700px) ${W}px, `}
-            alt={m.title + " - Provident Estate"}
+            alt={m.title + " - Zoya Ventures Real Estate"}
           />
         );
       })()
@@ -325,6 +326,16 @@ export function TileBlock({ m }: { m: any }) {
             <div className="description">
               <Rich html={m.description?.data?.description} />
             </div>
+            {Array.isArray(m.icon_stats) && m.icon_stats.length > 0 && (
+              <div className="icon-stats-section">
+                {m.icon_stats.map((s: any, i: number) => (
+                  <div className="icon-stat" key={i}>
+                    {s.image?.url && <img draggable="false" src={s.image.url} alt="" />}
+                    <p className="text">{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             {m.cta &&
               (magic ? (
                 <button className="button  button-orange">
@@ -447,7 +458,7 @@ function NewsSection({ m }: { m: any }) {
                     src={feat.image}
                     srcSet={`${feat.image} 1260w, `}
                     sizes="100px 1260px, "
-                    alt={feat.title + " - Provident Estate"}
+                    alt={feat.title + " - Zoya Ventures Real Estate"}
                   />
                 )}
               </a>
@@ -475,7 +486,7 @@ function NewsSection({ m }: { m: any }) {
                         src={b.image}
                         srcSet={`${b.image} 340w, `}
                         sizes="100px 340px, "
-                        alt={b.title + " - Provident Estate"}
+                        alt={b.title + " - Zoya Ventures Real Estate"}
                       />
                     )}
                   </a>
@@ -521,7 +532,7 @@ function ReviewsSlider() {
                   src={`https://d3h330vgpwpjr8.cloudfront.net/x/70x70/${i % 2 ? "women_icon_db5442e706.webp" : "man_icon_98ac9e68af.webp"}`}
                   srcSet={`https://d3h330vgpwpjr8.cloudfront.net/x/70x70/${i % 2 ? "women_icon_db5442e706.webp" : "man_icon_98ac9e68af.webp"} 70w`}
                   sizes="(min-width: 100px) 70px"
-                  alt={`${r.name} - Provident Estate`}
+                  alt={`${r.name} - Zoya Ventures Real Estate`}
                 />
                 <div>
                   <p className="name">{r.name}</p>
@@ -570,7 +581,7 @@ export function Questionnaire({ m }: { m: any }) {
                   src="https://d3h330vgpwpjr8.cloudfront.net/x/640x700/pro_quiz_banner_a8c3cbc202.webp"
                   srcSet="https://d3h330vgpwpjr8.cloudfront.net/x/320x260/pro_quiz_banner_a8c3cbc202.webp 320w, https://d3h330vgpwpjr8.cloudfront.net/x/640x700/pro_quiz_banner_a8c3cbc202.webp 640w"
                   sizes="(max-width: 480px) 320px, (min-width: 481px) 640px"
-                  alt="Confused About Where to Buy or Invest in Dubai? - Provident Estate"
+                  alt="Confused About Where to Buy or Invest in Dubai? - Zoya Ventures Real Estate"
                 />
               </div>
               <div className="content-section">
@@ -616,8 +627,9 @@ export function Questionnaire({ m }: { m: any }) {
   );
 }
 
-function Communities() {
-  const coms = communities;
+async function Communities() {
+  const { live } = await dbCommunitiesTable();
+  const coms = live.length ? live.map((c) => ({ label: String(c.name), slug: String(c.slug) })) : communities;
   return (
     <div className="dubai-communities-wrap section-p">
       <div className="dubai-communities-container container">
@@ -682,8 +694,8 @@ function ContactModule({ m }: { m: any }) {
             <a className="button button-orange" href="/contact/">
               <span>Contact Us</span>
             </a>
-            <a className="button button-white-outline" href="tel:+971 50 539 0249">
-              <span><CountryFlag /> +971 50 539 0249</span>
+            <a className="button button-white-outline" href="tel:+971568308221">
+              <span><CountryFlag /> +971 568 308 221</span>
             </a>
           </div>
         </div>
@@ -733,7 +745,7 @@ function OurServices({ m }: { m: any }) {
               return (
                 <div className="service-item" key={i}>
                   <a className="img-section img-zoom" href={href}>
-                    <ServiceImage url={s.image?.url} alt={(s.cta?.cta_label || s.title || "Service") + " - Provident Estate"} />
+                    <ServiceImage url={s.image?.url} alt={(s.cta?.cta_label || s.title || "Service") + " - Zoya Ventures Real Estate"} />
                   </a>
                   <div className="content-section false">
                     <a className="title" href={href}>
@@ -781,7 +793,7 @@ function Partner({ m }: { m: any }) {
               <div className="partner-item" key={i}>
                 <div className="img-section img-zoom">
                   {p.image?.url && (
-                    <PartnerImage url={p.image.url} alt={p.name + " - Provident Estate"} />
+                    <PartnerImage url={p.image.url} alt={p.name + " - Zoya Ventures Real Estate"} />
                   )}
                 </div>
                 <div className="content-section">
@@ -800,11 +812,22 @@ function Partner({ m }: { m: any }) {
 }
 
 function FormModule({ m }: { m: any }) {
+  const isValuation = m.form === "Book_a_Valuation";
   return (
-    <div className="contact-form-wrapper  section-p" id="General_Enquiry">
+    <div className="contact-form-wrapper  section-p" id={m.form || "General_Enquiry"}>
       <div className="contact-form-container  container">
         <div className="content-section">
           <h3 className="title">{m.title}</h3>
+          {Array.isArray(m.stats) && m.stats.length > 0 && (
+            <div className="stats-section">
+              {m.stats.map((s: any, i: number) => (
+                <div className="stat-item" key={i}>
+                  <div className="stat-title">{s.title}</div>
+                  <div className="stat-description">{s.description}</div>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="description">
             <Rich html={m.content?.data?.content} />
           </div>
@@ -819,7 +842,7 @@ function FormModule({ m }: { m: any }) {
                 <p className="cta-label">WhatsApp</p>
                 <a
                   className="cta-value"
-                  href="https://wa.provident.ae/inquire?phone=971505423503&text=Hello%20Provident%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22"
+                  href="https://wa.provident.ae/inquire?phone=971568308221&text=Hello%20Zoya%20Ventures%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -836,8 +859,8 @@ function FormModule({ m }: { m: any }) {
               </div>
               <div className="cta-content phone-content">
                 <p className="cta-label">Phone</p>
-                <a className="cta-value" href="tel:+971 50 539 0249">
-                  <CountryFlag /> +971 50 539 0249
+                <a className="cta-value" href="tel:+971568308221">
+                  <CountryFlag /> +971 568 308 221
                 </a>
               </div>
             </div>
@@ -850,15 +873,15 @@ function FormModule({ m }: { m: any }) {
               </div>
               <div className="cta-content">
                 <p className="cta-label">Email</p>
-                <a className="cta-value" href="mailto:info@providentestate.com" target="_blank" rel="noreferrer">
-                  info@providentestate.com
+                <a className="cta-value" href="mailto:zoyaventure15@gmail.com" target="_blank" rel="noreferrer">
+                  zoyaventure15@gmail.com
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="form-section">
-          <ContactEnquiryForm />
+          {isValuation ? <ListPropertyForm /> : <ContactEnquiryForm />}
         </div>
       </div>
     </div>
@@ -872,7 +895,7 @@ function ImagesSlider({ m }: { m: any }) {
         <Slick perView={3} className="images-slider">
           {(m.images || []).map((im: any, i: number) => (
             <div className="image-item" key={i}>
-              <img loading="lazy" src={cft(im.url, 1128, 752)} alt={`Provident Estate ${i + 1}`} />
+              <img loading="lazy" src={cft(im.url, 1128, 752)} alt={`Zoya Ventures Real Estate ${i + 1}`} />
             </div>
           ))}
         </Slick>
@@ -882,6 +905,7 @@ function ImagesSlider({ m }: { m: any }) {
 }
 
 function IconCards({ m }: { m: any }) {
+  const gridCls = "icon-cards icon-cards--grid" + (m.size === "three" ? " icon-cards--grid-three" : "");
   return (
     <div className="icon-cards-wrap section-p">
       <div className="icon-cards-container container">
@@ -889,13 +913,15 @@ function IconCards({ m }: { m: any }) {
         <div className="description">
           <Rich html={m.description?.data?.description} />
         </div>
-        <div className="cards-section">
+        <div className={gridCls}>
           {(m.cards || []).map((c: any, i: number) => (
             <div className="icon-card" key={i}>
-              <p className="heading">{c.heading}</p>
-              {c.icon?.url && <img loading="lazy" src={c.icon.url} alt={c.title} />}
-              <p className="title">{c.title}</p>
-              <p className="description">{c.description}</p>
+              <div className="icon-card-icon">{c.icon?.url && <img loading="lazy" src={c.icon.url} alt="card icon" />}</div>
+              <div className="content-section">
+                {c.heading && <p className="icon-card-heading">{c.heading}</p>}
+                <p className="icon-card-title">{c.title}</p>
+                {c.description && <p className="icon-card-description">{c.description}</p>}
+              </div>
             </div>
           ))}
         </div>
@@ -973,15 +999,24 @@ export async function TeamListing() {
   const seen = new Set(members.map((m: any) => m.slug));
   for (const m of db) if (!seen.has(m.slug)) members.push(m);
   if (!members.length) return null;
-  return <TeamListingClient members={members} />;
+  const langSet = new Set<string>();
+  for (const m of members) for (const l of m.languages || []) langSet.add(String(l));
+  return (
+    <TeamListingClient
+      members={members}
+      stats={{ professionals: members.length, languages: langSet.size }}
+    />
+  );
 }
 
-export function CommunitiesListing() {
+export async function CommunitiesListing() {
+  const { live } = await dbCommunitiesTable();
+  const list = live.length ? live.map((c) => ({ label: String(c.name), slug: String(c.slug) })) : communities;
   return (
     <div className="communities-listing-wrap section-p">
       <div className="communities-listing-container container">
         <div className="row">
-          {communities.map((c, i) => (
+          {list.map((c, i) => (
             <div className="col-xl-3 col-md-4 col-sm-6" key={i}>
               <a className="community-card" href={`/buy/properties-for-sale/in-${c.slug}/`}>
                 <p className="name">{c.label}</p>
@@ -995,15 +1030,18 @@ export function CommunitiesListing() {
   );
 }
 
-function DeveloperListing() {
-  const devs = developerHits();
+async function DeveloperListing() {
+  const { live } = await dbDevelopersTable();
+  const devs = live.length
+    ? live.map((d) => ({ developer: String(d.name || ""), slug: String(d.slug || "") }))
+    : developerHits().map((d: any) => ({ developer: String(d.developer || ""), slug: (d.developer || "").toLowerCase().replace(/[^a-z0-9]+/g, "-") }));
   return (
     <div className="developer-listing-wrap section-p">
       <div className="developer-listing-container container">
         <div className="row">
           {devs.map((d: any, i: number) => (
             <div className="col-xl-3 col-md-4 col-sm-6" key={i}>
-              <a className="developer-card" href={`/new-projects/developed-by-${(d.developer || "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`}>
+              <a className="developer-card" href={`/new-projects/developed-by-${d.slug}/`}>
                 <p className="name">{d.developer}</p>
                 <p className="count">Projects</p>
               </a>

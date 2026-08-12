@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { WHITE_LOGO, BLUE_LOGO } from "./logo-data";
 import { HeaderAccountButton } from "@/components/account/header-account-button";
 
 const CF = "https://d3h330vgpwpjr8.cloudfront.net/x/16x16/";
@@ -50,7 +49,7 @@ const MENUS: MenuDef[] = [
         links: [
           { label: "Buyer's Guide", href: "/property-buying-dubai-guide/" },
           { label: "Mortgage", href: "/property-services/mortgages/" },
-          { label: "Signature by Provident", href: "/signature/" },
+          { label: "Signature by Zoya Ventures", href: "/signature/" },
           { label: "Snagging & Inspection", href: "/property-services/property-snagging/" },
         ],
       },
@@ -217,7 +216,7 @@ function SubMenuLink({ l }: { l: MenuLink }) {
           src={CF + l.icon}
           srcSet={`${CF + l.icon} 16w`}
           sizes="(min-width: 100px) 16px"
-          alt="banner-bg - Provident Estate"
+          alt="banner-bg - Zoya Ventures Real Estate"
         />
       )}
       {l.label}
@@ -270,7 +269,7 @@ function MegaMenu({ m }: { m: MenuDef }) {
                       loading="eager"
                       draggable="false"
                       src={"https://d3h330vgpwpjr8.cloudfront.net/x/340x270/" + m.cta.image}
-                      alt="banner-bg - Provident Estate"
+                      alt="banner-bg - Zoya Ventures Real Estate"
                     />
                   )}
                   <div className="content">
@@ -290,18 +289,34 @@ function MegaMenu({ m }: { m: MenuDef }) {
   );
 }
 
-const LOGO_PREFIX = "data:image/svg+xml;base64,";
-
 function Logo({ white }: { white?: boolean }) {
   return (
-    <Link href="/" className="logo">
-      <img draggable="false" src={LOGO_PREFIX + (white ? WHITE_LOGO : BLUE_LOGO)} alt="Provident Estate" />
+    <Link
+      href="/"
+      className="site-brand d-inline-flex align-items-center"
+      style={{ display: "inline-flex", alignItems: "center", justifyContent: "flex-start", gap: "7px", width: "auto", height: "auto" }}
+    >
+      <img
+        draggable="false"
+        src="/lloo.png"
+        alt="Zoya Ventures Real Estate"
+        className="site-brand-mark"
+        style={{ display: "block", width: "90px", maxWidth: "90px", height: "auto" }}
+      />
+      <span
+        className={white ? "site-brand-text site-brand-text-white" : "site-brand-text"}
+        aria-hidden="true"
+        style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", lineHeight: 1.05, textAlign: "left" }}
+      >
+        <span className="site-brand-top" style={{ fontSize: "1.08rem", fontWeight: 600, letterSpacing: "-0.02em", color: white ? "#fff" : "#111827" }}>Zoya Ventures</span>
+        <span className="site-brand-bottom" style={{ fontSize: ".72rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: white ? "#fff" : "#07234b" }}>Real Estate</span>
+      </span>
     </Link>
   );
 }
 
 const WA_LINK =
-  "https://wa.provident.ae/inquire?phone=971505423503&text=Hello%20Provident%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22";
+  "https://wa.provident.ae/inquire?phone=971568308221&text=Hello%20Zoya%20Ventures%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.&utm_source=Browser%20Direct&gclid=%22%22&event_type=Whatsapp%20Click&utm_platform=%22%22";
 
 export function SiteHeader({ transparent }: { transparent: boolean }) {
   const [scrolled, setScrolled] = useState(false);
@@ -379,7 +394,7 @@ export function SiteHeader({ transparent }: { transparent: boolean }) {
               />
             </svg>
           </a>
-          <a href="tel:+971 50 539 0249" className="nav-menu nav-menu-icon-wrap" aria-label="Call Us">
+          <a href="tel:+971568308221" className="nav-menu nav-menu-icon-wrap" aria-label="Call Us">
             <svg
               width="24"
               height="24"

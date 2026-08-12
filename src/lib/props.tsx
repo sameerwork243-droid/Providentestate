@@ -27,17 +27,17 @@ export function propLink(hit: any): string {
 
 export function waLink(hit: any): string {
   const neg = Array.isArray(hit.crm_negotiator_id) ? hit.crm_negotiator_id[0] || {} : hit.crm_negotiator_id || {};
-  const phone = neg.phone || "+971 50 440 2783";
+  const phone = neg.phone || "+971 568 308 221";
   const ref = hit.crm_id || "";
   const type = hit.building?.[0] || hit.building_type || "";
   const price = hit.price ? "AED " + hit.price.toLocaleString("en-US") : "";
   const loc = addressOf(hit);
   const link = propLink(hit);
-  const text = `Hello Provident,\n\nI would like to know more about this property:\n\n• Reference: ${ref}\n• Type: ${type}\n• Price: ${price}\n• Location: ${loc}\n• Link: https://providentestate.com${link}\n\nModifying this message will prevent it from being sent to the agent.`;
+  const text = `Hello Zoya Ventures,\n\nI would like to know more about this property:\n\n• Reference: ${ref}\n• Type: ${type}\n• Price: ${price}\n• Location: ${loc}\n• Link: https://providentestate.com${link}\n\nModifying this message will prevent it from being sent to the agent.`;
   const searchType = String(hit.search_type || "").toLowerCase();
   const kind = searchType.includes("rent") || searchType.includes("letting") ? "secondaryrent" : "secondarysale";
   const params = new URLSearchParams({
-    phone: "971505389860",
+    phone: "971568308221",
     text,
     resp_name: neg.name || "",
     utm_source: "Browser Direct",

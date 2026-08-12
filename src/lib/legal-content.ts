@@ -2,10 +2,10 @@ export const PRIVACY_POLICY_HTML = `
 <h1>Privacy Policy</h1>
 <p><strong>Last updated:</strong> July 1, 2025</p>
 <h2>1. Our Commitment to Your Privacy</h2>
-<p>Welcome to Provident Estate. In our commitment to safeguarding your personal information, we have formulated this comprehensive privacy policy to protect your interests and data across all our digital platforms. This policy outlines how Provident Estate ("we," "us," or "our") collects, uses, and protects the information you provide.</p>
+<p>Welcome to Zoya Ventures Real Estate. In our commitment to safeguarding your personal information, we have formulated this comprehensive privacy policy to protect your interests and data across all our digital platforms. This policy outlines how Zoya Ventures Real Estate ("we," "us," or "our") collects, uses, and protects the information you provide.</p>
 <p>By accessing and using our Site, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms herein, please do not use this Site.</p>
 <h2>2. Scope of this Policy</h2>
-<p>This Privacy Policy applies to all websites, landing pages, and digital platforms owned and operated by or on behalf of Provident Estate that link to this policy. It governs our data collection practices for all our online properties.</p>
+<p>This Privacy Policy applies to all websites, landing pages, and digital platforms owned and operated by or on behalf of Zoya Ventures Real Estate that link to this policy. It governs our data collection practices for all our online properties.</p>
 <h2>3. Information We Collect</h2>
 <p>We collect information to provide you with a better experience and to operate our business. We collect information in two primary ways:</p>
 <h3>a) Information You Voluntarily Provide to Us</h3>
@@ -41,7 +41,7 @@ export const PRIVACY_POLICY_HTML = `
 <ul>
 <li><strong>With Service Providers:</strong> We may share information with trusted third-party companies that perform services on our behalf, such as website hosting, data analytics, and email delivery. These providers are contractually obligated to protect your data and are not permitted to use it for their own purposes.</li>
 <li><strong>For Legal Reasons:</strong> We may disclose your information if required to do so by law or in the good faith belief that such action is necessary to comply with a legal obligation, protect our rights, or defend against legal claims.</li>
-<li><strong>In a Business Transfer:</strong> If Provident Estate is involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+<li><strong>In a Business Transfer:</strong> If Zoya Ventures Real Estate is involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
 </ul>
 <h2>7. Data Security</h2>
 <p>We have implemented reasonable administrative, technical, and physical security measures designed to protect your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. However, please be aware that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
@@ -66,9 +66,9 @@ export const PRIVACY_POLICY_HTML = `
 <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us at:</p>
 <ul>
 <li><strong>Attn:</strong> Data Privacy</li>
-<li><strong>Email:</strong> info@providentestate.com</li>
-<li><strong>Phone:</strong> <a href="tel:+97143233609">04 323 3609</a></li>
-<li><strong>Mailing Address:</strong> Marina Plaza - 1802 Al Marsa St - Dubai Marina - Dubai</li>
+<li><strong>Email:</strong> zoyaventure15@gmail.com</li>
+<li><strong>Phone:</strong> <a href="tel:+971568308221">+971 568 308 221</a></li>
+<li><strong>Mailing Address:</strong> Iris Bay - Business Bay - Dubai Offic# 2204 UAE</li>
 </ul>
 `;
 
@@ -92,12 +92,12 @@ export const TERMS_AND_CONDITIONS_HTML = `
 <p>The Fair Information Practices Principles form the backbone of privacy law in the United States and the concepts they include have played a significant role in the development of data protection laws around the globe. Understanding the Fair Information Practice Principles and how they should be implemented is critical to comply with the various privacy laws.</p>
 <h2>CAN SPAM Act</h2>
 <p>The CAN-SPAM Act is a law that sets the rules for commercial email, establishes requirements for commercial messages, gives recipients the right to have emails stopped from being sent to them, and spells out tough penalties for violations.</p>
-<p>If at any time you would like to unsubscribe from receiving future emails, you can email us at info@providentestate.com and we will promptly remove you from ALL correspondence.</p>
+<p>If at any time you would like to unsubscribe from receiving future emails, you can email us at zoyaventure15@gmail.com and we will promptly remove you from ALL correspondence.</p>
 <h2>Contacting Us</h2>
 <p>If there are any questions regarding this privacy policy, you may contact us using the information below.</p>
 <ul>
-<li><strong>Provident Real Estate</strong><br />Office #1802, 18th Floor, Marina Plaza, Dubai Marina, Dubai, United Arab Emirates.</li>
-<li><strong>Email:</strong> <a href="mailto:info@providentestate.com">info@providentestate.com</a></li>
+<li><strong>Zoya Ventures Real Estate</strong><br />Iris Bay - Business Bay - Dubai Offic# 2204 UAE</li>
+<li><strong>Email:</strong> <a href="mailto:zoyaventure15@gmail.com">zoyaventure15@gmail.com</a></li>
 </ul>
 `;
 

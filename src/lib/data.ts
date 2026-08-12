@@ -491,7 +491,7 @@ export const TEAM: TeamMember[] = [
     specialties: ["Waterfront", "Off-plan", "Investment"],
     type: "leadership",
     img: "Amira Haddad portrait",
-    bio: "Leading Provident's sales floor with 14 years across Dubai's marina and palm markets.",
+    bio: "Leading Zoya Ventures Real Estate's sales floor with 14 years across Dubai's marina and palm markets.",
   },
   {
     id: 402,
@@ -543,7 +543,7 @@ export const TEAM: TeamMember[] = [
     specialties: ["Roadshows", "Overseas buyers"],
     type: "advisory",
     img: "Elena Kova portrait",
-    bio: "Runs Provident's roadshow calendar and partnerships across Europe and Asia.",
+    bio: "Runs Zoya Ventures Real Estate's roadshow calendar and partnerships across Europe and Asia.",
   },
   {
     id: 406,

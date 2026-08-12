@@ -9,8 +9,8 @@ import "./app-shell.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Leading Real Estate Agency in Dubai, UAE | Provident Estate",
-    template: "%s | Provident Estate",
+    default: "Leading Real Estate Agency in Dubai, UAE | Zoya Ventures Real Estate",
+    template: "%s | Zoya Ventures Real Estate",
   },
   description:
     "Your one-stop for all real estate services, including selling, renting, snagging, conveyancing, mortgages, property management, & expert property consultants.",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Leading Real Estate Agency in Dubai, UAE",
-    siteName: "Provident Estate",
+    siteName: "Zoya Ventures Real Estate",
     images: ["https://www.providentestate.com/icons/icon-512x512.png"],
   },
   metadataBase: new URL("https://providentestate.com"),
