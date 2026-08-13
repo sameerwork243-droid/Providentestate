@@ -152,3 +152,33 @@ export async function dbProjectBySlug(slug: string): Promise<any | undefined> {
   if (!p) return undefined;
   return toProjectHit(p);
 }
+
+/** All developer rows (regardless of publish state) so callers can detect a fully empty table. */
+export async function dbDevelopersTable(): Promise<{ rows: Record<string, unknown>[]; live: Record<string, unknown>[] }> {
+  if (!dbEnabled()) return { rows: [], live: [] };
+  await ensureSeeded();
+  const all = await rows("SELECT * FROM developers ORDER BY name ASC");
+  return { rows: all, live: all.filter((d) => Number(d.published) === 1) };
+}
+
+/** All community/area rows (regardless of publish state) so callers can detect a fully empty table. */
+export async function dbCommunitiesTable(): Promise<{ rows: Record<string, unknown>[]; live: Record<string, unknown>[] }> {
+  if (!dbEnabled()) return { rows: [], live: [] };
+  await ensureSeeded();
+  const all = await rows("SELECT * FROM communities ORDER BY name ASC");
+  return { rows: all, live: all.filter((c) => Number(c.published) === 1) };
+}
+
+/** Real counts from the database for site-wide stats (hero, team page, etc.). */
+export async function dbSiteStats(): Promise<{ properties: number; agents: number; projects: number; communities: number; jobs: number }> {
+  const out = { properties: 0, agents: 0, projects: 0, communities: 0, jobs: 0 };
+  if (!dbEnabled()) return out;
+  await ensureSeeded();
+  const n = async (sql: string): Promise<number> => Number((await rows(sql))[0]?.n ?? 0);
+  out.properties = await n("SELECT COUNT(*) AS n FROM properties WHERE published = 1");
+  out.agents = await n("SELECT COUNT(*) AS n FROM agents WHERE published = 1");
+  out.projects = await n("SELECT COUNT(*) AS n FROM projects WHERE published = 1");
+  out.communities = await n("SELECT COUNT(*) AS n FROM communities WHERE published = 1");
+  out.jobs = await n("SELECT COUNT(*) AS n FROM jobs WHERE published = 1");
+  return out;
+}
