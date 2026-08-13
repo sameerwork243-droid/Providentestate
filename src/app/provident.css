@@ -680,103 +680,13 @@
 }
 #Book_a_Valuation .custom-form .form-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 18px 20px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
   width: 100%;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .form-section {
-  display: grid;
-  gap: 18px;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .input-box {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .input-label {
-  color: #07234b;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0;
-}
-#Book_a_Valuation .custom-form .input-field,
-#Book_a_Valuation .custom-form select.input-field,
-#Book_a_Valuation .custom-form textarea.input-field {
-  width: 100%;
-  max-width: 100%;
-  min-height: 48px;
-  border: 1px solid #dfe5ec;
-  border-radius: 8px;
-  background: #fff;
-  color: #07234b;
-  font-family: "Plus Jakarta Sans", Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.4;
-  padding: 0 14px;
-  box-sizing: border-box;
-  transition: border-color .15s ease, box-shadow .15s ease;
-}
-#Book_a_Valuation .custom-form .input-field:focus {
-  border-color: #ee7133;
-  box-shadow: 0 0 0 3px rgba(238, 113, 51, 0.12);
-  outline: none;
-}
-#Book_a_Valuation .custom-form .phone-field-row {
-  display: flex;
-  gap: 10px;
-  align-items: stretch;
-  width: 100%;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .phone-field-row .country-select {
-  flex: 0 0 120px;
-  max-width: 120px;
-  min-width: 0;
-}
-#Book_a_Valuation .custom-form .phone-field-row > .input-field {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-#Book_a_Valuation .custom-form .input-textarea {
-  min-height: 118px;
-  resize: vertical;
-  padding: 14px;
-}
-#Book_a_Valuation .custom-form .form-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .bv-check {
-  margin: 0;
-  align-items: flex-start;
-  color: #35373c;
-  max-width: 100%;
-}
-#Book_a_Valuation .custom-form .bv-check input {
-  flex-shrink: 0;
-}
-#Book_a_Valuation .custom-form .reg-btn {
-  width: 100%;
-  max-width: 220px;
-}
-#Book_a_Valuation .custom-form .success-msg,
-#Book_a_Valuation .custom-form .error-msg {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media screen and (max-width: 991px) {
   #Book_a_Valuation.contact-form-wrapper .contact-form-container {
@@ -785,6 +695,19 @@
   }
   #Book_a_Valuation .custom-form .form-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+#Book_a_Valuation .content-section {
+  padding-left: 20px;
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  #Book_a_Valuation .content-section {
+    padding-left: 32px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #Book_a_Valuation .content-section {
+    padding-left: 69px;
   }
 }
 .property-detail-page .property-detail-body .custom-form .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1221,3 +1144,92 @@
 .bv-preview-img .detail-save-btn.saved {
   color: #ee7133;
 }
+
+/* ==========================================================================
+   Property gallery layout fix
+   Root cause of the broken gallery:
+   1. .pe-gallery-side used a fixed grid-template-rows: repeat(2, 1fr), so a
+      side column holding a single image left a huge EMPTY white track below it.
+   2. Below 1200px the gallery was switched to display:block with a fixed
+      clamp() height while the main image's parent had no height of its own,
+      producing dead white space, huge boxes and a cramped flat image.
+   3. The 'Photos (N)' button (top-left) collided with the 'TO LET' badge
+      (top-left).
+   Fix: side rail rows auto-size (grid-auto-rows:1fr -> 1 or 2 images both
+   fill the rail exactly), tablet gets a proper intermediate 3-image layout,
+   mobile uses the natural 16:9 ratio (no white space, no oversized box),
+   and the Photos button moves to the bottom-left.
+   ========================================================================== */
+
+/* Side rail: as many equal rows as there are images (no empty track ever) */
+.pe-gallery .pe-gallery-side {
+  display: grid;
+  grid-template-rows: none;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Photos button must not collide with the TO LET badge (top-left) */
+.pe-gallery .pe-gallery-main .pe-gallery-photos {
+  top: auto;
+  bottom: 16px;
+  left: 16px;
+  right: auto;
+}
+
+/* ---- Tablet (768px-1199.98px): proper intermediate 3-image layout ---- */
+@media screen and (min-width: 768px) and (max-width: 1199.98px) {
+  .pe-gallery {
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: hidden;
+  }
+  .pe-gallery .pe-gallery-main {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    grid-row: auto;
+  }
+  .pe-gallery .pe-gallery-main img,
+  .pe-gallery .pe-gallery-side-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pe-gallery .pe-gallery-side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+    height: auto;
+  }
+  .pe-gallery .pe-gallery-side-item {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ---- Mobile (<768px): single full-width image at natural ratio ---- */
+@media screen and (max-width: 767.98px) {
+  .pe-gallery {
+    display: block;
+    height: auto;
+    max-height: none;
+  }
+  .pe-gallery .pe-gallery-main {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .pe-gallery .pe-gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pe-gallery .pe-gallery-side {
+    display: none;
+  }
+}
+

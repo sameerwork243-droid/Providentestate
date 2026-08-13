@@ -8,7 +8,78 @@
   }
 }
 
-/* --- Prevent 4px horizontal overflow of the icon row on <=374px screens --- */
+/* ==========================================================================
+   Hardening: the desktop nav (mega menus) and brand text must NEVER render
+   on small screens regardless of stylesheet load order or overrides.
+   Root cause of the reported overlap: the only rule hiding .nav-menu-list
+   below 1200px is a low-specificity bare rule in provident.css that any
+   later override could defeat. These !important gates make it bulletproof.
+   ========================================================================== */
+
+@media screen and (max-width: 1199.98px) {
+  .header .nav-menu-section > .nav-menu.nav-menu-list,
+  .header .nav-menu-section .nav-menu-list {
+    display: none !important;
+  }
+
+  .header .nav-menu-section > .nav-menu-property-list-button {
+    display: none !important;
+  }
+
+  /* Header must always span the full viewport on tablet/mobile and never
+     push the page wider (desktop keeps its original container centering) */
+  .header {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* expand the invisible hit-area of the 24px header icons to touch-friendly
+     ~44px without changing the visual layout */
+  .header .nav-menu-icon-wrap {
+    position: relative;
+  }
+  .header .nav-menu-icon-wrap::after {
+    content: "";
+    position: absolute;
+    inset: -11px;
+  }
+}
+
+/* 1200-1600px: the mega menus + icons + login + List Property button together
+   exceeded the container (overflow up to ~29px -> clipped/scrollable).
+   Tighter item spacing keeps the exact same layout inside the viewport;
+   >=1600px keeps the original 40px desktop rhythm untouched. */
+@media screen and (min-width: 1200px) and (max-width: 1299.98px) {
+  .header .nav-menu-section .nav-menu {
+    margin-left: 14px;
+  }
+}
+@media screen and (min-width: 1300px) and (max-width: 1599.98px) {
+  .header .nav-menu-section .nav-menu {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .header .site-brand-text {
+    display: none !important;
+  }
+}
+
+/* Header must never push the page wider */
+.header {
+  max-width: 100%;
+}
+.header .nav-menu-section {
+  min-width: 0;
+}
+.header .site-brand {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+/* --- Prevent overflow of the icon row on <=374px screens --- */
 @media screen and (max-width: 374px) {
   .header .nav-menu-section .nav-menu {
     margin-left: 10px;
