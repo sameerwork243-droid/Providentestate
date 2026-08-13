@@ -38,7 +38,7 @@ export function DeveloperListing({ developers }: { developers: any[] }) {
                   <a className="img-section-wrap img-zoom" href={link}>
                     <div className="img-section" style={{ backgroundImage: `url(${d.background})` }}>
                       <div className="logo-section">
-                        <DeveloperImage url={d.logo} alt={`${d.name} - Provident Estate`} />
+                        <DeveloperImage url={d.logo} alt={`${d.name} - Zoya Ventures Real Estate`} />
                       </div>
                     </div>
                   </a>

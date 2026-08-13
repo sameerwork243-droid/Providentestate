@@ -3,9 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { WHITE_LOGO, BLUE_LOGO } from "@/components/logo-data";
-
-const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
 export type PortalUser = { id: number; email: string; name: string; phone: string; avatar: string; role: string };
 
@@ -180,7 +177,7 @@ export function PortalFooter() {
     <footer className="portal-footer">
       <div className="portal-footer-inner">
         <div className="portal-copy">
-          © 2024, Provident Real Estate
+          © 2024, Zoya Ventures Real Estate
           <Link href="/privacy-policy/">Privacy Policy</Link>
         </div>
         <div className="portal-siteby">
@@ -208,14 +205,21 @@ export function PortalShell({
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [busy, setBusy] = useState(false);
 
   async function logout() {
     if (busy) return;
     setBusy(true);
     await fetch("/api/auth/logout", { method: "POST" });
+    setMenuOpen(false);
     router.push("/");
     router.refresh();
+  }
+
+  function goToProfile() {
+    setMenuOpen(false);
+    router.push("/dashboard");
   }
 
   const nav = (key: string) => {
@@ -235,8 +239,8 @@ export function PortalShell({
     <div className="shell-root">
       <aside className={"shell-sidebar" + (open ? " open" : "")}>
         <div className="shell-brand">
-          <Link href="/" aria-label="Provident Estate">
-            <img draggable="false" src={LOGO_PREFIX + WHITE_LOGO} alt="Provident Estate" />
+            <Link href="/" aria-label="Zoya Ventures Real Estate">
+              <img draggable="false" src="/lloo.png" alt="Zoya Ventures Real Estate" />
           </Link>
         </div>
         <nav className="shell-nav">
@@ -285,12 +289,25 @@ export function PortalShell({
             <PortalIcon name="menu" />
           </button>
           <div className="shell-topbar-title">{title}</div>
-          <div className="shell-user">
-            <span className="shell-user-avatar">{initials}</span>
-            <span className="shell-user-name">{user.name}</span>
-            <span className="shell-user-caret">
-              <PortalIcon name="expand-more" />
-            </span>
+          <div className="shell-user-menu">
+            <button type="button" className="shell-user" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
+              <span className="shell-user-avatar">{initials}</span>
+              <span className="shell-user-name">{user.name}</span>
+              <span className="shell-user-caret">
+                <PortalIcon name="expand-more" />
+              </span>
+            </button>
+
+            {menuOpen && (
+              <div className="shell-user-dropdown" role="menu" aria-label="Account menu">
+                <button type="button" className="shell-user-option" onClick={goToProfile}>
+                  Profile
+                </button>
+                <button type="button" className="shell-user-option danger" onClick={logout} disabled={busy}>
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </header>
         <main className="shell-main">

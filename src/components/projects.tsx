@@ -282,7 +282,7 @@ function ProjectDetail({ hit, route }: { hit: any; route: string }) {
               <a className="button button-orange" href="#register">
                 <span>Register Interest</span>
               </a>
-              <a className="button button-white" href={`tel:${"+971 50 539 0249".replace(/\s/g, "")}`}>
+              <a className="button button-white" href={`tel:${"+971 568 308 221".replace(/\s/g, "")}`}>
                 <span><CountryFlag /> Call Us</span>
               </a>
             </div>

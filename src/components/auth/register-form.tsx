@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { BLUE_LOGO } from "@/components/logo-data";
 
-const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
 export function RegisterForm() {
   const router = useRouter();
@@ -47,10 +45,10 @@ export function RegisterForm() {
 
   return (
     <>
-      <img className="portal-auth-logo" draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
+      <img className="portal-auth-logo" draggable="false" src="/lloo.png" alt="Zoya Ventures Real Estate" />
       <h1>Create your account</h1>
       <p className="auth-subtitle">
-        Join Provident Estate to save properties, book viewings and track your inquiries in one place.
+        Join Zoya Ventures Real Estate to save properties, book viewings and track your inquiries in one place.
       </p>
       {error && <div className="auth-error">{error}</div>}
       <form onSubmit={onSubmit} noValidate>
@@ -87,7 +85,7 @@ export function RegisterForm() {
       </button>
       </form>
       <p className="auth-terms">
-        By creating an account you agree to Provident Estate&apos;s terms of use and privacy policy.
+        By creating an account you agree to Zoya Ventures Real Estate&apos;s terms of use and privacy policy.
       </p>
       <p className="auth-alt">
         Already have an account? <Link href="/login/">Sign in</Link>

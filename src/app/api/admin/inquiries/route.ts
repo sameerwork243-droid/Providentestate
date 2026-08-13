@@ -6,12 +6,23 @@ export async function GET(req: Request) {
   await requireAdmin();
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") || "";
-  const where = status ? " WHERE i.status = ?" : "";
+  const kind = searchParams.get("kind") || "";
+  const clauses: string[] = [];
+  const params: string[] = [];
+  if (status) {
+    clauses.push(" i.status = ?");
+    params.push(status);
+  }
+  if (kind) {
+    clauses.push(" i.kind = ?");
+    params.push(kind);
+  }
+  const where = clauses.length ? ` WHERE${clauses.join(" AND")}` : "";
   const items = await rows(
     `SELECT i.*, u.name AS user_name, u.email AS user_email
      FROM inquiries i LEFT JOIN users u ON u.id = i.user_id${where}
      ORDER BY i.created_at DESC LIMIT 300`,
-    ...(status ? [status] : [])
+    ...params
   );
   return NextResponse.json({ items });
 }

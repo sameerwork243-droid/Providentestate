@@ -111,7 +111,7 @@ export function AreaGuidesListing({ areas }: { areas: any[] }) {
                       src={a.image}
                       srcSet={`${a.image} 340w, ${a.image304} 304w`}
                       sizes="(min-width: 100px) 340px"
-                      alt={`${a.title} - Provident Estate`}
+                      alt={`${a.title} - Zoya Ventures Real Estate`}
                     />
                   )}
                 </a>

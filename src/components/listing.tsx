@@ -348,7 +348,7 @@ export function ListingPage({ data, route, page = 1 }: { data: any; route: strin
                   src="https://d3h330vgpwpjr8.cloudfront.net/x/368x220/Rectangle_551_3ae6d0ae77_2f860c8381.webp"
                   srcSet="https://d3h330vgpwpjr8.cloudfront.net/x/368x220/Rectangle_551_3ae6d0ae77_2f860c8381.webp 368w"
                   sizes="(min-width: 180px) 368px"
-                  alt="Find The Best Mortgage in Dubai - Provident Estate"
+                  alt="Find The Best Mortgage in Dubai - Zoya Ventures Real Estate"
                 />
                 <div className="content">
                   <h4>Find The Best Mortgage in Dubai</h4>

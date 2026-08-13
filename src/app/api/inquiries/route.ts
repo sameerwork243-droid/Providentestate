@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAuthUser } from "@/server/session";
 import { run, now } from "@/server/db";
 
-const KINDS = new Set(["property", "contact", "viewing", "quiz", "careers", "general"]);
+const KINDS = new Set(["property", "contact", "viewing", "quiz", "careers", "general", "listing"]);
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);

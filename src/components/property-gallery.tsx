@@ -52,7 +52,7 @@ export function PropertyGallery({
 
   async function share() {
     const data = {
-      title: title || `${type} - Provident Estate`,
+      title: title || `${type} - Zoya Ventures Real Estate`,
       url: window.location.href,
     };
     try {

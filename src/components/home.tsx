@@ -1,13 +1,15 @@
 import { ModuleRenderer } from "./modules";
 import { HeroSearch } from "./search-hero";
 import { areas } from "@/lib/store";
+import { dbSiteStats } from "@/server/content-bridge";
 
 export function Rich({ html }: { html?: string | null }) {
   if (!html) return null;
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-export function HomePage({ page }: { page: any }) {
+export async function HomePage({ page }: { page: any }) {
+  const stats = await dbSiteStats();
   const modules = (page.modules || []).filter(
     (m: any) => !(m.strapi_component === "modules.ads-banner") && !(m.strapi_component === "modules.global-module" && m.choose_module === "contact_module")
   );
@@ -70,7 +72,7 @@ export function HomePage({ page }: { page: any }) {
                 <div className="brand-bx">
                   <h1 className="title">{page.banner?.title || "Find your home in Dubai."}</h1>
                 </div>
-                <HeroSearch areas={areas} review={stripText(page.banner?.description?.data?.description)} />
+                <HeroSearch areas={areas} review={stripText(page.banner?.description?.data?.description, stats)} />
               </div>
             </div>
           </div>
@@ -83,8 +85,13 @@ export function HomePage({ page }: { page: any }) {
   );
 }
 
-function stripText(html?: string | null): string {
-  if (!html) return "4,000 listings \u00A0\u00B7\u00A0400+ agents \u00A0\u00B7\u00A0Serving 80+ countries";
+function stripText(html?: string | null, stats?: { properties: number; agents: number; communities: number }): string {
+  if (!html) {
+    const p = stats?.properties ?? 4000;
+    const a = stats?.agents ?? 400;
+    const c = stats?.communities ?? 80;
+    return `${p.toLocaleString("en-US")} listings \u00A0\u00B7\u00A0${a.toLocaleString("en-US")}+ agents \u00A0\u00B7\u00A0Serving ${c.toLocaleString("en-US")}+ communities`;
+  }
   return html
     .replace(/<\/?p>/g, "")
     .replace(/&nbsp;/g, "\u00A0")

@@ -3,8 +3,8 @@ import path from "node:path";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPageData, classify } from "@/lib/ref";
 import { developerHubData, developerHits, typeHubData, routeFilters, matchHit, baseListingRel, corpus } from "@/lib/store";
-import { dbPropsToHits, dbPropertyByRoute } from "@/server/property-bridge";
-import { dbPageContent, dbTeamBySlug, dbJobBySlug, dbJobs, dbProjects, dbProjectBySlug } from "@/server/content-bridge";
+import { dbPropsToHits, dbPropertyByRoute, dbPropertyByRef } from "@/server/property-bridge";
+import { dbPageContent, dbTeamBySlug, dbJobBySlug, dbJobs, dbProjects, dbProjectBySlug, dbDevelopersTable, dbCommunitiesTable } from "@/server/content-bridge";
 import { SiteHeader } from "@/components/header";
 import { SiteFooter } from "@/components/footer";
 import { legalModule } from "@/lib/legal-content";
@@ -13,6 +13,7 @@ import { ListingPage } from "@/components/listing";
 import { PropertyDetailPage } from "@/components/property-detail";
 import { ProjectPages } from "@/components/projects";
 import { ContentPages } from "@/components/content-pages";
+import { BookViewingPage } from "@/components/book-viewing-page";
 import { SitemapPage } from "@/components/sitemap";
 
 function walk(dir: string, base: string): string[] {
@@ -115,6 +116,27 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     );
   }
 
+  if (routeBase === "/book-a-viewing") {
+    const q = (x: string | string[] | undefined) => (Array.isArray(x) ? x[0] : x);
+    const ref = q(sp?.id) || q(sp?.slug) || q(sp?.property) || null;
+    let property: any = null;
+    if (ref) {
+      const dbp = await dbPropertyByRef(ref);
+      if (dbp) property = dbp.data;
+      else {
+        property =
+          [...corpus("buy"), ...corpus("let")].find((h: any) => String(h.crm_id) === ref || String(h.id) === ref) || null;
+      }
+    }
+    return (
+      <div className="page-layout">
+        <SiteHeader transparent={false} />
+        <BookViewingPage property={property} route="/book-a-viewing" />
+        <SiteFooter />
+      </div>
+    );
+  }
+
   const devMatch = route.match(/^\/new-projects\/developed-by-([a-z0-9-]+)\/?$/);
   const typeMatch = route.match(/^\/new-projects\/type-([a-z0-9-]+)\/?$/);
   const hubMatch = devMatch || typeMatch;
@@ -129,6 +151,14 @@ export default async function Page({ params, searchParams }: { params: Promise<{
         hub.hits = dedupeBySlug([...hub.hits, ...extra]);
         hub.nbHits = hub.hits.length;
         hub.nbPages = Math.max(1, Math.ceil(hub.hits.length / (hub.hitsPerPage || 20)));
+      }
+    }
+    if (devMatch) {
+      const { rows: devRows } = await dbDevelopersTable();
+      if (devRows.length) {
+        const dev = devRows.find((d: any) => d.slug === devMatch[1]);
+        if (!dev) notFound();
+        else if (String(dev.name) !== hub.hits[0]?.developer) hub.hits = hub.hits.map((h: any) => ({ ...h, developer: String(dev.name) }));
       }
     }
     if (!hub.hits.length) notFound();
@@ -153,6 +183,13 @@ export default async function Page({ params, searchParams }: { params: Promise<{
     if (base) {
       const basePd = getPageData("/" + base);
       if (basePd) model = classify(basePd, "/" + base);
+    }
+  }
+  if (model?.kind === "listing") {
+    const area = routeFilters(routeBase).area;
+    if (area) {
+      const { rows: comRows } = await dbCommunitiesTable();
+      if (comRows.length && !comRows.some((c: any) => c.slug === area)) notFound();
     }
   }
   if (!model && /^\/team\/[a-z0-9-]+$/.test(routeBase)) {

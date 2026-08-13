@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { BLUE_LOGO } from "@/components/logo-data";
 import backgroundImage from "@/sign_up_bg_0e123241d1.jpg";
 import { PortalFooter } from "@/components/portal/portal-shell";
 
-const LOGO_PREFIX = "data:image/svg+xml;base64,";
+
 
 export function PortalAuthLayout({
   children,
@@ -15,8 +14,8 @@ export function PortalAuthLayout({
   return (
     <div className={`portal-root${footerBare ? " portal-auth-nofoot" : ""}`}>
       <header className="portal-appbar">
-        <Link className="portal-brand" href="/" aria-label="Provident Estate">
-          <img draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
+        <Link className="portal-brand" href="/" aria-label="Zoya Ventures Real Estate">
+          <img draggable="false" src="/lloo.png" alt="Zoya Ventures Real Estate" />
         </Link>
         <div className="portal-title">My Account</div>
         <Link className="portal-back" href="/">

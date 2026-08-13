@@ -23,7 +23,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
   const furnishing = p.furnishing || "N/A";
   const building = Array.isArray(p.building) ? p.building[0] : p.building;
   const neg = Array.isArray(p.crm_negotiator_id) ? p.crm_negotiator_id[0] || {} : p.crm_negotiator_id || {};
-  const phone = neg.phone || "+971 50 539 0249";
+  const phone = neg.phone || "+971 568 308 221";
   const type = building || p.building_type || "Property";
   const size = p.floorarea_min ?? p.floorarea_max;
   const amenities = (
@@ -262,7 +262,7 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                         </a>
                         <div className="nego-info">
                           <a href="/team/">
-                            <p className="name">{neg.name || "Provident Estate"}</p>
+                            <p className="name">{neg.name || "Zoya Ventures Real Estate"}</p>
                             <p className="designation">{neg.designation || "Property Consultant"}</p>
                             {neg.brn_number && <p className="orn-no">BRN No: {neg.brn_number}</p>}
                           </a>

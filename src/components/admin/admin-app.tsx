@@ -30,6 +30,7 @@ export function AdminApp({ user }: { user: User }) {
       items: [
         { key: "inquiries", label: "Inquiries", icon: "chat" },
         { key: "viewings", label: "Viewings", icon: "calendar" },
+        { key: "listings", label: "Listings", icon: "building" },
         { key: "users", label: "Users", icon: "users" },
         { key: "agents", label: "Agents", icon: "person" },
       ],
@@ -63,6 +64,7 @@ export function AdminApp({ user }: { user: User }) {
       {tab === "users" && <UsersManager />}
       {tab === "inquiries" && <InquiriesManager />}
       {tab === "viewings" && <ViewingsManager />}
+      {tab === "listings" && <ListingsManager />}
       {tab === "agents" && <ResourceManager endpoint="agents" title="Agents" fields={AGENT_FIELDS} columns={agentColumns} />}
       {tab === "developers" && <ResourceManager endpoint="developers" title="Developers" fields={DEVELOPER_FIELDS} columns={developerColumns} />}
       {tab === "communities" && <ResourceManager endpoint="communities" title="Communities" fields={COMMUNITY_FIELDS} columns={communityColumns} />}
@@ -1136,8 +1138,60 @@ function UserForm({ user, busy, onCancel, onSave }: { user: any | null; busy: bo
 
 /* ===================== Inquiries & Viewings ===================== */
 
+function DetailWindow({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
+  return (
+    <div className="app-modal-backdrop" onClick={onClose}>
+      <div className="app-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+        <div className="app-modal-head">
+          <h3>{title}</h3>
+          <button type="button" className="app-modal-close" aria-label="Close" onClick={onClose}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="app-modal-body">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function DetailGroup({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="app-detail-group">
+      <p className="app-detail-group-label">{label}</p>
+      <div className="app-detail-group-body">{children}</div>
+    </div>
+  );
+}
+
+function DetailField({ label, value }: { label: string; value?: string | null }) {
+  return (
+    <div className="app-detail-field">
+      <p className="app-detail-label">{label}</p>
+      <p className="app-detail-value">{value || "—"}</p>
+    </div>
+  );
+}
+
+function parseListingPayload(raw: string): Record<string, string> | null {
+  if (!raw) return null;
+  try {
+    const j = JSON.parse(raw);
+    if (j && typeof j === "object" && !Array.isArray(j)) {
+      const out: Record<string, string> = {};
+      for (const [k, v] of Object.entries(j)) if (v !== "" && v != null) out[k] = String(v);
+      return Object.keys(out).length ? out : null;
+    }
+  } catch {
+    /* not JSON */
+  }
+  return null;
+}
+
 function InquiriesManager() {
   const [items, setItems] = useState<any[] | null>(null);
+  const [open, setOpen] = useState<any | null>(null);
   const [toast, setToast] = useState("");
   const load = useCallback(() => {
     fetch("/api/admin/inquiries")
@@ -1155,8 +1209,10 @@ function InquiriesManager() {
   async function remove(row: any) {
     if (!confirm("Delete this inquiry?")) return;
     await fetch("/api/admin/inquiries", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: row.id }) });
+    setOpen(null);
     load();
   }
+  const payload = open ? parseListingPayload(String(open.message || "")) : null;
   return (
     <div className="app-card">
       <div className="app-card-head"><div><h2>Inquiries</h2><p className="app-card-sub">{items?.length ?? 0} messages</p></div></div>
@@ -1167,29 +1223,162 @@ function InquiriesManager() {
       ) : (
         <div style={{ overflowX: "auto" }}>
           <table className="app-table">
-            <thead><tr><th>Contact</th><th>Kind / property</th><th>Message</th><th>Status</th><th>Date</th><th></th></tr></thead>
+            <thead><tr><th>Contact</th><th>Kind</th><th>Status</th><th>Date</th><th></th></tr></thead>
             <tbody>
               {items.map((row) => (
-                <tr key={row.id}>
+                <tr key={row.id} className="app-row-click" onClick={() => setOpen(row)}>
                   <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
-                  <td>{row.kind}<div style={{ fontSize: 12, color: "#9399a4" }}>{row.property_slug || row.property_ref || ""}</div></td>
-                  <td style={{ maxWidth: 320 }}>{row.message}</td>
-                  <td>
-                    <select
-                      style={{ border: "1px solid #e1e8ed", borderRadius: 6, fontSize: 12, padding: "5px 8px" }}
-                      value={row.status}
-                      onChange={(e) => setStatus(row, e.target.value)}
-                    >
-                      {["new", "contacted", "closed"].map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </td>
+                  <td>{row.kind}</td>
+                  <td><span className="app-badge">{row.status}</span></td>
                   <td>{fmtDate(row.created_at)}</td>
-                  <td><button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button></td>
+                  <td><button type="button" className="app-btn sm" onClick={(e) => { e.stopPropagation(); setOpen(row); }}>View</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {open && (
+        <DetailWindow title="Inquiry Details" onClose={() => setOpen(null)}>
+          {payload ? (
+            <>
+              <DetailGroup label="Contact">
+                <DetailField label="Name" value={open.name} />
+                <DetailField label="Email" value={open.email} />
+                <DetailField label="Phone" value={open.phone} />
+              </DetailGroup>
+              <DetailGroup label="Listing Details">
+                <DetailField label="Transaction" value={payload.transaction} />
+                <DetailField label="Property Type" value={payload.property_type} />
+                <DetailField label="Community / Area" value={payload.community} />
+                <DetailField label="Bedrooms" value={payload.bedrooms} />
+                <DetailField label="Bathrooms" value={payload.bathrooms} />
+                <DetailField label="Size (sq ft)" value={payload.size_sqft} />
+                <DetailField label="Expected Price (AED)" value={payload.expected_price} />
+                <DetailField label="Ownership Status" value={payload.ownership} />
+                <DetailField label="Message" value={payload.message} />
+              </DetailGroup>
+            </>
+          ) : (
+            <>
+              <DetailGroup label="Contact">
+                <DetailField label="Name" value={open.name} />
+                <DetailField label="Email" value={open.email} />
+                <DetailField label="Phone" value={open.phone} />
+              </DetailGroup>
+              <DetailGroup label="Enquiry">
+                <DetailField label="Kind" value={open.kind} />
+                <DetailField label="Property" value={open.property_slug || open.property_ref} />
+                <DetailField label="Message" value={open.message} />
+              </DetailGroup>
+            </>
+          )}
+          <DetailGroup label="Details">
+            <DetailField label="Received" value={open.created_at ? new Date(open.created_at).toLocaleString("en-GB") : ""} />
+            <DetailField label="User" value={open.user_name || open.user_email} />
+          </DetailGroup>
+          <div className="app-detail-actions">
+            <select
+              style={{ border: "1px solid #e1e8ed", borderRadius: 6, fontSize: 12, padding: "6px 10px" }}
+              value={open.status}
+              onChange={(e) => setStatus(open, e.target.value)}
+            >
+              {["new", "contacted", "closed"].map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+            <button type="button" className="app-btn danger sm" onClick={() => remove(open)}>Delete</button>
+          </div>
+        </DetailWindow>
+      )}
+      {toast && <div className="app-toast">{toast}</div>}
+    </div>
+  );
+}
+
+function ListingsManager() {
+  const [items, setItems] = useState<any[] | null>(null);
+  const [open, setOpen] = useState<any | null>(null);
+  const [toast, setToast] = useState("");
+  const load = useCallback(() => {
+    fetch("/api/admin/inquiries?kind=listing")
+      .then((r) => r.json())
+      .then((d) => setItems(d.items || []))
+      .catch(() => setItems([]));
+  }, []);
+  useEffect(load, [load]);
+  async function setStatus(row: any, status: string) {
+    await fetch("/api/admin/inquiries", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: row.id, status }) });
+    setToast(`Listing marked "${status}"`);
+    setTimeout(() => setToast(""), 2000);
+    load();
+  }
+  async function remove(row: any) {
+    if (!confirm("Delete this listing request?")) return;
+    await fetch("/api/admin/inquiries", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: row.id }) });
+    setOpen(null);
+    load();
+  }
+  const payload = open ? parseListingPayload(String(open.message || "")) : null;
+  return (
+    <div className="app-card">
+      <div className="app-card-head"><div><h2>Listings</h2><p className="app-card-sub">{items?.length ?? 0} property submissions</p></div></div>
+      {items === null ? (
+        <p className="app-empty">Loading…</p>
+      ) : items.length === 0 ? (
+        <p className="app-empty">No property listings yet. Submissions from the "List Your Property" form appear here.</p>
+      ) : (
+        <div style={{ overflowX: "auto" }}>
+          <table className="app-table">
+            <thead><tr><th>Owner</th><th>Property</th><th>Status</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+              {items.map((row) => {
+                const p = parseListingPayload(String(row.message || ""));
+                return (
+                  <tr key={row.id} className="app-row-click" onClick={() => setOpen(row)}>
+                    <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
+                    <td>{p ? `${p.transaction || ""} ${p.property_type || ""}${p.community ? " · " + p.community : ""}` : row.property_slug || "Property"}</td>
+                    <td><span className="app-badge">{row.status}</span></td>
+                    <td>{fmtDate(row.created_at)}</td>
+                    <td><button type="button" className="app-btn sm" onClick={(e) => { e.stopPropagation(); setOpen(row); }}>View</button></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {open && (
+        <DetailWindow title="Listing Details" onClose={() => setOpen(null)}>
+          <DetailGroup label="Owner">
+            <DetailField label="Name" value={open.name} />
+            <DetailField label="Email" value={open.email} />
+            <DetailField label="Phone" value={open.phone} />
+          </DetailGroup>
+          <DetailGroup label="Property">
+            <DetailField label="Transaction" value={payload?.transaction} />
+            <DetailField label="Property Type" value={payload?.property_type} />
+            <DetailField label="Community / Area" value={payload?.community} />
+            <DetailField label="Bedrooms" value={payload?.bedrooms} />
+            <DetailField label="Bathrooms" value={payload?.bathrooms} />
+            <DetailField label="Size (sq ft)" value={payload?.size_sqft} />
+            <DetailField label="Expected Price (AED)" value={payload?.expected_price} />
+            <DetailField label="Ownership Status" value={payload?.ownership} />
+            <DetailField label="Message" value={payload?.message} />
+          </DetailGroup>
+          <DetailGroup label="Details">
+            <DetailField label="Received" value={open.created_at ? new Date(open.created_at).toLocaleString("en-GB") : ""} />
+            <DetailField label="User" value={open.user_name || open.user_email} />
+          </DetailGroup>
+          <div className="app-detail-actions">
+            <select
+              style={{ border: "1px solid #e1e8ed", borderRadius: 6, fontSize: 12, padding: "6px 10px" }}
+              value={open.status}
+              onChange={(e) => setStatus(open, e.target.value)}
+            >
+              {["new", "contacted", "closed"].map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+            <button type="button" className="app-btn danger sm" onClick={() => remove(open)}>Delete</button>
+          </div>
+        </DetailWindow>
       )}
       {toast && <div className="app-toast">{toast}</div>}
     </div>
@@ -1198,6 +1387,7 @@ function InquiriesManager() {
 
 function ViewingsManager() {
   const [items, setItems] = useState<any[] | null>(null);
+  const [open, setOpen] = useState<any | null>(null);
   const [toast, setToast] = useState("");
   const load = useCallback(() => {
     fetch("/api/admin/viewings")
@@ -1215,6 +1405,7 @@ function ViewingsManager() {
   async function remove(row: any) {
     if (!confirm("Delete this viewing?")) return;
     await fetch("/api/admin/viewings", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: row.id }) });
+    setOpen(null);
     load();
   }
   return (
@@ -1227,29 +1418,49 @@ function ViewingsManager() {
       ) : (
         <div style={{ overflowX: "auto" }}>
           <table className="app-table">
-            <thead><tr><th>Customer</th><th>Property</th><th>Date / time</th><th>Notes</th><th>Status</th><th></th></tr></thead>
+            <thead><tr><th>Customer</th><th>Property</th><th>Date / time</th><th>Status</th><th></th></tr></thead>
             <tbody>
               {items.map((row) => (
-                <tr key={row.id}>
-                  <td><strong>{row.user_name || row.user_email || "Guest"}</strong></td>
+                <tr key={row.id} className="app-row-click" onClick={() => setOpen(row)}>
+                  <td><strong>{row.user_name || row.user_email || "Guest"}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.name || ""}</div></td>
                   <td>{row.property_slug || row.property_ref || "General"}</td>
                   <td>{row.preferred_date}<div style={{ fontSize: 12, color: "#9399a4" }}>{row.time_slot}</div></td>
-                  <td style={{ maxWidth: 240 }}>{row.notes}</td>
-                  <td>
-                    <select
-                      style={{ border: "1px solid #e1e8ed", borderRadius: 6, fontSize: 12, padding: "5px 8px" }}
-                      value={row.status}
-                      onChange={(e) => setStatus(row, e.target.value)}
-                    >
-                      {["requested", "confirmed", "completed", "cancelled"].map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </td>
-                  <td><button type="button" className="app-btn danger sm" onClick={() => remove(row)}>Delete</button></td>
+                  <td><span className="app-badge">{row.status}</span></td>
+                  <td><button type="button" className="app-btn sm" onClick={(e) => { e.stopPropagation(); setOpen(row); }}>View</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {open && (
+        <DetailWindow title="Viewing Details" onClose={() => setOpen(null)}>
+          <DetailGroup label="Customer">
+            <DetailField label="Name" value={open.name || open.user_name} />
+            <DetailField label="Email" value={open.email || open.user_email} />
+            <DetailField label="Phone" value={open.phone} />
+          </DetailGroup>
+          <DetailGroup label="Viewing">
+            <DetailField label="Property" value={open.property_slug || open.property_ref} />
+            <DetailField label="Date" value={open.preferred_date} />
+            <DetailField label="Time" value={open.time_slot} />
+            <DetailField label="Notes" value={open.notes} />
+          </DetailGroup>
+          <DetailGroup label="Details">
+            <DetailField label="Received" value={open.created_at ? new Date(open.created_at).toLocaleString("en-GB") : ""} />
+            <DetailField label="User" value={open.user_name || open.user_email} />
+          </DetailGroup>
+          <div className="app-detail-actions">
+            <select
+              style={{ border: "1px solid #e1e8ed", borderRadius: 6, fontSize: 12, padding: "6px 10px" }}
+              value={open.status}
+              onChange={(e) => setStatus(open, e.target.value)}
+            >
+              {["requested", "confirmed", "completed", "cancelled"].map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+            <button type="button" className="app-btn danger sm" onClick={() => remove(open)}>Delete</button>
+          </div>
+        </DetailWindow>
       )}
       {toast && <div className="app-toast">{toast}</div>}
     </div>

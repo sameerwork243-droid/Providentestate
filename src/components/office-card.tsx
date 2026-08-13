@@ -14,7 +14,7 @@ export function OfficeCard({ office }: { office: any }) {
       <div className="office-item">
         <a className="img-section img-zoom" href={href}>
           {office.tile_image?.url && (
-            <img loading="lazy" draggable="false" src={office.tile_image.url} alt={office.title + " - Provident Estate"} />
+            <img loading="lazy" draggable="false" src={office.tile_image.url} alt={office.title + " - Zoya Ventures Real Estate"} />
           )}
         </a>
         <div className="about-office">

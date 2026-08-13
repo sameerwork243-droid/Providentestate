@@ -308,8 +308,8 @@ function Logo({ white }: { white?: boolean }) {
         aria-hidden="true"
         style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", lineHeight: 1.05, textAlign: "left" }}
       >
-        <span className="site-brand-top" style={{ fontSize: "1.08rem", fontWeight: 600, letterSpacing: "-0.02em", color: white ? "#fff" : "#111827" }}>Zoya Ventures</span>
-        <span className="site-brand-bottom" style={{ fontSize: ".72rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: white ? "#fff" : "#07234b" }}>Real Estate</span>
+        <span className="site-brand-top" style={{ fontSize: "1.08rem", fontWeight: 600, letterSpacing: "-0.02em", color: white ? "#fff" : "#111827", whiteSpace: "nowrap" }}>Zoya Ventures</span>
+        <span className="site-brand-bottom" style={{ fontSize: ".72rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: white ? "#fff" : "#07234b", whiteSpace: "nowrap" }}>Real Estate</span>
       </span>
     </Link>
   );

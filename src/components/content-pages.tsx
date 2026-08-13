@@ -174,9 +174,9 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
           </>
         );
         return magic ? (
-          <button key={i} className={cls} type="button">
+          <a key={i} className={cls} href={c.custom_link || "#"}>
             {btn}
-          </button>
+          </a>
         ) : (
           <a key={i} className={cls} href={ctaHref(c, "/contact/")}>
             {btn}
@@ -237,7 +237,7 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
                     src={cfw(videoThumb, 1968)}
                     srcSet={`${cfw(videoThumb, 336)} 336w, ${cfw(videoThumb, 696)} 696w, ${cfw(videoThumb, 1968)} 1968w`}
                     sizes="(max-width: 480px) 336px, (max-width: 1100px) 696px, (min-width: 1100px) 1968px"
-                    alt="banner-video - Provident Estate"
+                    alt="banner-video - Zoya Ventures Real Estate"
                     className="video-thumbnail"
                   />
                   <button className="play-button" aria-label="play button"></button>
@@ -293,7 +293,7 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
               src={cfw(bg, 1773)}
               srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
               sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
-              alt="banner-bg - Provident Estate"
+              alt="banner-bg - Zoya Ventures Real Estate"
             />
           )}
           <div className="overlay"></div>
@@ -314,7 +314,22 @@ function StrapiPage({ page, route }: { page: any; route: string }) {
           </div>
         </div>
         <div>
-          <div className="banner-container container">{brandBx}</div>
+          <div className="banner-container container">
+            {brandBx}
+            {banner.show_reviews && (
+              <div className="reviews-section">
+                <div className="review-item">
+                  <img draggable="false" src="/assets/google-stars.svg" alt="Google Stars" />
+                  <p className="review">4.8</p>
+                </div>
+                <div className="divider"></div>
+                <div className="review-item">
+                  <img draggable="false" src="/assets/trustpilot.svg" alt="Trust Pilot" />
+                  <p className="review">4.9/5</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {mods.map((m: any, i: number) =>
@@ -409,7 +424,7 @@ function BlogDetail({ b, route }: { b: any; route: string }) {
                   src={cfw(bg, 1000)}
                   srcSet={`${cfw(bg, 339)} 339w, ${cfw(bg, 696)} 696w, ${cfw(bg, 1000)} 1000w`}
                   sizes="(max-width: 480px) 339px, (max-width: 1100px) 696px, (min-width: 1100px) 1000px"
-                  alt={`${b.title} - Provident Estate`}
+                  alt={`${b.title} - Zoya Ventures Real Estate`}
                 />
               </div>
             </div>
@@ -506,7 +521,7 @@ function TeamDetail({ t, route }: { t: any; route: string }) {
                 </a>
               )}
               {waPhone && (
-                <a className="property-cta whats" target="_blank" rel="noreferrer" href={`https://wa.provident.ae/inquire?phone=${waPhone}&text=Hello%20Provident%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.`}>
+                <a className="property-cta whats" target="_blank" rel="noreferrer" href={`https://wa.provident.ae/inquire?phone=${waPhone}&text=Hello%20Zoya%20Ventures%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20this%20page%3A%0A%0A%E2%80%A2%20Page%20Name%3A%20%0A%E2%80%A2%20Link%3A%20%0A%0AModifying%20this%20message%20will%20prevent%20it%20from%20being%20sent%20to%20the%20agent.`}>
                   <span>WhatsApp</span>
                 </a>
               )}
@@ -554,7 +569,7 @@ function AreaGuideDetail({ a, route }: { a: any; route: string }) {
               src={cfw(bg, 1773)}
               srcSet={`${cfw(bg, 376)} 376w, ${cfw(bg, 744)} 744w, ${cfw(bg, 1773)} 1773w`}
               sizes="(max-width: 480px) 376px, (max-width: 1100px) 744px, (min-width: 1100px) 1773px"
-              alt="banner-bg - Provident Estate"
+              alt="banner-bg - Zoya Ventures Real Estate"
             />
           )}
           <div className="overlay"></div>

@@ -2,6 +2,15 @@ import { rows, run, now, row, dbEnabled } from "./db";
 import { hashPassword } from "./auth-core";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
+import homeJson from "@/data/home.json";
+
+function slugify(s: string): string {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function rawPath(...parts: string[]): string {
   return path.join(process.cwd(), "data", "raw", ...parts);
@@ -152,6 +161,8 @@ export async function ensureSeeded(): Promise<void> {
   await seedJobs();
   await seedProjects();
   await seedProperties();
+  await seedDevelopers();
+  await seedCommunities();
 }
 
 /** Agents from the scraped team pages (data/raw/pages/team/*.json). */
@@ -353,6 +364,80 @@ async function seedProperties(): Promise<void> {
   }
   await run("INSERT INTO page_content (key, value) VALUES ('properties_imported', '1') ON CONFLICT (key) DO UPDATE SET value = '1'");
   console.log("[seed] properties ready");
+}
+
+/** Developers from the scraped developers.json or, failing that, the distinct developers in the projects corpus. */
+async function seedDevelopers(): Promise<void> {
+  const count = Number((await rows("SELECT COUNT(*) AS n FROM developers"))[0]?.n ?? 0);
+  if (count > 0) return;
+  try {
+    const file = path.join(process.cwd(), "data", "raw", "developers.json");
+    const devs = JSON.parse(readFileSync(file, "utf8")) as { name: string; slug?: string; region?: string; logo?: string; description?: string }[];
+    for (const d of devs) {
+      await run(
+        "INSERT INTO developers (name, slug, region, img, description, published, created_at) VALUES (?, ?, ?, ?, ?, 1, ?)",
+        d.name,
+        d.slug || slugify(d.name),
+        d.region || "",
+        d.logo || "",
+        d.description || "",
+        now()
+      );
+    }
+    if (devs.length) {
+      console.log("[seed] developers ready");
+      return;
+    }
+  } catch {
+    // fall through to projects-derived list
+  }
+  const items = await rows<{ developer: string }>("SELECT DISTINCT developer FROM projects WHERE developer <> '' ORDER BY developer");
+  for (const it of items) {
+    const name = String(it.developer || "").trim();
+    if (!name) continue;
+    await run(
+      "INSERT INTO developers (name, slug, region, img, description, published, created_at) VALUES (?, ?, '', '', '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      name,
+      slugify(name),
+      now()
+    );
+  }
+  if (items.length) console.log("[seed] developers ready (from projects)");
+}
+
+/** Communities/areas: homepage community list first, then distinct project communities. */
+async function seedCommunities(): Promise<void> {
+  const count = Number((await rows("SELECT COUNT(*) AS n FROM communities"))[0]?.n ?? 0);
+  if (count > 0) return;
+  const seen = new Set<string>();
+  for (const c of (homeJson.communities as any[]) || []) {
+    const m = String(c?.href || "").match(/in-([^/]+)\/?$/);
+    const slug = m ? m[1] : slugify(String(c?.label || ""));
+    const name = String(c?.label || slug).trim();
+    if (!name || seen.has(slug)) continue;
+    seen.add(slug);
+    await run(
+      "INSERT INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      name,
+      slug,
+      now()
+    );
+  }
+  const items = await rows<{ community: string }>("SELECT DISTINCT community FROM projects WHERE community <> '' ORDER BY community");
+  for (const it of items) {
+    const name = String(it.community || "").trim();
+    if (!name) continue;
+    const slug = slugify(name);
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    await run(
+      "INSERT INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      name,
+      slug,
+      now()
+    );
+  }
+  if (items.length || seen.size) console.log("[seed] communities ready");
 }
 
 export async function seed(): Promise<void> {

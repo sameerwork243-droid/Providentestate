@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { BLUE_LOGO } from "@/components/logo-data";
 
-const LOGO_PREFIX = "data:image/svg+xml;base64,";
 
 export function LoginForm({ initialEmail = "" }: { initialEmail?: string }) {
   const router = useRouter();
@@ -40,7 +38,7 @@ export function LoginForm({ initialEmail = "" }: { initialEmail?: string }) {
 
   return (
     <>
-      <img className="portal-auth-logo" draggable="false" src={LOGO_PREFIX + BLUE_LOGO} alt="Provident Estate" />
+      <img className="portal-auth-logo" draggable="false" src="/lloo.png" alt="Zoya Ventures Real Estate" />
       <h1>Login to your account</h1>
       <p className="auth-subtitle">Welcome back. Enter your details to access your account.</p>
 

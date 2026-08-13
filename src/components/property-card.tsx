@@ -92,7 +92,7 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
             </a>
           </p>
           <div className="cta-section">
-            <a className="property-cta email" href="/book-a-viewing/">
+            <a className="property-cta email" href={`/book-a-viewing/?id=${encodeURIComponent(hit.crm_id || hit.id || "")}`}>
               <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="phone-icon">
                 <path d="M14.5 5V12C14.5 12.8284 13.8284 13.5 13 13.5H3C2.17157 13.5 1.5 12.8284 1.5 12V5M14.5 5C14.5 4.17157 13.8284 3.5 13 3.5H3C2.17157 3.5 1.5 4.17157 1.5 5M14.5 5V5.16181C14.5 5.6827 14.2298 6.1663 13.7861 6.43929L8.78615 9.51622C8.30404 9.8129 7.69596 9.8129 7.21385 9.51622L2.21385 6.43929C1.77023 6.1663 1.5 5.6827 1.5 5.16181V5" stroke="#35373C" strokeLinecap="round" strokeLinejoin="round"></path>
               </svg>
@@ -105,11 +105,10 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
               </svg>
               <span>Call</span>
             </a>
-            <a href={waLink(hit)} target="_blank" className="property-cta whats" rel="noreferrer">
+            <a href={waLink(hit)} target="_blank" className="property-cta whats whats-icon-only" rel="noreferrer" aria-label={`WhatsApp about ${hit.title || hit.building?.[0] || "this property"}`}>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
                 <path fill="#67C15E" d="M8.5 0C4.06 0 .5 3.56.5 8c0 1.4.37 2.77 1.07 3.98L.5 16l4.2-1.1a8 8 0 0 0 3.8.97c4.44 0 8-3.56 8-7.95S12.94 0 8.5 0Zm4.68 11.3c-.2.57-1.17 1.09-1.6 1.13-.42.04-.9.2-3.03-.63-2.56-1-4.17-3.6-4.3-3.77-.12-.17-1.02-1.36-1.02-2.6 0-1.23.65-1.83.88-2.08.23-.25.5-.31.67-.31h.48c.15 0 .36-.06.56.42l.78 1.9c.06.15.1.32.02.49-.07.17-.12.26-.23.4l-.35.43c-.12.11-.24.24-.1.47.14.23.6 1 1.3 1.61.9.8 1.65 1.05 1.9 1.17.23.12.37.1.5-.06l.75-.87c.16-.19.31-.15.52-.09l1.9.9c.24.11.4.17.46.26.06.1.06.56-.14 1.13Z" />
               </svg>
-              <span>WhatsApp</span>
             </a>
           </div>
         </div>

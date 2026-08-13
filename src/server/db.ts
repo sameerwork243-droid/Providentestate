@@ -10,17 +10,68 @@ export function dbEnabled(): boolean {
   return !!DATABASE_URL;
 }
 
+/**
+ * Strip `sslmode` query params from the URL: node-postgres parses them and
+ * emits a loud security warning for Neon-style `sslmode=require` URLs.
+ * SSL is configured explicitly via the Pool `ssl` option instead.
+ */
+function stripSslMode(url: string): string {
+  const q = url.indexOf("?");
+  if (q < 0) return url;
+  const rest = url
+    .slice(q + 1)
+    .split("&")
+    .filter((p) => !/^sslmode=/.test(p));
+  return rest.length ? url.slice(0, q + 1) + rest.join("&") : url.slice(0, q);
+}
+
 function pgParams(sql: string): string {
   let i = 0;
   return sql.replace(/\?/g, () => `$${++i}`);
 }
 
-function sslFor(url: string): boolean | { rejectUnauthorized: boolean } {
+function sslFor(url: string): boolean | { rejectUnauthorized: boolean } | undefined {
   if (process.env.PROVIDENT_PG_SSL === "0") return false;
   if (url.includes("sslmode=require") || url.includes("neon.tech")) {
     return { rejectUnauthorized: false };
   }
   return false;
+}
+
+function isTransientError(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const e = err as Record<string, unknown>;
+  const code = e.code as string | undefined;
+  const errno = e.errno as string | undefined;
+  const message = e.message as string | undefined;
+  return (
+    code === "ECONNRESET" ||
+    code === "ETIMEDOUT" ||
+    code === "ENOTFOUND" ||
+    code === "EHOSTUNREACH" ||
+    code === "ECONNREFUSED" ||
+    code === "57P01" ||
+    code === "57P02" ||
+    code === "57P03" ||
+    errno === "-4077" ||
+    (typeof message === "string" && (message.includes("ECONNRESET") || message.includes("connection terminated")))
+  );
+}
+
+async function queryWithRetry<T>(
+  fn: () => Promise<T>,
+  retries = 3,
+  delayMs = 500
+): Promise<T> {
+  try {
+    return await fn();
+  } catch (err) {
+    if (retries > 0 && isTransientError(err)) {
+      await new Promise((r) => setTimeout(r, delayMs));
+      return queryWithRetry(fn, retries - 1, delayMs * 2);
+    }
+    throw err;
+  }
 }
 
 export function getPool(): Pool {
@@ -31,9 +82,12 @@ export function getPool(): Pool {
     );
   }
   pool = new Pool({
-    connectionString: DATABASE_URL,
+    connectionString: stripSslMode(DATABASE_URL),
     ssl: sslFor(DATABASE_URL),
     max: 10,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 15000,
+    allowExitOnIdle: true,
   });
   pool.on("error", (err) => {
     console.error("[db] pool error:", err);
@@ -91,14 +145,12 @@ export function now(): string {
 
 export async function rows<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T[]> {
   await ensureMigrated();
-  const res = await getPool().query(pgParams(sql), params);
-  return res.rows as T[];
+  return queryWithRetry(() => getPool().query(pgParams(sql), params).then((res) => res.rows as T[]));
 }
 
 export async function row<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T | undefined> {
   await ensureMigrated();
-  const res = await getPool().query(pgParams(sql), params);
-  return res.rows[0] as T | undefined;
+  return queryWithRetry(() => getPool().query(pgParams(sql), params).then((res) => res.rows[0] as T | undefined));
 }
 
 // Tables that use a composite primary key and therefore have no `id` column.
@@ -119,9 +171,10 @@ export async function run(
   const table = insertTable(sql);
   const withReturning = isInsert && !/\breturning\b/i.test(sql) && !(table && TABLES_WITHOUT_ID.has(table));
   const query = withReturning ? `${pgParams(sql)} RETURNING id` : pgParams(sql);
-  const res = await getPool().query(query, params);
-  const lastId = withReturning && res.rows.length ? Number(res.rows[0].id) : 0;
-  return { changes: res.rowCount ?? 0, lastId };
+  return queryWithRetry(() => getPool().query(query, params).then((res) => ({
+    changes: res.rowCount ?? 0,
+    lastId: withReturning && res.rows.length ? Number(res.rows[0].id) : 0,
+  })));
 }
 
 export function prepare(sql: string): { all: (...p: unknown[]) => Promise<unknown[]>; get: (...p: unknown[]) => Promise<unknown | undefined>; run: (...p: unknown[]) => Promise<{ changes: number; lastId: number }> } {

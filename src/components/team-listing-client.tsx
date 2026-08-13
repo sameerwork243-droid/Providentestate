@@ -11,14 +11,20 @@ const TAB_MAP: Record<string, string> = {
   "Primary Brokers": "Primary Brokers",
   "Secondary Brokers": "Secondary Brokers",
 };
-const STATS = [
-  { value: "500+", text: "Professionals" },
-  { value: "40+", text: "Languages Spoken" },
-  { value: "17+", text: "Proven industry presence" },
-];
 const PER_PAGE = 20;
 
-export function TeamListingClient({ members }: { members: any[] }) {
+export function TeamListingClient({
+  members,
+  stats,
+}: {
+  members: any[];
+  stats?: { professionals?: number; languages?: number };
+}) {
+  const STATS = [
+    { value: `${(stats?.professionals ?? 500)}`, text: "Professionals" },
+    { value: `${(stats?.languages ?? 40)}+`, text: "Languages Spoken" },
+    { value: "17+", text: "Proven industry presence" },
+  ];
   const [tab, setTab] = useState("Management");
   const [category, setCategory] = useState("");
   const [language, setLanguage] = useState("");
