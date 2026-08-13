@@ -84,8 +84,14 @@ export async function ensureSeeded(): Promise<void> {
 
   const userCount = Number((await rows("SELECT COUNT(*) AS n FROM users"))[0]?.n ?? 0);
   if (userCount === 0) {
-    const adminEmail = (process.env.PROVIDENT_ADMIN_EMAIL || "sameerwork243@gmail.com").toLowerCase();
-    const adminPassword = process.env.PROVIDENT_ADMIN_PASSWORD || "Sameer@12";
+    const isProd = process.env.NODE_ENV === "production";
+    const adminEmail = (process.env.PROVIDENT_ADMIN_EMAIL || (!isProd ? "sameerwork243@gmail.com" : "")).toLowerCase();
+    const adminPassword = process.env.PROVIDENT_ADMIN_PASSWORD || (!isProd ? "Sameer@12" : "");
+    if (!adminEmail || !adminPassword) {
+      throw new Error(
+        "[seed] Cannot create the initial admin user: set PROVIDENT_ADMIN_EMAIL and PROVIDENT_ADMIN_PASSWORD. This only runs against an empty users table."
+      );
+    }
     const adminRole = Number((await rows<{ id: number }>("SELECT id FROM roles WHERE name = 'admin'"))[0]?.id ?? 1);
     const userRole = Number((await rows<{ id: number }>("SELECT id FROM roles WHERE name = 'user'"))[0]?.id ?? 2);
     await run(
@@ -96,14 +102,16 @@ export async function ensureSeeded(): Promise<void> {
       adminRole,
       now()
     );
-    await run(
-      "INSERT INTO users (email, password_hash, name, role_id, is_active, created_at) VALUES (?, ?, ?, ?, 1, ?)",
-      "demo@provident.ae",
-      hashPassword("Demo@1234"),
-      "Demo User",
-      userRole,
-      now()
-    );
+    if (!isProd) {
+      await run(
+        "INSERT INTO users (email, password_hash, name, role_id, is_active, created_at) VALUES (?, ?, ?, ?, 1, ?)",
+        "demo@provident.ae",
+        hashPassword("Demo@1234"),
+        "Demo User",
+        userRole,
+        now()
+      );
+    }
   }
 
   const catCount = Number((await rows("SELECT COUNT(*) AS n FROM categories"))[0]?.n ?? 0);
@@ -153,7 +161,7 @@ export async function ensureSeeded(): Promise<void> {
       ["address", "Dubai, United Arab Emirates"],
     ];
     for (const [k, v] of pairs) {
-      await run("INSERT INTO contact_info (key, value) VALUES (?, ?)", k, v);
+      await run("INSERT INTO contact_info (\`key\`, value) VALUES (?, ?)", k, v);
     }
   }
 
@@ -176,9 +184,8 @@ async function seedAgents(): Promise<void> {
     if (!t || !t.slug) continue;
     try {
       await run(
-        `INSERT INTO agents (name, slug, role, phone, email, languages, specialties, img, bio, brn_number, published, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)
-         ON CONFLICT (slug) DO NOTHING`,
+        `INSERT IGNORE INTO agents (name, slug, role, phone, email, languages, specialties, img, bio, brn_number, published, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`,
         String(t.name || ""),
         String(t.slug),
         String(t.designation || ""),
@@ -210,9 +217,8 @@ async function seedJobs(): Promise<void> {
     const details = String(c.job_details?.data?.job_details || "");
     try {
       await run(
-        `INSERT INTO jobs (title, slug, location, summary, job_details, published, created_at)
-         VALUES (?, ?, ?, ?, ?, 1, ?)
-         ON CONFLICT (slug) DO NOTHING`,
+        `INSERT IGNORE INTO jobs (title, slug, location, summary, job_details, published, created_at)
+         VALUES (?, ?, ?, ?, ?, 1, ?)`,
         String(c.title || "").trim(),
         String(c.slug),
         String(c.location || ""),
@@ -247,7 +253,7 @@ async function seedProjects(): Promise<void> {
            (slug, title, category, status, price, currency, community, developer, building_type, department,
             bedrooms_min, bedrooms_max, display_address, about, images, amenities, banner_image, completion_year, published, created_at)
          VALUES (?, ?, 'new-project', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)
-         ON CONFLICT (slug) DO NOTHING`,
+         ON DUPLICATE KEY UPDATE slug = slug`,
         String(h.slug),
         String(h.title || ""),
         String(h.status || "ready"),
@@ -276,7 +282,7 @@ async function seedProjects(): Promise<void> {
 
 /** Properties + media + amenities from the scraped property detail pages (data/raw/properties/{buy,let}/*.json). */
 async function seedProperties(): Promise<void> {
-  const marker = await row<{ value: string }>("SELECT value FROM page_content WHERE key = 'properties_imported'");
+  const marker = await row<{ value: string }>("SELECT value FROM page_content WHERE \`key\` = 'properties_imported'");
   if (marker) return;
   const agentRows = await rows<{ id: number; name: string }>("SELECT id, name FROM agents");
   const agentIdByName = new Map<string, number>();
@@ -303,8 +309,8 @@ async function seedProperties(): Promise<void> {
              (slug, title, category, property_type, transaction_type, status, price, price_qualifier,
               community, developer, location, latitude, longitude, display_address, bedroom, bathroom,
               area_sqft, parking, furnished, completion_status, introtext, long_description, featured, published, agent_id, created_at)
-           VALUES (?, ?, ?, ?, ?, 'ready', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 1, ?, ?)
-           ON CONFLICT (slug) DO NOTHING`,
+VALUES (?, ?, ?, ?, ?, 'ready', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 1, ?, ?)
+   ON DUPLICATE KEY UPDATE slug = slug`,
           String(p.slug),
           String(p.title || ""),
           building[0] || p.department || "Apartment",
@@ -353,16 +359,16 @@ async function seedProperties(): Promise<void> {
         for (const a of Array.isArray(p.accommodation_summary) ? p.accommodation_summary : []) {
           const name = String(a || "").trim();
           if (!name) continue;
-          await run("INSERT INTO amenities (name) VALUES (?) ON CONFLICT (name) DO NOTHING", name);
+          await run("INSERT IGNORE INTO amenities (name) VALUES (?)", name);
           const am = await row<{ id: number }>("SELECT id FROM amenities WHERE name = ?", name);
-          if (am) await run("INSERT INTO property_amenities (property_id, amenity_id) VALUES (?, ?) ON CONFLICT DO NOTHING", pid, Number(am.id));
+          if (am) await run("INSERT IGNORE INTO property_amenities (property_id, amenity_id) VALUES (?, ?)", pid, Number(am.id));
         }
       } catch (e) {
         console.error("[seed] property skipped:", f, (e as Error).message);
       }
     }
   }
-  await run("INSERT INTO page_content (key, value) VALUES ('properties_imported', '1') ON CONFLICT (key) DO UPDATE SET value = '1'");
+  await run("INSERT INTO page_content (\`key\`, value) VALUES ('properties_imported', '1') ON DUPLICATE KEY UPDATE value = '1'");
   console.log("[seed] properties ready");
 }
 
@@ -396,7 +402,7 @@ async function seedDevelopers(): Promise<void> {
     const name = String(it.developer || "").trim();
     if (!name) continue;
     await run(
-      "INSERT INTO developers (name, slug, region, img, description, published, created_at) VALUES (?, ?, '', '', '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      "INSERT IGNORE INTO developers (name, slug, region, img, description, published, created_at) VALUES (?, ?, '', '', '', 1, ?)",
       name,
       slugify(name),
       now()
@@ -417,7 +423,7 @@ async function seedCommunities(): Promise<void> {
     if (!name || seen.has(slug)) continue;
     seen.add(slug);
     await run(
-      "INSERT INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      "INSERT IGNORE INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?)",
       name,
       slug,
       now()
@@ -431,7 +437,7 @@ async function seedCommunities(): Promise<void> {
     if (seen.has(slug)) continue;
     seen.add(slug);
     await run(
-      "INSERT INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?) ON CONFLICT (slug) DO NOTHING",
+      "INSERT IGNORE INTO communities (name, slug, region, published, created_at) VALUES (?, ?, '', 1, ?)",
       name,
       slug,
       now()

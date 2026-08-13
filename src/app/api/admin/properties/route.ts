@@ -36,7 +36,7 @@ export async function GET(req: Request) {
   await requireAdmin();
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim();
-  const where = q ? " WHERE (title ILIKE ? OR slug ILIKE ? OR developer ILIKE ?)" : "";
+  const where = q ? " WHERE (title LIKE ? OR slug LIKE ? OR developer LIKE ?)" : "";
   const params: unknown[] = q ? [`%${q}%`, `%${q}%`, `%${q}%`] : [];
   const total = Number((await row(`SELECT COUNT(*) AS n FROM properties${where}`, ...params))?.n ?? 0);
   const items = await rows(
@@ -188,7 +188,7 @@ async function saveAmenities(propertyId: number, amenities: unknown): Promise<vo
     const a = await row("SELECT id FROM amenities WHERE name = ?", String(name).trim());
     if (a) {
       await run(
-        "INSERT INTO property_amenities (property_id, amenity_id) VALUES (?, ?) ON CONFLICT DO NOTHING",
+        "INSERT IGNORE INTO property_amenities (property_id, amenity_id) VALUES (?, ?)",
         propertyId,
         Number(a.id)
       );

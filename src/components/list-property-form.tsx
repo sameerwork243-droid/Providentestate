@@ -162,250 +162,246 @@ export function ListPropertyForm() {
   return (
     <form className="custom-form" onSubmit={submit} noValidate>
       <div className="form-grid">
-        <div className="form-section">
-          <div className="input-box input-box-name">
-            <label className="input-label" htmlFor={`lp-name-${uid}`}>
-              Full Name
-            </label>
+        <div className="input-box input-box-name">
+          <label className="input-label" htmlFor={`lp-name-${uid}`}>
+            Full Name
+          </label>
+          <input
+            className="input-field"
+            type="text"
+            name="name"
+            id={`lp-name-${uid}`}
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-tx-${uid}`}>
+            I want to
+          </label>
+          <select
+            className="input-field"
+            id={`lp-tx-${uid}`}
+            value={transaction}
+            onChange={(e) => setTransaction(e.target.value)}
+          >
+            <option value="Sale">Sell my property</option>
+            <option value="Rent">Rent out my property</option>
+          </select>
+        </div>
+        <div className="input-box input-box-telephone">
+          <label className="input-label" htmlFor={`lp-phone-${uid}`}>
+            Phone Number
+          </label>
+          <div className="phone-field-row">
+            <select
+              className="input-field country-select"
+              aria-label="Country code"
+              value={dial}
+              onChange={(e) => setDial(e.target.value)}
+            >
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.dial}>
+                  {c.flag} {c.dial}
+                </option>
+              ))}
+            </select>
             <input
               className="input-field"
-              type="text"
-              name="name"
-              id={`lp-name-${uid}`}
-              placeholder="Full Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input-box input-box-telephone">
-            <label className="input-label" htmlFor={`lp-phone-${uid}`}>
-              Phone Number
-            </label>
-            <div className="phone-field-row">
-              <select
-                className="input-field country-select"
-                aria-label="Country code"
-                value={dial}
-                onChange={(e) => setDial(e.target.value)}
-              >
-                {COUNTRIES.map((c) => (
-                  <option key={c.code} value={c.dial}>
-                    {c.flag} {c.dial}
-                  </option>
-                ))}
-              </select>
-              <input
-                className="input-field"
-                type="tel"
-                name="phone"
-                id={`lp-phone-${uid}`}
-                placeholder="Phone Number"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-          <div className="input-box input-box-email">
-            <label className="input-label" htmlFor={`lp-email-${uid}`}>
-              Email Address
-            </label>
-            <input
-              className="input-field"
-              type="email"
-              name="email"
-              id={`lp-email-${uid}`}
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="tel"
+              name="phone"
+              id={`lp-phone-${uid}`}
+              placeholder="Phone Number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               required
             />
           </div>
         </div>
-        <div className="form-section">
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-tx-${uid}`}>
-              I want to
-            </label>
-            <select
-              className="input-field"
-              id={`lp-tx-${uid}`}
-              value={transaction}
-              onChange={(e) => setTransaction(e.target.value)}
-            >
-              <option value="Sale">Sell my property</option>
-              <option value="Rent">Rent out my property</option>
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-type-${uid}`}>
-              Property Type
-            </label>
-            <select
-              className="input-field"
-              id={`lp-type-${uid}`}
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-            >
-              {PROPERTY_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-area-${uid}`}>
-              Community / Area
-            </label>
-            <input
-              className="input-field"
-              type="text"
-              id={`lp-area-${uid}`}
-              placeholder="e.g. Dubai Marina"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
-            />
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-lang-${uid}`}>
-              Preferred Language
-            </label>
-            <select
-              className="input-field"
-              id={`lp-lang-${uid}`}
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              {LANGUAGES.map((l) => (
-                <option key={l} value={l}>
-                  {l}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-beds-${uid}`}>
-              Bedrooms
-            </label>
-            <select
-              className="input-field"
-              id={`lp-beds-${uid}`}
-              value={bedrooms}
-              onChange={(e) => setBedrooms(e.target.value)}
-            >
-              {BEDROOMS.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-baths-${uid}`}>
-              Bathrooms
-            </label>
-            <select
-              className="input-field"
-              id={`lp-baths-${uid}`}
-              value={bathrooms}
-              onChange={(e) => setBathrooms(e.target.value)}
-            >
-              {BATHROOMS.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-size-${uid}`}>
-              Size (sq ft)
-            </label>
-            <input
-              className="input-field"
-              type="number"
-              min="0"
-              id={`lp-size-${uid}`}
-              placeholder="e.g. 1,500"
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-            />
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-price-${uid}`}>
-              Expected Price (AED)
-            </label>
-            <input
-              className="input-field"
-              type="number"
-              min="0"
-              id={`lp-price-${uid}`}
-              placeholder="e.g. 2,500,000"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-own-${uid}`}>
-              Ownership Status
-            </label>
-            <select
-              className="input-field"
-              id={`lp-own-${uid}`}
-              value={ownership}
-              onChange={(e) => setOwnership(e.target.value)}
-            >
-              <option value="">Select ownership status</option>
-              {OWNERSHIP.map((o) => (
-                <option key={o} value={o}>
-                  {o}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-box">
-            <label className="input-label" htmlFor={`lp-addr-${uid}`}>
-              Property Address
-            </label>
-            <input
-              className="input-field"
-              type="text"
-              id={`lp-addr-${uid}`}
-              placeholder="e.g. Marina Gate 1, Dubai Marina"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-          <div className="input-box input-box-message">
-            <label className="input-label" htmlFor={`lp-msg-${uid}`}>
-              Additional Details
-            </label>
-            <textarea
-              className="input-field input-textarea"
-              id={`lp-msg-${uid}`}
-              placeholder="Tell us more about your property"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            ></textarea>
-          </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-type-${uid}`}>
+            Property Type
+          </label>
+          <select
+            className="input-field"
+            id={`lp-type-${uid}`}
+            value={propertyType}
+            onChange={(e) => setPropertyType(e.target.value)}
+          >
+            {PROPERTY_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
         </div>
-      </div>
-      <div className="form-bottom">
-        {status === "ok" && (
-          <p className="success-msg">
-            Thank you — your property details have been received. One of our consultants will contact you shortly.
-          </p>
-        )}
-        {status === "err" && <p className="error-msg">{error}</p>}
-        <label className="bv-check">
-          <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-          <span>I consent to being contacted about my property and agree to the{" "}<a href="/terms-and-conditions/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>.</span>
-        </label>
-        <button className="reg-btn button button-orange" type="submit" disabled={busy}>
-          <span>{busy ? "Submitting…" : "Submit Details"}</span>
-        </button>
+        <div className="input-box input-box-email">
+          <label className="input-label" htmlFor={`lp-email-${uid}`}>
+            Email Address
+          </label>
+          <input
+            className="input-field"
+            type="email"
+            name="email"
+            id={`lp-email-${uid}`}
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-area-${uid}`}>
+            Community / Area
+          </label>
+          <input
+            className="input-field"
+            type="text"
+            id={`lp-area-${uid}`}
+            placeholder="e.g. Dubai Marina"
+            value={area}
+            onChange={(e) => setArea(e.target.value)}
+          />
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-lang-${uid}`}>
+            Preferred Language
+          </label>
+          <select
+            className="input-field"
+            id={`lp-lang-${uid}`}
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            {LANGUAGES.map((l) => (
+              <option key={l} value={l}>
+                {l}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-beds-${uid}`}>
+            Bedrooms
+          </label>
+          <select
+            className="input-field"
+            id={`lp-beds-${uid}`}
+            value={bedrooms}
+            onChange={(e) => setBedrooms(e.target.value)}
+          >
+            {BEDROOMS.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-baths-${uid}`}>
+            Bathrooms
+          </label>
+          <select
+            className="input-field"
+            id={`lp-baths-${uid}`}
+            value={bathrooms}
+            onChange={(e) => setBathrooms(e.target.value)}
+          >
+            {BATHROOMS.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-size-${uid}`}>
+            Size (sq ft)
+          </label>
+          <input
+            className="input-field"
+            type="number"
+            min="0"
+            id={`lp-size-${uid}`}
+            placeholder="e.g. 1,500"
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+          />
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-price-${uid}`}>
+            Expected Price (AED)
+          </label>
+          <input
+            className="input-field"
+            type="number"
+            min="0"
+            id={`lp-price-${uid}`}
+            placeholder="e.g. 2,500,000"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-own-${uid}`}>
+            Ownership Status
+          </label>
+          <select
+            className="input-field"
+            id={`lp-own-${uid}`}
+            value={ownership}
+            onChange={(e) => setOwnership(e.target.value)}
+          >
+            <option value="">Select ownership status</option>
+            {OWNERSHIP.map((o) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-box">
+          <label className="input-label" htmlFor={`lp-addr-${uid}`}>
+            Property Address
+          </label>
+          <input
+            className="input-field"
+            type="text"
+            id={`lp-addr-${uid}`}
+            placeholder="e.g. Marina Gate 1, Dubai Marina"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+        <div className="input-box input-box-message">
+          <label className="input-label" htmlFor={`lp-msg-${uid}`}>
+            Additional Details
+          </label>
+          <textarea
+            className="input-field input-textarea"
+            id={`lp-msg-${uid}`}
+            placeholder="Tell us more about your property"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="form-bottom">
+          {status === "ok" && (
+            <p className="success-msg">
+              Thank you — your property details have been received. One of our consultants will contact you shortly.
+            </p>
+          )}
+          {status === "err" && <p className="error-msg">{error}</p>}
+          <label className="bv-check">
+            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+            <span>I consent to being contacted about my property and agree to the{" "}<a href="/terms-and-conditions/">Terms &amp; Conditions</a> and <a href="/privacy-policy/">Privacy Policy</a>.</span>
+          </label>
+          <button className="reg-btn button button-orange" type="submit" disabled={busy}>
+            <span>{busy ? "Submitting…" : "Submit Details"}</span>
+          </button>
+        </div>
       </div>
     </form>
   );

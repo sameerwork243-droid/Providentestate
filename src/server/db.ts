@@ -1,41 +1,13 @@
-import { Pool, PoolClient } from "pg";
+import { createPool, Pool } from "mysql2/promise";
 
 let pool: Pool | null = null;
 let ready: Promise<void> | null = null;
 
 const DATABASE_URL = process.env.PROVIDENT_DATABASE_URL || process.env.DATABASE_URL || "";
 
-/** True when a Postgres connection string is configured. */
+/** True when a MySQL connection string is configured. */
 export function dbEnabled(): boolean {
   return !!DATABASE_URL;
-}
-
-/**
- * Strip `sslmode` query params from the URL: node-postgres parses them and
- * emits a loud security warning for Neon-style `sslmode=require` URLs.
- * SSL is configured explicitly via the Pool `ssl` option instead.
- */
-function stripSslMode(url: string): string {
-  const q = url.indexOf("?");
-  if (q < 0) return url;
-  const rest = url
-    .slice(q + 1)
-    .split("&")
-    .filter((p) => !/^sslmode=/.test(p));
-  return rest.length ? url.slice(0, q + 1) + rest.join("&") : url.slice(0, q);
-}
-
-function pgParams(sql: string): string {
-  let i = 0;
-  return sql.replace(/\?/g, () => `$${++i}`);
-}
-
-function sslFor(url: string): boolean | { rejectUnauthorized: boolean } | undefined {
-  if (process.env.PROVIDENT_PG_SSL === "0") return false;
-  if (url.includes("sslmode=require") || url.includes("neon.tech")) {
-    return { rejectUnauthorized: false };
-  }
-  return false;
 }
 
 function isTransientError(err: unknown): boolean {
@@ -50,11 +22,8 @@ function isTransientError(err: unknown): boolean {
     code === "ENOTFOUND" ||
     code === "EHOSTUNREACH" ||
     code === "ECONNREFUSED" ||
-    code === "57P01" ||
-    code === "57P02" ||
-    code === "57P03" ||
     errno === "-4077" ||
-    (typeof message === "string" && (message.includes("ECONNRESET") || message.includes("connection terminated")))
+    (typeof message === "string" && (message.includes("ECONNRESET") || message.includes("connection terminated") || message.includes("Lost connection")))
   );
 }
 
@@ -78,20 +47,19 @@ export function getPool(): Pool {
   if (pool) return pool;
   if (!DATABASE_URL) {
     throw new Error(
-      "No database configured: set PROVIDENT_DATABASE_URL (or DATABASE_URL) to a Postgres connection string"
+      "No database configured: set PROVIDENT_DATABASE_URL (or DATABASE_URL) to a MySQL connection string, e.g. mysql://user:pass@127.0.0.1:3306/providentnext"
     );
   }
-  pool = new Pool({
-    connectionString: stripSslMode(DATABASE_URL),
-    ssl: sslFor(DATABASE_URL),
-    max: 10,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 15000,
-    allowExitOnIdle: true,
+  const ssl = process.env.PROVIDENT_DB_SSL === "1" ? { rejectUnauthorized: false } : undefined;
+  pool = createPool({
+    uri: DATABASE_URL,
+    connectionLimit: 10,
+    queueLimit: 0,
+    connectTimeout: 15000,
+    charset: "utf8mb4",
+    ...(ssl ? { ssl } : {}),
   });
-  pool.on("error", (err) => {
-    console.error("[db] pool error:", err);
-  });
+  pool.on("connection", () => undefined);
   return pool;
 }
 
@@ -100,7 +68,7 @@ export function getDb(): Pool {
 }
 
 async function migrate(): Promise<void> {
-  const c = await getPool().connect();
+  const c = await getPool().getConnection();
   try {
     for (const sql of MIGRATIONS) {
       try {
@@ -109,9 +77,14 @@ async function migrate(): Promise<void> {
         console.error("[db] migration error:", err);
       }
     }
-    for (const sql of ALTER_MIGRATIONS) {
+    for (const { table, column, ddl } of ALTER_MIGRATIONS) {
       try {
-        await c.query(sql);
+        const [rows] = await c.query(
+          "SELECT COUNT(*) AS n FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?",
+          [table, column]
+        );
+        const exists = Number((rows as Array<{ n: number }>)[0]?.n ?? 0) > 0;
+        if (!exists) await c.query(ddl);
       } catch (err) {
         console.error("[db] alter migration error:", err);
       }
@@ -145,21 +118,18 @@ export function now(): string {
 
 export async function rows<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T[]> {
   await ensureMigrated();
-  return queryWithRetry(() => getPool().query(pgParams(sql), params).then((res) => res.rows as T[]));
+  return queryWithRetry(async () => {
+    const [res] = await getPool().query(sql, params);
+    return res as T[];
+  });
 }
 
 export async function row<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T | undefined> {
   await ensureMigrated();
-  return queryWithRetry(() => getPool().query(pgParams(sql), params).then((res) => res.rows[0] as T | undefined));
-}
-
-// Tables that use a composite primary key and therefore have no `id` column.
-// `run()` must not append `RETURNING id` to inserts targeting these tables.
-const TABLES_WITHOUT_ID = new Set(["property_amenities"]);
-
-function insertTable(sql: string): string | null {
-  const m = /^\s*insert\s+into\s+([a-z_][a-z0-9_]*)/i.exec(sql);
-  return m ? m[1].toLowerCase() : null;
+  return queryWithRetry(async () => {
+    const [res] = await getPool().query(sql, params);
+    return (res as T[])[0];
+  });
 }
 
 export async function run(
@@ -167,14 +137,11 @@ export async function run(
   ...params: unknown[]
 ): Promise<{ changes: number; lastId: number }> {
   await ensureMigrated();
-  const isInsert = /^\s*insert\s/i.test(sql);
-  const table = insertTable(sql);
-  const withReturning = isInsert && !/\breturning\b/i.test(sql) && !(table && TABLES_WITHOUT_ID.has(table));
-  const query = withReturning ? `${pgParams(sql)} RETURNING id` : pgParams(sql);
-  return queryWithRetry(() => getPool().query(query, params).then((res) => ({
-    changes: res.rowCount ?? 0,
-    lastId: withReturning && res.rows.length ? Number(res.rows[0].id) : 0,
-  })));
+  return queryWithRetry(async () => {
+    const [res] = await getPool().query(sql, params);
+    const r = res as { affectedRows: number; insertId: number };
+    return { changes: r.affectedRows ?? 0, lastId: r.insertId ?? 0 };
+  });
 }
 
 export function prepare(sql: string): { all: (...p: unknown[]) => Promise<unknown[]>; get: (...p: unknown[]) => Promise<unknown | undefined>; run: (...p: unknown[]) => Promise<{ changes: number; lastId: number }> } {
@@ -185,328 +152,329 @@ export function prepare(sql: string): { all: (...p: unknown[]) => Promise<unknow
   };
 }
 
+const CHARSET = "DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+
 const MIGRATIONS: string[] = [
   `CREATE TABLE IF NOT EXISTS roles (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL UNIQUE
-  );`,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS users (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    name TEXT NOT NULL,
-    phone TEXT DEFAULT '',
-    avatar TEXT DEFAULT '',
-    role_id INTEGER NOT NULL DEFAULT 2,
-    is_active INTEGER NOT NULL DEFAULT 1,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) DEFAULT '',
+    avatar VARCHAR(500) DEFAULT '',
+    role_id INT NOT NULL DEFAULT 2,
+    is_active INT NOT NULL DEFAULT 1,
     last_login_at TEXT,
     created_at TEXT NOT NULL,
     updated_at TEXT,
     FOREIGN KEY (role_id) REFERENCES roles(id)
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS sessions (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    token_hash TEXT NOT NULL UNIQUE,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token_hash VARCHAR(128) NOT NULL UNIQUE,
     expires_at BIGINT NOT NULL,
     user_agent TEXT DEFAULT '',
     ip TEXT DEFAULT '',
     created_at TEXT NOT NULL,
+    KEY idx_sessions_user (user_id),
+    KEY idx_sessions_expiry (expires_at),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);`,
-  `CREATE INDEX IF NOT EXISTS idx_sessions_expiry ON sessions(expires_at);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS saved_properties (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    property_ref TEXT NOT NULL,
-    property_slug TEXT NOT NULL DEFAULT '',
-    title TEXT DEFAULT '',
-    price INTEGER DEFAULT 0,
-    thumb TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    property_ref VARCHAR(255) NOT NULL,
+    property_slug VARCHAR(255) NOT NULL DEFAULT '',
+    title VARCHAR(500) DEFAULT '',
+    price INT DEFAULT 0,
+    thumb VARCHAR(1000) DEFAULT '',
     created_at TEXT NOT NULL,
     UNIQUE (user_id, property_ref),
+    KEY idx_saved_user (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_saved_user ON saved_properties(user_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS inquiries (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
-    phone TEXT DEFAULT '',
-    kind TEXT NOT NULL DEFAULT 'property',
-    property_ref TEXT DEFAULT '',
-    property_slug TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(100) DEFAULT '',
+    kind VARCHAR(50) NOT NULL DEFAULT 'property',
+    property_ref VARCHAR(255) DEFAULT '',
+    property_slug VARCHAR(255) DEFAULT '',
     message TEXT DEFAULT '',
-    status TEXT NOT NULL DEFAULT 'new',
+    status VARCHAR(50) NOT NULL DEFAULT 'new',
     created_at TEXT NOT NULL,
+    KEY idx_inquiries_user (user_id),
+    KEY idx_inquiries_status (status),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_inquiries_user ON inquiries(user_id);`,
-  `CREATE INDEX IF NOT EXISTS idx_inquiries_status ON inquiries(status);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS viewings (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    property_ref TEXT DEFAULT '',
-    property_slug TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    property_ref VARCHAR(255) DEFAULT '',
+    property_slug VARCHAR(255) DEFAULT '',
     preferred_date TEXT DEFAULT '',
     time_slot TEXT DEFAULT '',
     notes TEXT DEFAULT '',
-    status TEXT NOT NULL DEFAULT 'requested',
+    status VARCHAR(50) NOT NULL DEFAULT 'requested',
     created_at TEXT NOT NULL,
+    KEY idx_viewings_user (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_viewings_user ON viewings(user_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS notifications (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    title TEXT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(500) NOT NULL,
     body TEXT DEFAULT '',
-    type TEXT DEFAULT 'info',
-    read INTEGER NOT NULL DEFAULT 0,
+    type VARCHAR(50) DEFAULT 'info',
+    \`read\` INT NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL,
+    KEY idx_notifications_user (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS amenities (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL UNIQUE
-  );`,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS properties (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    slug TEXT NOT NULL UNIQUE,
-    title TEXT NOT NULL,
-    category TEXT DEFAULT '',
-    property_type TEXT DEFAULT 'apartment',
-    transaction_type TEXT DEFAULT 'buy',
-    status TEXT DEFAULT 'ready',
-    price INTEGER DEFAULT 0,
-    price_qualifier TEXT DEFAULT 'AED',
-    community TEXT DEFAULT '',
-    developer TEXT DEFAULT '',
-    location TEXT DEFAULT '',
-    latitude REAL,
-    longitude REAL,
-    display_address TEXT DEFAULT '',
-    bedroom INTEGER DEFAULT 0,
-    bathroom INTEGER DEFAULT 0,
-    area_sqft INTEGER DEFAULT 0,
-    plot_size INTEGER DEFAULT 0,
-    parking INTEGER DEFAULT 0,
-    furnished TEXT DEFAULT '',
-    completion_status TEXT DEFAULT '',
-    year_built INTEGER,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    title VARCHAR(500) NOT NULL,
+    category VARCHAR(100) DEFAULT '',
+    property_type VARCHAR(100) DEFAULT 'apartment',
+    transaction_type VARCHAR(20) DEFAULT 'buy',
+    status VARCHAR(50) DEFAULT 'ready',
+    price BIGINT DEFAULT 0,
+    price_qualifier VARCHAR(20) DEFAULT 'AED',
+    community VARCHAR(255) DEFAULT '',
+    developer VARCHAR(255) DEFAULT '',
+    location VARCHAR(500) DEFAULT '',
+    latitude DOUBLE,
+    longitude DOUBLE,
+    display_address VARCHAR(1000) DEFAULT '',
+    bedroom INT DEFAULT 0,
+    bathroom INT DEFAULT 0,
+    area_sqft INT DEFAULT 0,
+    plot_size INT DEFAULT 0,
+    parking INT DEFAULT 0,
+    furnished VARCHAR(100) DEFAULT '',
+    completion_status VARCHAR(100) DEFAULT '',
+    year_built INT,
     introtext TEXT DEFAULT '',
-    long_description TEXT DEFAULT '',
-    featured INTEGER NOT NULL DEFAULT 0,
-    published INTEGER NOT NULL DEFAULT 1,
-    created_by INTEGER,
+    long_description MEDIUMTEXT DEFAULT '',
+    featured INT NOT NULL DEFAULT 0,
+    published INT NOT NULL DEFAULT 1,
+    created_by INT,
     created_at TEXT NOT NULL,
     updated_at TEXT,
+    KEY idx_properties_status (status),
+    KEY idx_properties_featured (featured),
+    KEY idx_properties_transaction (transaction_type),
     FOREIGN KEY (created_by) REFERENCES users(id)
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_properties_slug ON properties(slug);`,
-  `CREATE INDEX IF NOT EXISTS idx_properties_status ON properties(status);`,
-  `CREATE INDEX IF NOT EXISTS idx_properties_featured ON properties(featured);`,
-  `CREATE INDEX IF NOT EXISTS idx_properties_transaction ON properties(transaction_type);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS property_media (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    property_id INTEGER NOT NULL,
-    kind TEXT NOT NULL DEFAULT 'image',
-    url TEXT NOT NULL,
-    is_featured INTEGER NOT NULL DEFAULT 0,
-    sort_order INTEGER NOT NULL DEFAULT 0,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    property_id INT NOT NULL,
+    kind VARCHAR(20) NOT NULL DEFAULT 'image',
+    url VARCHAR(1000) NOT NULL,
+    is_featured INT NOT NULL DEFAULT 0,
+    sort_order INT NOT NULL DEFAULT 0,
+    KEY idx_property_media (property_id),
     FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_property_media ON property_media(property_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS property_amenities (
-    property_id INTEGER NOT NULL,
-    amenity_id INTEGER NOT NULL,
+    property_id INT NOT NULL,
+    amenity_id INT NOT NULL,
     PRIMARY KEY (property_id, amenity_id),
     FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE,
     FOREIGN KEY (amenity_id) REFERENCES amenities(id) ON DELETE CASCADE
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS services (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    title TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    icon TEXT DEFAULT '',
-    banner_image TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(500) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    icon VARCHAR(1000) DEFAULT '',
+    banner_image VARCHAR(1000) DEFAULT '',
     description TEXT DEFAULT '',
-    rich_content TEXT DEFAULT '',
+    rich_content MEDIUMTEXT DEFAULT '',
     gallery TEXT DEFAULT '[]',
-    seo_title TEXT DEFAULT '',
-    seo_description TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    seo_title VARCHAR(500) DEFAULT '',
+    seo_description VARCHAR(1000) DEFAULT '',
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL,
     updated_at TEXT
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS agents (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    role TEXT DEFAULT '',
-    phone TEXT DEFAULT '',
-    email TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    role VARCHAR(255) DEFAULT '',
+    phone VARCHAR(100) DEFAULT '',
+    email VARCHAR(255) DEFAULT '',
     languages TEXT DEFAULT '[]',
     specialties TEXT DEFAULT '[]',
-    img TEXT DEFAULT '',
+    img VARCHAR(1000) DEFAULT '',
     bio TEXT DEFAULT '',
-    brn_number TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    brn_number VARCHAR(100) DEFAULT '',
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS developers (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    region TEXT DEFAULT '',
-    founded INTEGER,
-    deliveries INTEGER DEFAULT 0,
-    img TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    region VARCHAR(255) DEFAULT '',
+    founded INT,
+    deliveries INT DEFAULT 0,
+    img VARCHAR(1000) DEFAULT '',
     description TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS communities (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    region TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    region VARCHAR(255) DEFAULT '',
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS categories (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    type TEXT DEFAULT '',
-    sort INTEGER NOT NULL DEFAULT 0
-  );`,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    type VARCHAR(50) DEFAULT '',
+    sort INT NOT NULL DEFAULT 0
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS testimonials (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    author TEXT NOT NULL,
-    role TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255) NOT NULL,
+    role VARCHAR(255) DEFAULT '',
     content TEXT DEFAULT '',
-    rating INTEGER NOT NULL DEFAULT 5,
-    img TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    rating INT NOT NULL DEFAULT 5,
+    img VARCHAR(1000) DEFAULT '',
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS faqs (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    question TEXT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    question VARCHAR(1000) NOT NULL,
     answer TEXT DEFAULT '',
-    category TEXT DEFAULT '',
-    sort INTEGER NOT NULL DEFAULT 0,
-    published INTEGER NOT NULL DEFAULT 1,
+    category VARCHAR(255) DEFAULT '',
+    sort INT NOT NULL DEFAULT 0,
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS homepage_content (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    key TEXT NOT NULL UNIQUE,
-    value TEXT DEFAULT ''
-  );`,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    \`key\` VARCHAR(191) NOT NULL UNIQUE,
+    value MEDIUMTEXT DEFAULT ''
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS contact_info (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    key TEXT NOT NULL UNIQUE,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    \`key\` VARCHAR(191) NOT NULL UNIQUE,
     value TEXT DEFAULT ''
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS page_content (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    key TEXT NOT NULL UNIQUE,
-    value TEXT DEFAULT ''
-  );`,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    \`key\` VARCHAR(191) NOT NULL UNIQUE,
+    value MEDIUMTEXT DEFAULT ''
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS jobs (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    title TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    location TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(500) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    location VARCHAR(255) DEFAULT '',
     summary TEXT DEFAULT '',
-    job_details TEXT DEFAULT '',
-    published INTEGER NOT NULL DEFAULT 1,
+    job_details MEDIUMTEXT DEFAULT '',
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL,
     updated_at TEXT
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS media_library (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    url TEXT NOT NULL,
-    kind TEXT DEFAULT 'image',
-    alt TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(1000) NOT NULL,
+    kind VARCHAR(20) DEFAULT 'image',
+    alt VARCHAR(500) DEFAULT '',
     created_at TEXT NOT NULL
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS user_addresses (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    address_line1 TEXT DEFAULT '',
-    address_line2 TEXT DEFAULT '',
-    town_city TEXT DEFAULT '',
-    postcode TEXT DEFAULT '',
-    country TEXT DEFAULT '',
-    is_primary INTEGER NOT NULL DEFAULT 0,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    address_line1 VARCHAR(500) DEFAULT '',
+    address_line2 VARCHAR(500) DEFAULT '',
+    town_city VARCHAR(255) DEFAULT '',
+    postcode VARCHAR(50) DEFAULT '',
+    country VARCHAR(100) DEFAULT '',
+    is_primary INT NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL,
     updated_at TEXT,
+    KEY idx_user_addresses_user (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_user_addresses_user ON user_addresses(user_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS notification_preferences (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    subscribe_news INTEGER NOT NULL DEFAULT 1,
-    email_notifications INTEGER NOT NULL DEFAULT 1,
-    property_alerts INTEGER NOT NULL DEFAULT 1,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    subscribe_news INT NOT NULL DEFAULT 1,
+    email_notifications INT NOT NULL DEFAULT 1,
+    property_alerts INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL,
     updated_at TEXT,
+    KEY idx_notification_preferences_user (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_notification_preferences_user ON notification_preferences(user_id);`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS password_updates (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     created_at TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS account_deletion_logs (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     reason TEXT DEFAULT '',
     created_at TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );`,
+  ) ${CHARSET};`,
   `CREATE TABLE IF NOT EXISTS projects (
-    id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    slug TEXT NOT NULL UNIQUE,
-    title TEXT NOT NULL,
-    category TEXT DEFAULT 'new-project',
-    status TEXT DEFAULT '',
-    price INTEGER DEFAULT 0,
-    currency TEXT DEFAULT 'AED',
-    community TEXT DEFAULT '',
-    developer TEXT DEFAULT '',
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    title VARCHAR(500) NOT NULL,
+    category VARCHAR(100) DEFAULT 'new-project',
+    status VARCHAR(100) DEFAULT '',
+    price BIGINT DEFAULT 0,
+    currency VARCHAR(20) DEFAULT 'AED',
+    community VARCHAR(255) DEFAULT '',
+    developer VARCHAR(255) DEFAULT '',
     building_type TEXT DEFAULT '[]',
-    department TEXT DEFAULT '',
-    bedrooms_min INTEGER DEFAULT 0,
-    bedrooms_max INTEGER DEFAULT 0,
-    display_address TEXT DEFAULT '',
-    about TEXT DEFAULT '',
+    department VARCHAR(255) DEFAULT '',
+    bedrooms_min INT DEFAULT 0,
+    bedrooms_max INT DEFAULT 0,
+    display_address VARCHAR(1000) DEFAULT '',
+    about MEDIUMTEXT DEFAULT '',
     images TEXT DEFAULT '[]',
     amenities TEXT DEFAULT '[]',
-    banner_image TEXT DEFAULT '',
-    completion_year INTEGER,
-    published INTEGER NOT NULL DEFAULT 1,
+    banner_image VARCHAR(1000) DEFAULT '',
+    completion_year INT,
+    published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL,
-    updated_at TEXT
-  );`,
-  `CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);`,
-  `CREATE INDEX IF NOT EXISTS idx_projects_status ON projects(status);`,
+    updated_at TEXT,
+    KEY idx_projects_status (status)
+  ) ${CHARSET};`,
 ];
 
-// Add first_name and surname columns to users table (if not exists)
-const ALTER_MIGRATIONS: string[] = [
-  `ALTER TABLE users ADD COLUMN IF NOT EXISTS first_name TEXT DEFAULT ''`,
-  `ALTER TABLE users ADD COLUMN IF NOT EXISTS surname TEXT DEFAULT ''`,
-  `ALTER TABLE properties ADD COLUMN IF NOT EXISTS agent_id INTEGER REFERENCES agents(id) ON DELETE SET NULL`,
+// Columns added on top of the base schema (checked against information_schema because
+// "ADD COLUMN IF NOT EXISTS" is not supported on MySQL 8).
+const ALTER_MIGRATIONS: { table: string; column: string; ddl: string }[] = [
+  { table: "users", column: "first_name", ddl: `ALTER TABLE users ADD COLUMN first_name VARCHAR(255) DEFAULT ''` },
+  { table: "users", column: "surname", ddl: `ALTER TABLE users ADD COLUMN surname VARCHAR(255) DEFAULT ''` },
+  { table: "properties", column: "agent_id", ddl: `ALTER TABLE properties ADD COLUMN agent_id INT, ADD FOREIGN KEY (agent_id) REFERENCES agents(id) ON DELETE SET NULL` },
 ];
 
-export type { PoolClient };
+export type { Pool, PoolConnection } from "mysql2/promise";

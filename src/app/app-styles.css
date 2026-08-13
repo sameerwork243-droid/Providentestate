@@ -1,24 +1,13 @@
 /* ===== Robust desktop layout for the #Book_a_Valuation contact form =====
-   The base media query applies margin-left:80px to *every* .form-section,
-   including the two grid columns inside .custom-form .form-grid, which
-   pushes the second column past the container edge (horizontal overflow).
-   These overrides make the layout deterministic regardless of load order. */
+   The base media query applies margin-left:80px to the page-level
+   .form-section, which fights the flexible content | form side-by-side
+   layout. These overrides keep the container deterministic regardless of
+   load order. The form itself is a single centered column (see provident.css). */
 @media screen and (min-width: 1200px) {
   #Book_a_Valuation.contact-form-wrapper .content-section,
   #Book_a_Valuation.contact-form-wrapper .form-section {
     flex: 1 1 0 !important;
     min-width: 0 !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-
-  #Book_a_Valuation .custom-form .form-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  #Book_a_Valuation .custom-form .form-grid .form-section {
-    margin-left: 0 !important;
-    margin-top: 0 !important;
     width: auto !important;
     max-width: none !important;
   }

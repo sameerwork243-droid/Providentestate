@@ -51,3 +51,6 @@ next-env.d.ts
 
 .vercel
 .env*
+/data/provident.db
+/data/provident.db-wal
+/data/provident.db-shm

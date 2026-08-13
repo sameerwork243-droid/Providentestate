@@ -50,7 +50,7 @@ export async function listRows(
 ): Promise<{ items: Record<string, unknown>[]; total: number }> {
   if (!dbEnabled()) return { items: [], total: 0 };
   const search = (opts.search || "").trim();
-  const where = search && cfg.searchable?.length ? ` WHERE ${cfg.searchable.map((c) => `${c} ILIKE ?`).join(" OR ")}` : "";
+  const where = search && cfg.searchable?.length ? ` WHERE ${cfg.searchable.map((c) => `${c} LIKE ?`).join(" OR ")}` : "";
   const params: unknown[] = [];
   if (search) for (const _ of cfg.searchable ?? []) params.push(`%${search}%`);
   const total = Number((await row(`SELECT COUNT(*) AS n FROM ${cfg.table}${where}`, ...params))?.n ?? 0);
