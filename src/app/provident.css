@@ -1161,9 +1161,11 @@
    and the Photos button moves to the bottom-left.
    ========================================================================== */
 
-/* Side rail: as many equal rows as there are images (no empty track ever) */
+/* Side rail: as many equal rows as there are images (no empty track ever),
+   spanning the FULL gallery height so both thumbs match the main image */
 .pe-gallery .pe-gallery-side {
   display: grid;
+  grid-row: 1 / -1;
   grid-template-rows: none;
   grid-auto-rows: minmax(0, 1fr);
   gap: 8px;
