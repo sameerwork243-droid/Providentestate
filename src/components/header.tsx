@@ -485,9 +485,9 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
                 </p>
                 <div className="accordion-collapse" style={{ display: open === i ? "block" : "none" }}>
                   <div className="cta-section accordion-body">
-                    {m.columns.flatMap((c) =>
+                    {m.columns.flatMap((c, ci) =>
                       c.links.map((l, li) => (
-                        <a key={li} className="cta" href={l.href} onClick={onClose}>
+                        <a key={`${ci}-${li}`} className="cta" href={l.href} onClick={onClose}>
                           <span>{l.label}</span>
                         </a>
                       ))
