@@ -1,3 +1,29 @@
+/* ===== Robust desktop layout for the #Book_a_Valuation contact form =====
+   The base media query applies margin-left:80px to *every* .form-section,
+   including the two grid columns inside .custom-form .form-grid, which
+   pushes the second column past the container edge (horizontal overflow).
+   These overrides make the layout deterministic regardless of load order. */
+@media screen and (min-width: 1200px) {
+  #Book_a_Valuation.contact-form-wrapper .content-section,
+  #Book_a_Valuation.contact-form-wrapper .form-section {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  #Book_a_Valuation .custom-form .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #Book_a_Valuation .custom-form .form-grid .form-section {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
 /* ===== Saved property / wishlist (unchanged) ===== */
 .sb-myacc.icon.wishlist-icn {
   position: absolute;
@@ -717,4 +743,99 @@
 .search-filters-container .filters-section .filter-select .react-select__option--is-selected {
   background: #f0f3f8;
   color: #07234b;
+}
+/* ===================== Admin detail window ===================== */
+.app-modal-backdrop {
+  background: rgba(7, 35, 75, 0.45);
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  padding: 32px 16px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1300;
+}
+.app-modal {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(7, 35, 75, 0.25);
+  margin: 0 auto;
+  max-width: 640px;
+  width: 100%;
+}
+.app-modal-head {
+  align-items: center;
+  border-bottom: 1px solid #e1e8ed;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+.app-modal-head h3 {
+  color: #07234b;
+  font-size: 16px;
+  margin: 0;
+}
+.app-modal-close {
+  align-items: center;
+  background: #f0f3f8;
+  border: none;
+  border-radius: 6px;
+  color: #07234b;
+  cursor: pointer;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+.app-modal-close:hover {
+  background: #e1e8ed;
+}
+.app-modal-body {
+  padding: 20px;
+}
+.app-detail-group {
+  margin-bottom: 20px;
+}
+.app-detail-group-label {
+  color: #9399a4;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.app-detail-group-body {
+  display: grid;
+  gap: 12px 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.app-detail-field {
+  min-width: 0;
+}
+.app-detail-label {
+  color: #9399a4;
+  font-size: 12px;
+  margin: 0 0 2px;
+}
+.app-detail-value {
+  color: #07234b;
+  font-size: 14px;
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.app-detail-actions {
+  align-items: center;
+  border-top: 1px solid #f0f3f8;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+.app-row-click {
+  cursor: pointer;
+}
+.app-row-click:hover td {
+  background: #f7fafc;
 }
