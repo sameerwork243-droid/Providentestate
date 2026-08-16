@@ -186,13 +186,11 @@ function OffplanCard({ h }: { h: any }) {
               <div className="swiper-wrapper">
                 {allImages.slice(0, 3).map((src: string, i: number) => (
                   <div className="swiper-slide" key={i}>
-                    <a href={link}>
-                      <img
-                        loading={i === 0 ? "eager" : "lazy"}
-                        src={src}
-                        alt={Array.isArray(h.building_type) ? h.building_type.join(", ") : h.building_type || "Project"}
-                      />
-                    </a>
+                    <img
+                      loading={i === 0 ? "eager" : "lazy"}
+                      src={src}
+                      alt={Array.isArray(h.building_type) ? h.building_type.join(", ") : h.building_type || "Project"}
+                    />
                   </div>
                 ))}
               </div>
