@@ -7,14 +7,17 @@ import { waLink } from "@/lib/props";
 import { PropertyEnquiryForm } from "./property-enquiry-form";
 import { MortgageCalculator } from "./listing-ui";
 import { ReadMore } from "./read-more";
+import { dbSimilarProperties } from "@/server/property-bridge";
 
 // Helper to determine if property is signature
 function isSignatureProperty(p: any): boolean {
   return p.price >= 20000000; // Signature threshold
 }
 
-export function PropertyDetailPage({ data, route }: { data: any; route: string }) {
+export async function PropertyDetailPage({ data, route }: { data: any; route: string }) {
   const p = data;
+  const kind = (p.search_type || "").toLowerCase().includes("rent") || route.startsWith("/let") ? "let" : "buy";
+  const similar = await dbSimilarProperties(p, kind);
   const images = (p.images || []).map((im: any) => im.srcUrl || im.url).filter(Boolean) as string[];
   const title = p.title || `${p.building?.[0] || "Property"} in ${p.display_address || "Dubai"}`;
   const sale = (p.search_type || "").toLowerCase().includes("rent") || route.startsWith("/let");
@@ -216,10 +219,11 @@ export function PropertyDetailPage({ data, route }: { data: any; route: string }
                        <div className="similar-properties-section">
                          <p className="heading">Similar Properties</p>
                          <div className="similar-properties-slider">
-                           {/* This would be populated with similar properties from the database */}
-                           <PropertyCard hit={p} />
-                           <PropertyCard hit={p} />
-                           <PropertyCard hit={p} />
+                           {similar.length ? (
+                             similar.map((s: any, i: number) => <PropertyCard key={s.id ?? i} hit={s} />)
+                           ) : (
+                             <p className="no-results">No similar properties found.</p>
+                           )}
                          </div>
                        </div>
                      </div>

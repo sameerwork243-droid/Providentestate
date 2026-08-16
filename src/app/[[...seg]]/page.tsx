@@ -174,6 +174,15 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const pd = getPageData(routeBase);
   let model = pd ? classify(pd, routeBase) : null;
 
+  if (model?.kind === "project" && /^\/new-projects\/[a-z0-9-]+$/.test(routeBase)) {
+    const last = routeBase.split("/").filter(Boolean).pop()!;
+    const cur = model.data?.hits?.[0];
+    if (!cur || String(cur.slug).replace(/\.$/, "") !== last) {
+      const dbp = await dbProjectBySlug(last);
+      if (dbp) model = { kind: "project", data: { hits: [dbp], nbHits: 1, page: 0, nbPages: 1, hitsPerPage: 1, content: null }, route: routeBase };
+    }
+  }
+
   if (!model) {
     const dbp = await dbPropertyByRoute(routeBase);
     if (dbp) model = { kind: "property" as const, data: dbp.data, route: routeBase };

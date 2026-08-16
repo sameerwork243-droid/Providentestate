@@ -210,6 +210,57 @@ async function detailFromRow(p: Record<string, unknown>): Promise<any> {
   };
 }
 
+/** Properties similar to the given one (same type or community, price-closest),
+ *  shaped like listing hits for the property-detail "Similar Properties" slider. */
+export async function dbSimilarProperties(
+  prop: any,
+  kind: "buy" | "let",
+  limit = 6
+): Promise<DbHit[]> {
+  if (!dbEnabled()) return [];
+  await ensureSeeded();
+  const txn = kind === "let" ? "rent" : "buy";
+  const type = String(prop.building_type || prop.building?.[0] || prop.property_type || "").toLowerCase();
+  const community = String(
+    prop.address_full?.area || prop.address?.area || prop.area || prop.display_address || prop.community || ""
+  ).toLowerCase();
+  const price = Number(prop.price || 0);
+  if (!type && !community) return [];
+
+  // Rows that ARE the current property (same transaction, type and price).
+  const self = await rows<Record<string, unknown>>(
+    `SELECT p.id FROM properties p
+     WHERE p.published = 1 AND p.transaction_type = ? AND LOWER(p.property_type) = ?
+       AND p.price = ?`,
+    txn,
+    type,
+    price
+  );
+  const selfIds = self.map((r) => Number(r.id));
+
+  const items = await rows<Record<string, unknown>>(
+    `SELECT p.*,
+       ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+       ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email,
+       (SELECT m.url FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image' ORDER BY m.is_featured DESC, m.sort_order, m.id LIMIT 1) AS thumb
+     FROM properties p
+     LEFT JOIN agents ag ON ag.id = p.agent_id
+     WHERE p.published = 1 AND p.transaction_type = ?
+       ${selfIds.length ? `AND p.id NOT IN (${selfIds.map(() => "?").join(", ")})` : ""}
+       AND (LOWER(p.property_type) = ? OR LOWER(p.community) = ?)
+     ORDER BY (LOWER(p.property_type) = ?) DESC, ABS(p.price - ?) ASC
+     LIMIT ?`,
+    txn,
+    ...selfIds,
+    type,
+    community,
+    type,
+    price,
+    limit
+  );
+  return items.map(dbHit);
+}
+
 /** Resolve a published DB property by numeric id. CRM references (e.g. "PS-1305268")
  *  come from the Strapi corpus and are matched by the caller. */
 export async function dbPropertyByRef(ref: string): Promise<{ data: any; kind: "buy" | "let" } | null> {
