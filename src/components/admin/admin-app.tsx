@@ -22,6 +22,7 @@ export function AdminApp({ user }: { user: User }) {
         { key: "overview", label: "Dashboard", icon: "home" },
         { key: "properties", label: "Properties", icon: "building" },
         { key: "projects", label: "Projects", icon: "building" },
+        { key: "project-details", label: "Project Details", icon: "file" },
         { key: "services", label: "Services", icon: "briefcase" },
       ],
     },
@@ -60,6 +61,7 @@ export function AdminApp({ user }: { user: User }) {
       {tab === "overview" && <StatsOverview />}
       {tab === "properties" && <PropertiesManager />}
       {tab === "projects" && <ResourceManager endpoint="projects" title="New Projects" fields={PROJECT_FIELDS} columns={projectColumns} />}
+      {tab === "project-details" && <ProjectDetailsManager />}
       {tab === "services" && <ResourceManager endpoint="services" title="Services" fields={SERVICE_FIELDS} columns={serviceColumns} />}
       {tab === "users" && <UsersManager />}
       {tab === "inquiries" && <InquiriesManager />}
@@ -1726,4 +1728,215 @@ function fmtDate(s: string): string {
 
 function singular(title: string): string {
   return title.replace(/ies$/, "y").replace(/s$/, "");
+}
+
+/* ===================== Project details (curated detail pages) ===================== */
+
+function ProjectDetailsManager() {
+  const [items, setItems] = useState<any[] | null>(null);
+  const [editing, setEditing] = useState<any | null>(null);
+  const [form, setForm] = useState<Record<string, string>>({});
+  const [toast, setToast] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [raw, setRaw] = useState<Record<string, any>>({});
+
+  const load = useCallback(() => {
+    fetch("/api/admin/project-details")
+      .then((r) => r.json())
+      .then((d) => setItems(d.items || []))
+      .catch(() => setItems([]));
+  }, []);
+  useEffect(() => load(), [load]);
+
+  function showToast(msg: string) {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2200);
+  }
+
+  function toLines(arr: any[] | undefined, pick: (x: any) => string): string {
+    return (arr || []).map(pick).filter(Boolean).join("\n");
+  }
+
+  async function openEdit(row: any) {
+    const res = await fetch(`/api/admin/project-details?slug=${encodeURIComponent(row.slug)}`);
+    const d = await res.json();
+    const data = d.item?.data || {};
+    setRaw(data);
+    setForm({
+      about: String(data.about || ""),
+      display_price: String(data.display_price || ""),
+      completion_year: String(data.completion_year || ""),
+      payment_plan_text: String(data.payment_plan_text || ""),
+      gallery: toLines(data.media_images, (i) => i?.url),
+      amenities: toLines(data.amenities, (a) => (a?.image?.url ? `${a.text}|${a.image.url}` : String(a.text || ""))),
+      floorplans: toLines(data.floor_plans, (p) => (p?.media?.url ? `${p.title}|${p.media.url}` : String(p.title || ""))),
+      usp_heading: String(data.characteristics_module?.heading || ""),
+      usp_title: String(data.characteristics_module?.title || ""),
+      usp_description: String(data.characteristics_module?.description || ""),
+      usp_image: String(data.characteristics_module?.image?.url || ""),
+      loc_heading: String(data.location_tile?.heading || ""),
+      loc_title: String(data.location_tile?.title || ""),
+      loc_description: String(data.location_tile?.description || ""),
+      loc_image: String(data.location_tile?.image?.url || ""),
+      brochure_pdf: String(data.brochure?.file?.url || ""),
+      brochure_cover: String(data.brochure?.image?.url || ""),
+      faqs: toLines(data.more_info, (f) => `${f.question}|${String(f.answer || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()}`),
+    });
+    setEditing(row);
+  }
+
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    const data: Record<string, any> = { ...raw };
+    data.about = form.about;
+    data.display_price = form.display_price;
+    data.completion_year = form.completion_year;
+    data.payment_plan_text = form.payment_plan_text;
+    data.media_images = form.gallery.split("\n").map((s) => s.trim()).filter(Boolean).map((url) => ({ url }));
+    data.amenities = form.amenities.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
+      const [text, image] = line.split("|");
+      return { text: (text || "").trim(), image: image ? { url: image.trim() } : null };
+    });
+    data.floor_plans = form.floorplans.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
+      const [title, media] = line.split("|");
+      return { title: (title || "").trim(), media: media ? { url: media.trim() } : null };
+    });
+    data.characteristics_module = {
+      ...(raw.characteristics_module || {}),
+      heading: form.usp_heading,
+      title: form.usp_title,
+      description: form.usp_description,
+      image: form.usp_image ? { url: form.usp_image } : raw.characteristics_module?.image || null,
+    };
+    data.location_tile = {
+      ...(raw.location_tile || {}),
+      heading: form.loc_heading,
+      title: form.loc_title,
+      description: form.loc_description,
+      image: form.loc_image ? { url: form.loc_image } : raw.location_tile?.image || null,
+    };
+    data.brochure = {
+      ...(raw.brochure || {}),
+      file: form.brochure_pdf ? { ...(raw.brochure?.file || {}), url: form.brochure_pdf } : raw.brochure?.file || null,
+      image: form.brochure_cover ? { ...(raw.brochure?.image || {}), url: form.brochure_cover } : raw.brochure?.image || null,
+    };
+    data.more_info = form.faqs.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
+      const [question, ...rest] = line.split("|");
+      return { question: (question || "").trim(), answer: rest.join("|") };
+    });
+    const res = await fetch("/api/admin/project-details", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: editing.slug, data }),
+    });
+    const d = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      showToast(d.error || "Save failed");
+      setBusy(false);
+      return;
+    }
+    showToast("Saved");
+    setEditing(null);
+    setBusy(false);
+    load();
+  }
+
+  if (editing) {
+    return (
+      <div className="app-card">
+        <div className="app-card-head">
+          <div>
+            <h2>{editing.title || editing.slug}</h2>
+            <p className="app-card-sub">{editing.slug} — saved fields drive the public project page. Fields left in the raw import keep their scraped values.</p>
+          </div>
+          <button type="button" className="app-btn ghost sm" onClick={() => setEditing(null)}>← Back to Project Details</button>
+        </div>
+        <form className="app-form-grid" onSubmit={save}>
+          <div className="app-field full">
+            <label>About the project (HTML allowed)</label>
+            <textarea rows={5} value={form.about} onChange={(e) => setForm({ ...form, about: e.target.value })} />
+          </div>
+          <div className="app-field"><label>Display price (e.g. 1.96M)</label><input value={form.display_price} onChange={(e) => setForm({ ...form, display_price: e.target.value })} /></div>
+          <div className="app-field"><label>Completion year</label><input value={form.completion_year} onChange={(e) => setForm({ ...form, completion_year: e.target.value })} /></div>
+          <div className="app-field"><label>Payment plan text (e.g. 80/20)</label><input value={form.payment_plan_text} onChange={(e) => setForm({ ...form, payment_plan_text: e.target.value })} /></div>
+          <div className="app-field full">
+            <label>Gallery images (one URL per line)</label>
+            <textarea rows={6} value={form.gallery} onChange={(e) => setForm({ ...form, gallery: e.target.value })} />
+          </div>
+          <div className="app-field full">
+            <label>Amenities (one per line: Name|Image URL)</label>
+            <textarea rows={5} value={form.amenities} onChange={(e) => setForm({ ...form, amenities: e.target.value })} />
+          </div>
+          <div className="app-field full">
+            <label>Floor plans (one per line: Title|Image URL)</label>
+            <textarea rows={4} value={form.floorplans} onChange={(e) => setForm({ ...form, floorplans: e.target.value })} />
+          </div>
+          <div className="app-field full"><label>USP heading</label><input value={form.usp_heading} onChange={(e) => setForm({ ...form, usp_heading: e.target.value })} /></div>
+          <div className="app-field full"><label>USP title</label><input value={form.usp_title} onChange={(e) => setForm({ ...form, usp_title: e.target.value })} /></div>
+          <div className="app-field full">
+            <label>USP description (HTML allowed)</label>
+            <textarea rows={5} value={form.usp_description} onChange={(e) => setForm({ ...form, usp_description: e.target.value })} />
+          </div>
+          <div className="app-field full"><label>USP image URL</label><input value={form.usp_image} onChange={(e) => setForm({ ...form, usp_image: e.target.value })} /></div>
+          <div className="app-field full"><label>Location heading</label><input value={form.loc_heading} onChange={(e) => setForm({ ...form, loc_heading: e.target.value })} /></div>
+          <div className="app-field full"><label>Location title</label><input value={form.loc_title} onChange={(e) => setForm({ ...form, loc_title: e.target.value })} /></div>
+          <div className="app-field full">
+            <label>Location description (HTML allowed)</label>
+            <textarea rows={5} value={form.loc_description} onChange={(e) => setForm({ ...form, loc_description: e.target.value })} />
+          </div>
+          <div className="app-field full"><label>Location image URL</label><input value={form.loc_image} onChange={(e) => setForm({ ...form, loc_image: e.target.value })} /></div>
+          <div className="app-field full"><label>Brochure PDF URL</label><input value={form.brochure_pdf} onChange={(e) => setForm({ ...form, brochure_pdf: e.target.value })} /></div>
+          <div className="app-field full"><label>Brochure cover image URL</label><input value={form.brochure_cover} onChange={(e) => setForm({ ...form, brochure_cover: e.target.value })} /></div>
+          <div className="app-field full">
+            <label>FAQ (one per line: Question|Answer)</label>
+            <textarea rows={6} value={form.faqs} onChange={(e) => setForm({ ...form, faqs: e.target.value })} />
+          </div>
+          <div className="app-field full">
+            <button type="button" className="app-btn ghost" onClick={() => setEditing(null)}>Cancel</button>
+            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+          </div>
+        </form>
+        {toast && <div className="app-toast">{toast}</div>}
+      </div>
+    );
+  }
+
+  return (
+    <div className="app-card">
+      <div className="app-card-head">
+        <div>
+          <h2>Project Details</h2>
+          <p className="app-card-sub">{items?.length ?? 0} projects with rich detail pages</p>
+        </div>
+      </div>
+      {items == null ? (
+        <p className="app-empty">Loading…</p>
+      ) : items.length === 0 ? (
+        <p className="app-empty">No project details yet.</p>
+      ) : (
+        <table className="app-table">
+          <thead>
+            <tr><th>Project</th><th>Developer</th><th>Location</th><th>Completion</th><th>Updated</th><th></th></tr>
+          </thead>
+          <tbody>
+            {items.map((row) => (
+              <tr key={row.slug}>
+                <td><strong>{row.title || row.slug}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.slug}</div></td>
+                <td>{row.developer || "—"}</td>
+                <td>{row.display_address || "—"}</td>
+                <td>{row.completion_year || "—"}</td>
+                <td>{fmtDate(row.updated_at)}</td>
+                <td>
+                  <button type="button" className="app-btn ghost sm" onClick={() => openEdit(row)}>Edit</button>
+                  <a className="app-btn ghost sm" href={`/new-projects/${row.slug}/`} target="_blank" style={{ marginLeft: 4 }}>View</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      {toast && <div className="app-toast">{toast}</div>}
+    </div>
+  );
 }

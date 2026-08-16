@@ -183,6 +183,7 @@ const UPSERT_TARGETS: Record<string, string> = {
   services: "slug",
   sessions: "token_hash",
   saved_properties: "user_id, property_ref",
+  project_details: "slug",
 };
 
 export function translatePg(sql: string): string {
@@ -318,7 +319,7 @@ export async function run(
   return queryWithRetry(async () => {
     if (dbDriver() === "pg") {
       let text = translatePg(sql);
-      if (/^INSERT INTO/i.test(text) && !/\bRETURNING\b/i.test(text) && !/^INSERT INTO property_amenities\b/i.test(text)) {
+      if (/^INSERT INTO/i.test(text) && !/\bRETURNING\b/i.test(text) && !/^INSERT INTO (property_amenities|project_details)\b/i.test(text)) {
         text += " RETURNING id";
       }
       const res = await getPgPool().query({ text, values: params as unknown[] });
@@ -659,6 +660,11 @@ const MIGRATIONS: string[] = [
     updated_at TEXT,
     KEY idx_projects_status (status)
   ) ${CHARSET};`,
+  `CREATE TABLE IF NOT EXISTS project_details (
+    slug VARCHAR(255) NOT NULL PRIMARY KEY,
+    data MEDIUMTEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  ) ${CHARSET};`,
 ];
 
 // Columns added on top of the base schema (checked against information_schema because
@@ -969,6 +975,11 @@ const PG_MIGRATIONS: string[] = [
     published INT NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL,
     updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS project_details (
+    slug VARCHAR(255) NOT NULL PRIMARY KEY,
+    data TEXT NOT NULL,
+    updated_at TEXT NOT NULL
   )`,
 ];
 

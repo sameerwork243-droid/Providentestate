@@ -168,9 +168,106 @@ export async function ensureSeeded(): Promise<void> {
   await seedAgents();
   await seedJobs();
   await seedProjects();
+  await seedProjectDetails();
+  await seedCuratedProjects();
   await seedProperties();
   await seedDevelopers();
   await seedCommunities();
+}
+
+/** Keep only curated projects (those with a project_details record) and mirror their
+ *  live-site images (media gallery + banner) into the projects table. Runs once (marker). */
+async function seedCuratedProjects(): Promise<void> {
+  const marker = await row<{ value: string }>(
+    "SELECT value FROM page_content WHERE `key` = 'projects_curated'"
+  );
+  if (marker) return;
+  const details = await rows<{ slug: string; data: string }>("SELECT slug, data FROM project_details");
+  if (!details.length) return;
+  await run("DELETE FROM projects WHERE slug NOT IN (SELECT slug FROM project_details)");
+  let synced = 0;
+  for (const d of details) {
+    let j: any = null;
+    try {
+      j = JSON.parse(d.data);
+    } catch {
+      continue;
+    }
+    if (!j || !j.slug) continue;
+    const media = (j.media_images || []).map((m: any) => m?.url).filter(Boolean);
+    const legacy = (j.images || []).map((m: any) => m?.url).filter(Boolean);
+    const images = [j.tile_image?.url, ...media, ...legacy].filter(Boolean);
+    const banner = String(j.banner_image?.url || j.ads_image?.url || media[0] || legacy[0] || "");
+    const amenities = (j.amenities || []).map((a: any) => a?.text).filter(Boolean);
+    const buildingTypes = Array.isArray(j.building_type) ? j.building_type : [];
+    try {
+      await run(
+        `INSERT INTO projects
+           (slug, title, category, status, price, currency, community, developer, building_type, department,
+            bedrooms_min, bedrooms_max, display_address, about, images, amenities, banner_image, completion_year, published, created_at, updated_at)
+         VALUES (?, ?, 'new-project', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)
+         ON DUPLICATE KEY UPDATE
+           title = VALUES(title), status = VALUES(status), price = VALUES(price), currency = VALUES(currency),
+           developer = VALUES(developer), building_type = VALUES(building_type),
+           bedrooms_min = VALUES(bedrooms_min), bedrooms_max = VALUES(bedrooms_max),
+           display_address = VALUES(display_address), about = VALUES(about), images = VALUES(images),
+           amenities = VALUES(amenities), banner_image = VALUES(banner_image),
+           completion_year = VALUES(completion_year), updated_at = VALUES(updated_at)`,
+        String(j.slug),
+        String(j.title || ""),
+        String(j.status || "ready"),
+        toInt(j.price),
+        String(j.currency || "AED"),
+        String(j.community || ""),
+        String(j.developer || ""),
+        JSON.stringify(buildingTypes),
+        String(j.department || ""),
+        toInt(j.min_bedrooms),
+        toInt(j.max_bedrooms),
+        String(j.display_address || ""),
+        String(j.about || ""),
+        JSON.stringify(images),
+        JSON.stringify(amenities),
+        banner,
+        j.completion_year != null ? toInt(j.completion_year) : null,
+        now(),
+        now()
+      );
+      synced++;
+    } catch (e) {
+      console.error("[seed] curated project skipped:", j.slug, (e as Error).message);
+    }
+  }
+  await run("INSERT INTO page_content (`key`, value) VALUES ('projects_curated', '1') ON DUPLICATE KEY UPDATE value = '1'");
+  console.log(`[seed] curated projects ready (${synced})`);
+}
+
+/** Rich detail records for curated projects (data/raw/projects-detail/*.json).
+ *  Insert-only so admin edits to project_details are never overwritten by re-seeds. */
+async function seedProjectDetails(): Promise<void> {
+  const dir = rawPath("projects-detail");
+  const files = listFiles(dir);
+  if (!files.length) return;
+  let inserted = 0;
+  for (const f of files) {
+    const j = loadJson(path.join(dir, f));
+    if (!j || !j.slug) continue;
+    const slug = f.replace(/\.json$/, "");
+    if (!slug) continue;
+    try {
+      await run(
+        `INSERT IGNORE INTO project_details (slug, data, updated_at)
+         VALUES (?, ?, ?)`,
+        slug,
+        JSON.stringify({ ...j, slug }),
+        now()
+      );
+      inserted++;
+    } catch (e) {
+      console.error("[seed] project detail skipped:", f, (e as Error).message);
+    }
+  }
+  if (inserted) console.log(`[seed] project_details ready (${inserted})`);
 }
 
 /** Agents from the scraped team pages (data/raw/pages/team/*.json). */
@@ -237,6 +334,8 @@ async function seedJobs(): Promise<void> {
 async function seedProjects(): Promise<void> {
   const count = Number((await rows("SELECT COUNT(*) AS n FROM projects"))[0]?.n ?? 0);
   if (count > 0) return;
+  const detailCount = Number((await rows("SELECT COUNT(*) AS n FROM project_details"))[0]?.n ?? 0);
+  if (detailCount > 0) return; // curated-only mode: rich records own the projects table
   const dir = rawPath("projects", "new-projects");
   for (const f of listFiles(dir)) {
     const j = loadJson(path.join(dir, f));

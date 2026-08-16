@@ -148,9 +148,9 @@ export default async function Page({ params, searchParams }: { params: Promise<{
         ? db.filter((h) => devSlugKey(h.developer) === devMatch[1])
         : db.filter((h) => (Array.isArray(h.building_type) ? h.building_type : []).some((b: any) => typeSlugKey(b) === typeMatch![1]));
       if (extra.length) {
-        hub.hits = dedupeBySlug([...hub.hits, ...extra]);
-        hub.nbHits = hub.hits.length;
-        hub.nbPages = Math.max(1, Math.ceil(hub.hits.length / (hub.hitsPerPage || 20)));
+        hub.hits = extra;
+        hub.nbHits = extra.length;
+        hub.nbPages = Math.max(1, Math.ceil(extra.length / (hub.hitsPerPage || 20)));
       }
     }
     if (devMatch) {
@@ -274,12 +274,9 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   if (model.kind === "project" && Array.isArray(model.data?.hits) && model.data.hits.length > 1) {
     const db = await dbProjects();
     if (db.length) {
-      const before = model.data.hits.length;
-      model.data.hits = dedupeBySlug([...model.data.hits, ...db]);
-      if (model.data.hits.length > before) {
-        model.data.nbHits = model.data.hits.length;
-        model.data.nbPages = Math.max(1, Math.ceil(model.data.hits.length / (model.data.hitsPerPage || 20)));
-      }
+      model.data.hits = db;
+      model.data.nbHits = db.length;
+      model.data.nbPages = Math.max(1, Math.ceil(db.length / (model.data.hitsPerPage || 20)));
     }
   }
 

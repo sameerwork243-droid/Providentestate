@@ -5,6 +5,8 @@ import { CountryFlag } from "./phone-flag";
 import { FilterDropdown, TypeSelect } from "./listing-ui";
 import { ReadMore } from "./read-more";
 import { RegisterInterestForm } from "./register-interest-form";
+import { dbProjectDetailBySlug } from "@/server/content-bridge";
+import { ProjectNav, AmenitySlider, FloorPlanPicker, FaqAccordion, ProjectGallery } from "./project-detail-ui";
 
 export function ProjectPages({ data, route, hub = false }: { data: any; route: string; hub?: boolean }) {
   const hits = (data?.hits || []).filter((h: any) => h && h.slug);
@@ -157,7 +159,7 @@ function completionLinks(route: string) {
 
 function OffplanCard({ h }: { h: any }) {
   const link = `/new-projects/${h.slug}/`;
-  const allImages = [h.images, ...(h.images2 || []), ...(h.images1 || [])]
+  const allImages = [...(Array.isArray(h.images) ? h.images : [h.images]), ...(h.images2 || []), ...(h.images1 || [])]
     .filter(Boolean)
     .map((im: any) => im["340x252"] || im["464x312"])
     .filter(Boolean);
@@ -236,7 +238,13 @@ function OffplanCard({ h }: { h: any }) {
   );
 }
 
-function ProjectDetail({ hit, route }: { hit: any; route: string }) {
+async function ProjectDetail({ hit, route }: { hit: any; route: string }) {
+  const detail = await dbProjectDetailBySlug(hit.slug);
+  if (detail) return <LiveProjectDetail hit={hit} detail={detail} route={route} />;
+  return <SimpleProjectDetail hit={hit} route={route} />;
+}
+
+function SimpleProjectDetail({ hit, route }: { hit: any; route: string }) {
   const gallery = [hit.images, ...(hit.images1 || []), ...(hit.images2 || [])].filter(Boolean);
   const bannerMobile = hit.banner_image_mobile?.["376x512"] || hit.banner_image?.["376x512"] || hit.banner_image?.["1650x"] || hit.images?.["464x312"];
   const bannerDesktop = hit.banner_image?.["1650x"] || hit.images?.["696x520"] || hit.banner_image?.["744x"];
@@ -408,6 +416,309 @@ function ProjectDetail({ hit, route }: { hit: any; route: string }) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function LiveProjectDetail({ hit, detail, route }: { hit: any; detail: any; route: string }) {
+  const title = String(detail.title || hit.title || "");
+  const developer = String(detail.developer || hit.developer || "");
+  const devSlug = developer.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const bannerDesktop = detail.banner_image?.url || hit.banner_image?.["1650x"] || hit.banner_image?.["744x"] || "";
+  const bannerMobile = detail.banner_image_mobile?.url || detail.banner_image?.url || hit.banner_image_mobile?.["376x512"] || bannerDesktop;
+  const displayPrice = detail.display_price
+    ? `AED ${detail.display_price}`
+    : hit.display_price
+      ? `AED ${hit.display_price}`
+      : detail.price
+        ? `AED ${Number(detail.price).toLocaleString()}`
+        : "";
+  const gallery = (detail.media_images || []).map((im: any) => im?.url).filter(Boolean) as string[];
+  const heroGallery = gallery.length
+    ? gallery
+    : [hit.images, ...(hit.images1 || []), ...(hit.images2 || [])]
+        .filter(Boolean)
+        .map((im: any) => im?.["696x520"] || im?.["464x312"] || im?.["340x252"] || "")
+        .filter(Boolean);
+  const plans = (detail.floor_plans || []).map((p: any) => ({
+    title: String(p.title || ""),
+    size: String(p.size || ""),
+    media: p.media?.url || p.url || "",
+  }));
+  const amenities = (detail.amenities || []).map((a: any) => ({ text: String(a.text || ""), image: a.image?.url || "" }));
+  const faqs = (detail.more_info || []).map((f: any) => ({ question: String(f.question || ""), answer: String(f.answer || "") }));
+  const usp = detail.characteristics_module || null;
+  const loc = detail.location_tile || null;
+  const brochure = detail.brochure || null;
+  const paymentPlans = (detail.add_plan || [])
+    .flatMap((g: any) => (Array.isArray(g.add_single_plan) ? g.add_single_plan : []))
+    .map((p: any) => ({ title: String(p.title || ""), description: String(p.description || "") }));
+  const videoUrl = detail.video_module?.video_url || null;
+  const whatsapp = `https://wa.provident.ae/inquire?phone=971505390249`;
+  const tel = "tel:+971505390249";
+  const navIds = [
+    { label: "Details", id: "offplan-details" },
+    { label: "Gallery", id: "offplan-gallery" },
+    { label: "Floor Plans", id: "floor-plans" },
+    { label: "Amenities", id: "offplan-amenities-slider" },
+    { label: "Location", id: "offplan-location" },
+    { label: "Brochure", id: "offplan-brochure" },
+  ];
+
+  return (
+    <div className="offplan-detail-page">
+      <div className="offplan-banner-wrap">
+        <div className="bg-section d-block d-lg-none">
+          <div className="overlay"></div>
+          {bannerMobile && <img loading="eager" src={bannerMobile} alt={title} />}
+        </div>
+        <div className="bg-section d-none d-lg-block">
+          <div className="overlay"></div>
+          {bannerDesktop && <img loading="eager" src={bannerDesktop} alt={title} />}
+        </div>
+        <div className="offplan-banner-container container">
+          <div className="offplan-banner-section">
+            <div className="content-section">
+              <h1>{title}</h1>
+              {developer && (
+                <a className="developer" href={`/new-projects/developed-by-${devSlug}/`}>
+                  by <span>{developer}</span>
+                </a>
+              )}
+            </div>
+            <div className="cta-section">
+              {brochure?.file?.url && (
+                <a className="button button-orange trigger-button" href={brochure.file.url} target="_blank" rel="noopener noreferrer">
+                  <span>Download Brochure</span>
+                </a>
+              )}
+              <a className="button button-gray trigger-button" href="#register-interest">
+                <span>Register Interest</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="breadcrumbs-wrap white-color">
+          <div className="breadcrumbs-container container">
+            <nav className="breadcrumbs">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <a className="breadcrumb-link enable-link" href="/">
+                    Home
+                  </a>
+                </li>
+                <li className="breadcrumb-item">
+                  <a className="breadcrumb-link enable-link" href="/new-projects/">
+                    All Projects in Dubai
+                  </a>
+                </li>
+                <li className="breadcrumb-item active">
+                  <a aria-current="page" className="breadcrumb-link disable-link" href={route + "/"}>
+                    {title}
+                  </a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <ProjectNav ids={navIds} />
+
+      <div className="about-offplan-wrap old section-l-m" id="offplan-details">
+        <div className="about-offplan-container container">
+          <div className="left-section">
+            <p className="heading">About the project</p>
+            <div className="content">
+              <Rich html={detail.about || hit.about} />
+            </div>
+          </div>
+          <div className="right-section">
+            {displayPrice && (
+              <div className="item-wrap">
+                <p>Starting Price</p>
+                <p className="value">{displayPrice}</p>
+              </div>
+            )}
+            {(detail.completion_year || hit.completion_year) && (
+              <div className="item-wrap">
+                <p>Handover</p>
+                <p className="value">{detail.completion_year || hit.completion_year}</p>
+              </div>
+            )}
+            {detail.payment_plan_text && (
+              <div className="item-wrap">
+                <p>Payment Plan</p>
+                <p className="value">{detail.payment_plan_text}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <ProjectGallery images={heroGallery} title={title} />
+
+      {usp && (
+        <div className="tile-block-wrapper tile-blue-bg section-l-p characteristics-module blue">
+          <div className="tile-block-container container">
+            {usp.image?.url && (
+              <div className="img-section">
+                <img loading="lazy" src={usp.image.url} alt={usp.title || title} />
+              </div>
+            )}
+            <div className="content-section">
+              {usp.heading && <p className="heading">{usp.heading}</p>}
+              {usp.title && <h3 className="title">{usp.title}</h3>}
+              {usp.description && (
+                <div className="description">
+                  <Rich html={usp.description} />
+                </div>
+              )}
+              {usp.cta?.cta_label && (
+                <a className="button button-white-outline" href={usp.cta.custom_link || "#register-interest"}>
+                  <span>{usp.cta.cta_label}</span>
+                  <svg className="arrow-right-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="m9 6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {amenities.length > 0 && <AmenitySlider items={amenities} />}
+
+      {plans.length > 0 && (
+        <div className="floorplans-wrap old section-m">
+          <FloorPlanPicker plans={plans} />
+        </div>
+      )}
+
+      {loc && (
+        <div className="tile-block-wrapper tile-blue-bg section-l-p location-module blue" id="offplan-location">
+          <div className="tile-block-container container">
+            {loc.image?.url && (
+              <div className="img-section">
+                <img loading="lazy" src={loc.image.url} alt={loc.title || title} />
+              </div>
+            )}
+            <div className="content-section">
+              {loc.heading && <p className="heading">{loc.heading}</p>}
+              {loc.title && <h3 className="title">{loc.title}</h3>}
+              {loc.description && (
+                <div className="description">
+                  <Rich html={loc.description} />
+                </div>
+              )}
+              {Array.isArray(loc.add_place) && loc.add_place.length > 0 && (
+                <ul className="place-list">
+                  {loc.add_place.map((p: any, i: number) => (
+                    <li key={i}>
+                      <span className="place-name">{p.place_name}</span>
+                      <span className="place-time">{p.time_distance}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {loc.cta?.cta_label && (
+                <a className="button button-white-outline" href={loc.cta.custom_link || "#register-interest"}>
+                  <span>{loc.cta.cta_label}</span>
+                  <svg className="arrow-right-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="m9 6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {paymentPlans.length > 0 && (
+        <div className="payment-plans-wrap old section-l-m" id="payment-plans">
+          <div className="payment-plans-container container">
+            <div className="left-section">
+              <h2 className="title">Payment Plan</h2>
+              <div className="payment-plans-section">
+                {paymentPlans.map((p: any, i: number) => (
+                  <div className="plan-item" key={i}>
+                    <p className="plan-title">{p.title}</p>
+                    <p className="plan-description">{p.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {brochure && (
+        <div className="offplan-brochure-wrap section-l-m" id="offplan-brochure">
+          <div className="offplan-brochure-container container">
+            <div className="left-section">
+              <h2 className="title">Project Brochure</h2>
+              <p className="description">All you need to know about {title}</p>
+              {brochure.file?.url && (
+                <a className="button button-orange trigger-button" href={brochure.file.url} target="_blank" rel="noopener noreferrer">
+                  <span>Download Brochure</span>
+                </a>
+              )}
+              <p className="text">Get the brochure in less than 10 seconds.</p>
+            </div>
+            {brochure.image?.url && (
+              <div className="right-section">
+                <img loading="lazy" src={brochure.image.url} alt={`${title} brochure`} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {videoUrl && (
+        <div id="offplan-video" className="video-banner-container section-l-m container">
+          <video controls preload="metadata" poster={detail.video_module?.thumbnail?.url || ""}>
+            <source src={videoUrl} />
+          </video>
+        </div>
+      )}
+
+      <div className="register-interest-module-wrap old section-l-p" id="register-interest">
+        <div className="bg-section">
+          <div className="overlay"></div>
+          {(detail.ads_image?.url || detail.banner_image?.url) && (
+            <img loading="lazy" src={detail.ads_image?.url || detail.banner_image?.url} alt="" />
+          )}
+        </div>
+        <div className="register-interest-module-container container">
+          <div className="row">
+            <div className="col-xl-6 col-lg-12">
+              <div className="left-section">
+                <h2 className="title">Begin Your Property Journey with Us</h2>
+                <p className="description">
+                  Discover more about {title} and how it fits your lifestyle and investment goals. Our property
+                  specialists are ready to help.
+                </p>
+                <ul>
+                  <li>Personalised guidance from our expert team</li>
+                  <li>Latest availability, prices and payment plans</li>
+                  <li>Site visits and private viewings</li>
+                </ul>
+                <a className="property-cta" href={tel}>
+                  <CountryFlag /> Request a Call Back Now
+                </a>
+                <a className="button whatsapp-icon-btn button-white-outline" href={whatsapp} target="_blank" rel="noopener noreferrer">
+                  <span>Chat with us now</span>
+                </a>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-12">
+              <RegisterInterestForm projectTitle={title} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <FaqAccordion items={faqs} title={title} />
     </div>
   );
 }

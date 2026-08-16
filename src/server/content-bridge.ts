@@ -153,6 +153,19 @@ export async function dbProjectBySlug(slug: string): Promise<any | undefined> {
   return toProjectHit(p);
 }
 
+/** Rich detail record for a curated project (project_details.data as JSON object), or undefined. */
+export async function dbProjectDetailBySlug(slug: string): Promise<any | undefined> {
+  if (!dbEnabled()) return undefined;
+  await ensureSeeded();
+  const p = (await rows<Record<string, unknown>>("SELECT data FROM project_details WHERE slug = ? LIMIT 1", slug))[0];
+  if (!p) return undefined;
+  try {
+    return JSON.parse(String(p.data));
+  } catch {
+    return undefined;
+  }
+}
+
 /** All developer rows (regardless of publish state) so callers can detect a fully empty table. */
 export async function dbDevelopersTable(): Promise<{ rows: Record<string, unknown>[]; live: Record<string, unknown>[] }> {
   if (!dbEnabled()) return { rows: [], live: [] };
