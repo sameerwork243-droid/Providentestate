@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export function HeaderAccountButton({ className }: { className?: string }) {
-  const [user, setUser] = useState<{ role: string } | null | undefined>(undefined);
+  const [user, setUser] = useState<{ role: string } | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -32,7 +32,6 @@ export function HeaderAccountButton({ className }: { className?: string }) {
       href={href}
       className={"button list-prop-btn " + (className || "")}
       aria-label={user ? "My Account" : "Login"}
-      style={user === undefined ? { visibility: "hidden" } : undefined}
     >
       <svg
         className="user-icon user-icon"
