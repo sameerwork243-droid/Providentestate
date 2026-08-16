@@ -22,11 +22,17 @@ export function ReadMore({
   const ref = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
   const [clamped, setClamped] = useState(false);
+  const expandedRef = useRef(false);
+
+  useEffect(() => {
+    expandedRef.current = expanded;
+  }, [expanded]);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const measure = () => {
+      if (expandedRef.current) return;
       el.style.webkitLineClamp = String(lines);
       el.style.display = "-webkit-box";
       el.style.webkitBoxOrient = "vertical";
