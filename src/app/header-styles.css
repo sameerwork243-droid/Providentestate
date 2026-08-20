@@ -252,6 +252,12 @@
   padding: 16px 20px 20px;
 }
 
+.mobile-drawer-footer .mobile-drawer-auth {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .mobile-drawer-footer .list-prop-btn {
   align-items: center;
   display: flex;
