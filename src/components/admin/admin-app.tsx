@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PortalShell, type PortalNavSection, type PortalUser } from "@/components/portal/portal-shell";
@@ -22,7 +22,6 @@ export function AdminApp({ user }: { user: User }) {
         { key: "overview", label: "Dashboard", icon: "home" },
         { key: "properties", label: "Properties", icon: "building" },
         { key: "projects", label: "Projects", icon: "building" },
-        { key: "project-details", label: "Project Details", icon: "file" },
         { key: "services", label: "Services", icon: "briefcase" },
       ],
     },
@@ -61,7 +60,6 @@ export function AdminApp({ user }: { user: User }) {
       {tab === "overview" && <StatsOverview />}
       {tab === "properties" && <PropertiesManager />}
       {tab === "projects" && <ResourceManager endpoint="projects" title="New Projects" fields={PROJECT_FIELDS} columns={projectColumns} />}
-      {tab === "project-details" && <ProjectDetailsManager />}
       {tab === "services" && <ResourceManager endpoint="services" title="Services" fields={SERVICE_FIELDS} columns={serviceColumns} />}
       {tab === "users" && <UsersManager />}
       {tab === "inquiries" && <InquiriesManager />}
@@ -154,7 +152,7 @@ function AboutManager() {
           <textarea rows={8} value={values.intro || ""} onChange={(e) => setValues({ ...values, intro: e.target.value })} />
         </div>
         <div className="full">
-          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Savingâ€¦" : "Save"}</button>
         </div>
       </form>
       {toast && <div className="app-toast">{toast}</div>}
@@ -172,7 +170,7 @@ function StatsOverview() {
       .then(setData)
       .catch(() => setData(null));
   }, []);
-  if (!data) return <div className="app-card"><p className="app-empty">Loading…</p></div>;
+  if (!data) return <div className="app-card"><p className="app-empty">Loadingâ€¦</p></div>;
   const s = data.stats;
   return (
     <>
@@ -292,12 +290,12 @@ function ResourceManager({ endpoint, title, fields, columns }: { endpoint: strin
               <p className="app-card-sub">{items?.length ?? 0} records</p>
             </div>
             <div style={{ display: "flex", gap: 10 }}>
-              <input className="app-search" placeholder="Search…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
+              <input className="app-search" placeholder="Searchâ€¦" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
               <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add</button>
             </div>
           </div>
           {items === null ? (
-            <p className="app-empty">Loading…</p>
+            <p className="app-empty">Loadingâ€¦</p>
           ) : items.length === 0 ? (
             <p className="app-empty">No records found.</p>
           ) : (
@@ -351,7 +349,7 @@ function FormPage({ title, backLabel, fields, initial, busy, onCancel, onSave }:
       <div className="app-card-head">
         <div>
           <h2>{title}</h2>
-          <button type="button" className="app-btn ghost sm form-page-back" onClick={onCancel}>← Back to {backLabel}</button>
+          <button type="button" className="app-btn ghost sm form-page-back" onClick={onCancel}>â† Back to {backLabel}</button>
         </div>
       </div>
       <form
@@ -370,7 +368,7 @@ function FormPage({ title, backLabel, fields, initial, busy, onCancel, onSave }:
               <input type="number" value={form[fd.key] ?? ""} onChange={(e) => set(fd.key, e.target.value)} />
             ) : fd.type === "select" ? (
               <select value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)}>
-                <option value="">—</option>
+                <option value="">â€”</option>
                 {(fd.options || []).map((o) => <option key={o} value={o}>{o}</option>)}
               </select>
             ) : fd.type === "checkbox" ? (
@@ -393,7 +391,7 @@ function FormPage({ title, backLabel, fields, initial, busy, onCancel, onSave }:
         ))}
         <div className="form-actions full">
           <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
-          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Savingâ€¦" : "Save"}</button>
         </div>
       </form>
     </div>
@@ -404,7 +402,7 @@ function FormPage({ title, backLabel, fields, initial, busy, onCancel, onSave }:
 
 const PROPERTY_FIELDS: FieldDef[] = [
   { key: "title", label: "Title", required: true, full: true, hint: "e.g. 2 Bedroom Apartment in Dubai Marina" },
-  { key: "slug", label: "Slug (optional — auto-generated from title)", full: true },
+  { key: "slug", label: "Slug (optional â€” auto-generated from title)", full: true },
   { key: "transaction_type", label: "Transaction", type: "select", options: ["buy", "rent"] },
   { key: "property_type", label: "Property type", type: "select", options: ["apartment", "villa", "townhouse", "penthouse", "studio", "duplex", "mansion", "commercial-property", "plot"] },
   { key: "category", label: "Category", type: "select", options: ["apartments", "villas", "townhouses", "penthouses", "studios", "duplexes", "mansions", "commercial-properties", "plots"] },
@@ -481,7 +479,7 @@ const TESTIMONIAL_FIELDS: FieldDef[] = [
   { key: "author", label: "Author", required: true, full: true },
   { key: "role", label: "Role", full: true },
   { key: "content", label: "Content", type: "textarea", full: true },
-  { key: "rating", label: "Rating (1–5)", type: "number" },
+  { key: "rating", label: "Rating (1â€“5)", type: "number" },
   { key: "img", label: "Photo URL", full: true },
   { key: "published", label: "Published", type: "checkbox", hint: "Visible on the public site" },
 ];
@@ -601,15 +599,15 @@ function PropertiesManager() {
           <div className="app-card-head">
             <div>
               <h2>Properties</h2>
-              <p className="app-card-sub">{items?.length ?? 0} records — created properties appear on the public site</p>
+              <p className="app-card-sub">{items?.length ?? 0} records â€” created properties appear on the public site</p>
             </div>
             <div style={{ display: "flex", gap: 10 }}>
-              <input className="app-search" placeholder="Search title, slug, developer…" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
+              <input className="app-search" placeholder="Search title, slug, developerâ€¦" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && load(q)} />
               <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ New property</button>
             </div>
           </div>
           {items === null ? (
-            <p className="app-empty">Loading…</p>
+            <p className="app-empty">Loadingâ€¦</p>
           ) : items.length === 0 ? (
             <p className="app-empty">No properties yet. Create your first one.</p>
           ) : (
@@ -628,7 +626,7 @@ function PropertiesManager() {
                       <td>{row.property_type}</td>
                       <td>{"AED " + Number(row.price).toLocaleString()}</td>
                       <td>{row.bedroom} bd / {row.bathroom} ba</td>
-                      <td>{row.image_count} img · {row.amenity_count} am.</td>
+                      <td>{row.image_count} img Â· {row.amenity_count} am.</td>
                       <td>
                         <span className={"app-badge " + (Number(row.published) ? "active" : "inactive")}>
                           {Number(row.published) ? "published" : "draft"}
@@ -799,7 +797,7 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
           <h2>{initial ? "Edit property" : "New property"}</h2>
           <p className="app-card-sub">{initial ? "Update the property details below." : "Fill in the details to publish a new property."}</p>
         </div>
-        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Properties</button>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>â† Back to Properties</button>
       </div>
       <form className="app-form-grid" onSubmit={submit}>
           <div className="full" style={{ borderBottom: "1px solid #f0f3f8", paddingBottom: 12 }}>
@@ -814,7 +812,7 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
                 <input type="number" value={form[fd.key] ?? ""} onChange={(e) => set(fd.key, e.target.value)} />
               ) : fd.type === "select" ? (
                 <select value={form[fd.key] || ""} onChange={(e) => set(fd.key, e.target.value)}>
-                  <option value="">—</option>
+                  <option value="">â€”</option>
                   {(fd.options || []).map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               ) : fd.type === "checkbox" ? (
@@ -826,15 +824,15 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
                 <div className="agent-select" ref={agentRef}>
                   <div className="agent-select-current" onClick={() => setAgentOpen((o) => !o)}>
                     <span className={selectedAgent ? "" : "agent-select-placeholder"}>
-                      {selectedAgent ? selectedAgent.name : "Select an agent…"}
+                      {selectedAgent ? selectedAgent.name : "Select an agentâ€¦"}
                     </span>
-                    <span className="agent-select-arrow">▾</span>
+                    <span className="agent-select-arrow">â–¾</span>
                   </div>
                   {agentOpen && (
                     <div className="agent-select-menu">
                       <input
                         className="agent-select-search"
-                        placeholder="Search agents…"
+                        placeholder="Search agentsâ€¦"
                         value={agentQuery}
                         onChange={(e) => setAgentQuery(e.target.value)}
                       />
@@ -907,7 +905,7 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
               <span style={{ color: "#35373c", flex: 1, fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={m.url}>
                 {mediaFileName(m.url)}
               </span>
-              <button type="button" className="app-btn danger sm" onClick={() => setMedia(media.filter((_, j) => j !== i))}>×</button>
+              <button type="button" className="app-btn danger sm" onClick={() => setMedia(media.filter((_, j) => j !== i))}>Ã—</button>
             </div>
           ))}
           <div className="full" style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -934,7 +932,7 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
               + Add video
             </button>
             {uploading && (
-              <span className="hint">Uploading {uploading.done + 1}/{uploading.total}…</span>
+              <span className="hint">Uploading {uploading.done + 1}/{uploading.total}â€¦</span>
             )}
           </div>
 
@@ -979,7 +977,7 @@ function PropertyForm({ initial, busy, setBusy, onCancel, onDone }: {
 
           <div className="form-actions full">
             <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
-            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save property"}</button>
+            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Savingâ€¦" : "Save property"}</button>
           </div>
         </form>
     </div>
@@ -1057,7 +1055,7 @@ function UsersManager() {
             <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add user</button>
           </div>
           {items === null ? (
-            <p className="app-empty">Loading…</p>
+            <p className="app-empty">Loadingâ€¦</p>
           ) : items.length === 0 ? (
             <p className="app-empty">No users.</p>
           ) : (
@@ -1067,10 +1065,10 @@ function UsersManager() {
                 <tbody>
                   {items.map((row) => (
                     <tr key={row.id}>
-                      <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}{row.phone ? " " : ""}{row.phone ? <CountryFlag /> : null}</div></td>
+                      <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " Â· " + row.phone : ""}{row.phone ? " " : ""}{row.phone ? <CountryFlag /> : null}</div></td>
                       <td><span className="app-badge" style={{ background: row.role === "admin" ? "#e3f2fd" : "#f0f3f8", color: "#075985" }}>{row.role}</span></td>
                       <td><span className={"app-badge " + (Number(row.is_active) ? "active" : "inactive")}>{Number(row.is_active) ? "active" : "disabled"}</span></td>
-                      <td>{row.last_login_at ? fmtDate(row.last_login_at) : "—"}</td>
+                      <td>{row.last_login_at ? fmtDate(row.last_login_at) : "â€”"}</td>
                       <td>
                         <div className="row-actions">
                           <button type="button" className="app-btn ghost sm" onClick={() => setEditing(row)}>Edit</button>
@@ -1105,7 +1103,7 @@ function UserForm({ user, busy, onCancel, onSave }: { user: any | null; busy: bo
         <div>
           <h2>{user ? "Edit user" : "Add user"}</h2>
         </div>
-        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Users</button>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>â† Back to Users</button>
       </div>
       <form className="app-form-grid" onSubmit={(e) => { e.preventDefault(); onSave(form); }}>
         <div className="app-field"><label>Full name</label><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required /></div>
@@ -1131,7 +1129,7 @@ function UserForm({ user, busy, onCancel, onSave }: { user: any | null; busy: bo
         </div>
         <div className="form-actions full">
           <button type="button" className="app-btn ghost" onClick={onCancel}>Cancel</button>
-          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Savingâ€¦" : "Save"}</button>
         </div>
       </form>
     </div>
@@ -1171,7 +1169,7 @@ function DetailField({ label, value }: { label: string; value?: string | null })
   return (
     <div className="app-detail-field">
       <p className="app-detail-label">{label}</p>
-      <p className="app-detail-value">{value || "—"}</p>
+      <p className="app-detail-value">{value || "â€”"}</p>
     </div>
   );
 }
@@ -1219,7 +1217,7 @@ function InquiriesManager() {
     <div className="app-card">
       <div className="app-card-head"><div><h2>Inquiries</h2><p className="app-card-sub">{items?.length ?? 0} messages</p></div></div>
       {items === null ? (
-        <p className="app-empty">Loading…</p>
+        <p className="app-empty">Loadingâ€¦</p>
       ) : items.length === 0 ? (
         <p className="app-empty">No inquiries yet.</p>
       ) : (
@@ -1229,7 +1227,7 @@ function InquiriesManager() {
             <tbody>
               {items.map((row) => (
                 <tr key={row.id} className="app-row-click" onClick={() => setOpen(row)}>
-                  <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
+                  <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " Â· " + row.phone : ""}</div></td>
                   <td>{row.kind}</td>
                   <td><span className="app-badge">{row.status}</span></td>
                   <td>{fmtDate(row.created_at)}</td>
@@ -1324,7 +1322,7 @@ function ListingsManager() {
     <div className="app-card">
       <div className="app-card-head"><div><h2>Listings</h2><p className="app-card-sub">{items?.length ?? 0} property submissions</p></div></div>
       {items === null ? (
-        <p className="app-empty">Loading…</p>
+        <p className="app-empty">Loadingâ€¦</p>
       ) : items.length === 0 ? (
         <p className="app-empty">No property listings yet. Submissions from the "List Your Property" form appear here.</p>
       ) : (
@@ -1336,8 +1334,8 @@ function ListingsManager() {
                 const p = parseListingPayload(String(row.message || ""));
                 return (
                   <tr key={row.id} className="app-row-click" onClick={() => setOpen(row)}>
-                    <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " · " + row.phone : ""}</div></td>
-                    <td>{p ? `${p.transaction || ""} ${p.property_type || ""}${p.community ? " · " + p.community : ""}` : row.property_slug || "Property"}</td>
+                    <td><strong>{row.name}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.email}{row.phone ? " Â· " + row.phone : ""}</div></td>
+                    <td>{p ? `${p.transaction || ""} ${p.property_type || ""}${p.community ? " Â· " + p.community : ""}` : row.property_slug || "Property"}</td>
                     <td><span className="app-badge">{row.status}</span></td>
                     <td>{fmtDate(row.created_at)}</td>
                     <td><button type="button" className="app-btn sm" onClick={(e) => { e.stopPropagation(); setOpen(row); }}>View</button></td>
@@ -1414,7 +1412,7 @@ function ViewingsManager() {
     <div className="app-card">
       <div className="app-card-head"><div><h2>Viewings</h2><p className="app-card-sub">{items?.length ?? 0} requests</p></div></div>
       {items === null ? (
-        <p className="app-empty">Loading…</p>
+        <p className="app-empty">Loadingâ€¦</p>
       ) : items.length === 0 ? (
         <p className="app-empty">No viewing requests yet.</p>
       ) : (
@@ -1515,7 +1513,7 @@ function CategoriesManager() {
             <button type="button" className="app-btn" onClick={() => setCreating(true)}>+ Add</button>
           </div>
           {items === null ? (
-            <p className="app-empty">Loading…</p>
+            <p className="app-empty">Loadingâ€¦</p>
           ) : items.length === 0 ? (
             <p className="app-empty">No categories.</p>
           ) : (
@@ -1557,7 +1555,7 @@ function CategoryForm({ row, onCancel, onSave }: { row: any | null; onCancel: ()
         <div>
           <h2>{row ? "Edit category" : "Add category"}</h2>
         </div>
-        <button type="button" className="app-btn ghost sm" onClick={onCancel}>← Back to Categories</button>
+        <button type="button" className="app-btn ghost sm" onClick={onCancel}>â† Back to Categories</button>
       </div>
       <form
         className="app-form-grid"
@@ -1645,7 +1643,7 @@ function KVManager({ endpoint, title, defaults, selects }: { endpoint: string; t
           </div>
         ))}
         <div className="full">
-          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
+          <button type="submit" className="app-btn" disabled={busy}>{busy ? "Savingâ€¦" : "Save"}</button>
         </div>
       </form>
       {toast && <div className="app-toast">{toast}</div>}
@@ -1675,7 +1673,7 @@ const agentColumns: Column[] = [
 const developerColumns: Column[] = [
   { key: "name", label: "Developer", render: (r) => <strong>{r.name}</strong> },
   { key: "region", label: "Region", render: (r) => r.region },
-  { key: "founded", label: "Founded", render: (r) => r.founded || "—" },
+  { key: "founded", label: "Founded", render: (r) => r.founded || "â€”" },
   { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
 ];
 
@@ -1688,7 +1686,7 @@ const communityColumns: Column[] = [
 const testimonialColumns: Column[] = [
   { key: "author", label: "Author", render: (r) => <strong>{r.author}</strong> },
   { key: "role", label: "Role", render: (r) => r.role },
-  { key: "rating", label: "Rating", render: (r) => "★".repeat(Math.min(5, Number(r.rating) || 0)) },
+  { key: "rating", label: "Rating", render: (r) => "â˜…".repeat(Math.min(5, Number(r.rating) || 0)) },
   { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
 ];
 
@@ -1702,20 +1700,20 @@ const faqColumns: Column[] = [
 const mediaColumns: Column[] = [
   { key: "url", label: "URL", render: (r) => <span style={{ wordBreak: "break-all" }}>{r.url}</span> },
   { key: "kind", label: "Kind", render: (r) => <span className="app-badge" style={{ background: "#f0f3f8" }}>{r.kind}</span> },
-  { key: "alt", label: "Alt", render: (r) => r.alt || "—" },
+  { key: "alt", label: "Alt", render: (r) => r.alt || "â€”" },
 ];
 
 const jobColumns: Column[] = [
   { key: "title", label: "Job", render: (r) => <strong>{r.title}</strong> },
-  { key: "location", label: "Location", render: (r) => r.location || "—" },
+  { key: "location", label: "Location", render: (r) => r.location || "â€”" },
   { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
 ];
 
 const projectColumns: Column[] = [
   { key: "title", label: "Project", render: (r) => <strong>{r.title}</strong> },
-  { key: "developer", label: "Developer", render: (r) => r.developer || "—" },
-  { key: "price", label: "Price", render: (r) => Number(r.price) ? "AED " + Number(r.price).toLocaleString("en-US") : "—" },
-  { key: "status", label: "Status", render: (r) => <span className="app-badge">{r.status || "—"}</span> },
+  { key: "developer", label: "Developer", render: (r) => r.developer || "â€”" },
+  { key: "price", label: "Price", render: (r) => Number(r.price) ? "AED " + Number(r.price).toLocaleString("en-US") : "â€”" },
+  { key: "status", label: "Status", render: (r) => <span className="app-badge">{r.status || "â€”"}</span> },
   { key: "published", label: "Published", render: (r) => <Bool value={r.published} /> },
 ];
 
@@ -1728,215 +1726,4 @@ function fmtDate(s: string): string {
 
 function singular(title: string): string {
   return title.replace(/ies$/, "y").replace(/s$/, "");
-}
-
-/* ===================== Project details (curated detail pages) ===================== */
-
-function ProjectDetailsManager() {
-  const [items, setItems] = useState<any[] | null>(null);
-  const [editing, setEditing] = useState<any | null>(null);
-  const [form, setForm] = useState<Record<string, string>>({});
-  const [toast, setToast] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [raw, setRaw] = useState<Record<string, any>>({});
-
-  const load = useCallback(() => {
-    fetch("/api/admin/project-details")
-      .then((r) => r.json())
-      .then((d) => setItems(d.items || []))
-      .catch(() => setItems([]));
-  }, []);
-  useEffect(() => load(), [load]);
-
-  function showToast(msg: string) {
-    setToast(msg);
-    setTimeout(() => setToast(""), 2200);
-  }
-
-  function toLines(arr: any[] | undefined, pick: (x: any) => string): string {
-    return (arr || []).map(pick).filter(Boolean).join("\n");
-  }
-
-  async function openEdit(row: any) {
-    const res = await fetch(`/api/admin/project-details?slug=${encodeURIComponent(row.slug)}`);
-    const d = await res.json();
-    const data = d.item?.data || {};
-    setRaw(data);
-    setForm({
-      about: String(data.about || ""),
-      display_price: String(data.display_price || ""),
-      completion_year: String(data.completion_year || ""),
-      payment_plan_text: String(data.payment_plan_text || ""),
-      gallery: toLines(data.media_images, (i) => i?.url),
-      amenities: toLines(data.amenities, (a) => (a?.image?.url ? `${a.text}|${a.image.url}` : String(a.text || ""))),
-      floorplans: toLines(data.floor_plans, (p) => (p?.media?.url ? `${p.title}|${p.media.url}` : String(p.title || ""))),
-      usp_heading: String(data.characteristics_module?.heading || ""),
-      usp_title: String(data.characteristics_module?.title || ""),
-      usp_description: String(data.characteristics_module?.description || ""),
-      usp_image: String(data.characteristics_module?.image?.url || ""),
-      loc_heading: String(data.location_tile?.heading || ""),
-      loc_title: String(data.location_tile?.title || ""),
-      loc_description: String(data.location_tile?.description || ""),
-      loc_image: String(data.location_tile?.image?.url || ""),
-      brochure_pdf: String(data.brochure?.file?.url || ""),
-      brochure_cover: String(data.brochure?.image?.url || ""),
-      faqs: toLines(data.more_info, (f) => `${f.question}|${String(f.answer || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()}`),
-    });
-    setEditing(row);
-  }
-
-  async function save(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    const data: Record<string, any> = { ...raw };
-    data.about = form.about;
-    data.display_price = form.display_price;
-    data.completion_year = form.completion_year;
-    data.payment_plan_text = form.payment_plan_text;
-    data.media_images = form.gallery.split("\n").map((s) => s.trim()).filter(Boolean).map((url) => ({ url }));
-    data.amenities = form.amenities.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
-      const [text, image] = line.split("|");
-      return { text: (text || "").trim(), image: image ? { url: image.trim() } : null };
-    });
-    data.floor_plans = form.floorplans.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
-      const [title, media] = line.split("|");
-      return { title: (title || "").trim(), media: media ? { url: media.trim() } : null };
-    });
-    data.characteristics_module = {
-      ...(raw.characteristics_module || {}),
-      heading: form.usp_heading,
-      title: form.usp_title,
-      description: form.usp_description,
-      image: form.usp_image ? { url: form.usp_image } : raw.characteristics_module?.image || null,
-    };
-    data.location_tile = {
-      ...(raw.location_tile || {}),
-      heading: form.loc_heading,
-      title: form.loc_title,
-      description: form.loc_description,
-      image: form.loc_image ? { url: form.loc_image } : raw.location_tile?.image || null,
-    };
-    data.brochure = {
-      ...(raw.brochure || {}),
-      file: form.brochure_pdf ? { ...(raw.brochure?.file || {}), url: form.brochure_pdf } : raw.brochure?.file || null,
-      image: form.brochure_cover ? { ...(raw.brochure?.image || {}), url: form.brochure_cover } : raw.brochure?.image || null,
-    };
-    data.more_info = form.faqs.split("\n").map((s) => s.trim()).filter(Boolean).map((line) => {
-      const [question, ...rest] = line.split("|");
-      return { question: (question || "").trim(), answer: rest.join("|") };
-    });
-    const res = await fetch("/api/admin/project-details", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ slug: editing.slug, data }),
-    });
-    const d = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      showToast(d.error || "Save failed");
-      setBusy(false);
-      return;
-    }
-    showToast("Saved");
-    setEditing(null);
-    setBusy(false);
-    load();
-  }
-
-  if (editing) {
-    return (
-      <div className="app-card">
-        <div className="app-card-head">
-          <div>
-            <h2>{editing.title || editing.slug}</h2>
-            <p className="app-card-sub">{editing.slug} — saved fields drive the public project page. Fields left in the raw import keep their scraped values.</p>
-          </div>
-          <button type="button" className="app-btn ghost sm" onClick={() => setEditing(null)}>← Back to Project Details</button>
-        </div>
-        <form className="app-form-grid" onSubmit={save}>
-          <div className="app-field full">
-            <label>About the project (HTML allowed)</label>
-            <textarea rows={5} value={form.about} onChange={(e) => setForm({ ...form, about: e.target.value })} />
-          </div>
-          <div className="app-field"><label>Display price (e.g. 1.96M)</label><input value={form.display_price} onChange={(e) => setForm({ ...form, display_price: e.target.value })} /></div>
-          <div className="app-field"><label>Completion year</label><input value={form.completion_year} onChange={(e) => setForm({ ...form, completion_year: e.target.value })} /></div>
-          <div className="app-field"><label>Payment plan text (e.g. 80/20)</label><input value={form.payment_plan_text} onChange={(e) => setForm({ ...form, payment_plan_text: e.target.value })} /></div>
-          <div className="app-field full">
-            <label>Gallery images (one URL per line)</label>
-            <textarea rows={6} value={form.gallery} onChange={(e) => setForm({ ...form, gallery: e.target.value })} />
-          </div>
-          <div className="app-field full">
-            <label>Amenities (one per line: Name|Image URL)</label>
-            <textarea rows={5} value={form.amenities} onChange={(e) => setForm({ ...form, amenities: e.target.value })} />
-          </div>
-          <div className="app-field full">
-            <label>Floor plans (one per line: Title|Image URL)</label>
-            <textarea rows={4} value={form.floorplans} onChange={(e) => setForm({ ...form, floorplans: e.target.value })} />
-          </div>
-          <div className="app-field full"><label>USP heading</label><input value={form.usp_heading} onChange={(e) => setForm({ ...form, usp_heading: e.target.value })} /></div>
-          <div className="app-field full"><label>USP title</label><input value={form.usp_title} onChange={(e) => setForm({ ...form, usp_title: e.target.value })} /></div>
-          <div className="app-field full">
-            <label>USP description (HTML allowed)</label>
-            <textarea rows={5} value={form.usp_description} onChange={(e) => setForm({ ...form, usp_description: e.target.value })} />
-          </div>
-          <div className="app-field full"><label>USP image URL</label><input value={form.usp_image} onChange={(e) => setForm({ ...form, usp_image: e.target.value })} /></div>
-          <div className="app-field full"><label>Location heading</label><input value={form.loc_heading} onChange={(e) => setForm({ ...form, loc_heading: e.target.value })} /></div>
-          <div className="app-field full"><label>Location title</label><input value={form.loc_title} onChange={(e) => setForm({ ...form, loc_title: e.target.value })} /></div>
-          <div className="app-field full">
-            <label>Location description (HTML allowed)</label>
-            <textarea rows={5} value={form.loc_description} onChange={(e) => setForm({ ...form, loc_description: e.target.value })} />
-          </div>
-          <div className="app-field full"><label>Location image URL</label><input value={form.loc_image} onChange={(e) => setForm({ ...form, loc_image: e.target.value })} /></div>
-          <div className="app-field full"><label>Brochure PDF URL</label><input value={form.brochure_pdf} onChange={(e) => setForm({ ...form, brochure_pdf: e.target.value })} /></div>
-          <div className="app-field full"><label>Brochure cover image URL</label><input value={form.brochure_cover} onChange={(e) => setForm({ ...form, brochure_cover: e.target.value })} /></div>
-          <div className="app-field full">
-            <label>FAQ (one per line: Question|Answer)</label>
-            <textarea rows={6} value={form.faqs} onChange={(e) => setForm({ ...form, faqs: e.target.value })} />
-          </div>
-          <div className="app-field full">
-            <button type="button" className="app-btn ghost" onClick={() => setEditing(null)}>Cancel</button>
-            <button type="submit" className="app-btn" disabled={busy}>{busy ? "Saving…" : "Save"}</button>
-          </div>
-        </form>
-        {toast && <div className="app-toast">{toast}</div>}
-      </div>
-    );
-  }
-
-  return (
-    <div className="app-card">
-      <div className="app-card-head">
-        <div>
-          <h2>Project Details</h2>
-          <p className="app-card-sub">{items?.length ?? 0} projects with rich detail pages</p>
-        </div>
-      </div>
-      {items == null ? (
-        <p className="app-empty">Loading…</p>
-      ) : items.length === 0 ? (
-        <p className="app-empty">No project details yet.</p>
-      ) : (
-        <table className="app-table">
-          <thead>
-            <tr><th>Project</th><th>Developer</th><th>Location</th><th>Completion</th><th>Updated</th><th></th></tr>
-          </thead>
-          <tbody>
-            {items.map((row) => (
-              <tr key={row.slug}>
-                <td><strong>{row.title || row.slug}</strong><div style={{ fontSize: 12, color: "#9399a4" }}>{row.slug}</div></td>
-                <td>{row.developer || "—"}</td>
-                <td>{row.display_address || "—"}</td>
-                <td>{row.completion_year || "—"}</td>
-                <td>{fmtDate(row.updated_at)}</td>
-                <td>
-                  <button type="button" className="app-btn ghost sm" onClick={() => openEdit(row)}>Edit</button>
-                  <a className="app-btn ghost sm" href={`/new-projects/${row.slug}/`} target="_blank" style={{ marginLeft: 4 }}>View</a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      {toast && <div className="app-toast">{toast}</div>}
-    </div>
-  );
 }

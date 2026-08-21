@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zoya Ventures Real Estate | Dubai, UAE</title>
+  <meta name="description" content="Your one-stop for all real estate services, including selling, renting, snagging, conveyancing, mortgages, property management, &amp; expert property consultants." />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" href="/favicon-32x32.png" />
+  <style>
+    :root {
+      --ink: #101418;
+      --muted: #5b6470;
+      --line: #e4e7ea;
+      --paper: #fbfaf7;
+      --card: #ffffff;
+      --gold: #a8853a;
+      --emerald: #0e5e4b;
+      --emerald-soft: #eaf3f0;
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- header ---------- */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 26px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { height: 44px; width: auto; display: block; }
+    .brand .mark {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--emerald), #0c7a60);
+      color: #fff; font-weight: 700; font-size: 18px; letter-spacing: 0.5px;
+      flex: 0 0 auto;
+    }
+    .brand .name { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand .name small { display: block; font-size: 12px; font-weight: 400; color: #9aa3ad; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ---------- hero ---------- */
+    .hero { padding: 64px 0 40px; }
+    .hero h1 { font-size: clamp(28px, 4.4vw, 44px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; }
+    .hero h1 span { color: var(--emerald); }
+    .hero p { margin-top: 14px; max-width: 640px; color: var(--muted); font-size: 17px; }
+
+    /* ---------- status card ---------- */
+    .status {
+      margin: 36px 0 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 1px 2px rgba(16,20,24,0.04), 0 12px 32px -20px rgba(16,20,24,0.18);
+      overflow: hidden;
+    }
+    .status-head {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 22px;
+      background: var(--emerald-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #d9a441; flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(217,164,65,0.18);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(217,164,65,0.08); } }
+    .status-head strong { font-size: 16px; letter-spacing: -0.01em; }
+    .status-head small { color: var(--muted); }
+    .status-body { padding: 22px; }
+    .status-body ol { margin: 10px 0 0 20px; }
+    .status-body li { margin: 6px 0; color: var(--muted); }
+    .status-body code {
+      font-family: Consolas, "SF Mono", Menlo, monospace;
+      font-size: 13px; background: #f1f2f4; border: 1px solid var(--line);
+      border-radius: 6px; padding: 1px 7px; color: var(--ink);
+      word-break: break-all;
+    }
+
+    /* ---------- links grid ---------- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0 0 56px; }
+    .card {
+      display: block; text-decoration: none; color: inherit;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--card); padding: 20px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(16,20,24,0.25); border-color: #c9ced4; }
+    .card h3 { font-size: 16px; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .card p { font-size: 14px; color: var(--muted); }
+    .card .arrow { color: var(--emerald); font-weight: 600; }
+
+    /* ---------- footer ---------- */
+    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer .help { margin-top: 10px; }
+    footer .help a { color: var(--emerald); text-decoration: none; font-weight: 600; }
+
+    @media (max-width: 560px) {
+      .hero { padding-top: 40px; }
+      .status-body { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap brand">
+      <img src="/lloo.png" alt="Zoya Ventures Real Estate"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+      <span class="mark" style="display:none;">ZV</span>
+      <span class="name">Zoya Ventures Real Estate
+        <small>Dubai, United Arab Emirates</small>
+      </span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Leading real estate agency in <span>Dubai, UAE</span></h1>
+      <p>
+        Your one-stop for all real estate services — selling, renting, snagging,
+        conveyancing, mortgages, property management and expert property consultants.
+      </p>
+    </section>
+
+    <section class="status" aria-label="Website status">
+      <div class="status-head">
+        <span class="dot"></span>
+        <div>
+          <strong>Website is being deployed</strong>
+          <small>&nbsp;·&nbsp; this page is the temporary document-root index file</small>
+        </div>
+      </div>
+      <div class="status-body">
+        <p>
+          This site is a <strong>Next.js (Node.js) application</strong> — it does not use a static
+          <code>index.html</code> like a PHP/WordPress site. The real homepage is generated at
+          runtime by the application server, so the domain only shows the full website once the
+          hosting account runs the Node.js app. Until then, this page is served as the index file.
+        </p>
+        <p style="margin-top:14px;"><strong>To go live, the hosting team needs to:</strong></p>
+        <ol>
+          <li>Enable <strong>Node.js</strong> (cPanel → Software → <em>Setup Node.js App</em> / CloudLinux Node.js selector) on the account.</li>
+          <li>Create the app with <strong>Application root</strong> = the folder containing the uploaded project and <strong>startup file</strong> = <code>server.js</code>.</li>
+          <li>Run <code>npm install</code>, then <code>npm run build</code> (or upload a pre-built <code>.next</code> folder).</li>
+          <li>Set environment variables: <code>PROVIDENT_DATABASE_URL</code>, <code>PROVIDENT_ADMIN_EMAIL</code>, <code>PROVIDENT_ADMIN_PASSWORD</code>.</li>
+          <li>Restart the app — the domain then serves the full website automatically.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Quick links">
+      <a class="card" href="/">
+        <h3>Homepage <span class="arrow">→</span></h3>
+        <p>Property listings, projects and services — once the app is running.</p>
+      </a>
+      <a class="card" href="/list-your-property/">
+        <h3>List your property <span class="arrow">→</span></h3>
+        <p>Submit your property to our team of expert consultants.</p>
+      </a>
+      <a class="card" href="/login">
+        <h3>Client login <span class="arrow">→</span></h3>
+        <p>Portal for saved properties, viewings and inquiries.</p>
+      </a>
+      <a class="card" href="/admin">
+        <h3>Admin <span class="arrow">→</span></h3>
+        <p>Content, properties, projects and inquiry management.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="yr"></span> Zoya Ventures Real Estate. All rights reserved.</p>
+      <p class="help">
+        Deployment questions? Send this page to your hosting provider and ask them to enable
+        the <strong>Node.js application</strong> feature, or open a support ticket referencing
+        the checklist above.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // If the Next.js app is already live at this domain, skip this placeholder.
+    fetch("/api/auth/me", { cache: "no-store" })
+      .then(function (r) {
+        if (r.ok && (r.headers.get("content-type") || "").indexOf("application/json") !== -1) {
+          window.location.href = "/";
+        }
+      })
+      .catch(function () {});
+  </script>
+</body>
+</html>

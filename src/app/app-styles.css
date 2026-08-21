@@ -828,3 +828,18 @@
 .app-row-click:hover td {
   background: #f7fafc;
 }
+
+/* ===== Mobile: keep data tables inside the card border (swipe sideways) ===== */
+@media screen and (max-width: 767px) {
+  .app-card {
+    padding: 16px;
+  }
+  .app-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app-table td {
+    white-space: nowrap;
+  }
+}
