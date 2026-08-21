@@ -86,15 +86,10 @@ export async function HomePage({ page }: { page: any }) {
 }
 
 function stripText(html?: string | null, stats?: { properties: number; agents: number; communities: number }): string {
-  if (!html) {
-    const p = stats?.properties ?? 4000;
-    const a = stats?.agents ?? 400;
-    const c = stats?.communities ?? 80;
-    return `${p.toLocaleString("en-US")} listings \u00A0\u00B7\u00A0${a.toLocaleString("en-US")}+ agents \u00A0\u00B7\u00A0Serving ${c.toLocaleString("en-US")}+ communities`;
-  }
-  return html
-    .replace(/<\/?p>/g, "")
-    .replace(/&nbsp;/g, "\u00A0")
-    .replace(/\u00C2\u00B7/g, "\u00B7")
-    .replace(/\uFFFD/g, "\u00B7");
+  // Always show live counts from the database so the numbers update
+  // automatically as properties/agents/communities are added or removed.
+  const p = stats?.properties ?? 0;
+  const a = stats?.agents ?? 0;
+  const c = stats?.communities ?? 0;
+  return `${p.toLocaleString("en-US")} listings \u00A0\u00B7\u00A0${a.toLocaleString("en-US")}+ agents \u00A0\u00B7\u00A0Serving ${c.toLocaleString("en-US")}+ communities`;
 }

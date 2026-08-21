@@ -15,7 +15,12 @@ export function PropertyCard({ hit, list = false, signature = false }: { hit: an
   const neg = Array.isArray(hit.crm_negotiator_id) ? hit.crm_negotiator_id[0] || {} : hit.crm_negotiator_id || {};
   const cardPhone = neg.phone || "+971 50 440 2783";
   return (
-    <div className="property-card-wrapper">
+    <div
+      className="property-card-wrapper"
+      data-price={Number(hit.price || 0)}
+      data-status={String(hit.status || "ready").toLowerCase()}
+      data-featured={Number(hit.featured || 0) || (Array.isArray(hit.labels) && hit.labels.includes("featured") ? 1 : 0)}
+    >
       <div
         className={
           "property-card" + (list ? " list-view" : "") + (signature ? " singnature" : "")

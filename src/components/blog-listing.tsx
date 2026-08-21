@@ -98,6 +98,19 @@ export function BlogListing({ posts }: { posts: any[] }) {
                 )}
               </div>
             </div>
+            <a
+              className="yt-subscribe-pill"
+              href="https://www.youtube.com/@providentestate"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Subscribe on YouTube"
+            >
+              <span className="yt-count">87.7k Subscribers</span>
+              <svg width="20" height="15" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+                <path d="M27.4 3.1A3.5 3.5 0 0 0 25 .7C22.8 0 14 0 14 0S5.2 0 3 .7A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9A3.5 3.5 0 0 0 3 19.3c2.2.7 11 .7 11 .7s8.8 0 11-.7a3.5 3.5 0 0 0 2.4-2.4c.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z" fill="#FF0000" />
+                <path d="M11.2 14.3 18.5 10l-7.3-4.3v8.6Z" fill="#fff" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

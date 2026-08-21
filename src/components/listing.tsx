@@ -5,6 +5,7 @@ import { FilterDropdown, TypeSelect, MortgageCalculator } from "./listing-ui";
 import { synthHits, areaLabel, teamMembers, projectHits, routeFilters } from "@/lib/store";
 import { CountryFlag } from "./phone-flag";
 import { ReadMore } from "./read-more";
+import { ListingToolbar } from "./listing-toolbar";
 
 export function ListingPage({ data, route, page = 1 }: { data: any; route: string; page?: number }) {
   const list = data.hits || [];
@@ -190,43 +191,7 @@ export function ListingPage({ data, route, page = 1 }: { data: any; route: strin
                   </button>
                 </div>
                 <div className="d-none d-xl-block">
-                  <button className="map-button list-grid">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="grid-icon">
-                      <path d="M8.00008 4.00033C8.36827 4.00033 8.66675 3.70185 8.66675 3.33366C8.66675 2.96547 8.36827 2.66699 8.00008 2.66699C7.63189 2.66699 7.33341 2.96547 7.33341 3.33366C7.33341 3.70185 7.63189 4.00033 8.00008 4.00033Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M8.00008 8.66699C8.36827 8.66699 8.66675 8.36851 8.66675 8.00033C8.66675 7.63214 8.36827 7.33366 8.00008 7.33366C7.63189 7.33366 7.33341 7.63214 7.33341 8.00033C7.33341 8.36851 7.63189 8.66699 8.00008 8.66699Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M8.00008 13.3337C8.36827 13.3337 8.66675 13.0352 8.66675 12.667C8.66675 12.2988 8.36827 12.0003 8.00008 12.0003C7.63189 12.0003 7.33341 12.2988 7.33341 12.667C7.33341 13.0352 7.63189 13.3337 8.00008 13.3337Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M12.6667 4.00033C13.0349 4.00033 13.3334 3.70185 13.3334 3.33366C13.3334 2.96547 13.0349 2.66699 12.6667 2.66699C12.2986 2.66699 12.0001 2.96547 12.0001 3.33366C12.0001 3.70185 12.2986 4.00033 12.6667 4.00033Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M12.6667 8.66699C13.0349 8.66699 13.3334 8.36851 13.3334 8.00033C13.3334 7.63214 13.0349 7.33366 12.6667 7.33366C12.2986 7.33366 12.0001 7.63214 12.0001 8.00033C12.0001 8.36851 12.2986 8.66699 12.6667 8.66699Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M12.6667 13.3337C13.0349 13.3337 13.3334 13.0352 13.3334 12.667C13.3334 12.2988 13.0349 12.0003 12.6667 12.0003C12.2986 12.0003 12.0001 12.2988 12.0001 12.667C12.0001 13.0352 12.2986 13.3337 12.6667 13.3337Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M3.33341 4.00033C3.7016 4.00033 4.00008 3.70185 4.00008 3.33366C4.00008 2.96547 3.7016 2.66699 3.33341 2.66699C2.96522 2.66699 2.66675 2.96547 2.66675 3.33366C2.66675 3.70185 2.96522 4.00033 3.33341 4.00033Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M3.33341 8.66699C3.7016 8.66699 4.00008 8.36851 4.00008 8.00033C4.00008 7.63214 3.7016 7.33366 3.33341 7.33366C2.96522 7.33366 2.66675 7.63214 2.66675 8.00033C2.66675 8.36851 2.96522 8.66699 3.33341 8.66699Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M3.33341 13.3337C3.7016 13.3337 4.00008 13.0352 4.00008 12.667C4.00008 12.2988 3.7016 12.0003 3.33341 12.0003C2.96522 12.0003 2.66675 12.2988 2.66675 12.667C2.66675 13.0352 2.96522 13.3337 3.33341 13.3337Z" stroke="#07234B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"></path>
-                    </svg>
-                    <span className="button-text">Grid</span>
-                  </button>
-                </div>
-                <div className="d-none d-xl-block">
-                  <div className="sort-divider"></div>
-                </div>
-                <div className="d-flex align-items-center">
-                  <p className="sort-txt">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M2 5L5 2M5 2L8 5M5 2V11M14 11L11 14M11 14L8 11M11 14L11 5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round"></path>
-                    </svg>{" "}
-                    Sort:{" "}
-                  </p>{" "}
-                  <div className="sort-dropdown dropdown">
-                    <button className="sort-section dropdown-toggle" aria-expanded="false">
-                      <div className="sort-field">
-                        <p className="text button-text">
-                          <span>Most Recent</span>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-down-icon">
-                            <path d="M13 5.5L8 10.5L3 5.5" stroke="#07234B" strokeLinecap="round" strokeLinejoin="round"></path>
-                          </svg>
-                        </p>
-                      </div>
-                    </button>
-                  </div>
+                  <ListingToolbar />
                 </div>
               </div>
             </div>

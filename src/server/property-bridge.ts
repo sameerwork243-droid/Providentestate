@@ -73,25 +73,29 @@ const DEPARTMENT: Record<string, string> = {
   land: "plots",
 };
 
+const MEDIA_SELECT =
+  "(SELECT COALESCE(json_agg(m.url ORDER BY m.is_featured DESC, m.sort_order, m.id), '[]'::json) FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image') AS media_urls";
+
 async function dbQuery(kind: "buy" | "let") {
   if (!dbEnabled()) return [];
   await ensureSeeded();
   const txn = kind === "let" ? "rent" : "buy";
+  // Imageless ("empty") properties never appear in public listings.
   return rows<Record<string, unknown>>(
     `SELECT p.*,
-       ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
-       ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email,
-       (SELECT m.url FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image' ORDER BY m.is_featured DESC, m.sort_order, m.id LIMIT 1) AS thumb
-     FROM properties p
-     LEFT JOIN agents ag ON ag.id = p.agent_id
-     WHERE p.published = 1 AND p.transaction_type = ?
-     ORDER BY p.created_at DESC`,
+        ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
+        ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email,
+        ${MEDIA_SELECT}
+      FROM properties p
+      LEFT JOIN agents ag ON ag.id = p.agent_id
+      WHERE p.published = 1 AND p.transaction_type = ?
+        AND EXISTS (SELECT 1 FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image')
+      ORDER BY p.created_at DESC`,
     txn
   );
 }
 
 function dbHit(p: Record<string, unknown>): DbHit {
-  const thumb = String(p.thumb || "");
   const id = Number(p.id);
   const sqft = Number(p.area_sqft || 0);
   const img = (u: string) => ({
@@ -99,7 +103,16 @@ function dbHit(p: Record<string, unknown>): DbHit {
     "464x312": u,
     "696x520": u,
   });
-  const placeholder = "/images/property-placeholder.svg";
+  let urls: string[] = [];
+  if (Array.isArray(p.media_urls)) urls = (p.media_urls as unknown[]).map((u) => String(u)).filter(Boolean);
+  else if (p.media_urls) {
+    try {
+      urls = JSON.parse(String(p.media_urls));
+    } catch {
+      urls = [];
+    }
+  }
+  const images = urls.length ? urls.map(img) : [img("/images/property-placeholder.svg")];
   return {
     id,
     slug: String(p.slug || `property-${id}`),
@@ -116,11 +129,11 @@ function dbHit(p: Record<string, unknown>): DbHit {
     department: DEPARTMENT[String(p.property_type || "").toLowerCase()] || String(p.property_type || "apartments"),
     building_type: String(p.property_type || ""),
     building: [String(p.property_type || "")].filter(Boolean),
-    description: String(p.introtext || ""),
+    description: String(p.introtext || "").trim() || String(p.title || ""),
     long_description: String(p.long_description || ""),
     introtext: String(p.introtext || ""),
-    images: thumb ? [img(thumb)] : [img(placeholder)],
-    imageCount: thumb ? 1 : 1,
+    images,
+    imageCount: images.length,
     search_type: String(p.transaction_type) === "rent" ? "rental" : "sale",
     crm_negotiator_id: negotiatorFromRow(p),
     status: String(p.status || "ready"),
@@ -242,10 +255,11 @@ export async function dbSimilarProperties(
     `SELECT p.*,
        ag.name AS agent_name, ag.img AS agent_img, ag.role AS agent_role,
        ag.brn_number AS agent_brn, ag.phone AS agent_phone, ag.email AS agent_email,
-       (SELECT m.url FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image' ORDER BY m.is_featured DESC, m.sort_order, m.id LIMIT 1) AS thumb
+       ${MEDIA_SELECT}
      FROM properties p
      LEFT JOIN agents ag ON ag.id = p.agent_id
      WHERE p.published = 1 AND p.transaction_type = ?
+       AND EXISTS (SELECT 1 FROM property_media m WHERE m.property_id = p.id AND m.kind = 'image')
        ${selfIds.length ? `AND p.id NOT IN (${selfIds.map(() => "?").join(", ")})` : ""}
        AND (LOWER(p.property_type) = ? OR LOWER(p.community) = ?)
      ORDER BY (LOWER(p.property_type) = ?) DESC, ABS(p.price - ?) ASC

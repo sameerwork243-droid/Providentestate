@@ -1280,3 +1280,39 @@
 .tile-block-wrapper .tile-block-container .content-section .place-list .place-name{color:#fff}
 .tile-block-wrapper .tile-block-container .content-section .place-list .place-time{color:#ee7133;font-weight:700;white-space:nowrap}
 .video-banner-container video{border-radius:8px;height:auto;width:100%}
+
+/* ==========================================================================
+   Listing toolbar: status pills + grid/list toggle + sort dropdown
+   ========================================================================== */
+.listing-toolbar{align-items:center;display:flex;gap:16px}
+.listing-toolbar .status-pills{align-items:center;display:flex;gap:6px}
+.listing-toolbar .status-pill{background:#fff;border:1px solid #e1e8ed;border-radius:999px;color:#07234b;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;line-height:1;padding:9px 16px;transition:all .15s ease}
+.listing-toolbar .status-pill:hover{border-color:#ee7133;color:#ee7133}
+.listing-toolbar .status-pill.active{background:#07234b;border-color:#07234b;color:#fff}
+.listing-toolbar .sort-divider{background:#e1e8ed;height:20px;width:1px}
+.listing-toolbar .sort-dropdown{position:relative}
+.listing-toolbar .sort-menu{background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(7,35,75,.14);margin-top:8px;min-width:200px;position:absolute;right:0;top:100%;z-index:50;overflow:hidden}
+.listing-toolbar .sort-option{background:none;border:0;cursor:pointer;display:block;font-family:inherit;font-size:13px;font-weight:500;padding:11px 16px;text-align:left;width:100%;color:#35373c}
+.listing-toolbar .sort-option:hover{background:#f4f8fb;color:#ee7133}
+.listing-toolbar .sort-option.selected{color:#ee7133;font-weight:700}
+
+/* Grid view for the property list (toggle target) */
+.property-list-section.grid-view{display:grid;gap:24px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media screen and (max-width:1199.98px){.property-list-section.grid-view{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media screen and (max-width:767.98px){.property-list-section.grid-view{grid-template-columns:1fr}}
+.property-list-section.grid-view .property-card-wrapper{height:100%}
+.property-list-section.grid-view .property-card.list-view{display:flex;flex-direction:column}
+.property-list-section.grid-view .property-card.list-view .img-section.listview-img-section{display:block;flex:0 0 auto;height:252px;width:100%}
+.property-list-section.grid-view .property-card.list-view .img-section.listview-img-section .swiper{height:100%;width:100%}
+.property-list-section.grid-view .property-card.list-view .img-section.listview-img-section .swiper-slide{width:100%}
+.property-list-section.grid-view .property-card.list-view .img-section.listview-img-section .swiper-slide a,
+.property-list-section.grid-view .property-card.list-view .img-section.listview-img-section .swiper-slide img{height:252px;width:100%}
+.property-list-section.grid-view .property-card.list-view .content-section{width:100%}
+
+/* Blog page: YouTube subscribe pill next to the filters */
+.yt-subscribe-pill{align-items:center;background:#f4f8fb;border:1px solid #e1e8ed;border-radius:8px;display:inline-flex;gap:10px;justify-content:center;padding:12px 18px;text-decoration:none;white-space:nowrap}
+.yt-subscribe-pill:hover{border-color:#ff0000}
+.yt-subscribe-pill .yt-count{color:#142121;font-size:14px;font-weight:700}
+
+/* Blog cards: neutral bg while lazy images load */
+.news-card .img-section-wrap,.small-news-card .img-section-wrap{background:#eef2f7}
