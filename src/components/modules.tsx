@@ -114,7 +114,7 @@ function FeaturedSlider({ m }: { m: any }) {
             <div className="col-xl-8 col-lg-12">
               <div>
                 <div className="singnature-slider-tab-section">
-                  <Slick perView={2} arrows={false} autoplay className="signature-slider">
+                  <Slick perView={2} arrows={false} marquee className="signature-slider">
                     {[...sales, null].map((h, i) =>
                       h ? (
                         <PropertyCard key={i} hit={h} signature />
@@ -160,7 +160,7 @@ function FeaturedSlider({ m }: { m: any }) {
             </div>
           </div>
           <div className="tab-body">
-            <Slick perView={3} arrows={false} autoplay className="featured-slider">
+            <Slick perView={3} arrows={false} marquee className="featured-slider">
               {[...sales, null].map((h, i) =>
                 h ? (
                   <PropertyCard key={i} hit={h} />

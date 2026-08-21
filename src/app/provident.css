@@ -1315,4 +1315,5 @@
 .yt-subscribe-pill .yt-count{color:#142121;font-size:14px;font-weight:700}
 
 /* Blog cards: neutral bg while lazy images load */
+.banner-landing-wrap .bg-section .overlay{pointer-events:none;z-index:2}
 .news-card .img-section-wrap,.small-news-card .img-section-wrap{background:#eef2f7}

@@ -42,6 +42,7 @@ export async function HomePage({ page }: { page: any }) {
                 muted
                 autoPlay
               />
+              <div className="overlay"></div>
               <div>
                 <div className="d-block d-md-none">
                   <div className="gatsby-image-wrapper home-banner-video">
