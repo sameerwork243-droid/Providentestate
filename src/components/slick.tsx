@@ -28,7 +28,6 @@ export function Slick({
   const ref = useRef<HTMLDivElement>(null);
   const prevRef = useRef(0);
   const [vp, setVp] = useState(perView);
-  const [paused, setPaused] = useState(false);
 
   const computeVp = (w: number): number => {
     if (!breakpoints) {
@@ -62,18 +61,18 @@ export function Slick({
   const percent = infinite ? 100 + (100 / trackSlides) * idx : (100 / vp) * idx;
 
   useEffect(() => {
-    if (!autoplay || total <= vp || paused) return;
+    if (!autoplay || total <= vp) return;
     const t = setInterval(() => {
-      setIndex((i) => (i >= total - 1 ? 0 : i + 1));
+      setIndex((i) => (i >= max ? 0 : i + 1));
     }, speed);
     return () => clearInterval(t);
-  }, [autoplay, speed, total, vp, paused]);
+  }, [autoplay, speed, total, vp, max]);
 
   useEffect(() => {
     prevRef.current = idx;
   }, [idx]);
 
-  const wrapJump = infinite && idx === 0 && prevRef.current >= total - 1;
+  const wrapJump = idx === 0 && prevRef.current > 0 && prevRef.current >= max;
   const trackStyle: React.CSSProperties = {
     width: `${(trackSlides / vp) * 100}%`,
     left: `-${percent}%`,
@@ -94,13 +93,7 @@ export function Slick({
   }
 
   return (
-    <div
-      ref={ref}
-      className={"slick-slider custom-slider slick-initialized " + className}
-      dir="ltr"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div ref={ref} className={"slick-slider custom-slider slick-initialized " + className} dir="ltr">
       <div className="slick-list">
         <div className="slick-track" style={trackStyle}>
           {slides.map((s, i) => (
